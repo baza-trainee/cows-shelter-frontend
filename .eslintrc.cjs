@@ -25,6 +25,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true }
     ],
-    'tailwindcss/classnames-order': 'warn'
+    'tailwindcss/no-custom-classname': 0
   }
 };
