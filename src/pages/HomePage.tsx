@@ -1,4 +1,5 @@
-import Footer from '@/components/Footer';
+import Footer from '@/components/Footer/Footer';
+import UnderFooter from '@/components/Footer/UnderFooter';
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
       </div>
       <div>
         <Footer />
+        <UnderFooter />
       </div>
     </>
   );

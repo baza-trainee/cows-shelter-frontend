@@ -4,8 +4,8 @@ import inst_icon from '@/assets/icons/icon_instagram.svg';
 
 const Footer = () => {
   return (
-    <div className="container mx-auto flex max-w-[1440px] px-8 pb-10 pt-16 md:px-20">
-      <ul className="flex flex-col gap-x-[102.5px] md:flex-row">
+    <div className="container mx-auto flex max-w-[1440px] flex-col ">
+      <ul className="flex flex-col gap-x-[102.5px] px-8 pb-10 pt-16 md:flex-row md:px-20">
         {/* first col */}
         <li className="flex flex-col">
           <img
@@ -15,9 +15,11 @@ const Footer = () => {
             alt="logo"
             className="mb-3"
           />
-          <p className="mb-0.5">Притулок корів, биків, телят</p>
-          <p className="mb-8">Захист від насилля, голоду, холоду</p>
-          <button className="w-[138px] bg-accent px-5 py-[8.5px]">
+          <p className="default-text mb-0.5">Притулок корів, биків, телят</p>
+          <p className="default-text mb-8">
+            Захист від насилля, голоду, холоду
+          </p>
+          <button className=" w-[231px] bg-accent px-[66.5px] py-[8.5px] text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
             Допомогти
           </button>
         </li>
@@ -25,22 +27,32 @@ const Footer = () => {
         {/* second col */}
         <li>
           <div className="flex flex-col gap-3">
-            <h3>МЕНЮ</h3>
+            <h3 className="custom-text title-text">МЕНЮ</h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <a href="/">Про нас</a>
+                <a href="/" className="default-text">
+                  Про нас
+                </a>
               </li>
               <li>
-                <a href="/">Екскурсії</a>
+                <a href="/" className="default-text">
+                  Екскурсії
+                </a>
               </li>
               <li>
-                <a href="/">Галерея</a>
+                <a href="/" className="default-text">
+                  Галерея
+                </a>
               </li>
               <li>
-                <a href="/">Новини</a>
+                <a href="/" className="default-text">
+                  Новини
+                </a>
               </li>
               <li>
-                <a href="/">Партнери</a>
+                <a href="/" className="default-text">
+                  Партнери
+                </a>
               </li>
             </ul>
           </div>
@@ -49,15 +61,25 @@ const Footer = () => {
         {/* third col */}
         <li>
           <div className="flex flex-col gap-3">
-            <h3>ДОКУМЕНТИ</h3>
+            <h3 className="title-text">ДОКУМЕНТИ</h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <a href="/" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="default-text"
+                >
                   Політика конфіденційності
                 </a>
               </li>
               <li>
-                <a href="/" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="default-text"
+                >
                   Правила користування сайтом
                 </a>
               </li>
@@ -68,29 +90,34 @@ const Footer = () => {
         {/* fourth col */}
         <li className="flex flex-col gap-8">
           <div className="flex flex-col gap-3">
-            <h3>РЕЖИМ РОБОТИ</h3>
+            <h3 className="title-text">РЕЖИМ РОБОТИ</h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <p>Понеділок - П&#39;ятниця</p>
+                <p className="default-text">Понеділок - П&#39;ятниця</p>
               </li>
               <li>
-                <p>10:00 - 20:00</p>
+                <p className="default-text">10:00 - 20:00</p>
               </li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h3>КОНТАКТИ</h3>
+            <h3 className="title-text">КОНТАКТИ</h3>
             <ul className="flex flex-col gap-2">
               <li>
                 <a
                   href="mailto:zdravejutta@gmail.com"
                   rel="noopener noreferrer"
+                  className="default-text"
                 >
                   zdravejutta@gmail.com
                 </a>
               </li>
               <li>
-                <a href="tel:+380987675765" rel="noopener noreferrer">
+                <a
+                  href="tel:+380987675765"
+                  rel="noopener noreferrer"
+                  className="default-text"
+                >
                   +380 987 675 765
                 </a>
               </li>
