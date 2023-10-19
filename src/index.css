@@ -22,6 +22,39 @@ body {
 }
 
 .intro {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 900px;;
   background: url(/hero.png) no-repeat;
   background-size: cover;
+}
+
+
+.container {
+  width: 1440px;
+  margin: 0 auto;
+ 
+}
+
+.border-1 {
+  border-width: 1px;
+}
+
+.header {
+  @apply fixed inset-x-0 top-0 z-10 flex items-center justify-between px-28 py-5 text-lg text-white outline-transparent;
+}
+
+.header-nav-black {
+  @apply text-black hover:border-b-black border-1 border-transparent py-2 transition-all duration-300;
+}
+
+.header-nav-white {
+  @apply text-white hover:border-b-white border-1 border-transparent py-2 transition-all duration-300;
+}
+
+
+.hero-title {
+  font-size: 106px;
 }
