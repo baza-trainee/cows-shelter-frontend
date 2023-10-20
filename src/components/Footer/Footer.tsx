@@ -2,10 +2,18 @@ import logo_dark from '@/assets/icons/logo_dark.svg';
 import fb_icon from '@/assets/icons/icon_facebook.svg';
 import inst_icon from '@/assets/icons/icon_instagram.svg';
 
+const anchorLinks = [
+  { title: 'Про нас', href: '#about' },
+  { title: 'Екскурсії', href: '#excursions' },
+  { title: 'Галерея', href: '#gallery' },
+  { title: 'Новини', href: '#news' },
+  { title: 'Партнери', href: '#partners' }
+];
+
 const Footer = () => {
   return (
     <div className="container mx-auto flex max-w-[1440px] flex-col ">
-      <ul className="flex flex-col gap-x-[102.5px] px-8 pb-10 pt-16 md:flex-row md:px-20">
+      <ul className="flex flex-col  gap-x-[6.4rem] px-8 pb-10 pt-16 md:flex-row md:px-20">
         {/* first col */}
         <li className="flex flex-col">
           <img
@@ -19,7 +27,7 @@ const Footer = () => {
           <p className="default-text mb-8">
             Захист від насилля, голоду, холоду
           </p>
-          <button className=" w-[14,4375rem] bg-accent px-[4,15625rem] py-2 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
+          <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
             Допомогти
           </button>
         </li>
@@ -29,31 +37,13 @@ const Footer = () => {
           <div className="flex flex-col gap-3">
             <h3 className="custom-text title-text">МЕНЮ</h3>
             <ul className="flex flex-col gap-2">
-              <li>
-                <a href="/" className="default-text">
-                  Про нас
-                </a>
-              </li>
-              <li>
-                <a href="/" className="default-text">
-                  Екскурсії
-                </a>
-              </li>
-              <li>
-                <a href="/" className="default-text">
-                  Галерея
-                </a>
-              </li>
-              <li>
-                <a href="/" className="default-text">
-                  Новини
-                </a>
-              </li>
-              <li>
-                <a href="/" className="default-text">
-                  Партнери
-                </a>
-              </li>
+              {anchorLinks.map(({ title, href }) => (
+                <li key={href}>
+                  <a href={href} className="default-text">
+                    {title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </li>
