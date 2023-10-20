@@ -19,7 +19,7 @@ const Footer = () => {
           <p className="default-text mb-8">
             Захист від насилля, голоду, холоду
           </p>
-          <button className=" w-[231px] bg-accent px-[66.5px] py-[8.5px] text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
+          <button className=" w-[14,4375rem] bg-accent px-[4,15625rem] py-2 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
             Допомогти
           </button>
         </li>
