@@ -28,9 +28,9 @@ const Header = () => {
   
   return (
     <header
-      className={`container ${
+      className={`${
         isScrolled ? 'bg-white' : 'bg-transparent'
-      } fixed inset-x-0 top-0 z-10 flex items-center justify-between px-28 py-5 text-lg text-white outline-transparent`}
+      } w-[1440px] fixed  top-0 z-10 flex items-center justify-between px-28 py-5 text-lg text-white outline-transparent`}
     >
       <a className="inline-bloc" href="../main.tsx">
         {isScrolled ? (

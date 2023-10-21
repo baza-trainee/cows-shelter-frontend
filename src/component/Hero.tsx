@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <section className="h-[900px] w-full bg-[url(/hero.png)] bg-cover bg-center bg-no-repeat text-white">
+    <section className="h-[900px] w-[1440px] bg-[url(/hero.png)] bg-cover bg-center bg-no-repeat text-white">
       <div className="absolute left-[7.5rem] right-0 top-[11rem] ">
         <h1 className=" mb-16 font-namu text-[6.6rem] ">Здраве життя</h1>
         <ul className=" mb-[235px] text-2xl font-normal ">
@@ -26,7 +26,7 @@ const Hero = () => {
           Вінницька обл, с. Буша
         </a>
         <a
-          className=" absolute bottom-5 right-[120px] flex h-[130px] w-[130px] items-center rounded-full bg-accent text-center text-xl font-medium text-black hover:bg-lemon"
+          className=" absolute bottom-5 right-[190px] flex h-[130px] w-[130px] items-center rounded-full bg-accent text-center text-xl font-medium text-black hover:bg-lemon"
           href="#"
         >
           Замовити екскурсію
