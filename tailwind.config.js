@@ -17,6 +17,12 @@ export default {
       fontFamily: {
         namu: ['namu', 'sans-serif']
       }
+    },
+    screens: {
+      sm: '320px',
+      md: '768px',
+      lg: '1280px',
+      xl: '1440px'
     }
   },
   plugins: []
