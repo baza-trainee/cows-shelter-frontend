@@ -34,7 +34,7 @@ const Header = () => {
     >
       <a className="inline-bloc" href="../main.tsx">
         {isScrolled ? (
-          <img src="/logo-black.svg" alt="" />
+          <img src="/Logo-black.svg" alt="" />
         ) : (
           <img src="/logo.svg" alt="" />
         )}
