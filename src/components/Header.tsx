@@ -1,10 +1,11 @@
-import { useState, useEffect, MouseEvent } from 'react';
-
-type CurrentLanguage = string | null;
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState<CurrentLanguage>('ua');
+  const {
+    i18n: { changeLanguage, language }
+  } = useTranslation();
 
   const handleScroll = () => {
     if (window.scrollY >= 180) {
@@ -14,23 +15,18 @@ const Header = () => {
     }
   };
 
-  const switchLanguage = (event: MouseEvent<HTMLButtonElement>) => {
-    setCurrentLanguage(event.currentTarget.textContent);
-    console.log(event.currentTarget.textContent);
-  };
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
+
   return (
     <header
       className={`${
         isScrolled ? 'bg-white' : 'bg-transparent'
-      } w-[1440px] fixed  top-0 z-10 flex items-center justify-between px-28 py-5 text-lg text-white outline-transparent`}
+      } fixed top-0  z-10 flex w-[1440px] items-center justify-between px-28 py-5 text-lg text-white outline-transparent`}
     >
       <a className="inline-bloc" href="../main.tsx">
         {isScrolled ? (
@@ -92,9 +88,9 @@ const Header = () => {
       <div className="flex items-center justify-between">
         <div className=" mr-8">
           <button
-            onClick={switchLanguage}
+            onClick={() => changeLanguage('uk')}
             className={`${
-              currentLanguage === 'ua'
+              language === 'uk'
                 ? `${isScrolled ? 'text-black' : 'text-white'}`
                 : 'text-disabled'
             } uppercase `}
@@ -104,9 +100,9 @@ const Header = () => {
           </button>
           <span className="text-disabled">|</span>
           <button
-            onClick={switchLanguage}
+            onClick={() => changeLanguage('en')}
             className={`${
-              currentLanguage === 'en'
+              language === 'en'
                 ? `${isScrolled ? 'text-black' : 'text-white'}`
                 : 'text-disabled'
             } uppercase`}
@@ -117,14 +113,17 @@ const Header = () => {
         </div>
         <button
           className={` ${
-            isScrolled ? 'border-black text-black bg-accent border-transparent' : 'border-white bg-inherit'
-          } border-1 duration-400 block  px-5 py-3 hover:border-transparent hover:bg-lemon hover:text-black transition-all duration-300`}
+            isScrolled
+              ? 'border-black border-transparent bg-accent text-black'
+              : 'border-white bg-inherit'
+          } border-1 duration-400 block  px-5 py-3 transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black`}
           type="button"
         >
           Допомогти
         </button>
       </div>
-    </header>);
+    </header>
+  );
 };
 
 export default Header;
