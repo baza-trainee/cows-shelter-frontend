@@ -22,6 +22,11 @@ body {
 }
 
 .intro {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 900px;;
   background: url(/hero.png) no-repeat;
   background-size: cover;
 }
