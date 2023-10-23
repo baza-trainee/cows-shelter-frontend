@@ -1,19 +1,21 @@
 import logo_dark from '@/assets/icons/logo_dark.svg';
 import fb_icon from '@/assets/icons/icon_facebook.svg';
 import inst_icon from '@/assets/icons/icon_instagram.svg';
-
-const anchorLinks = [
-  { title: 'Про нас', href: '#about' },
-  { title: 'Екскурсії', href: '#excursions' },
-  { title: 'Галерея', href: '#gallery' },
-  { title: 'Новини', href: '#news' },
-  { title: 'Партнери', href: '#partners' }
-];
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
+  const anchorLinks = [
+    { title: t('footer:anchor_links.about_us'), href: '#about-us' },
+    { title: t('footer:anchor_links.excursions'), href: '#excursions' },
+    { title: t('footer:anchor_links.gallery'), href: '#gallery' },
+    { title: t('footer:anchor_links.news'), href: '#news' },
+    { title: t('footer:anchor_links.partners'), href: '#partners' }
+  ];
   return (
     <div className="container mx-auto flex max-w-[1440px] flex-col ">
-      <ul className="flex flex-col  gap-x-[6.4rem] px-8 pb-10 pt-16 md:flex-row md:px-20">
+      <ul className="flex justify-between px-8 pb-10 pt-16 md:flex-row md:px-20">
         {/* first col */}
         <li className="flex flex-col">
           <img
@@ -23,19 +25,17 @@ const Footer = () => {
             alt="logo"
             className="mb-3"
           />
-          <p className="default-text mb-0.5">Притулок корів, биків, телят</p>
-          <p className="default-text mb-8">
-            Захист від насилля, голоду, холоду
-          </p>
+          <p className="default-text mb-0.5">{t('footer:shelter_p1')}</p>
+          <p className="default-text mb-8">{t('footer:shelter_p2')} </p>
           <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
-            Допомогти
+            {t('footer:button_help')}{' '}
           </button>
         </li>
 
         {/* second col */}
         <li>
           <div className="flex flex-col gap-3">
-            <h3 className="custom-text title-text">МЕНЮ</h3>
+            <h3 className="custom-text title-text"> {t('footer:menu')} </h3>
             <ul className="flex flex-col gap-2">
               {anchorLinks.map(({ title, href }) => (
                 <li key={href}>
@@ -51,7 +51,7 @@ const Footer = () => {
         {/* third col */}
         <li>
           <div className="flex flex-col gap-3">
-            <h3 className="title-text">ДОКУМЕНТИ</h3>
+            <h3 className="title-text"> {t('footer:documents')} </h3>
             <ul className="flex flex-col gap-2">
               <li>
                 <a
@@ -60,7 +60,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="default-text"
                 >
-                  Політика конфіденційності
+                  {t('footer:privacyPolicy')}
                 </a>
               </li>
               <li>
@@ -70,7 +70,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="default-text"
                 >
-                  Правила користування сайтом
+                  {t('footer:rulesForUsingTheSite')}
                 </a>
               </li>
             </ul>
@@ -80,10 +80,10 @@ const Footer = () => {
         {/* fourth col */}
         <li className="flex flex-col gap-8">
           <div className="flex flex-col gap-3">
-            <h3 className="title-text">РЕЖИМ РОБОТИ</h3>
+            <h3 className="title-text"> {t('footer:working_hours')}</h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <p className="default-text">Понеділок - П&#39;ятниця</p>
+                <p className="default-text">{t('footer:working_days')}</p>
               </li>
               <li>
                 <p className="default-text">10:00 - 20:00</p>
@@ -91,7 +91,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h3 className="title-text">КОНТАКТИ</h3>
+            <h3 className="title-text">{t('footer:contacts')}</h3>
             <ul className="flex flex-col gap-2">
               <li>
                 <a
