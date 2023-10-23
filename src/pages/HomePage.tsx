@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
+import { ModalProvider } from '@/components/ModalProvider';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Hero />
       <Footer />
       <UnderFooter />
+      <ModalProvider />
     </Layout>
   );
 };
