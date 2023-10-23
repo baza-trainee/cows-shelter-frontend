@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import newsReducer from './slices/newsSlice';
+import modalReducer from './slices/modalSlice';
 
 const rootReducer = combineReducers({
-  posts: newsReducer
+  posts: newsReducer,
+  modals: modalReducer
 });
 
 export const store = configureStore({
