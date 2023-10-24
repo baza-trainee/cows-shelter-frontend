@@ -8,5 +8,28 @@
     "address": "Vinnytsia dist., Busha",
     "order": "Order an excursion"
   },
-  "footer": {}
+  "footer": {
+    "shelter_p1": "Shelter for cows, bulls, calves",
+    "shelter_p2": "Protection from violence, hunger, cold",
+    "button_help": "Donate",
+    "menu": "MENU",
+    "anchor_links": {
+      "about_us": "About Us",
+      "excursions": "Excursions",
+      "gallery": "Gallery",
+      "news": "News",
+      "partners": "Partners"
+    },
+    "documents": "DOCUMENTS",
+    "privacyPolicy": "Privacy Policy",
+    "rulesForUsingTheSite": "Conditions of Use",
+    "working_hours": "WORKING HOURS",
+    "working_days": "Monday - Friday",
+    "contacts": "CONTACTS",
+    "allRightsReserved": {
+      "created": "Created by",
+      "baza": "BazaTraineeUkraine",
+      "rights": "2023. © All rights reserved"
+    }
+  }
 }
