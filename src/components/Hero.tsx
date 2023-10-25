@@ -9,11 +9,13 @@ const Hero = () => {
         <h1 className=" mb-16 font-namu text-[6.6rem] ">
           {t('hero:main_title')}
         </h1>
+
         <ul className=" mb-[235px] text-2xl font-normal ">
           <li className="mb-6 leading-9">{t('hero:shelter')}</li>
           <li className="mb-6 leading-9">{t('hero:eco_rest')}</li>
           <li className="leading-9">{t('hero:excursions')}</li>
         </ul>
+
         <a
           className="flex items-center gap-3 fill-white text-xl font-medium text-white hover:text-accent"
           href="#location"

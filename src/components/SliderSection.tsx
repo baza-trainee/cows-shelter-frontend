@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, Dispatch, SetStateAction } from 'react';
 
 import Slider from './Slider';

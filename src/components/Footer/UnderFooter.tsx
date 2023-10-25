@@ -1,18 +1,22 @@
+import { useTranslation } from 'react-i18next';
+
 const UnderFooter = () => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div className="border-t-2 py-5 text-center">
         <p className="default-text">
-          Розробка{' '}
+          {t('footer:allRightsReserved.created')}{' '}
           <a
             href="https://baza-trainee.tech/ua"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2"
           >
-            Baza Trainee Ukraine
+            {t('footer:allRightsReserved.baza')}
           </a>{' '}
-          2023 © Всі права захищені
+          {t('footer:allRightsReserved.rights')}
         </p>
       </div>
     </div>

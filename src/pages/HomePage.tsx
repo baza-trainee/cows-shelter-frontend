@@ -4,6 +4,7 @@ import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
 import Gallery from '@/components/Gallery';
+import { ModalProvider } from '@/components/ModalProvider';
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <Gallery />
       <Footer />
       <UnderFooter />
+      <ModalProvider />
     </Layout>
   );
 };

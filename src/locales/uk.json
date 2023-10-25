@@ -8,5 +8,28 @@
     "address": "Вінницька обл, с. Буша",
     "order": "Замовити екскурсію"
   },
-  "footer": {}
+  "footer": {
+    "shelter_p1": "Притулок корів, биків, телят",
+    "shelter_p2": "Захист від насилля, голоду, холоду",
+    "button_help": "Допомогти",
+    "menu": "МЕНЮ",
+    "anchor_links": {
+      "about_us": "Про нас",
+      "excursions": "Екскурсії",
+      "gallery": "Галерея",
+      "news": "Новини",
+      "partners": "Партнери"
+    },
+    "documents": "ДОКУМЕНТИ",
+    "privacyPolicy": "Політика конфіденційності",
+    "rulesForUsingTheSite": "Правила користування сайтом",
+    "working_hours": "РЕЖИМ РОБОТИ",
+    "working_days": "Понеділок - П'ятниця",
+    "contacts": "КОНТАКТИ",
+    "allRightsReserved": {
+      "created": "Розробка",
+      "baza": "BazaTraineeUkraine",
+      "rights": "2023. © Усі права захищені"
+    }
+  }
 }
