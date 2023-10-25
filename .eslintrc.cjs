@@ -30,6 +30,6 @@ module.exports = {
       { allowConstantExport: true }
     ],
     'tailwindcss/no-custom-classname': 0,
-    '@typescript-eslint/no-explicit-any': 0
+    'react-refresh/only-export-components': 0,
   }
 };
