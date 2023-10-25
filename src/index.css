@@ -40,3 +40,37 @@ body {
     line-height: 1.5;
   }
 }
+
+.swiper-pagination-bullet {
+  width: 44px;
+  height: 4px;
+  background-color: #666;
+  border-radius: 0%;
+}
+
+.swiper-pagination-bullet-active {
+  width: 44px;
+  height: 4px;
+  background: #000;
+  border-radius: 0%;
+}
+/* .next {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 9999;
+}
+.next:hover {
+  background-color: #ccc;
+}
+.prev {
+  position: absolute;
+  top: 0;
+  right: 3%;
+  cursor: pointer;
+  z-index: 9999;
+}
+.prev:hover {
+  background-color: #ccc;
+} */
