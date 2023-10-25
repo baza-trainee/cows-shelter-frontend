@@ -13,7 +13,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
+    'plugin:react-hooks/recommended'
   ],
   ignorePatterns: [
     'dist',
@@ -30,5 +30,7 @@ module.exports = {
       { allowConstantExport: true }
     ],
     'tailwindcss/no-custom-classname': 0,
+    'react-refresh/only-export-components': 0,
+    '@typescript-eslint/no-explicit-any': 0
   }
 };

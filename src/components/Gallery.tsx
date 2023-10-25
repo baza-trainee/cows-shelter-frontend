@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import Slider from './Slider';
-import { slides } from '../data/gallery';
+import { slides } from '@/data/gallery';
+
+import SliderSection from './SliderSection';
 
 import { usePaginatedData } from '@/hooks/usePaginatedData';
 
@@ -30,31 +31,30 @@ const Gallery = () => {
       setFinish(18);
     }
   }, [currentPage]);
+
   return (
-    <div className="my-8 flex h-screen w-full items-center justify-center">
-      <Slider
-        title="Галерея"
-        setCurrentPage={setCurrentPage}
-        pagesLength={pagesLength}
-      >
-        <div className="gridContainer container m-auto grid h-full grid-cols-3 grid-rows-2 gap-4">
-          {data.map((block: string, index: number) => (
-            <div
-              key={index}
-              className={`gridItem relative w-full  max-w-[80vw] gridItem--${
-                index + 1
-              }`}
-            >
-              <img
-                src={block}
-                alt="foto"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      </Slider>
-    </div>
+    <SliderSection
+      title="Галерея"
+      setCurrentPage={setCurrentPage}
+      pagesLength={pagesLength}
+    >
+      <div className="gridContainer container m-auto grid h-full grid-cols-3 grid-rows-2 gap-4">
+        {data.map((block: string, index: number) => (
+          <div
+            key={index}
+            className={`gridItem relative h-[281px] w-full min-w-[282px] gridItem--${
+              index + 1
+            }`}
+          >
+            <img
+              src={block}
+              alt="foto"
+              className="h-full max-h-[281px] w-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+    </SliderSection>
   );
 };
 
