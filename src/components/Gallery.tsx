@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { slides } from '@/data/gallery';
-
-import SliderSection from './SliderSection';
-
+import { GalleryItem } from '@/types';
+import { images } from '@/data/gallery';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
+
+import Slider from './Slider';
 
 import '@/styles/gallery.css';
 
 const Gallery = () => {
+  const itemsPerPage = 6;
+  const { t } = useTranslation();
   const [start, setStart] = useState(0);
   const [finish, setFinish] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-  const pagesLength = slides.length / itemsPerPage;
+  const pagesLength = images.length / itemsPerPage;
 
-  const data = usePaginatedData(slides, start, finish);
+  const data = usePaginatedData(images, start, finish);
 
   useEffect(() => {
     if (currentPage === 1) {
@@ -33,28 +35,28 @@ const Gallery = () => {
   }, [currentPage]);
 
   return (
-    <SliderSection
-      title="Галерея"
+    <Slider
+      title={t('gallery:gallery')}
       setCurrentPage={setCurrentPage}
       pagesLength={pagesLength}
     >
-      <div className="gridContainer container m-auto grid h-full grid-cols-3 grid-rows-2 gap-4">
-        {data.map((block: string, index: number) => (
+      <div className="gridContainer">
+        {data.map((item: GalleryItem, index: number) => (
           <div
-            key={index}
-            className={`gridItem relative h-[281px] w-full min-w-[282px] gridItem--${
+            key={item.id}
+            className={`gridItem relative h-[281px] min-w-[282px] max-w-[486px] gridItem--${
               index + 1
             }`}
           >
             <img
-              src={block}
-              alt="foto"
-              className="h-full max-h-[281px] w-full object-cover"
+              src={item.url}
+              alt="cow"
+              className="h-full w-full object-cover"
             />
           </div>
         ))}
       </div>
-    </SliderSection>
+    </Slider>
   );
 };
 
