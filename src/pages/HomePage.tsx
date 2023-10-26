@@ -1,3 +1,4 @@
+import Contacts from '@/components/Contacts/Contacts';
 import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
 
@@ -10,6 +11,7 @@ const HomePage = () => {
         </div>
       </div>
       <div>
+        <Contacts />
         <Footer />
         <UnderFooter />
       </div>
