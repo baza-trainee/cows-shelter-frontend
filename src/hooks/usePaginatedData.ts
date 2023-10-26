@@ -1,5 +1,7 @@
+import { GalleryItem } from '@/types';
+
 export const usePaginatedData = (
-  data: string[],
+  data: GalleryItem[],
   start: number,
   finish: number
 ) => {
