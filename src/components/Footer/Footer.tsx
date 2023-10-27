@@ -14,8 +14,8 @@ const Footer = () => {
     { title: t('footer:anchor_links.partners'), href: '#partners' }
   ];
   return (
-    <div className="container mx-auto flex max-w-[1440px] flex-col ">
-      <ul className="flex justify-between px-8 pb-10 pt-16 md:flex-row md:px-20">
+    <div className="container mx-auto flex max-w-[1440px] flex-col px-[7.5rem] py-20">
+      <ul className="flex justify-between md:flex-row">
         {/* first col */}
         <li className="flex flex-col">
           <img
