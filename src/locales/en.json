@@ -38,6 +38,12 @@
   "partners": {
     "header": "Partners",
     "become_partner": "Become a partner",
-    "text": "Thanks to our partners, cow happiness becomes possible. Thank you for your support and belief in our mission! To do good deeds together is in the very heart!"
+    "text": "Thanks to our partners, cow happiness becomes possible. Thank you for your support and belief in our mission! To do good deeds together is in the very heart!",
+    "partners": {
+      "uaAnimals": "UAnimals",
+      "sloboda_zvierat": "Sloboda zvierat",
+      "zhitta": "Space 'Healthy Life'",
+      "baza": "BazaTrainee"
+    }
   }
 }
