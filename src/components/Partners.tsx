@@ -31,7 +31,7 @@ const Partners = () => {
   ];
 
   return (
-    <div className="container mx-auto flex max-w-[1440px] flex-col bg-lightgrey px-[7.5rem] py-20">
+    <div className="mx-auto flex max-w-[1440px] flex-col bg-[#F3F3F5] px-[7.5rem] py-20">
       <div className="sectionHeader mb-14 flex items-center justify-between">
         <h2 className="text-[64px] font-medium">{t('partners:header')}</h2>
         <button className="duration-800 bg-accent px-8 py-3 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
