@@ -1,13 +1,13 @@
 import { Icon } from 'leaflet';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import icon from '@/assets/icons/icon_marker.png'
+import icon from '@/assets/icons/icon_marker.png';
 
 const Map = () => {
-    const customIcon = new Icon({
-      iconUrl: icon,
-      iconSize: [40, 60]
-    });
+  const customIcon = new Icon({
+    iconUrl: icon,
+    iconSize: [40, 60]
+  });
   return (
     <div className="h-full w-full">
       <MapContainer
