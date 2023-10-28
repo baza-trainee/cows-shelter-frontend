@@ -1,3 +1,4 @@
+import Contacts from '@/components/Contacts/Contacts';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer/Footer';
@@ -12,6 +13,7 @@ const HomePage = () => {
       <Header />
       <Hero />
       <Gallery />
+       <Contacts />
       <Footer />
       <UnderFooter />
       <ModalProvider />

@@ -9,6 +9,7 @@ export default {
         accent: '#FEE41F',
         lemon: '#FFF5A5',
         darkgray: '#565656',
+        graphite: '#4D4D4D',
         disabled: '#A9A9A9',
         darkyellow: '#B1A016',
         lightyellow: '#FFFDED',
