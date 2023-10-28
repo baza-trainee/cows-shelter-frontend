@@ -9,8 +9,8 @@ export type ModalType = 'excursions' | 'news';
 type ModalData = NewsData | ExcursionsData;
 
 interface ModalState {
-  type: ModalType | null;
   data: ModalData | null;
+  type?: ModalType | null;
   isOpen: boolean;
 }
 
