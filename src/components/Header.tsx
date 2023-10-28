@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [active, setActive] = useState(false);
   const {
     i18n: { changeLanguage, language }
   } = useTranslation();
@@ -39,13 +38,10 @@ const Header = () => {
       <nav>
         <ul className="flex gap-8">
           <li
-            onClick={() => setActive(true)}
             className={`${
               isScrolled
                 ? 'text-black hover:border-b-black'
                 : 'hover:border-b-white'
-            } ${
-              active ? 'bg-red-300' : ''
             } border-1 duration-400 border-transparent py-2 transition-all duration-300`}
           >
             <a href="#gallery">Про нас</a>
