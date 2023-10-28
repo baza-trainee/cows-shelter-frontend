@@ -35,8 +35,9 @@ const Slider = ({
       (sliderRef.current as any).slideNext();
     }
   };
+
   return (
-    <div className="">
+    <div className="relative">
       <div className="mx-[80px] mb-8 mt-4 flex items-center justify-between">
         <h2 className="text-[64px] font-medium">{title}</h2>
         <div className="flex gap-4">
