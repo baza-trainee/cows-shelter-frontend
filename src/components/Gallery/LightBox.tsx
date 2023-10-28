@@ -1,14 +1,18 @@
+import { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GalleryItem } from '@/types';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
 
-import LightBoxArrowLeft from '../icons/LightBoxArrowLeft';
-import LightBoxArrowRight from '../icons/LightBoxArrowRight';
-import CloseIcon from '../icons/CloseIcon';
+import LightBoxArrowLeft from '@/components/icons/LightBoxArrowLeft';
+import LightBoxArrowRight from '@/components/icons/LightBoxArrowRight';
+import ShareIcon from '@/components/icons/ShareIcon';
+import CloseIcon from '@/components/icons/CloseIcon';
+import ShareModal from '@/components/modals/ShareModal';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import ShareIcon from '../icons/ShareIcon';
 
 type LightBoxProps = {
   onClose: () => void;
@@ -16,7 +20,25 @@ type LightBoxProps = {
   image: number;
 };
 
+const links = ['facebook', 'instagram'];
+
 const LightBox = ({ onClose, images, image }: LightBoxProps) => {
+  const dispatch = useAppDispatch();
+  const type = useAppSelector((state) => state.modals.type);
+  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+
+  const openShareModal = () => {
+    dispatch(openModal({ data: links, type: 'share' }));
+  };
+
+  useEffect(() => {
+    if (isModalOpen === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
+
   return (
     <>
       <div className="absolute left-[50%] top-[50%] z-40 flex h-full w-full -translate-x-[50%] -translate-y-[50%] items-center justify-center ">
@@ -44,7 +66,11 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
             >
               <div className="relative w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
-                <div className="absolute bottom-4 right-4 cursor-pointer">
+                <div
+                  onClick={openShareModal}
+                  className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.8)]"
+                  title="Share in Social Media"
+                >
                   <ShareIcon />
                 </div>
               </div>
@@ -57,6 +83,7 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
             <LightBoxArrowRight />
           </div>
         </Swiper>
+        {isModalOpen && type === 'share' && <ShareModal />}
       </div>
     </>
   );
