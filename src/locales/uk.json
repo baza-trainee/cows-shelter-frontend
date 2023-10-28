@@ -32,7 +32,18 @@
       "rights": "2023. © Усі права захищені"
     }
   },
-  "gallery":{
-    "gallery":"Галерея"
+  "gallery": {
+    "gallery": "Галерея"
+  },
+  "partners": {
+    "header": "Наші партнери",
+    "become_partner": "Стати партнером",
+    "text": "Завдяки нашим партнерам коров'яче щастя стає можливим. Дякуємо за вашу підтримку та віру в нашу місію! Разом творити добрі справи - це в саме серденько!",
+    "partners": {
+      "uaAnimals": "UAnimals",
+      "sloboda_zvierat": "Sloboda zvierat",
+      "zhitta": "Простір 'Здраве життя'",
+      "baza": "BazaTrainee"
+    }
   }
 }
