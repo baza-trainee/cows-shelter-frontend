@@ -1,0 +1,37 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 280px);
+  gap: 23px;
+}
+
+.gridItem--1 {
+  grid-column: 1/4;
+  grid-row: 1/2;
+  width: 384px;
+}
+.gridItem--2 {
+  grid-column: 4/7;
+  grid-row: 1/2;
+  width: 486px;
+}
+.gridItem--3 {
+  grid-column: 7/8;
+  grid-row: 1/2;
+  width: 282px;
+}
+.gridItem--4 {
+  grid-column: 1/4;
+  grid-row: 2/3;
+  width: 384px;
+}
+.gridItem--5 {
+  grid-column: 4/5;
+  grid-row: 2/3;
+  width: 282px;
+}
+.gridItem--6 {
+  grid-column: 5/8;
+  grid-row: 2/3;
+  width: 486px;
+}

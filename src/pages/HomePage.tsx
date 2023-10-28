@@ -1,21 +1,23 @@
 import Contacts from '@/components/Contacts/Contacts';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
 import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
+import Layout from '@/components/Layout';
+import Gallery from '@/components/Gallery';
+import { ModalProvider } from '@/components/ModalProvider';
 
 const HomePage = () => {
   return (
-    <>
-      <div className="intro flex h-screen w-full flex-col items-center justify-center font-namu text-5xl text-white">
-        <div className="title absolute left-[4rem] top-1/2">
-          <h1>Здраве життя</h1>
-        </div>
-      </div>
-      <div>
-        <Contacts />
-        <Footer />
-        <UnderFooter />
-      </div>
-    </>
+    <Layout>
+      <Header />
+      <Hero />
+      <Gallery />
+       <Contacts />
+      <Footer />
+      <UnderFooter />
+      <ModalProvider />
+    </Layout>
   );
 };
 

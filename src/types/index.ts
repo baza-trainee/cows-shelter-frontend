@@ -3,3 +3,8 @@ export type PostRequest = {
   title: string;
   text: string;
 };
+
+export type GalleryItem = {
+  id: string;
+  url: string;
+};

@@ -1,6 +1,11 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -8,8 +13,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
-    'plugin:tailwindcss/recommended'
+    'plugin:react-hooks/recommended'
   ],
   ignorePatterns: [
     'dist',
@@ -25,6 +29,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true }
     ],
-    'tailwindcss/no-custom-classname': 0
+    'tailwindcss/no-custom-classname': 0,
+    'react-refresh/only-export-components': 0,
   }
 };
