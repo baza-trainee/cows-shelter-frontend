@@ -15,11 +15,11 @@ const Footer = () => {
   ];
   return (
     <footer className="mx-auto pb-10 pt-16">
-      <div className="container mx-auto  flex flex-col px-12  xl:px-[7.5rem]">
+      <div className="container mx-auto  flex flex-col px-12  lg:px-[7.5rem]">
         <ul className="flex justify-between md:flex-row">
           {/* Tablet */}
           {/* first col tablet */}
-          <li className="flex flex-col xl:hidden">
+          <li className="flex flex-col lg:hidden">
             <img
               src={logo_dark}
               width={135}
@@ -35,11 +35,11 @@ const Footer = () => {
                 <p className="default-text">10:00 - 20:00</p>
               </li>
             </ul>
-            <button className=" duration-800 w-[180px] bg-accent px-[38px] py-2 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon  active:bg-darkyellow xl:w-[14.44rem] xl:px-[4.16rem]">
+            <button className=" duration-800 w-[180px] bg-accent px-[38px] py-2 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon  active:bg-darkyellow lg:w-[14.44rem] lg:px-[4.16rem]">
               {t('footer:button_help')}{' '}
             </button>
           </li>
-          <li className="hidden flex-col xl:flex">
+          <li className="hidden flex-col lg:flex">
             <img
               src={logo_dark}
               width={135}
@@ -71,7 +71,7 @@ const Footer = () => {
           </li>
 
           {/* third col tablet */}
-          <li className="xl:hidden">
+          <li className="lg:hidden">
             <ul className="flex flex-col gap-6">
               <li className="flex flex-col gap-3">
                 <h3 className="title-text"> {t('footer:documents')} </h3>
@@ -122,7 +122,7 @@ const Footer = () => {
                 </ul>
               </li>
               <li>
-                <ul className="flex flex-row gap-6 xl:flex-col xl:gap-3">
+                <ul className="flex flex-row gap-6 lg:flex-col lg:gap-3">
                   <li>
                     <a
                       href="https://www.facebook.com/profile.php?id=100060159926539"
@@ -157,7 +157,7 @@ const Footer = () => {
           </li>
 
           {/* third col desctop */}
-          <li className="hidden xl:block">
+          <li className="hidden lg:block">
             <div className="flex flex-col gap-3">
               <h3 className="title-text"> {t('footer:documents')} </h3>
               <ul className="flex flex-col gap-2">
@@ -186,7 +186,7 @@ const Footer = () => {
           </li>
 
           {/* fourth col */}
-          <li className="hidden flex-col gap-8 xl:flex">
+          <li className="hidden flex-col gap-8 lg:flex">
             <div className="flex flex-col gap-3">
               <h3 className="title-text"> {t('footer:working_hours')}</h3>
               <ul className="flex flex-col gap-2">
@@ -224,8 +224,8 @@ const Footer = () => {
           </li>
 
           {/* fifth col */}
-          <li className="hidden xl:flex">
-            <ul className="hidden flex-col gap-3 xl:flex">
+          <li className="hidden lg:flex">
+            <ul className="hidden flex-col gap-3 lg:flex">
               <li>
                 <a
                   href="https://www.facebook.com/profile.php?id=100060159926539"
