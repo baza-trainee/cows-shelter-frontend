@@ -29,9 +29,6 @@ const News = () => {
           <SwiperSlide>
             <NewsBlock />
           </SwiperSlide>
-          <SwiperSlide>
-            <NewsBlock />
-          </SwiperSlide>
 
           <div className="mt-3 flex justify-end gap-5"></div>
         </Swiper>
