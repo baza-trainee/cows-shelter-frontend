@@ -44,7 +44,7 @@ const Partners = () => {
         <p className="mb-10 text-[20px] leading-relaxed text-gray-700 lg:w-[1070px] lg:text-[22px]">
           {t('partners:text')}
         </p>
-        <ul className="flex gap-6 overflow-x-scroll lg:mt-20">
+        <ul className="flex justify-between gap-6 overflow-x-scroll lg:mt-20">
           {partners.map(({ title, href, src }) => (
             <li key={title}>
               <a
