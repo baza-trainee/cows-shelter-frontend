@@ -1,11 +1,10 @@
 import Contacts from '@/components/Contacts/Contacts';
-import Header from '@/components/Header';
+import Header from '@/components/Header/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
 import Gallery from '@/components/Gallery/Gallery';
-import { ModalProvider } from '@/components/ModalProvider';
 import Partners from '@/components/Partners';
 import News from '@/components/News';
 
@@ -20,7 +19,6 @@ const HomePage = () => {
       <Contacts />
       <Footer />
       <UnderFooter />
-      <ModalProvider />
     </Layout>
   );
 };

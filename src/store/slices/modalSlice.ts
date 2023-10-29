@@ -3,25 +3,30 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 //external from types/index.ts
 interface NewsData {}
 interface ExcursionsData {}
+interface BurgerMenu {}
 
-export type ModalType = 'excursions' | 'news';
+type ShareData = {
+  links: string;
+};
 
-type ModalData = NewsData | ExcursionsData;
+export type ModalType = 'excursions' | 'news' | 'share' | 'burgerMenu';
+
+type ModalData = NewsData | ExcursionsData | ShareData | BurgerMenu;
 
 interface ModalState {
   data: ModalData | null;
   type?: ModalType | null;
-  isOpen: boolean;
+  isModalOpen: boolean;
 }
 
 const initialState: ModalState = {
   type: null,
   data: null,
-  isOpen: false
+  isModalOpen: false
 };
 
 const modalSlice = createSlice({
-  name: 'todos',
+  name: 'modals',
   initialState,
   reducers: {
     openModal(
@@ -29,12 +34,12 @@ const modalSlice = createSlice({
       action: PayloadAction<{ data: ModalData; type: ModalType }>
     ) {
       //useAppDispatch(openModal({ data:your_data, type:type of section (news or excursions)}))
-      state.isOpen = true;
+      state.isModalOpen = true;
       state.data = action.payload.data;
       state.type = action.payload.type;
     },
     closeModal(state) {
-      state.isOpen = false;
+      state.isModalOpen = false;
       state.data = null;
       state.type = null;
     }
