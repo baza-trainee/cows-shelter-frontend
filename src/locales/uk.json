@@ -1,5 +1,14 @@
 {
-  "header": {},
+  "header": {
+    "menu_aboutUs": "Про нас",
+    "menu_excursions": "Екскурсії",
+    "menu_news": "Новини",
+    "menu_partners": "Партнери",
+    "menu_contacts": "Контакти",
+    "btn_donate": "Допомогти",
+    "menu": "Меню",
+    "language": "Оберіть мову:"
+  },
   "hero": {
     "main_title": "Здраве життя",
     "shelter": "Притулок для корів",
