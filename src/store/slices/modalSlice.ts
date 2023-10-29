@@ -4,9 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface NewsData {}
 interface ExcursionsData {}
 
-type ShareData = {
-  links: string;
-};
+type ShareData = string;
 
 export type ModalType = 'excursions' | 'news' | 'share';
 
@@ -14,7 +12,7 @@ type ModalData = NewsData | ExcursionsData | ShareData;
 
 interface ModalState {
   data: ModalData | null;
-  type?: ModalType | null;
+  type: ModalType | null;
   isModalOpen: boolean;
 }
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GalleryItem } from '@/types';
@@ -20,15 +20,20 @@ type LightBoxProps = {
   image: number;
 };
 
-const links = ['facebook', 'instagram'];
+// const links = ['facebook', 'instagram'];
 
 const LightBox = ({ onClose, images, image }: LightBoxProps) => {
+  const [activeImage, setActiveImage] = useState('');
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
 
+  useEffect(() => {
+    setActiveImage(images[image].url);
+  }, [image, images]);
+
   const openShareModal = () => {
-    dispatch(openModal({ data: links, type: 'share' }));
+    dispatch(openModal({ data: activeImage, type: 'share' }));
   };
 
   useEffect(() => {
@@ -67,6 +72,7 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
               <div className="relative w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
                 <div
+                  // onClick={openShareModal}
                   onClick={openShareModal}
                   className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.8)]"
                   title="Share in Social Media"
