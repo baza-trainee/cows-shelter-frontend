@@ -58,6 +58,17 @@ body {
   background: #000;
   border-radius: 0%;
 }
+
+.partner-scale img {
+  transition: transform 300ms ease-out;
+}
+
+.partner-scale:hover img,
+.partner-scale:focus img {
+  transform: scale(0.88);
+  transition: transform 300ms ease-out;
+}
+
 /* .next {
   position: absolute;
   top: 0;

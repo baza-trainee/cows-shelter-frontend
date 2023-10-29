@@ -15,7 +15,7 @@ const Partners = () => {
     },
     {
       title: t('partners:partners.sloboda_zvierat'),
-      href: 'https://www.facebook.com/groups/606065439570544',
+      href: 'https://slobodazvierat.sk',
       src: logo_sloboda
     },
     {
@@ -44,9 +44,14 @@ const Partners = () => {
       <ul className="mt-20 flex gap-6">
         {partners.map(({ title, href, src }) => (
           <li key={title}>
-            <a href={href} target="_blank" rel="noopener noreferrer">
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="partner-scale block transform border-solid border-darkyellow  transition-all duration-300 hover:border-b"
+            >
               <img
-                className="mb-6"
+                className="mb-6 scale-100 transform"
                 src={src}
                 alt={title}
                 width={282}
