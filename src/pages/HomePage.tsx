@@ -6,6 +6,7 @@ import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
 import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
+import FAQ from '@/components/FAQ';
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Hero />
       <Gallery />
       <Partners />
+      <FAQ />
       <Contacts />
       <Footer />
       <UnderFooter />

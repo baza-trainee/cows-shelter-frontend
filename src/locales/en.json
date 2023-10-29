@@ -54,5 +54,15 @@
       "zhitta": "Space 'Healthy Life'",
       "baza": "BazaTrainee"
     }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "questions": {
+      "opening_hours": "What are the opening hours of the shelter?",
+      "winter_excursion": "Is it possible to go on an excursion in winter?",
+      "max_guests": "What is the maximum allowable number of people per excursion?",
+      "prise": "Why is there no fixed price for excursions?",
+      "kind_help": "Is it possible to help in kind?"
+    }
   }
 }
