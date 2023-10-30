@@ -5,9 +5,7 @@ interface NewsData {}
 interface ExcursionsData {}
 interface BurgerMenu {}
 
-type ShareData = {
-  links: string;
-};
+type ShareData = string;
 
 export type ModalType = 'excursions' | 'news' | 'share' | 'burgerMenu';
 
@@ -15,7 +13,7 @@ type ModalData = NewsData | ExcursionsData | ShareData | BurgerMenu;
 
 interface ModalState {
   data: ModalData | null;
-  type?: ModalType | null;
+  type: ModalType | null;
   isModalOpen: boolean;
 }
 
