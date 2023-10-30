@@ -25,15 +25,18 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
 }
 
 @layer utilities {
   .default-text {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
+
+    @screen xl {
+      font-size: 16px;
+    }
   }
 }
 
@@ -58,6 +61,17 @@ body {
   background: #000;
   border-radius: 0%;
 }
+
+.partner-scale img {
+  transition: transform 300ms ease-out;
+}
+
+.partner-scale:hover img,
+.partner-scale:focus img {
+  transform: scale(0.88);
+  transition: transform 300ms ease-out;
+}
+
 /* .next {
   position: absolute;
   top: 0;

@@ -62,17 +62,16 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
             prevEl: '.prev',
             nextEl: '.next'
           }}
-          className=" h-full w-[60%]"
+          className=" h-full w-full"
         >
           {images.map((image, index) => (
             <SwiperSlide
               className=" relative flex w-full items-center justify-center"
               key={index}
             >
-              <div className="relative w-[590px]">
+              <div className="relative max-h-[590px] w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
                 <div
-                  // onClick={openShareModal}
                   onClick={openShareModal}
                   className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.8)]"
                   title="Share in Social Media"
@@ -82,10 +81,10 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
               </div>
             </SwiperSlide>
           ))}
-          <div className="prev absolute left-2 top-[50%] z-50 -translate-y-[50%] cursor-pointer">
+          <div className="prev absolute left-[3%] top-[50%] z-50 -translate-y-[30%]  cursor-pointer lg:left-[18%]">
             <LightBoxArrowLeft />
           </div>
-          <div className="next absolute right-2 top-[50%] z-50  -translate-y-[50%] cursor-pointer">
+          <div className="next absolute right-[3%] top-[50%] z-50 -translate-y-[50%]   cursor-pointer lg:right-[18%]">
             <LightBoxArrowRight />
           </div>
         </Swiper>

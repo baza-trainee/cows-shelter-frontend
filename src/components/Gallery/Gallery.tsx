@@ -75,7 +75,7 @@ const Gallery = () => {
   }, [isLightBox]);
 
   return (
-    <section id="gallery" className="relative">
+    <section id="gallery" className="relative p-[23px]">
       {isLightBox && (
         <div className="fixed left-0 top-0 z-20 h-full w-full bg-[rgba(0,0,0,0.6)]">
           <LightBox
@@ -90,7 +90,7 @@ const Gallery = () => {
         setCurrentPage={setCurrentPage}
         pagesLength={pagesLength}
       >
-        <div className="gridContainer">
+        <div className="gridContainer ml-2 pr-8">
           {data.map((item: GalleryItem, index: number) => (
             <div
               key={item.id}

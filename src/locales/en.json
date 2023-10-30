@@ -1,5 +1,14 @@
 {
-  "header": {},
+  "header": {
+    "menu_aboutUs": "About us",
+    "menu_excursions": "Excursions",
+    "menu_news": "News",
+    "menu_partners": "Partners",
+    "menu_contacts": "Contacts",
+    "btn_donate": "Donate",
+    "menu": "Menu",
+    "language": "Choose a language:"
+  },
   "hero": {
     "main_title": "Healthy Life",
     "shelter": "Shelter for cows",
