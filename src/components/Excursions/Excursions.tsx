@@ -3,20 +3,21 @@ import ExcursionsReviews from './ExcursionsReviews';
 
 const Excursions = () => {
   return (
-    <section className="my-20 px-[7.5rem]">
-      <h2 className="mb-10 text-[4rem] font-bold">Екскурсії</h2>
+    <section className="bg-[#F3F3F5] px-[7.5rem] py-20">
+      <h2 className="mb-10 text-[4rem] font-bold leading-normal">Екскурсії</h2>
       <ul className="flex gap-6">
         <li className="drop-shadow">
           <div className="group relative">
             <img src="/excursion1.jpg" alt="Арттерапія з коровами"></img>
-            <div className="absolute bottom-0 left-0 flex flex-col gap-2 pb-6 pl-6 text-white">
+            <div className="fixed left-0 top-0 h-full w-full bg-black/[.60] opacity-0 transition-all duration-700 group-hover:opacity-100"></div>
+            <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
               <p className="subtitle-text">Арттерапія з коровами</p>
-              <p className="hidden group-hover:inline-block">
+              <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
                 30 - 60 хвилин / від 2 до 14 людей
               </p>
               <a>
-                <button className="flex gap-3 border-solid border-accent py-[0.69rem] pl-6 pr-2.5 focus:border active:border group-hover:border">
-                  <span className="text-lg font-medium leading-[1.375rem]">
+                <button className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-accent">
+                  <span className="text-lg font-medium leading-[1.35rem]">
                     Показати більше
                   </span>
                   <img src={arrow_icon} width={24} height={24} />
@@ -28,14 +29,15 @@ const Excursions = () => {
         <li className="drop-shadow">
           <div className="group relative">
             <img src="/excursion2.jpg" alt="Підвищення кваліфікації"></img>
-            <div className="absolute bottom-0 left-0 flex flex-col gap-2 pb-6 pl-6 text-white ">
+            <div className="fixed left-0 top-0 h-full w-full bg-black/[.60] opacity-0 transition-all duration-700 group-hover:opacity-100"></div>
+            <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
               <p className="subtitle-text">Підвищення кваліфікації</p>
-              <p className="hidden group-hover:inline-block">
+              <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
                 30 - 60 хвилин / від 2 до 14 людей
               </p>
               <a>
-                <button className="flex gap-3 border-solid border-accent py-[0.69rem] pl-6 pr-2.5 focus:border active:border group-hover:border">
-                  <span className="text-lg font-medium leading-[1.375rem]">
+                <button className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-accent">
+                  <span className="text-lg font-medium leading-[1.35rem]">
                     Показати більше
                   </span>
                   <img src={arrow_icon} width={24} height={24} />
@@ -47,14 +49,15 @@ const Excursions = () => {
         <li className="drop-shadow">
           <div className="group relative">
             <img src="/excursion3.jpg" alt="Для дітей"></img>
-            <div className="absolute bottom-0 left-0 flex flex-col gap-2 pb-6 pl-6 text-white">
+            <div className="fixed left-0 top-0 h-full w-full bg-black/[.60] opacity-0 transition-all duration-700 group-hover:opacity-100"></div>
+            <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
               <p className="subtitle-text">Для дітей</p>
-              <p className="hidden group-hover:inline-block">
+              <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
                 30 - 60 хвилин / від 2 до 14 людей
               </p>
               <a>
-                <button className="flex gap-3 border-solid border-accent py-[0.69rem] pl-6 pr-2.5 focus:border active:border group-hover:border">
-                  <span className="text-lg font-medium leading-[1.375rem]">
+                <button className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-accent">
+                  <span className="text-lg font-medium leading-[1.35rem]">
                     Показати більше
                   </span>
                   <img src={arrow_icon} width={24} height={24} />
@@ -64,7 +67,7 @@ const Excursions = () => {
           </div>
         </li>
       </ul>
-    <ExcursionsReviews/>
+      <ExcursionsReviews />
     </section>
   );
 };
