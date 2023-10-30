@@ -1,55 +1,22 @@
-import image1 from '@/assets/imgs/news_1.jpg';
-import image2 from '@/assets/imgs/news_2.jpg';
-import image3 from '@/assets/imgs/news_3.jpg';
-import image4 from '@/assets/imgs/news_4.jpg';
-import image5 from '@/assets/imgs/news_5.jpg';
+import { useAppDispatch } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
+import { newsItems } from '@/data/newsItems';
 
 const NewsBlock = () => {
-  const newsItems = [
-    {
-      image: image5,
-      title: 'Вітаємо наших однодумців!',
-      description:
-        'Коли корови перебувають в умовах любові, вони реалізують свою природну функцію'
-    },
-    {
-      image: image2,
-      title: 'Провели генеральне чищення загонів!',
-      description:
-        'Коли корови перебувають в умовах любові, вони реалізують свою природну функцію'
-    },
-    {
-      image: image3,
-      title: 'Благодійна грошова допомога від UAnimals',
-      description:
-        'Коли корови перебувають в умовах любові, вони реалізують свою природну функцію'
-    },
-    {
-      image: image4,
-      title: 'Вдалося виростити вітамінні смаколики!',
-      description:
-        'Коли корови перебувають в умовах любові, вони реалізують свою природну функцію'
-    },
-    {
-      image: image1,
-      title: 'Зробили першу закупівлю кормів',
-      description:
-        'Коли корови перебувають в умовах любові, вони реалізують свою природну функцію'
-    }
-  ];
+  const dispatch = useAppDispatch();
 
   return (
     <div>
-      <ul className="grid grid-cols-3 gap-6">
+      <ul className=" grid grid-cols-1  gap-6 md:grid-cols-2 lg:grid-cols-3">
         {newsItems.map((news, index) => (
           <li
-            key={index}
+            key={news.id}
             className={`group relative cursor-pointer  ${
               index === 0 ? 'h-586 w-46 row-span-2' : ''
-            }`}
+            } ${index >= 3 ? 'hidden lg:block' : ''}`}
           >
             <img
-              src={news.image}
+              src={news.url}
               alt={`News Image`}
               className=" h-full w-full object-cover "
             />
@@ -64,7 +31,12 @@ const NewsBlock = () => {
                 </div>
               </div>
               <div className=" ">
-                <button className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500">
+                <button
+                  onClick={() =>
+                    dispatch(openModal({ type: 'news', data: newsItems }))
+                  }
+                  className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
+                >
                   <div className="flex items-center">
                     <p
                       className=" px-4 

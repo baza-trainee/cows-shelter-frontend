@@ -2,14 +2,7 @@ import React from 'react';
 import iconCalendar from '@/assets/icons/icon_calendar.svg';
 import image2 from '@/assets/imgs/news_2.jpg';
 
-interface NewsModalProps {
-  open: boolean;
-  handleClose: () => void;
-}
-
-const NewsModal: React.FC<NewsModalProps> = ({ open }) => {
-  if (!open) return null;
-
+const NewsModal = () => {
   return (
     <>
       <div className="fixed left-0 top-0 z-40 h-full w-full bg-black opacity-40 outline-none ">
