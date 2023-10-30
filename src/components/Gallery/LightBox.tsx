@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { GalleryItem } from '@/types';
@@ -20,15 +20,20 @@ type LightBoxProps = {
   image: number;
 };
 
-const links = ['facebook', 'instagram'];
+// const links = ['facebook', 'instagram'];
 
 const LightBox = ({ onClose, images, image }: LightBoxProps) => {
+  const [activeImage, setActiveImage] = useState('');
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
 
+  useEffect(() => {
+    setActiveImage(images[image].url);
+  }, [image, images]);
+
   const openShareModal = () => {
-    dispatch(openModal({ data: links, type: 'share' }));
+    dispatch(openModal({ data: activeImage, type: 'share' }));
   };
 
   useEffect(() => {
@@ -57,14 +62,14 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
             prevEl: '.prev',
             nextEl: '.next'
           }}
-          className="h-full w-[60%]"
+          className=" h-full w-full"
         >
           {images.map((image, index) => (
             <SwiperSlide
               className=" relative flex w-full items-center justify-center"
               key={index}
             >
-              <div className="relative w-[590px]">
+              <div className="relative max-h-[590px] w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
                 <div
                   onClick={openShareModal}
@@ -76,10 +81,10 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
               </div>
             </SwiperSlide>
           ))}
-          <div className="prev absolute left-2 top-[50%] z-50 -translate-y-[50%] cursor-pointer">
+          <div className="prev absolute left-[3%] top-[50%] z-50 -translate-y-[30%]  cursor-pointer lg:left-[18%]">
             <LightBoxArrowLeft />
           </div>
-          <div className="next absolute right-2 top-[50%] z-50  -translate-y-[50%] cursor-pointer">
+          <div className="next absolute right-[3%] top-[50%] z-50 -translate-y-[50%]   cursor-pointer lg:right-[18%]">
             <LightBoxArrowRight />
           </div>
         </Swiper>

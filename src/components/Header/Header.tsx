@@ -51,7 +51,7 @@ const Header = () => {
       <header
         className={`${
           isScrolled ? 'bg-white' : 'bg-transparent'
-        } fixed left-0 right-0 top-0 z-10 md:py-[15px] xl:py-5`}
+        } fixed left-0 right-0 top-0 z-[9999] md:py-[15px] lg:py-5`}
       >
         <div className=" mx-auto flex w-[320px] items-center justify-between px-5 text-lg text-white outline-transparent md:w-[768px] md:px-12  xl:w-[1440px] xl:px-[120px] ">
           <a
