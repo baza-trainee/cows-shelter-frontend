@@ -80,7 +80,7 @@ const BurgerMenu = () => {
         {windowWidth < 768 && (
           <div className="border-gray mb-2 border-y py-3">
             <button
-              className="mx-auto flex h-11 w-[208px] items-center justify-center border border-black border-transparent bg-accent text-lg text-black transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black focus:bg-lemon focus:text-black active:bg-darkyellow active:text-black lg:w-[180px]"
+              className="mx-auto flex h-11 w-[208px] items-center justify-center border border-black border-transparent bg-accent text-lg text-black transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black focus:bg-lemon focus:text-black active:bg-darkyellow active:text-black xl:w-[180px]"
               type="button"
             >
               {t('header:btn_donate')}
