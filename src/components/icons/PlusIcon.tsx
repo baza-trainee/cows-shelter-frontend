@@ -1,7 +1,3 @@
-// type Props = {
-//   sitze: string;
-// };
-
 const PlusIcon = () => {
   return (
     <svg
