@@ -62,7 +62,7 @@ const LightBox = ({ onClose, images, image }: LightBoxProps) => {
             prevEl: '.prev',
             nextEl: '.next'
           }}
-          className="h-full w-[60%]"
+          className=" h-full w-[60%]"
         >
           {images.map((image, index) => (
             <SwiperSlide

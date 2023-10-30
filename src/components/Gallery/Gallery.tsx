@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useWidth } from '@/hooks/useWidth';
 import { GalleryItem } from '@/types';
 import { images } from '@/data/gallery';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
@@ -12,7 +13,8 @@ import '@/styles/gallery.css';
 import LightBox from './LightBox';
 
 const Gallery = () => {
-  const itemsPerPage = 6;
+  const screenWidth = useWidth();
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const { t } = useTranslation();
   const [start, setStart] = useState(0);
   const [finish, setFinish] = useState(5);
@@ -24,19 +26,45 @@ const Gallery = () => {
   const data = usePaginatedData(images, start, finish);
 
   useEffect(() => {
-    if (currentPage === 1) {
-      setStart(0);
-      setFinish(6);
+    if (screenWidth > 1280) {
+      setItemsPerPage(6);
+      if (currentPage === 1) {
+        setStart(0);
+        setFinish(6);
+      }
+      if (currentPage === 2) {
+        setStart(6);
+        setFinish(12);
+      }
+      if (currentPage === 3) {
+        setStart(12);
+        setFinish(18);
+      }
     }
-    if (currentPage === 2) {
-      setStart(6);
-      setFinish(12);
+    if (screenWidth > 320 && screenWidth < 1280) {
+      setItemsPerPage(4);
+      if (currentPage === 1) {
+        setStart(0);
+        setFinish(4);
+      }
+      if (currentPage === 2) {
+        setStart(4);
+        setFinish(8);
+      }
+      if (currentPage === 3) {
+        setStart(8);
+        setFinish(12);
+      }
+      if (currentPage === 4) {
+        setStart(12);
+        setFinish(16);
+      }
+      if (currentPage === 5) {
+        setStart(14);
+        setFinish(18);
+      }
     }
-    if (currentPage === 3) {
-      setStart(12);
-      setFinish(18);
-    }
-  }, [currentPage]);
+  }, [screenWidth, currentPage]);
 
   useEffect(() => {
     if (isLightBox === true) {
