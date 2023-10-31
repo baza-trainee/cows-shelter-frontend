@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
+import Excursions from '@/components/Excursions/Excursions';
 import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
 import FAQ from '@/components/FAQ';
@@ -13,6 +14,7 @@ const HomePage = () => {
     <Layout>
       <Header />
       <Hero />
+      <Excursions />
       <Gallery />
       <Partners />
       <FAQ />
