@@ -1,15 +1,16 @@
-import img_cow_contacts from '@/assets/imgs/img_cow_contacts.png'
-import icon_privat from '@/assets/icons/icon_privat.svg'
-import icon_mono from '@/assets/icons/icon_mono.svg'
-import icon_paypal from '@/assets/icons/icon_paypal.svg'
-import icon_western_union from '@/assets/icons/icon_western_union.svg'
-import icon_swift from '@/assets/icons/icon_swift.svg'
-import Map from './Map'
+import icon_privat from '@/assets/icons/icon_privat.svg';
+import icon_mono from '@/assets/icons/icon_mono.svg';
+import icon_paypal from '@/assets/icons/icon_paypal.svg';
+import icon_western_union from '@/assets/icons/icon_western_union.svg';
+import icon_swift from '@/assets/icons/icon_swift.svg';
+import Map from './Map';
 
 const Contacts = () => {
   return (
-    <div className="container mx-auto max-w-[1440px] ">
-      <img src={img_cow_contacts} alt="cow" className="h-full w-full" />
+    <div className="container mx-auto max-w-[1440px]">
+      <div
+        className={`relative h-[80vh] bg-[url('@/assets/imgs/img_cow_contacts.png')] bg-cover bg-fixed bg-center bg-no-repeat`}
+      />
       <div className="flex flex-row px-56 py-20">
         <div className="basis-1/2">
           <h3 className="mb-5 text-2xl font-bold">Контакти</h3>
@@ -43,7 +44,7 @@ const Contacts = () => {
             </li>
           </ul>
           <h4 className="mb-5 text-2xl font-bold">Локація</h4>
-          <p className="text-graphite mb-2">Україна, Вінницька область,</p>
+          <p className="mb-2 text-graphite">Україна, Вінницька область,</p>
           <p className="text-graphite">с. Буша, вул. Виноградна, 11</p>
         </div>
         <div className="basis-1/2">
@@ -79,6 +80,6 @@ const Contacts = () => {
       <Map />
     </div>
   );
-}
+};
 
 export default Contacts;
