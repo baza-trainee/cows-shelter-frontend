@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { Reviews } from '@/types';
 import { reviews } from '@/data/reviews';
-import { usePaginatedDataReview } from '@/hooks/usePaginatedData';
+import { usePaginatedData } from '@/hooks/usePaginatedData';
 
 import Slider from '../Slider';
 
@@ -15,7 +15,7 @@ const ExcursionsReviews = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pagesLength = reviews.length / itemsPerPage;
 
-  const data = usePaginatedDataReview(reviews, start, finish);
+  const data = usePaginatedData(reviews, start, finish);
   useEffect(() => {
     if (currentPage === 1) {
       setStart(0);
@@ -33,9 +33,10 @@ const ExcursionsReviews = () => {
 
   return (
     <Slider
-      title={'Відгуки відвідувачів'}
+      subtitle={'Відгуки відвідувачів'}
       setCurrentPage={setCurrentPage}
       pagesLength={pagesLength}
+      isReviews={true}
     >
       <ul className="mb-10 flex gap-6">
         {data.map((item: Reviews) => (

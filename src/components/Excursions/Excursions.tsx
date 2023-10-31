@@ -3,9 +3,9 @@ import ExcursionsReviews from './ExcursionsReviews';
 
 const Excursions = () => {
   return (
-    <section className="bg-[#F3F3F5] px-[7.5rem] py-20">
-      <h2 className="mb-10 text-[4rem] font-bold leading-normal">Екскурсії</h2>
-      <ul className="flex gap-6">
+    <section className="bg-[#F3F3F5] px-[6rem] py-20">
+      <h2 className="mb-10 text-[64px] font-medium">Екскурсії</h2>
+      <ul className="flex gap-6 pb-[80px]">
         <li className="drop-shadow">
           <div className="group relative">
             <img src="/excursion1.jpg" alt="Арттерапія з коровами"></img>
