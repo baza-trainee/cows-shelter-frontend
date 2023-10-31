@@ -1,5 +1,5 @@
-import enJSON from '../src/locales/en/en.json';
-import ukJSON from '../src/locales/uk/uk.json';
+import enJSON from '../src/locales/en.json';
+import ukJSON from '../src/locales/uk.json';
 
 declare module 'i18next' {
   interface CustomTypeOptions {

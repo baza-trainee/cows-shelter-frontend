@@ -31,13 +31,16 @@ const Slider = ({
     }
   };
   const handleNext = () => {
-    if (sliderRef != undefined) {
+    if (sliderRef && sliderRef.current) {
       (sliderRef.current as any).slideNext();
     }
   };
+
+  const slidesLength = Number(pagesLength?.toFixed());
+
   return (
-    <section className="py-4">
-      <div className="sectionHeader mx-28 mb-8 mt-4 flex  items-center justify-between">
+    <div className="relative">
+      <div className="mx-[80px] mb-8 mt-4 flex items-center justify-between">
         <h2 className="text-[64px] font-medium">{title}</h2>
         <div className="flex gap-4">
           <div onClick={handlePrev} className="cursor-pointer ">
@@ -50,8 +53,8 @@ const Slider = ({
       </div>
       <div className="my-8 flex h-screen w-full  items-start justify-start">
         <Swiper
-          className="relative flex h-[100%] w-5/6 flex-col items-center justify-center"
-          spaceBetween={10}
+          className="relative flex h-[600px] w-[100vw] md:w-[768px]   lg:w-[1198px]"
+          spaceBetween={50}
           slidesPerView={1}
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
@@ -63,7 +66,7 @@ const Slider = ({
             (sliderRef.current as any) = swiper;
           }}
         >
-          {[...Array(pagesLength)].map((_, index) => (
+          {[...Array(slidesLength)].map((_, index) => (
             <SwiperSlide
               key={index}
               className="bottom-10 flex h-full w-full items-center justify-center"
@@ -75,7 +78,7 @@ const Slider = ({
           ))}
         </Swiper>
       </div>
-    </section>
+    </div>
   );
 };
 

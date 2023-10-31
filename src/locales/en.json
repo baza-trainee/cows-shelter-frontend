@@ -1,5 +1,14 @@
 {
-  "header": {},
+  "header": {
+    "menu_aboutUs": "About us",
+    "menu_excursions": "Excursions",
+    "menu_news": "News",
+    "menu_partners": "Partners",
+    "menu_contacts": "Contacts",
+    "btn_donate": "Donate",
+    "menu": "Menu",
+    "language": "Choose a language:"
+  },
   "hero": {
     "main_title": "Healthy Life",
     "shelter": "Shelter for cows",
@@ -34,5 +43,33 @@
   },
   "gallery": {
     "gallery": "Gallery"
+  },
+  "partners": {
+    "header": "Partners",
+    "become_partner": "Become a partner",
+    "text": "Thanks to our partners, cow happiness becomes possible. Thank you for your support and belief in our mission! To do good deeds together is in the very heart!",
+    "partners": {
+      "uaAnimals": "UAnimals",
+      "sloboda_zvierat": "Sloboda zvierat",
+      "zhitta": "Space 'Healthy Life'",
+      "baza": "BazaTrainee"
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "questions": {
+      "opening_hours": "What are the opening hours of the shelter?",
+      "winter_excursion": "Is it possible to go on an excursion in winter?",
+      "max_guests": "What is the maximum allowable number of people per excursion?",
+      "prise": "Why is there no fixed price for excursions?",
+      "kind_help": "Is it possible to help in kind?"
+    }, 
+     "answers": {
+      "opening_hours": "The shelter is open from 10:00 a.m. to 6:00 p.m. every day",
+      "winter_excursion": "No, unfortunately the shelter is open from spring to autumn",
+      "max_guests": "Up to 30 people",
+      "prise": "The shelter works on a volunteer basis, we do not ask people for a fixed fee - you donate as much as you think is necessary",
+      "kind_help": "Yes, there is such a practice, you can order a volunteer excursion in advance, where you will first visit the excursion, and then we will offer you several types of physical assistance)"
+    }
   }
 }

@@ -1,11 +1,13 @@
-import Header from '@/components/Header';
+import Contacts from '@/components/Contacts/Contacts';
+import Header from '@/components/Header/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer/Footer';
 import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
-import Gallery from '@/components/Gallery';
-import { ModalProvider } from '@/components/ModalProvider';
 import Excursions from '@/components/Excursions/Excursions';
+import Gallery from '@/components/Gallery/Gallery';
+import Partners from '@/components/Partners';
+import FAQ from '@/components/FAQ';
 
 const HomePage = () => {
   return (
@@ -14,9 +16,11 @@ const HomePage = () => {
       <Hero />
       <Excursions />
       <Gallery />
+      <Partners />
+      <FAQ />
+      <Contacts />
       <Footer />
       <UnderFooter />
-      <ModalProvider />
     </Layout>
   );
 };
