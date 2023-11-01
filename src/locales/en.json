@@ -84,7 +84,7 @@
       "one": "200",
       "two": "500",
       "three": "1000",
-      "four": ""
+      "four": "Enter a different amount"
     },
     "pay": "Choose a payment method",
     "pay_systems": {
