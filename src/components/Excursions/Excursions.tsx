@@ -1,12 +1,15 @@
-import arrow_icon from '@/assets/icons/arrow_icon.svg';
-import ExcursionsReviews from './ExcursionsReviews';
-import ExcursionModal from './ExcursionModal';
 import { useEffect, useState } from 'react';
-import { excursions } from '@/data/excursionsModals';
-import { ExcursionsData } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
+
+import ExcursionsReviews from './ExcursionsReviews';
+import ExcursionModal from './ExcursionModal';
+import LittleArrow from '../icons/LittleArrow';
+
+import { excursions } from '@/data/excursionsModals';
+import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
+
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
@@ -28,12 +31,21 @@ const Excursions = () => {
     );
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
+
   return (
     <section className="bg-[#F3F3F5] px-[7.5rem] py-20">
       <h2 className="mb-10 text-[4rem] font-bold leading-normal">
         {t('excursions:title')}
       </h2>
       <ul className="mb-[8.75rem] flex gap-6">
+
         {excursions.map((item: ExcursionsData, index: number) => (
           <li key={item.id} className="drop-shadow">
             <div className="group relative">
@@ -54,7 +66,7 @@ const Excursions = () => {
                     <span className="text-lg font-medium leading-[1.35rem]">
                       {t('excursions:excursion.show_more_btn')}
                     </span>
-                    <img src={arrow_icon} width={24} height={24} />
+                    <LittleArrow />
                   </button>
                 </a>
               </div>
