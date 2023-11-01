@@ -55,7 +55,8 @@
       "baza": "BazaTrainee"
     },
     "partners_modal": {
-      "heading": "Thank you for support!"
+      "heading": "Thank you for support!",
+      "text": "Contact us and we will provide you with the necessary information"
     }
   },
   "faq": {
