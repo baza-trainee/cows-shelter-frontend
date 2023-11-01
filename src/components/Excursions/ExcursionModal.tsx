@@ -6,13 +6,15 @@ import close_icon from '@/assets/icons/close_icon.svg';
 import { closeModal } from '@/store/slices/modalSlice';
 import { MouseEvent } from 'react';
 import { useAppDispatch } from '@/store/hook';
+import { ExcursionsData } from '@/types';
 
 
 type ExcursionsModalProps = {
-  excursion: object;
+  excursion: ExcursionsData;
 };
 
 const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
+  console.log(excursion)
   const dispatch = useAppDispatch();
 
   const closeExcursionsModal = () => dispatch(closeModal());
