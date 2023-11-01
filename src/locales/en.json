@@ -87,5 +87,42 @@
     "read_more": "Read More",
     "help": "Help",
     "support":"To Support"
+  },
+    "excursions": {
+    "title": "Excursions",
+    "excursion": {
+      "title_1": "Art therapy with cows",
+      "description_1": "This is a unique experience that opens the world of creativity and nature to the participants. This exciting journey begins in a picturesque village surrounded by green meadows and mountain ranges. After 30-60 minutes of contact with our wards, people's morale changes drastically, psychological tension decreases and their general condition improves. This excursion not only provides an opportunity to experience interaction with nature and art, but also leaves unforgettable memories of the peace and inspiration received from the cows and the nature around. Such horned 'psychologists' are important and necessary at all times, and in such a difficult time for our country, they are extremely necessary. Our healthy team is always happy to join new like-minded people in the creation and development of such an important cause for the good of the world",
+      "title_2": "Certification training",
+      "description_2": "This is a unique experience that opens the world of creativity and nature to the participants. This exciting journey begins in a picturesque village surrounded by green meadows and mountain ranges. After 30-60 minutes of contact with our wards, people's morale changes drastically, psychological tension decreases and their general condition improves. This excursion not only provides an opportunity to experience interaction with nature and art, but also leaves unforgettable memories of the peace and inspiration received from the cows and the nature around. Such horned 'psychologists' are important and necessary at all times, and in such a difficult time for our country, they are extremely necessary. Our healthy team is always happy to join new like-minded people in the creation and development of such an important cause for the good of the world",
+      "title_3": "For kids",
+      "description_3": "This is a unique experience that opens the world of creativity and nature to the participants. This exciting journey begins in a picturesque village surrounded by green meadows and mountain ranges. After 30-60 minutes of contact with our wards, people's morale changes drastically, psychological tension decreases and their general condition improves. This excursion not only provides an opportunity to experience interaction with nature and art, but also leaves unforgettable memories of the peace and inspiration received from the cows and the nature around. Such horned 'psychologists' are important and necessary at all times, and in such a difficult time for our country, they are extremely necessary. Our healthy team is always happy to join new like-minded people in the creation and development of such an important cause for the good of the world",
+      "small_description": "30 - 60 minutes / from 2 to 14 people",
+      "show_more_btn": "Show more",
+      "duration": "30 - 60 minutes",
+      "number_of_people": "2 - 14 people",
+      "order_btn": "Order an excursion"
+  },
+    "reviews": {
+      "reviews_title": "Reviews",
+      "name_1": "Anna",
+      "review_1": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_2": "Denis",
+      "review_2": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_3": "Elena",
+      "review_3": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_4": "Vitaliy",
+      "review_4": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_5": "Anna",
+      "review_5": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_6": "Elena",
+      "review_6": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_7": "Olga",
+      "review_7": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_8": "Anna",
+      "review_8": "I really liked the excursion, I visited it with my children, it was very exciting",
+      "name_9": "Elena",
+      "review_9": "I really liked the excursion, I visited it with my children, it was very exciting"
+    }
   }
 }
