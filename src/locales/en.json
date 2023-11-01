@@ -63,13 +63,29 @@
       "max_guests": "What is the maximum allowable number of people per excursion?",
       "prise": "Why is there no fixed price for excursions?",
       "kind_help": "Is it possible to help in kind?"
-    }, 
-     "answers": {
+    },
+    "answers": {
       "opening_hours": "The shelter is open from 10:00 a.m. to 6:00 p.m. every day",
       "winter_excursion": "No, unfortunately the shelter is open from spring to autumn",
       "max_guests": "Up to 30 people",
       "prise": "The shelter works on a volunteer basis, we do not ask people for a fixed fee - you donate as much as you think is necessary",
       "kind_help": "Yes, there is such a practice, you can order a volunteer excursion in advance, where you will first visit the excursion, and then we will offer you several types of physical assistance)"
     }
+  },
+  "support": {
+    "step_1": "Choose a method of assistance",
+    "step_2": "Transfer any amount to our account",
+    "step_3": "Get confirmation and feel your involvement in good affairs",
+    "title": "How to support us",
+    "text": "Friends, thank you to everyone who supports the shelter, realizing the great benefit of our good work with you. Join the purchase of feed for cows to help these wonderful creatures and fill the world with positive energy.",
+    "card_title_1": "One-time assistance",
+    "card_subtitle_1": "When cows are in love, they fulfill their natural function",
+    "card_banner_1": "We are always happy for new like-minded people who want to become participants in the good and sunny moods broadcast by the residents of the shelter! Any amount will be your sincere contribution to improving our world.",
+    "card_title_2": "Monthly assistance",
+    "card_subtitle_2": "Repay any amount every month. Cows need stability and your care",
+    "card_banner_2": "If charity is your life's work, help provide the cows with everything they need, even a little at a time, but regularly. We believe in the power of unity and only thanks to this faith we continue to stay in line!",
+    "read_more": "Read More",
+    "help": "Help",
+    "support":"To Support"
   }
 }
