@@ -19,7 +19,7 @@ export const amountDonate: Array<WayOfHelping> = [
   { value: '200', title: 'donate:amounts.one' },
   { value: '500', title: 'donate:amounts.two' },
   { value: '1000', title: 'donate:amounts.three' },
-  { value: '', title: 'donate:amounts.four' }
+  { value: '', title: '' }
 ];
 
 export const paySystems: Array<WayOfHelping> = [

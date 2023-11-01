@@ -1,25 +1,44 @@
 import { wayOfHelping, amountDonate, paySystems } from '@/data/dataForm';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
-import radio_icon_active from '@/icons/radio_active_icon.svg';
-import radio_icon from '@/icons/radio_icon.svg';
+import radio_icon_active from '@/assets/icons/radio_active_icon.svg';
+import radio_icon from '@/assets/icons/radio_icon.svg';
 import { useState, MouseEvent } from 'react';
 
 type State = {
   method: string | null;
   amount: string | null;
   pay: string | null;
+  customAmount: string | null;
 };
 
 const DonateModal = () => {
   const { t } = useTranslation();
-  const { handleSubmit, control } = useForm<State>();
+  const { register, handleSubmit, control, setValue } = useForm<State>();
   const onSubmitForm = (data: State) => {
+    // const selectedMethod = watch('method');
+    // const selectedAmount = watch('amount');
+    // const selectedPay = watch('pay');
+
+    if (!data.method) {
+      alert('Оберіть спосіб допомоги');
+      return;
+    }
+
+    if (!data.amount && !data.customAmount) {
+      alert('Введіть або виберіть суму');
+      return;
+    }
+
+    if (!data.pay) {
+      alert('Оберіть спосіб оплати');
+      return;
+    }
     console.log(data);
   };
 
-  type Text = [string | null, string | null, string | null];
-  const [text, setText] = useState<Text>(['', null, '']);
+  type Text = [string | null, string | null, string | null, string];
+  const [text, setText] = useState<Text>(['', null, '', 'true']);
 
   const handleClick = (ev: string | null, position: number) => {
     setText((prev: Text) => {
@@ -38,9 +57,10 @@ const DonateModal = () => {
             {wayOfHelping.map(({ value, title }) => (
               <label
                 key={value}
-                onClick={(event: MouseEvent<HTMLLabelElement>) =>
-                  handleClick(event.currentTarget.textContent, 0)
-                }
+                onClick={(event: MouseEvent<HTMLLabelElement>) => {
+                  handleClick(event.currentTarget.textContent, 0);
+                  setValue('method', t(title));
+                }}
                 className="relative flex items-center gap-5"
               >
                 <Controller
@@ -55,39 +75,27 @@ const DonateModal = () => {
                     />
                   )}
                 />
-
-                {text[0] === t(title) ? (
-                  <img
-                    className="absolute"
-                    src={radio_icon_active}
-                    alt="radio icon"
-                    width="24px"
-                    height="24px"
-                  />
-                ) : (
-                  <img
-                    className="absolute"
-                    src={radio_icon}
-                    alt="radio icon"
-                    width="24px"
-                    height="24px"
-                  />
-                )}
-
+                <img
+                  className="absolute"
+                  src={text[0] === t(title) ? radio_icon_active : radio_icon}
+                  alt="radio icon"
+                  width="24px"
+                  height="24px"
+                />
                 {t(title)}
               </label>
             ))}
           </div>
-
           <p className="mb-5 text-xl font-bold">{t('donate:amount')}</p>
-          <div role="group" className="mb-10 flex flex-wrap gap-3">
+          <div role="group" className="relative mb-10 flex flex-wrap gap-3">
             {amountDonate.map(({ value, title }) => (
               <label
                 key={value}
                 className="flex w-[200px] items-center gap-5"
-                onClick={(event: MouseEvent<HTMLLabelElement>) =>
-                  handleClick(event.currentTarget.textContent, 1)
-                }
+                onClick={(event: MouseEvent<HTMLLabelElement>) => {
+                  handleClick(event.currentTarget.textContent, 1);
+                  setValue('customAmount', null);
+                }}
               >
                 <Controller
                   name="amount"
@@ -101,28 +109,29 @@ const DonateModal = () => {
                     />
                   )}
                 />
-                {text[1] === t(title) ? (
-                  <img
-                    className="absolute"
-                    src={radio_icon_active}
-                    alt="radio icon"
-                    width="24px"
-                    height="24px"
-                  />
-                ) : (
-                  <img
-                    className="absolute"
-                    src={radio_icon}
-                    alt="radio icon"
-                    width="24px"
-                    height="24px"
-                  />
-                )}
+                <img
+                  className="absolute"
+                  src={text[1] === t(title) ? radio_icon_active : radio_icon}
+                  alt="radio icon"
+                  width="24px"
+                  height="24px"
+                />
                 {t(title)}
               </label>
             ))}
+            <label className="absolute -bottom-3 left-8 block text-black">
+              <input
+                type="text"
+                {...register('customAmount')}
+                placeholder={t('donate:amounts.four')}
+                className="block w-[213px] border-b border-disabled bg-inherit px-[14px] py-1 text-black placeholder:text-disabled"
+                onClick={() => {
+                  handleClick('', 1);
+                  setValue('method', null);
+                }}
+              />
+            </label>
           </div>
-
           <p className="mb-5 text-xl font-bold">{t('donate:pay')}</p>
           <div role="group" className="mb-10 flex w-[200px] flex-wrap gap-3">
             {paySystems.map(({ value, title, url }) => (
@@ -145,35 +154,23 @@ const DonateModal = () => {
                     />
                   )}
                 />
-                {text[2] === t(title) ? (
-                  <img
-                    className="absolute"
-                    src={radio_icon_active}
-                    alt="radio icon"
-                    width="24px"
-                    height="24px"
-                  />
-                ) : (
-                  <img
-                    className="absolute"
-                    src={radio_icon}
-                    alt="radio icon"
-                    width="24px"
-                    height="24px"
-                  />
-                )}
+                <img
+                  className="absolute"
+                  src={text[2] === t(title) ? radio_icon_active : radio_icon}
+                  alt="radio icon"
+                  width="24px"
+                  height="24px"
+                />
                 <img
                   src={url}
                   alt={`${title} icon`}
                   width="20px"
                   height="20px"
                 />
-
                 {t(title)}
               </label>
             ))}
           </div>
-
           <button
             type="submit"
             className="block w-[276px] bg-accent px-5 py-3 text-center font-medium"
