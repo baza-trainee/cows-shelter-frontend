@@ -41,7 +41,7 @@ const Excursions = () => {
 
   return (
     <section className="bg-[#F3F3F5] px-[7.5rem] py-20">
-      <h2 className="mb-10 text-[4rem] font-bold leading-normal">
+      <h2 className="mb-10 text-[4rem] font-medium leading-normal">
         {t('excursions:title')}
       </h2>
       <ul className="mb-[8.75rem] flex gap-6">
