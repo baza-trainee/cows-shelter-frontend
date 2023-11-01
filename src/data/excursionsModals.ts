@@ -8,9 +8,9 @@ export const excursions = [
       'Це неповторний досвід, що відкриває перед учасниками світ творчості та природи. Ця захоплююча подорож починається у мальовничому селі, оточеному зеленими лугами та гірськими хребтами. Після 30-60 хвилинного контакту з нашими підопічними у людей кардинально змінюється моральний стан, спадає психологічна напруга і поліпшується загальний стан. Ця екскурсія не лише надає можливість відчути взаємодію з природою та мистецтвом, але й залишає незабутні спогади про спокій і натхнення, отримані від корів та природи навколо.Такі рогаті "психологи" важливі і потрібні в усі часи, а в такий нелегкий для нашої країни час, вони вкрай необхідні. Наша здрава команда завжди рада новим однодумцям у творенні та розвитку такої важливої справи для блага світу.',
     mainImgSrc: '/excursion1.jpg',
     imagesSrs: [
-      '/public/excursion_modal_1_1.jpg',
-      '/public/excursion_modal_1_2.jpg',
-      '/public/excursion_modal_1_3.jpg'
+      '/excursion_modal_1_1.jpg',
+      '/excursion_modal_1_2.jpg',
+      '/excursion_modal_1_3.jpg'
     ]
   },
   {
@@ -21,8 +21,8 @@ export const excursions = [
     mainImgSrc: '/excursion2.jpg',
     imagesSrs: [
       '/excursion2.jpg',
-      '/public/excursion_modal_1_2.jpg',
-      '/public/excursion_modal_1_3.jpg'
+      '/excursion_modal_1_2.jpg',
+      '/excursion_modal_1_3.jpg'
     ]
   },
   {
@@ -33,8 +33,8 @@ export const excursions = [
     mainImgSrc: '/excursion3.jpg',
     imagesSrs: [
       '/excursion3.jpg',
-      '/public/excursion_modal_1_2.jpg',
-      '/public/excursion_modal_1_3.jpg'
+      '/excursion_modal_1_2.jpg',
+      '/excursion_modal_1_3.jpg'
     ]
   }
 ];
