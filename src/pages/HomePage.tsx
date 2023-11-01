@@ -8,6 +8,7 @@ import Excursions from '@/components/Excursions/Excursions';
 import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
 import FAQ from '@/components/FAQ';
+import Support from '@/components/Support/Support';
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <Excursions />
       <Gallery />
       <Partners />
+      <Support />
       <FAQ />
       <Contacts />
       <Footer />
