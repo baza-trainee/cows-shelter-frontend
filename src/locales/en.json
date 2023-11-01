@@ -71,5 +71,29 @@
       "prise": "The shelter works on a volunteer basis, we do not ask people for a fixed fee - you donate as much as you think is necessary",
       "kind_help": "Yes, there is such a practice, you can order a volunteer excursion in advance, where you will first visit the excursion, and then we will offer you several types of physical assistance)"
     }
+  },
+  "donate": {
+    "methode": "Choose a method of donate",
+    "methods": {
+      "one_time": "One-time donate",
+      "monthly": "Monthly donate"
+
+    },
+    "amount": "Choose the donation amount",
+    "amounts": {
+      "one": "200",
+      "two": "500",
+      "three": "1000",
+      "four": ""
+    },
+    "pay": "Choose a payment method",
+    "pay_systems": {
+      "one": "Privatbank",
+      "two": "Monobank",
+      "three": "PayPal",
+      "four": "Western Union",
+      "fife": "Swift "
+    },
+    "btn": "Go to payment"
   }
 }
