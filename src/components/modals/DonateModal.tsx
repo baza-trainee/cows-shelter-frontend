@@ -50,7 +50,7 @@ const DonateModal = () => {
 
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-screen bg-black bg-opacity-40">
-      <div className="absolute left-[50%] top-[50%] w-[480px] -translate-x-[50%] -translate-y-[50%] bg-white px-20 py-[42px]">
+      <div className="absolute left-[50%] top-[50%] max-h-[90vh] w-[300px] -translate-x-[50%]  -translate-y-[50%] overflow-auto bg-white px-3  py-[42px] md:w-[480px] md:px-20">
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <p className="mb-5 text-xl font-bold">{t('donate:methode')}</p>
           <div role="group" className="mb-10 flex flex-wrap gap-3">
