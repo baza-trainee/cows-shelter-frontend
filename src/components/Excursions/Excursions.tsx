@@ -9,7 +9,7 @@ import { openModal } from '@/store/slices/modalSlice';
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
-  const [activeExcursion, setActiveExcursion] = useState({});
+  const [activeExcursion, setActiveExcursion] = useState<ExcursionsData>();
   const [excursion, setExcursion] = useState(0);
 
   const type = useAppSelector((state) => state.modals.type);
@@ -20,7 +20,9 @@ const Excursions = () => {
   }, [excursion]);
 
   const openExcursionModal = () => {
-    dispatch(openModal({ data: activeExcursion, type: 'excursions' }));
+    dispatch(
+      openModal({ data: activeExcursion as ExcursionsData, type: 'excursions' })
+    );
   };
 
   return (
@@ -57,7 +59,7 @@ const Excursions = () => {
       </ul>
       <ExcursionsReviews />
       {isModalOpen && type === 'excursions' && (
-        <ExcursionModal excursion={activeExcursion} />
+        <ExcursionModal excursion={activeExcursion as ExcursionsData} />
       )}
     </section>
   );

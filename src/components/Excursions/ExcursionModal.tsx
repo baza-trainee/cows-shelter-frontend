@@ -13,8 +13,7 @@ type ExcursionsModalProps = {
   excursion: ExcursionsData;
 };
 
-const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
-  console.log(excursion)
+const ExcursionModal = ( {excursion}: ExcursionsModalProps) => {
   const dispatch = useAppDispatch();
 
   const closeExcursionsModal = () => dispatch(closeModal());
