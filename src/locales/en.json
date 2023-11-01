@@ -53,6 +53,9 @@
       "sloboda_zvierat": "Sloboda zvierat",
       "zhitta": "Space 'Healthy Life'",
       "baza": "BazaTrainee"
+    },
+    "partners_modal": {
+      "heading": "Thank you for support!"
     }
   },
   "faq": {
@@ -63,8 +66,8 @@
       "max_guests": "What is the maximum allowable number of people per excursion?",
       "prise": "Why is there no fixed price for excursions?",
       "kind_help": "Is it possible to help in kind?"
-    }, 
-     "answers": {
+    },
+    "answers": {
       "opening_hours": "The shelter is open from 10:00 a.m. to 6:00 p.m. every day",
       "winter_excursion": "No, unfortunately the shelter is open from spring to autumn",
       "max_guests": "Up to 30 people",
