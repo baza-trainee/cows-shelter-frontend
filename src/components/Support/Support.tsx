@@ -8,7 +8,7 @@ const Support = () => {
   return (
     <section className="container mx-auto max-w-[1440px] p-[80px]">
       <div
-        className={`relative h-[80vh] bg-[url('support/support_bg.png')] bg-cover bg-fixed bg-center bg-no-repeat `}
+        className={`relative h-[80vh] bg-[url('/support/support_bg.png')] bg-cover bg-fixed bg-center bg-no-repeat `}
       />
       <div className="flex flex-col items-start justify-center">
         <h2 className="mb-10 mt-20 text-[64px] font-medium">
