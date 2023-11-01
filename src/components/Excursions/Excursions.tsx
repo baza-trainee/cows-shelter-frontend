@@ -1,11 +1,13 @@
-import arrow_icon from '@/assets/icons/arrow_icon.svg';
-import ExcursionsReviews from './ExcursionsReviews';
-import ExcursionModal from './ExcursionModal';
 import { useEffect, useState } from 'react';
-import { excursions } from '@/data/excursionsModals';
-import { ExcursionsData } from '@/types';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
+
+import ExcursionsReviews from './ExcursionsReviews';
+import ExcursionModal from './ExcursionModal';
+import LittleArrow from '../icons/LittleArrow';
+
+import { excursions } from '@/data/excursionsModals';
+import { ExcursionsData } from '@/types';
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
@@ -25,9 +27,19 @@ const Excursions = () => {
     );
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
+
   return (
     <section className="bg-[#F3F3F5] px-[7.5rem] py-20">
-      <h2 className="mb-10 text-[4rem] font-bold leading-normal">Екскурсії</h2>
+      <h2 className="mb-10 text-[4rem] font-medium leading-normal">
+        Екскурсії
+      </h2>
       <ul className="flex gap-6">
         {excursions.map((item: ExcursionsData, index: number) => (
           <li key={item.id} className="drop-shadow">
@@ -49,11 +61,10 @@ const Excursions = () => {
                     <span className="text-lg font-medium leading-[1.35rem]">
                       Показати більше
                     </span>
-                    <img src={arrow_icon} width={24} height={24} />
+                    <LittleArrow />
                   </button>
                 </a>
               </div>
-
             </div>
           </li>
         ))}
