@@ -7,6 +7,7 @@ import { closeModal } from '@/store/slices/modalSlice';
 import { MouseEvent } from 'react';
 import { useAppDispatch } from '@/store/hook';
 import { ExcursionsData } from '@/types';
+import { useTranslation } from 'react-i18next';
 
 type ExcursionsModalProps = {
   excursion: ExcursionsData;
@@ -14,6 +15,8 @@ type ExcursionsModalProps = {
 
 const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   const closeExcursionsModal = () => dispatch(closeModal());
 
@@ -34,14 +37,11 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
             <div className="flex gap-9">
               <div className="flex gap-3">
                 <img src={time_icon} width={24} height={24}></img>
-                <span className="default-text text-accent">
-                  {' '}
-                  30 - 60 хвилин{' '}
-                </span>
+                <span className="default-text text-accent">{t('excursions:excursion.duration')}</span>
               </div>
               <div className="flex gap-3">
                 <img src={people_icon} width={22} height={25}></img>
-                <span className="default-text text-accent"> 2 - 14 людей </span>
+                <span className="default-text text-accent"> {t('excursions:excursion.number_of_people')} </span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3.5">
@@ -60,16 +60,14 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
             </div>
           </div>
           <div className="flex w-[30.4rem] flex-col justify-between">
-            <h3 className="subtitle-text mt-10 font-bold text-white">
-              {excursion.title}
-            </h3>
-            <p className="default-text text-white">{excursion.description}</p>
+                  <h3 className="subtitle-text mt-10 font-bold text-white">{t(excursion.title)}</h3>
+                  <p className="default-text text-white">{t(excursion.description)}</p>
             <div className="flex gap-6">
-              <button className="h-11 w-[14.44rem] bg-accent hover:bg-lemon text-lg font-medium leading-[1.375rem]">
-                Замовити екскурсію
+              <button className="h-11 w-[14.44rem] bg-accent text-lg font-medium leading-[1.375rem]">
+                {t('excursions:excursion.order_btn')}
               </button>
-              <button className="h-11 w-[14.44rem] border border-solid hover:text-accent border-accent text-lg font-medium leading-[1.375rem] text-white">
-                Допомогти
+              <button className="h-11 w-[14.44rem] border border-solid border-accent text-lg font-medium leading-[1.375rem] text-white">
+               {t('header:btn_donate')}
               </button>
             </div>
           </div>
