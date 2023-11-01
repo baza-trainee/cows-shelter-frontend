@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Reviews } from '@/types';
 import { reviews } from '@/data/reviews';
@@ -9,7 +9,9 @@ import Slider from '../Slider';
 
 const ExcursionsReviews = () => {
   const itemsPerPage = 3;
-  //   const { t } = useTranslation();
+
+  const { t } = useTranslation();
+
   const [start, setStart] = useState(0);
   const [finish, setFinish] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +35,7 @@ const ExcursionsReviews = () => {
 
   return (
     <Slider
-      subtitle={'Відгуки відвідувачів'}
+      subtitle={t('excursions:reviews.reviews_title')}
       setCurrentPage={setCurrentPage}
       pagesLength={pagesLength}
       isReviews={true}
@@ -41,8 +43,8 @@ const ExcursionsReviews = () => {
       <ul className="mb-10 flex gap-6">
         {data.map((item: Reviews) => (
           <li key={item.id} className="h-40 border-r border-disabled pr-16">
-            <p className="subtitle-text mb-2.5">{item.name}</p>
-            <p className="default-text"> {item.review}</p>
+            <p className="subtitle-text mb-2.5">{t(item.name)}</p>
+            <p className="default-text"> {t(item.review)}</p>
           </li>
         ))}
       </ul>

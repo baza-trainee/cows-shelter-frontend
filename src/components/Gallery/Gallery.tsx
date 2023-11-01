@@ -8,18 +8,18 @@ import { usePaginatedData } from '@/hooks/usePaginatedData';
 
 import ZoomArrow from '@/components/icons/ZoomArrow';
 import Slider from '@/components/Slider';
+import LightBox from './LightBox';
 
 import '@/styles/gallery.css';
-import LightBox from './LightBox';
 
 const Gallery = () => {
   const screenWidth = useWidth();
-  const [itemsPerPage, setItemsPerPage] = useState(6);
   const { t } = useTranslation();
   const [start, setStart] = useState(0);
   const [finish, setFinish] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLightBox, setIsLightBox] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const [image, setImage] = useState(0);
   const pagesLength = images.length / itemsPerPage;
 
@@ -67,12 +67,12 @@ const Gallery = () => {
   }, [screenWidth, currentPage]);
 
   useEffect(() => {
-    if (isLightBox === true) {
+    if (isLightBox) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  }, [isLightBox]);
+  });
 
   return (
     <section id="gallery" className="relative p-[23px]">
@@ -82,6 +82,7 @@ const Gallery = () => {
             images={data}
             image={image}
             onClose={() => setIsLightBox(false)}
+            isLightBox={isLightBox}
           />
         </div>
       )}

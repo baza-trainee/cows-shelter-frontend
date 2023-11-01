@@ -4,12 +4,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface NewsData {}
 interface ExcursionsData {}
 interface BurgerMenu {}
+interface Partners {}
 
 type ShareData = string;
 
-export type ModalType = 'excursions' | 'news' | 'share' | 'burgerMenu';
+export type ModalType =
+  | 'excursions'
+  | 'news'
+  | 'share'
+  | 'burgerMenu'
+  | 'partners';
 
-type ModalData = NewsData | ExcursionsData | ShareData | BurgerMenu;
+type ModalData = NewsData | ExcursionsData | ShareData | BurgerMenu | Partners;
 
 interface ModalState {
   data: ModalData | null;

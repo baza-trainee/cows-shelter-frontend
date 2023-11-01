@@ -3,9 +3,30 @@ import logo_uaanimals from '@/assets/images/logo_uaanimals.png';
 import logo_sloboda from '@/assets/images/logo_svoboda.png';
 import logo_zhitta from '@/assets/images/logo_zhitta.png';
 import logo_baza from '@/assets/images/logo_baza.png';
+import PartnersModal from './modals/PartnersModal';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { useEffect } from 'react';
+import { openModal } from '@/store/slices/modalSlice';
 
 const Partners = () => {
   const { t } = useTranslation();
+
+  const dispatch = useAppDispatch();
+  const type = useAppSelector((state) => state.modals.type);
+  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+
+  const openPartnersModal = () => {
+    console.log('openPartnersModal is called');
+    dispatch(openModal({ data: {}, type: 'partners' }));
+  };
+
+  useEffect(() => {
+    if (isModalOpen === true) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
 
   const partners = [
     {
@@ -37,14 +58,17 @@ const Partners = () => {
           <h2 className="mb-6 text-[3rem] font-medium lg:text-[4rem]">
             {t('partners:header')}
           </h2>
-          <button className="duration-800 inline-block bg-accent px-8 py-3 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
+          <button
+            onClick={openPartnersModal}
+            className="duration-800 inline-block bg-accent px-8 py-3 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow"
+          >
             {t('partners:become_partner')}
           </button>
         </div>
         <p className="mb-10 text-[20px] leading-relaxed text-gray-700 lg:w-[1070px] lg:text-[22px]">
           {t('partners:text')}
         </p>
-        <ul className="flex justify-between gap-6 overflow-x-scroll lg:mt-20">
+        <ul className="flex justify-between gap-6 overflow-x-auto lg:mt-20">
           {partners.map(({ title, href, src }) => (
             <li key={title}>
               <a
@@ -68,6 +92,7 @@ const Partners = () => {
           ))}
         </ul>
       </div>{' '}
+      {isModalOpen && type === 'partners' && <PartnersModal />}
     </section>
   );
 };
