@@ -10,7 +10,6 @@ import { excursions } from '@/data/excursionsModals';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
 
-
 const Excursions = () => {
   const dispatch = useAppDispatch();
   const [activeExcursion, setActiveExcursion] = useState<ExcursionsData>();
@@ -45,7 +44,6 @@ const Excursions = () => {
         {t('excursions:title')}
       </h2>
       <ul className="mb-[8.75rem] flex gap-6">
-
         {excursions.map((item: ExcursionsData, index: number) => (
           <li key={item.id} className="drop-shadow">
             <div className="group relative">
@@ -58,7 +56,7 @@ const Excursions = () => {
                 </p>
                 <a>
                   <button
-                    className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-accent"
+                    className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-white group-hover:hover:border-accent"
                     onClick={() => {
                       setExcursion(index), openExcursionModal();
                     }}

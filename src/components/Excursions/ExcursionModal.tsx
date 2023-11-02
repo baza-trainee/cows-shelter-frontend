@@ -28,10 +28,10 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
 
   return (
     <div
-      className="fixed left-0 top-0 z-50 h-[85vh] w-full bg-black/[.60]"
+      className="fixed left-0 top-0 z-50 h-[100%] w-full bg-black/[.60]"
       onClick={handleOverlayClick}
     >
-      <div className="absolute left-1/2 top-1/2 mt-11 w-[71rem] translate-x-[-50%] translate-y-[-50%] border-2 border-solid border-white bg-graphite px-[3.75rem] pb-[3.75rem] pt-10">
+      <div className="absolute left-1/2 top-1/2 w-[71rem] translate-x-[-50%] translate-y-[-50%] border-2 border-solid border-white bg-graphite px-[3.75rem] pb-[3.75rem] pt-10">
         <div className="flex gap-10 ">
           <div className="flex flex-col gap-4">
             <div className="flex gap-9">
@@ -63,10 +63,10 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
                   <h3 className="subtitle-text mt-10 font-bold text-white">{t(excursion.title)}</h3>
                   <p className="default-text text-white">{t(excursion.description)}</p>
             <div className="flex gap-6">
-              <button className="h-11 w-[14.44rem] bg-accent text-lg font-medium leading-[1.375rem]">
+              <button className="h-11 w-[14.44rem] transition-all duration-300 bg-accent text-lg font-medium leading-[1.375rem] focus:bg-lemon active:bg-lemon hover:bg-lemon">
                 {t('excursions:excursion.order_btn')}
               </button>
-              <button className="h-11 w-[14.44rem] border border-solid border-accent text-lg font-medium leading-[1.375rem] text-white">
+              <button className="h-11 w-[14.44rem] border border-solid transition-all duration-300 border-white text-lg font-medium leading-[1.375rem] text-white focus:border-accent active:border-accent hover:border-accent">
                {t('header:btn_donate')}
               </button>
             </div>
