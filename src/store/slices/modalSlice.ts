@@ -6,18 +6,29 @@ import { NewsData } from '@/types';
 
 interface ExcursionsData {}
 interface BurgerMenu {}
+interface Partners {}
+interface Donation {}
+interface LightBox {}
 
-type ShareData = {
-  links: string;
-};
+export type ModalType =
+  | 'excursions'
+  | 'news'
+  | 'burgerMenu'
+  | 'partners'
+  | 'donation'
+  | 'lightbox';
 
-export type ModalType = 'excursions' | 'news' | 'share' | 'burgerMenu';
-
-type ModalData = NewsData | ExcursionsData | ShareData | BurgerMenu;
+type ModalData =
+  | NewsData
+  | ExcursionsData
+  | BurgerMenu
+  | Partners
+  | Donation
+  | LightBox;
 
 interface ModalState {
   data: ModalData | null;
-  type?: ModalType | null;
+  type: ModalType | null;
   isModalOpen: boolean;
 }
 
@@ -35,7 +46,6 @@ const modalSlice = createSlice({
       state,
       action: PayloadAction<{ data: ModalData; type: ModalType }>
     ) {
-      //useAppDispatch(openModal({ data:your_data, type:type of section (news or excursions)}))
       state.isModalOpen = true;
       state.data = action.payload.data;
       state.type = action.payload.type;
