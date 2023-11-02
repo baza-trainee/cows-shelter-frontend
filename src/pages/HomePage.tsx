@@ -7,14 +7,11 @@ import Layout from '@/components/Layout';
 import Excursions from '@/components/Excursions/Excursions';
 import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
-<<<<<<< HEAD
 import News from '@/components/News';
-=======
 import FAQ from '@/components/FAQ';
 import Support from '@/components/Support/Support';
 import { useAppSelector } from '@/store/hook';
 import { useEffect } from 'react';
->>>>>>> origin/HEAD
 
 const HomePage = () => {
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);

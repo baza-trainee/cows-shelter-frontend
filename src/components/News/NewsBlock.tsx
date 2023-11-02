@@ -12,7 +12,7 @@ const NewsBlock = () => {
 
   return (
     <div>
-      <ul className=" grid grid-cols-1  gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <ul className=" grid   gap-6 md:grid-cols-2 lg:grid-cols-3">
         {newsItems.map((news, index) => (
           <li
             key={news.id}
