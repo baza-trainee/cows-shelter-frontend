@@ -4,6 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import radio_icon_active from '@/assets/icons/radio_active_icon.svg';
 import radio_icon from '@/assets/icons/radio_icon.svg';
 import { useState, MouseEvent } from 'react';
+import CloseIcon from '../icons/CloseIconMenu';
 
 type State = {
   method: string | null;
@@ -16,10 +17,6 @@ const DonateModal = () => {
   const { t } = useTranslation();
   const { register, handleSubmit, control, setValue } = useForm<State>();
   const onSubmitForm = (data: State) => {
-    // const selectedMethod = watch('method');
-    // const selectedAmount = watch('amount');
-    // const selectedPay = watch('pay');
-
     if (!data.method) {
       alert('Оберіть спосіб допомоги');
       return;
@@ -51,6 +48,9 @@ const DonateModal = () => {
   return (
     <div className="fixed left-0 top-0 z-[9999] h-screen w-screen bg-black bg-opacity-40">
       <div className="absolute left-[50%] top-[50%] max-h-[90vh] w-[300px] -translate-x-[50%]  -translate-y-[50%] overflow-auto bg-white px-3  py-[42px] md:w-[480px] md:px-20">
+        <button type="button" className="absolute right-4 top-4">
+          <CloseIcon />
+        </button>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <p className="mb-5 text-xl font-bold">{t('donate:methode')}</p>
           <div role="group" className="mb-10 flex flex-wrap gap-3">
