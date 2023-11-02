@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import radio_icon_active from '@/assets/icons/radio_active_icon.svg';
 import radio_icon from '@/assets/icons/radio_icon.svg';
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, Dispatch, SetStateAction } from 'react';
 import CloseIcon from '../icons/CloseIconMenu';
+import { closeModal } from '@/store/slices/modalSlice';
+import { useAppDispatch } from '@/store/hook';
 
 type State = {
   method: string | null;
@@ -13,9 +15,16 @@ type State = {
   customAmount: string | null;
 };
 
-const DonateModal = () => {
+type DonateModalProps = {
+  isOpen: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+};
+
+const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, control, setValue } = useForm<State>();
+
   const onSubmitForm = (data: State) => {
     if (!data.method) {
       alert('Оберіть спосіб допомоги');
@@ -45,10 +54,29 @@ const DonateModal = () => {
     });
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+    setTimeout(() => {
+      dispatch(closeModal());
+    }, 500);
+  };
+
   return (
-    <div className="fixed left-0 top-0 z-[9999] h-screen w-screen bg-black bg-opacity-40">
-      <div className="absolute left-[50%] top-[50%] max-h-[90vh] w-[300px] -translate-x-[50%]  -translate-y-[50%] overflow-auto bg-white px-3  py-[42px] md:w-[480px] md:px-20">
-        <button type="button" className="absolute right-4 top-4">
+    <div
+      className={`fixed left-0 top-0 z-[9999] h-screen w-screen bg-black  transition-all  duration-700 ${
+        isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
+      } `}
+    >
+      <div
+        className={`absolute ${
+          isOpen ? '-right-4' : '-right-[500px]'
+        } top-[50%] max-h-[90vh] w-[300px] -translate-y-[50%] overflow-auto  bg-white px-3 py-[42px] transition-all  duration-700 md:w-[480px] md:px-20`}
+      >
+        <button
+          onClick={handleClose}
+          type="button"
+          className="absolute right-4 top-4"
+        >
           <CloseIcon />
         </button>
         <form onSubmit={handleSubmit(onSubmitForm)}>
