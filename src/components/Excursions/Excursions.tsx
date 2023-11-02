@@ -10,7 +10,6 @@ import { excursions } from '@/data/excursionsModals';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
 
-
 const Excursions = () => {
   const dispatch = useAppDispatch();
   const [activeExcursion, setActiveExcursion] = useState<ExcursionsData>();
@@ -31,13 +30,13 @@ const Excursions = () => {
     );
   };
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalOpen]);
+  // useEffect(() => {
+  //   if (isModalOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
+  // }, [isModalOpen]);
 
   return (
     <section className="bg-[#F3F3F5] px-[7.5rem] py-20">
@@ -45,7 +44,6 @@ const Excursions = () => {
         {t('excursions:title')}
       </h2>
       <ul className="mb-[8.75rem] flex gap-6">
-
         {excursions.map((item: ExcursionsData, index: number) => (
           <li key={item.id} className="drop-shadow">
             <div className="group relative">

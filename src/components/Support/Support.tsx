@@ -1,16 +1,48 @@
 import { useTranslation } from 'react-i18next';
 import { cards, steps } from '@/data/support';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
+import DonateModal from '../modals/DonateModal';
 import Card from './Card';
+import { useEffect, useState } from 'react';
 
 const Support = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const type = useAppSelector((state) => state.modals.type);
+  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+
+  const openDonateModal = () => {
+    dispatch(openModal({ data: {}, type: 'donation' }));
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setTimeout(() => {
+        setShowModal(true);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        setShowModal(false);
+      }, 500);
+    }
+  }, [isModalOpen]);
+
+  // useEffect(() => {
+  //   if (isModalOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'auto';
+  //   }
+  // }, [isModalOpen]);
 
   return (
-    <section className="container mx-auto max-w-[1440px] p-[80px]">
+    <section className="container relative mx-auto max-w-[1440px]">
       <div
-        className={`relative h-[80vh] bg-[url('/support/support_bg.png')] bg-cover bg-fixed bg-center bg-no-repeat `}
+        className={`relative h-[80vh] w-full bg-[url('/support/support_bg.png')] bg-cover bg-fixed bg-center bg-no-repeat `}
       />
-      <div className="flex flex-col items-start justify-center">
+      <div className="flex flex-col items-start justify-center px-[120px]">
         <h2 className="mb-10 mt-20 text-[64px] font-medium">
           {t('support:title')}
         </h2>
@@ -18,8 +50,8 @@ const Support = () => {
           {t('support:text')}
         </p>
         <div className="flex w-full justify-center gap-4 text-white">
-          <Card card={cards[0]} />;
-          <Card card={cards[1]} />;
+          <Card card={cards[0]} handleClick={openDonateModal} />;
+          <Card card={cards[1]} handleClick={openDonateModal} />;
         </div>
         <div className="relative mt-10 flex w-full ">
           <ul className="flex-1 ">
@@ -36,12 +68,18 @@ const Support = () => {
             ))}
           </ul>
           <div className="flex items-center justify-center ">
-            <button className=" flex  h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg">
+            <button
+              onClick={openDonateModal}
+              className=" flex  h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
+            >
               {t('support:support')}
             </button>
           </div>
         </div>
       </div>
+      {isModalOpen && type === 'donation' && (
+        <DonateModal isOpen={showModal} setShowModal={setShowModal} />
+      )}
     </section>
   );
 };

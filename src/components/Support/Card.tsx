@@ -5,9 +5,10 @@ import { SupportCard } from '@/types';
 
 type CardProps = {
   card: SupportCard;
+  handleClick: () => void;
 };
 
-const Card = ({ card }: CardProps) => {
+const Card = ({ card, handleClick }: CardProps) => {
   const { t } = useTranslation();
   const [hovered, setHovered] = useState(false);
   const [isBanner, setIsBanner] = useState(false);
@@ -45,7 +46,10 @@ const Card = ({ card }: CardProps) => {
       {isBanner && (
         <div className="absolute bottom-0 left-0 z-50 h-1/2 w-full bg-white p-4 text-black">
           <p className="mb-4">{t(`support:${card.banner}`)}</p>
-          <button className="bg-accent px-8 py-2 hover:bg-lemon active:bg-darkyellow">
+          <button
+            onClick={handleClick}
+            className="bg-accent px-8 py-2 hover:bg-lemon active:bg-darkyellow"
+          >
             {t('support:help')}
           </button>
         </div>
