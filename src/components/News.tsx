@@ -3,7 +3,7 @@ import 'swiper/css/pagination';
 
 import Slider from './Slider';
 import NewsBlock from '@/components/News/NewsBlock';
-import NewsModal from './News/NewsModal';
+import NewsModal from './modals/NewsModal';
 import { useAppSelector } from '@/store/hook';
 
 const News = () => {

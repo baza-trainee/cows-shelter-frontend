@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 export const newsItems = [
   {
     id: nanoid(),
+    date: '12 feb 2021',
     url: 'news/news_1.jpg',
     title: 'Вітаємо наших однодумців!',
     description:
@@ -10,6 +11,7 @@ export const newsItems = [
   },
   {
     id: nanoid(),
+    date: '12 feb 2022',
     url: 'news/news_2.jpg',
     title: 'Провели генеральне чищення загонів!',
     description:
@@ -17,6 +19,7 @@ export const newsItems = [
   },
   {
     id: nanoid(),
+    date: '12 feb 2023',
     url: 'news/news_3.jpg',
     title: 'Благодійна грошова допомога від UAnimals',
     description:
@@ -24,6 +27,7 @@ export const newsItems = [
   },
   {
     id: nanoid(),
+    date: '12 feb 2024',
     url: 'news/news_4.jpg',
     title: 'Вдалося виростити вітамінні смаколики!',
     description:
@@ -31,6 +35,7 @@ export const newsItems = [
   },
   {
     id: nanoid(),
+    date: '12 feb 2025',
     url: 'news/news_5.jpg',
     title: 'Зробили першу закупівлю кормів',
     description:

@@ -1,9 +1,14 @@
 import { useAppDispatch } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { newsItems } from '@/data/newsItems';
+import { NewsData } from '@/types';
 
 const NewsBlock = () => {
   const dispatch = useAppDispatch();
+
+  const openNewsModal = (item: NewsData) => {
+    dispatch(openModal({ data: item, type: 'news' }));
+  };
 
   return (
     <div>
@@ -30,11 +35,9 @@ const NewsBlock = () => {
                   </div>
                 </div>
               </div>
-              <div className=" ">
+              <div>
                 <button
-                  onClick={() =>
-                    dispatch(openModal({ type: 'news', data: newsItems }))
-                  }
+                  onClick={() => openNewsModal(news)}
                   className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
                 >
                   <div className="flex items-center">

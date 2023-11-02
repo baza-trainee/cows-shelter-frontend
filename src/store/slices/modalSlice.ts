@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { NewsData } from '@/types';
+
 //external from types/index.ts
-interface NewsData {}
+
 interface ExcursionsData {}
 interface BurgerMenu {}
 
@@ -37,11 +39,13 @@ const modalSlice = createSlice({
       state.isModalOpen = true;
       state.data = action.payload.data;
       state.type = action.payload.type;
+      document.body.classList.add('overflow-hidden');
     },
     closeModal(state) {
       state.isModalOpen = false;
       state.data = null;
       state.type = null;
+      document.body.classList.remove('overflow-hidden');
     }
   }
 });
