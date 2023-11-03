@@ -2,14 +2,29 @@ import { useAppDispatch } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { newsItems } from '@/data/newsItems';
 import { NewsData } from '@/types';
+// import { useEffect, useState } from 'react';
+// import NewsModal from '../modals/NewsModal';
 
 const NewsBlock = () => {
   const dispatch = useAppDispatch();
+
+  // const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
 
   const openNewsModal = (item: NewsData) => {
     dispatch(openModal({ data: item, type: 'news' }));
   };
 
+  // useEffect(() => {
+  //   if (isModalOpen) {
+  //     setTimeout(() => {
+  //       setShowModal(true);
+  //     }, 500);
+  //   } else {
+  //     setTimeout(() => {
+  //       setShowModal(false);
+  //     }, 500);
+  //   }
+  // }, [isModalOpen]);
   return (
     <div>
       <ul className=" grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -54,6 +69,9 @@ const NewsBlock = () => {
           </li>
         ))}
       </ul>
+      {/* {isModalOpen && type === 'news' && (
+        <NewsModal isOpen={showModal} setShowModal={setShowModal} />
+      )} */}
     </div>
   );
 };

@@ -9,12 +9,15 @@ const NewsModal = () => {
   const handleCloseModal = () => dispatch(closeModal());
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center  justify-center">
+      <div className="fixed inset-0 z-50 flex items-center justify-center  overflow-hidden">
+        {/* Button */}
         <div
-          className="absolute inset-0 bg-black opacity-40 transition-all duration-500 ease-out"
+          className="absolute inset-0 overflow-hidden bg-black opacity-40"
           onClick={handleCloseModal}
         ></div>
-        <div className="fixed z-50 max-h-[582px]  overflow-y-auto bg-white px-5 pb-6 pt-9 opacity-100 transition-all duration-500 ease-out md:max-h-[832px] md:w-[672px] md:px-10 lg:w-[1136px] lg:py-16  ">
+        {/* Button */}
+
+        <div className="fixed   z-50 max-h-[582px]  w-full max-w-full  overflow-y-auto bg-white px-5 pb-6 pt-9 opacity-100 transition duration-500 ease-out md:max-h-[832px] md:w-[672px] md:px-10 lg:w-[1136px] lg:py-16  ">
           <h2 className="text-lg font-semibold lg:divide-y-4 lg:text-2xl lg:font-bold">
             {news?.title}
           </h2>

@@ -50,16 +50,12 @@ const modalSlice = createSlice({
       state.data = action.payload.data;
       state.type = action.payload.type;
       document.body.classList.add('overflow-hidden');
-      // document.body.classList.remove('slideOut');
-      // document.body.classList.add('slideIn');
     },
     closeModal(state) {
       state.isModalOpen = false;
       state.data = null;
       state.type = null;
       document.body.classList.remove('overflow-hidden');
-      // document.body.classList.remove('slideIn');
-      // document.body.classList.add('slideOut');
     }
   }
 });
