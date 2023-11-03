@@ -8,9 +8,9 @@ import Map from './Map'
 
 const Contacts = () => {
   return (
-    <div className="container mx-auto max-w-[1440px] ">
+    <div className="container mx-auto max-w-[1440px]">
       <img src={img_cow_contacts} alt="cow" className="h-full w-full" />
-      <div className="flex flex-row px-56 py-20">
+      <div className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
         <div className="basis-1/2">
           <h3 className="mb-5 text-2xl font-bold">Контакти</h3>
           <ul className="mb-6 flex flex-col gap-2">
@@ -43,7 +43,7 @@ const Contacts = () => {
             </li>
           </ul>
           <h4 className="mb-5 text-2xl font-bold">Локація</h4>
-          <p className="text-graphite mb-2">Україна, Вінницька область,</p>
+          <p className="mb-2 text-graphite">Україна, Вінницька область,</p>
           <p className="text-graphite">с. Буша, вул. Виноградна, 11</p>
         </div>
         <div className="basis-1/2">
