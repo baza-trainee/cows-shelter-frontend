@@ -56,7 +56,7 @@ const Excursions = () => {
                 </p>
                 <a>
                   <button
-                    className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-accent"
+                    className="flex gap-3 border border-solid border-transparent py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 focus:border-accent active:border-accent group-hover:border-white group-hover:hover:border-accent"
                     onClick={() => {
                       setExcursion(index), openExcursionModal();
                     }}

@@ -11,6 +11,7 @@ import FAQ from '@/components/FAQ';
 import Support from '@/components/Support/Support';
 import { useAppSelector } from '@/store/hook';
 import { useEffect } from 'react';
+import About from '@/components/About/About';
 
 const HomePage = () => {
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
@@ -27,6 +28,7 @@ const HomePage = () => {
     <Layout>
       <Header />
       <Hero />
+      <About />
       <Excursions />
       <Gallery />
       <Partners />
