@@ -82,3 +82,15 @@ body {
 #map {
   z-index: -1;
 }
+
+.slideIn {
+  transform: translateX(0%);
+}
+
+.slideOut {
+  transform: translateX(100%);
+}
+
+.transition-slide {
+  transition: transform 0.3s ease-out;
+}
