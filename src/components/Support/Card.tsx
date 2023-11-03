@@ -13,11 +13,11 @@ const Card = ({ card, handleClick }: CardProps) => {
   const [hovered, setHovered] = useState(false);
   const [isBanner, setIsBanner] = useState(false);
   return (
-    <div className="group relative ">
+    <div className="group relative overflow-hidden">
       <img src={card.image} alt={t(`support:${card.title}`)} />
       {!isBanner ? (
         <div className="absolute bottom-8 left-2">
-          <h3 className=" -mb-[2rem] text-[2rem] font-medium transition-all duration-700 group-hover:mb-0">
+          <h3 className=" -mb-[3rem] text-[2rem] font-medium transition-all duration-700 group-hover:mb-0">
             {t(`support:${card.title}`)}
           </h3>
           <p className="my-[1rem] translate-y-[2rem] text-[20px] opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100">
