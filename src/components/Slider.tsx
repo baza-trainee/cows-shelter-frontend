@@ -53,7 +53,7 @@ const Slider = ({
       >
         {title && <h2 className="text-[64px] font-medium">{title}</h2>}
         {subtitle && <h2 className="text-[32px] font-semibold">{subtitle}</h2>}
-        <div className="flex gap-4">
+        <div className=" hidden gap-4 md:flex">
           <div onClick={handlePrev} className="cursor-pointer ">
             <ArrowLeft />
           </div>
