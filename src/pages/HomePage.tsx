@@ -9,12 +9,26 @@ import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
 import FAQ from '@/components/FAQ';
 import Support from '@/components/Support/Support';
+import { useAppSelector } from '@/store/hook';
+import { useEffect } from 'react';
+import About from '@/components/About/About';
 
 const HomePage = () => {
+  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
+
   return (
     <Layout>
       <Header />
       <Hero />
+      <About />
       <Excursions />
       <Gallery />
       <Partners />

@@ -8,10 +8,10 @@ import Map from './Map';
 const Contacts = () => {
   return (
     <div className="container mx-auto max-w-[1440px]">
+      <div className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
       <div
         className={`relative h-[80vh] bg-[url('@/assets/imgs/img_cow_contacts.png')] bg-cover bg-fixed bg-center bg-no-repeat`}
       />
-      <div className="flex flex-row px-56 py-20">
         <div className="basis-1/2">
           <h3 className="mb-5 text-2xl font-bold">Контакти</h3>
           <ul className="mb-6 flex flex-col gap-2">

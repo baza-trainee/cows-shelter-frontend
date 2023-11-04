@@ -6,10 +6,10 @@ import {
   PayloadAction
 } from '@reduxjs/toolkit';
 
-type Post = {
+export type Post = {
   id: string;
   title: string;
-  text: string;
+  body: string;
 };
 
 type NewsState = {
@@ -30,7 +30,7 @@ export const fetchPosts = createAsyncThunk<
   { rejectValue: string }
 >('todos/fetchPosts', async function (_, { rejectWithValue }) {
   const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_limit=10'
+    'https://jsonplaceholder.typicode.com/posts?_limit=6'
   );
 
   if (!response.ok) {
@@ -77,7 +77,7 @@ const newsSlice = createSlice({
       state.list.push({
         id: new Date().toISOString(),
         title: action.payload.title,
-        text: action.payload.text
+        body: action.payload.text
       });
     },
     removePost(state, action: PayloadAction<string>) {

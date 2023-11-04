@@ -9,8 +9,9 @@ import LittleArrow from '../icons/LittleArrow';
 import { excursions } from '@/data/excursions';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
-import Slider from '../Slider';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
+
+import Slider from '../Slider';
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
