@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer} from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = () => {
@@ -11,9 +11,9 @@ const Map = () => {
         scrollWheelZoom={false}
         style={{
           width: '100%',
-          maxWidth: '100vw',
+          maxWidth: '100vw'
         }}
-        className='lg:h-[560px] md:h-[360px]'
+        className="md:h-[360px] lg:h-[560px]"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -21,7 +21,7 @@ const Map = () => {
         />
         <object
           type="image/svg+xml"
-          data={'/src/assets/icons/marker.svg'}
+          data={'marker.svg'}
           className="absolute left-[49%] top-[45%] z-[9999] h-[4rem] w-[4rem]"
         />
       </MapContainer>
