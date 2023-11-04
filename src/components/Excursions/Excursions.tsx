@@ -71,10 +71,6 @@ const Excursions = () => {
       setStart(2);
       setFinish(4);
     }
-    // if (currentPage === 3) {
-    //   setStart(4);
-    //   setFinish(6);
-    // }
   }, [currentPage]);
 
   return (
