@@ -57,7 +57,7 @@ const Slider = ({
       >
         {title && <h2 className="text-[64px] font-medium">{title}</h2>}
         {subtitle && (
-          <h2 className="font-bold leading-6 md:text-xl lg:text-2xl">
+          <h2 className="text-lg font-semibold leading-6 md:text-xl md:font-bold lg:text-2xl">
             {subtitle}
           </h2>
         )}

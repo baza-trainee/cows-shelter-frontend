@@ -125,7 +125,7 @@ const Excursions = () => {
                   <img src={item.mainImgSrc} alt={t(item.title)}></img>
                   <div className="fixed left-0 top-0 h-full w-full bg-black/[.60] opacity-0 transition-all duration-700 group-hover:opacity-100"></div>
                   <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
-                    <p className="subtitle-text">{t(item.title)}</p>
+                    <p className="text-2xl leading-6">{t(item.title)}</p>
                     <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
                       {t('excursions:excursion.small_description')}
                     </p>
