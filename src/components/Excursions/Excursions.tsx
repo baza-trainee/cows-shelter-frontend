@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 
-import ExcursionsReviews from './ExcursionsReviews';
-import ExcursionModal from './ExcursionModal';
-import LittleArrow from '../icons/LittleArrow';
-
 import { excursions } from '@/data/excursions';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
+
+import ExcursionsReviews from './ExcursionsReviews';
+import ExcursionModal from './ExcursionModal';
+import LittleArrow from '../icons/LittleArrow';
 
 import Slider from '../Slider';
 
