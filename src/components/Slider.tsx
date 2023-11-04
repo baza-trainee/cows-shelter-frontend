@@ -46,7 +46,9 @@ const Slider = ({
 
   return (
     <div
-      className={`relative ${isReviews ? 'h-[50%]' : 'h-[75vh] lg:h-full'} ${isExcursions ? 'h-[50vh]' : 'h-[75vh] lg:h-full'}`}
+      className={`relative ${isReviews ? 'h-[50%]' : 'h-[75vh] lg:h-full'} ${
+        isExcursions ? 'h-[50vh]' : 'h-[75vh] lg:h-full'
+      }`}
     >
       <div
         className={`mx-auto mb-8 mt-4 flex ${
