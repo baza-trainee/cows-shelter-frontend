@@ -51,9 +51,9 @@ const Header = () => {
       <header
         className={`${
           isScrolled ? 'bg-white' : 'bg-transparent'
-        } fixed left-0 right-0 top-0 z-[9999] md:py-[15px] lg:py-5`}
+        } fixed left-0 right-0 top-0 z-10 md:py-[15px] lg:py-5`}
       >
-        <div className=" mx-auto flex w-[320px] items-center justify-between text-lg text-white outline-transparent md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
+        <div className=" mx-auto flex w-[320px] items-center justify-between px-5 text-lg text-white outline-transparent md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
           <a
             className="inline-bloc h-10 w-20 md:h-[50px] md:w-[100px]"
             href="../main.tsx"
@@ -64,9 +64,9 @@ const Header = () => {
               <img src="/logo.svg" alt="" />
             )}
           </a>
-          {windowWidth >= 1440 && (
+          {windowWidth >= 1280 && (
             <nav>
-              <ul className="flex gap-8 text-[1.07rem] leading-[1.59rem]">
+              <ul className="flex gap-8 text-[1.07rem] font-medium leading-[1.59rem]">
                 {navLinks.map(({ title, href }) => (
                   <li
                     key={href}
@@ -76,11 +76,11 @@ const Header = () => {
                         : 'hover:border-b-white focus:border-b-white'
                     } ${
                       activeSection === href
-                        ? 'border-b '
+                        ? 'border-b border-current'
                         : 'border-transparent'
                     } border-b  py-2 transition-all duration-300`}
                   >
-                    <a href={href} onClick={() => handleSectionChange('about')}>
+                    <a href={href} onClick={() => handleSectionChange(href)}>
                       {t(title)}
                     </a>
                   </li>
@@ -89,8 +89,8 @@ const Header = () => {
             </nav>
           )}
 
-          <div className="md:flex md:items-center md:gap-8 lg:justify-between">
-            {windowWidth >= 1440 && (
+          <div className="font-medium md:flex md:items-center md:gap-8 lg:justify-between">
+            {windowWidth >= 1280 && (
               <div className=" mr-8">
                 <button
                   onClick={() => changeLanguage('uk')}
@@ -121,7 +121,7 @@ const Header = () => {
               <button
                 className={` ${
                   isScrolled
-                    ? 'border-black border-transparent bg-accent text-black'
+                    ? 'border-black text-black'
                     : 'border-white bg-inherit'
                 }  flex h-11 w-[180px] items-center justify-center border text-lg transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black focus:bg-lemon focus:text-black active:bg-darkyellow active:text-black lg:w-[180px]`}
                 type="button"
@@ -129,7 +129,7 @@ const Header = () => {
                 {t('header:btn_donate')}
               </button>
             )}
-            {windowWidth < 1440 && (
+            {windowWidth < 1280 && (
               <button
                 className={`${isScrolled ? 'text-black' : 'text-white'}`}
                 onClick={openBurgerMenu}

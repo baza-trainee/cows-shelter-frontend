@@ -1,16 +1,17 @@
-import img_cow_contacts from '@/assets/imgs/img_cow_contacts.png'
-import icon_privat from '@/assets/icons/icon_privat.svg'
-import icon_mono from '@/assets/icons/icon_mono.svg'
-import icon_paypal from '@/assets/icons/icon_paypal.svg'
-import icon_western_union from '@/assets/icons/icon_western_union.svg'
-import icon_swift from '@/assets/icons/icon_swift.svg'
-import Map from './Map'
+import icon_privat from '@/assets/icons/icon_privat.svg';
+import icon_mono from '@/assets/icons/icon_mono.svg';
+import icon_paypal from '@/assets/icons/icon_paypal.svg';
+import icon_western_union from '@/assets/icons/icon_western_union.svg';
+import icon_swift from '@/assets/icons/icon_swift.svg';
+import Map from './Map';
 
 const Contacts = () => {
   return (
     <div className="container mx-auto max-w-[1440px]">
-      <img src={img_cow_contacts} alt="cow" className="h-full w-full" />
       <div className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
+      <div
+        className={`relative h-[80vh] bg-[url('@/assets/imgs/img_cow_contacts.png')] bg-cover bg-fixed bg-center bg-no-repeat`}
+      />
         <div className="basis-1/2">
           <h3 className="mb-5 text-2xl font-bold">Контакти</h3>
           <ul className="mb-6 flex flex-col gap-2">
@@ -79,6 +80,6 @@ const Contacts = () => {
       <Map />
     </div>
   );
-}
+};
 
 export default Contacts;

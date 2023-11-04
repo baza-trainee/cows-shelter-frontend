@@ -10,20 +10,23 @@ const Hero = () => {
           {t('hero:main_title')}
         </h1>
 
-        <ul className="absolute -bottom-[130px] justify-center text-[1.06rem] font-normal leading-[1.59rem] text-black md:relative md:bottom-0 md:mb-[340px] md:flex md:text-xl md:text-white lg:mb-[100px] lg:block lg:list-none lg:text-2xl ">
-          <li className="mr-8 leading-9 lg:mb-6 lg:mr-0">
+        <ul className="absolute -bottom-[130px] justify-center text-[1.06rem] leading-[1.59rem] text-black md:relative md:bottom-0 md:mb-[340px] md:flex md:text-xl md:text-white lg:mb-[100px] lg:block lg:pl-6 lg:text-[1.375rem] ">
+          <li className="relative mr-8 leading-9 lg:mb-6 lg:mr-0 ">
+            <span className="hidden lg:absolute lg:-left-7 lg:bottom-1 lg:block">
+              .
+            </span>
             {t('hero:shelter')}
           </li>
 
           <li className="relative mr-8 leading-9 lg:mb-6 lg:mr-0">
-            <span className="absolute -left-7 bottom-1 px-3 text-transparent md:text-white lg:hidden">
+            <span className="hidden md:absolute md:-left-7 md:bottom-1 md:block md:px-3 lg:px-0">
               .
             </span>
             {t('hero:eco_rest')}
           </li>
 
           <li className="relative leading-9">
-            <span className="absolute -left-7 bottom-1  px-3 text-transparent md:text-white lg:hidden">
+            <span className="hidden md:absolute md:-left-7 md:bottom-1 md:block md:px-3 lg:px-0">
               .
             </span>
             {t('hero:excursions')}

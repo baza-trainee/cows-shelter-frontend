@@ -47,7 +47,7 @@ const BurgerMenu = () => {
 
   return (
     <div
-      className="fixed left-0 top-0 z-20 h-screen w-screen bg-black bg-opacity-40"
+      className="fixed left-0 top-0 z-50 h-screen w-screen bg-black bg-opacity-40"
       onClick={handleOverlayClick}
     >
       <div className="absolute right-0 top-0 w-[265px] bg-white  text-[1.07rem] md:w-[304px]">

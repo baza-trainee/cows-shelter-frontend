@@ -48,6 +48,13 @@ body {
   }
 }
 
+@layer utilities {
+  .subtitle-text {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+}
+
 .swiper-pagination-bullet {
   width: 44px;
   height: 4px;
@@ -72,23 +79,6 @@ body {
   transition: transform 300ms ease-out;
 }
 
-/* .next {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  z-index: 9999;
+#map{
+  z-index: -1;
 }
-.next:hover {
-  background-color: #ccc;
-}
-.prev {
-  position: absolute;
-  top: 0;
-  right: 3%;
-  cursor: pointer;
-  z-index: 9999;
-}
-.prev:hover {
-  background-color: #ccc;
-} */

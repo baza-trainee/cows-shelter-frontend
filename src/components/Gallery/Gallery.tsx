@@ -5,23 +5,27 @@ import { useWidth } from '@/hooks/useWidth';
 import { GalleryItem } from '@/types';
 import { images } from '@/data/gallery';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
 
 import ZoomArrow from '@/components/icons/ZoomArrow';
 import Slider from '@/components/Slider';
+import LightBox from './LightBox';
 
 import '@/styles/gallery.css';
-import LightBox from './LightBox';
 
 const Gallery = () => {
   const screenWidth = useWidth();
-  const [itemsPerPage, setItemsPerPage] = useState(6);
   const { t } = useTranslation();
   const [start, setStart] = useState(0);
   const [finish, setFinish] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLightBox, setIsLightBox] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const [image, setImage] = useState(0);
   const pagesLength = images.length / itemsPerPage;
+  const dispatch = useAppDispatch();
+  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+  const type = useAppSelector((state) => state.modals.type);
 
   const data = usePaginatedData(images, start, finish);
 
@@ -66,24 +70,10 @@ const Gallery = () => {
     }
   }, [screenWidth, currentPage]);
 
-  useEffect(() => {
-    if (isLightBox === true) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isLightBox]);
-
   return (
     <section id="gallery" className="relative p-[23px]">
-      {isLightBox && (
-        <div className="fixed left-0 top-0 z-20 h-full w-full bg-[rgba(0,0,0,0.6)]">
-          <LightBox
-            images={data}
-            image={image}
-            onClose={() => setIsLightBox(false)}
-          />
-        </div>
+      {isModalOpen && type === 'lightbox' && (
+        <LightBox images={data} image={image} />
       )}
       <Slider
         title={t('gallery:gallery')}
@@ -105,7 +95,8 @@ const Gallery = () => {
               />
               <div
                 onClick={() => {
-                  setImage(index), setIsLightBox(true);
+                  setImage(index),
+                    dispatch(openModal({ data: {}, type: 'lightbox' }));
                 }}
                 className="absolute bottom-4 left-4 z-50 cursor-pointer"
               >
