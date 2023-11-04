@@ -152,5 +152,18 @@
       "name_9": "Elena",
       "review_9": "I really liked the excursion, I visited it with my children, it was very exciting"
     }
-  }
+  },
+    "contacts": {
+    "titles": {
+      "contacts":"Contacts",
+      "working_hours": "Working Hours",
+      "location": "Location",
+      "payment": "Details for shelter support:"
+    },
+    "working_days": "Monday - Friday",
+    "location_main": "11 Vynohradna Street, Busha Village,",
+    "location_secondary": "Vinnytsia Oblast, Ukraine",
+    "payment_name": "Zeziukova Iryna Mykhailivna",
+    "code": "code"
+    }
 }
