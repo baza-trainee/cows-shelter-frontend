@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Confirm from '@/components/admin/Confirm';
 import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { excursions } from '@/data/excursionsModals';
+import { excursions } from '@/data/excursions';
 import { useTranslation } from 'react-i18next';
 
 const Excursions = () => {

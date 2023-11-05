@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { excursions } from '@/data/excursionsModals';
+import { excursions } from '@/data/excursions';
 import { useTranslation } from 'react-i18next';
 
 const EditNews = () => {

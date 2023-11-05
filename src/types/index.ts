@@ -15,14 +15,15 @@ export type Reviews = {
   review: string;
 };
 
-
 export type ExcursionsData = {
   id: string;
   title: string;
   description: string;
   mainImgSrc: string;
+  mainImgSrc_tablet: string;
   imagesSrs: string[];
-}
+  imagesSrs_tablet: string[];
+};
 
 export type SupportCard = {
   title: string;
