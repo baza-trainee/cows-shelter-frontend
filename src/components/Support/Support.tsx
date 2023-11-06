@@ -25,7 +25,7 @@ const Support = () => {
     } else {
       setTimeout(() => {
         setShowModal(false);
-      }, 500);
+      }, 300);
     }
   }, [isModalOpen]);
 
