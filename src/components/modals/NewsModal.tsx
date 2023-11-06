@@ -2,22 +2,38 @@ import iconCalendar from '@/assets/icons/icon_calendar.svg';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { closeModal } from '@/store/slices/modalSlice';
 import CloseIcon from '../icons/CloseIconMenu';
+import { Dispatch, SetStateAction } from 'react';
 
-const NewsModal = () => {
+type NewsModalProps = {
+  isOpen: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+};
+
+const NewsModal = ({ isOpen, setShowModal }: NewsModalProps) => {
   const dispatch = useAppDispatch();
   const news = useAppSelector((state) => state.modals.data);
-  const handleCloseModal = () => dispatch(closeModal());
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    dispatch(closeModal());
+  };
+
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center  overflow-hidden">
-        {/* Button */}
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
+        {/* Overlay */}
         <div
-          className="absolute inset-0 overflow-hidden bg-black opacity-40"
+          className={`absolute inset-0 overflow-hidden bg-black opacity-40 transition-opacity  duration-700  ${
+            isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
+          } `}
           onClick={handleCloseModal}
         ></div>
-        {/* Button */}
-
-        <div className="fixed   z-50 max-h-[582px]  w-full max-w-full  overflow-y-auto bg-white px-5 pb-6 pt-9 opacity-100 transition duration-500 ease-out md:max-h-[832px] md:w-[672px] md:px-10 lg:w-[1136px] lg:py-16  ">
+        {/* Modal Window */}
+        <div
+          className={`top-50 right-50  absolute translate-x-0  transition-all duration-700 ${
+            isOpen ? 'translate-x-0' : 'translate-x-full'
+          } max-h-[582px] max-w-full overflow-auto overflow-y-auto bg-white  p-6 px-5 pb-6  pt-9  md:max-h-[832px] md:w-[672px] md:px-10 lg:w-[1136px] lg:py-16 `}
+        >
           <h2 className="text-lg font-semibold lg:divide-y-4 lg:text-2xl lg:font-bold">
             {news?.title}
           </h2>
@@ -49,5 +65,3 @@ const NewsModal = () => {
 };
 
 export default NewsModal;
-
-// columns-2 gap-10 text-justify text-sm
