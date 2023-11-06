@@ -14,6 +14,7 @@ type SliderProps = {
   title?: string;
   subtitle?: string;
   isReviews?: boolean;
+  isExcursions?: boolean;
   pagesLength?: number;
   children: React.ReactNode;
   setCurrentPage?: Dispatch<SetStateAction<number>>;
@@ -25,7 +26,8 @@ const Slider = ({
   children,
   title,
   subtitle,
-  isReviews
+  isReviews,
+  isExcursions
 }: SliderProps) => {
   const sliderRef = useRef(null);
 
@@ -43,15 +45,17 @@ const Slider = ({
   const slidesLength = Number(pagesLength?.toFixed());
 
   return (
-    <div className={`relative ${isReviews ? 'h-[50vh]' : 'lg:h-full'}  `}>
+    <div className={``}>
       <div
-        className={`mx-auto mb-8 mt-4 flex ${
-          isReviews ? 'w-full' : 'w-[90%]'
-        }  items-center justify-between`}
+        className={`mx-auto mb-8 mt-4 flex w-full items-center justify-between`}
       >
-        {title && <h2 className="text-[64px] font-medium">{title}</h2>}
-        {subtitle && <h2 className="text-[32px] font-semibold">{subtitle}</h2>}
-        <div className=" hidden gap-4 md:flex">
+        {title && <h2 className="text-[64px] font-medium ">{title}</h2>}
+        {subtitle && (
+          <h2 className="text-lg font-semibold leading-6 md:text-xl md:font-bold lg:text-2xl">
+            {subtitle}
+          </h2>
+        )}
+        <div className="flex gap-4">
           <div onClick={handlePrev} className="cursor-pointer ">
             <ArrowLeft />
           </div>
@@ -60,12 +64,18 @@ const Slider = ({
           </div>
         </div>
       </div>
-      <div className="my-8 flex h-screen w-full  items-start justify-start">
+      <div
+        className={`my-8 flex w-full items-start  justify-start ${
+          isReviews ? 'h-[50%] ' : 'h-full'
+        } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
+      >
         <Swiper
           className={`relative flex ${
-            isReviews ? 'h-[304px]' : 'h-[600px]'
-          } w-[1000vw] md:w-[768px] lg:w-[1198px]`}
-          spaceBetween={50}
+            isReviews ? 'max-h-[250px] pt-11' : 'h-[600px]'
+          } w-[100vw] md:w-[768px] lg:w-[1198px] ${
+            isExcursions ? 'max-h-[320px]' : 'h-[600px]'
+          }`}
+          spaceBetween={100}
           slidesPerView={1}
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
@@ -82,9 +92,7 @@ const Slider = ({
               key={index}
               className="bottom-10 flex h-full w-full items-center justify-center"
             >
-              <div className="absolute left-[50%] top-[50%] w-full -translate-x-[50%] -translate-y-[50%] ">
-                {children}
-              </div>
+              <div className="w-full">{children}</div>
             </SwiperSlide>
           ))}
         </Swiper>
