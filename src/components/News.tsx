@@ -36,8 +36,6 @@ const News = () => {
       {isModalOpen && type === 'news' && (
         <NewsModal isOpen={showModal} setShowModal={openNewseModal} />
       )}
-
-      {/* {isModalOpen && type === 'news' && <NewsModal />} */}
     </section>
   );
 };
