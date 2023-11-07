@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "precommit": "lint-staged",
     "commit": "git-cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "ts-check": "tsc --project tsconfig.json --pretty --noEmit && echo "
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
