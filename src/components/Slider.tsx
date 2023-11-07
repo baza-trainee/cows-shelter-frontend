@@ -21,7 +21,6 @@ type SliderProps = {
 };
 
 const Slider = ({
-  setCurrentPage,
   pagesLength,
   children,
   title,
