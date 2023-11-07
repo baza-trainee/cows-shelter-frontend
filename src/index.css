@@ -72,6 +72,6 @@ body {
   transition: transform 300ms ease-out;
 }
 
-#map{
+#map {
   z-index: -1;
 }

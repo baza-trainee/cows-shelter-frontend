@@ -7,6 +7,7 @@ import Layout from '@/components/Layout';
 import Excursions from '@/components/Excursions/Excursions';
 import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
+import News from '@/components/News';
 import FAQ from '@/components/FAQ';
 import Support from '@/components/Support/Support';
 import { useAppSelector } from '@/store/hook';
@@ -31,6 +32,7 @@ const HomePage = () => {
       <About />
       <Excursions />
       <Gallery />
+      <News />
       <Partners />
       <Support />
       <FAQ />
