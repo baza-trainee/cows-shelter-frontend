@@ -33,7 +33,7 @@ const NewsModal = ({ isOpen, setShowModal }: NewsModalProps) => {
         } max-h-[582px] max-w-full overflow-auto overflow-y-auto bg-white  p-6 px-5 pb-6  pt-9  md:max-h-[832px] md:w-[672px] md:px-10 lg:w-[1136px] lg:py-16 `}
       >
         <h2 className="text-lg font-semibold lg:divide-y-4 lg:text-2xl lg:font-bold">
-          {news!.title}
+          {news.title}
         </h2>
         <hr className=" my-2 h-px border-t-0 bg-slate-300 opacity-0 md:opacity-100" />
         <div className="py-4">
