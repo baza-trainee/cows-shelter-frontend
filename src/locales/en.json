@@ -85,9 +85,9 @@
     },
     "amount": "Choose the donation amount",
     "amounts": {
-      "one": "200",
-      "two": "500",
-      "three": "1000",
+      "one": "50",
+      "two": "100",
+      "three": "200",
       "four": "Enter a different amount"
     },
     "pay": "Choose a payment method",
