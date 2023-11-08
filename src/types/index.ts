@@ -16,6 +16,7 @@ export type NewsData = {
   date: string;
   text: string;
 };
+
 export type Reviews = {
   id: string;
   name: string;

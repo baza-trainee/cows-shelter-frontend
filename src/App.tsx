@@ -8,7 +8,7 @@ import EditNews from './pages/admin/news/edit';
 import Excursions from './pages/admin/excursions';
 import AddExcursion from './pages/admin/excursions/add';
 import EditExcursion from './pages/admin/excursions/edit';
-import Gallery from './pages/gallery';
+import Gallery from './pages/admin/gallery';
 import Partners from './pages/admin/partners';
 import AddPartner from './pages/admin/partners/add';
 import EditPartner from './pages/admin/partners/edit';

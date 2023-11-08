@@ -32,6 +32,7 @@ module.exports = {
     'tailwindcss/no-custom-classname': 0,
     'react-refresh/only-export-components': 0,
     'no-irregular-whitespace': 0,
-    'react/no-unescaped-entities': 0
+    'react/no-unescaped-entities': 0,
+    '@typescript-eslint/no-explicit-any': 0
   }
 };
