@@ -21,27 +21,33 @@ const FAQ = () => {
 
   return (
     <section className="bg-lightgrey">
-      <div className="mx-auto w-[320px] px-5 py-8 md:w-[768px] md:px-12 md:py-16 lg:w-[1440px]  lg:px-[120px] lg:py-20">
+      <div className="mx-auto px-5 py-8 sm:w-[480px] md:w-[768px] md:px-12 md:py-16 lg:w-[1440px]  lg:px-[120px] lg:py-20">
         <h2 className="lg:text-[4rem mb-6 text-2xl text-black md:mb-8 md:text-[3.375rem] md:leading-[5.063rem] lg:leading-[6rem]">
           {t('faq:title')}
         </h2>
         <ul className="flex flex-wrap gap-3 md:gap-[14px] lg:gap-5">
           {questionsList.map(({ question, answers, id }) => (
-            <li key={id} className="">
+            <li key={id} className="w-[100%] sm:w-[435px] md:w-[100%]">
               <a
                 className={`flex items-center justify-between border border-disabled ${
                   currentAnswer(id) ? ' bg-lightyellow' : 'bg-white'
                 }  px-4 py-3 transition-all duration-300 hover:border-[2px] hover:border-darkyellow focus:border-dashed md:gap-4 md:px-12 md:py-6 md:font-bold lg:px-[60px]`}
               >
-                <p className="w-[212px] md:w-[528px] lg:w-[1035px]">
-                  {t(question)}
-                </p>
+                <p>{t(question)}</p>
                 {currentAnswer(id) ? (
-                  <button type="button" onClick={() => closeAnswer(id)}>
+                  <button
+                    type="button"
+                    onClick={() => closeAnswer(id)}
+                    className="pl-3"
+                  >
                     <CloseAnswer />
                   </button>
                 ) : (
-                  <button type="button" onClick={() => showAnswer(id)}>
+                  <button
+                    type="button"
+                    onClick={() => showAnswer(id)}
+                    className="pl-3"
+                  >
                     <PlusIcon />
                   </button>
                 )}
