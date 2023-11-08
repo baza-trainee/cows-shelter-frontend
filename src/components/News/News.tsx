@@ -1,13 +1,14 @@
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { useEffect, useState } from 'react';
 
-import Slider from './Slider';
-import NewsBlock from '@/components/News/NewsBlock';
-import NewsModal from './modals/NewsModal';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 
-import { useEffect, useState } from 'react';
+import Slider from '@/components/Slider';
+import NewsBlock from '@/components/News/NewsBlock';
+import NewsModal from '@/components/modals/NewsModal';
+
+import 'swiper/css/pagination';
+import 'swiper/css';
 
 const News = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const News = () => {
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
 
-  const openNewseModal = () => {
+  const openNewsModal = () => {
     dispatch(openModal({ data: {}, type: 'news' }));
   };
 
@@ -30,11 +31,11 @@ const News = () => {
   return (
     <section id="news" className="container mx-auto flex flex-col ">
       <Slider title="Новини" pagesLength={3}>
-        <NewsBlock></NewsBlock>
+        <NewsBlock />
       </Slider>
 
       {isModalOpen && type === 'news' && (
-        <NewsModal isOpen={showModal} setShowModal={openNewseModal} />
+        <NewsModal isOpen={showModal} setShowModal={openNewsModal} />
       )}
     </section>
   );
