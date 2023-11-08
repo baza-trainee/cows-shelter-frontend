@@ -10,7 +10,6 @@ import { usePaginatedData } from '@/hooks/usePaginatedData';
 import ExcursionsReviews from './ExcursionsReviews';
 import ExcursionModal from './ExcursionModal';
 import LittleArrow from '../icons/LittleArrow';
-
 import Slider from '../Slider';
 
 const Excursions = () => {
@@ -45,14 +44,6 @@ const Excursions = () => {
       openModal({ data: activeExcursion as ExcursionsData, type: 'excursions' })
     );
   };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalOpen]);
 
   const itemsPerPage = 2;
 

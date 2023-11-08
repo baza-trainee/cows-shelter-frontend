@@ -21,7 +21,6 @@ type SliderProps = {
 };
 
 const Slider = ({
-  setCurrentPage,
   pagesLength,
   children,
   title,
@@ -80,9 +79,9 @@ const Slider = ({
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
           loop={true}
-          onActiveIndexChange={(swiperCore) => {
-            setCurrentPage!(swiperCore.activeIndex + 1);
-          }}
+          // onActiveIndexChange={(swiperCore) => {
+          //   setCurrentPage!(swiperCore.activeIndex + 1);
+          // }}
           onSwiper={(swiper) => {
             (sliderRef.current as any) = swiper;
           }}

@@ -9,6 +9,14 @@ export type GalleryItem = {
   url: string;
 };
 
+export type NewsData = {
+  title: string;
+  description: string;
+  url: string;
+  date: string;
+  text: string;
+};
+
 export type Reviews = {
   id: string;
   name: string;

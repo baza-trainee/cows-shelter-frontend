@@ -1,8 +1,8 @@
 // import { useWidth } from '@/hooks/useWidth';
-import image1 from './about-img1.jpg';
-import image2 from './about-img2.jpg';
-import image3 from './about-img3.jpg';
-import arrorIcon from './arrow-right.svg';
+import image1 from '/about/about-img1.jpg';
+import image2 from '/about/about-img2.jpg';
+import image3 from '/about/about-img3.jpg';
+import arrowIcon from './arrow-right.svg';
 
 import { useState } from 'react';
 
@@ -43,7 +43,7 @@ const About = () => {
             </p>
           </div>
           {/* ------- FOR TABLET */}
-          <div className="lock flex min-h-[243px]  flex-col justify-between lg:hidden">
+          <div className="lock flex min-h-[243px] flex-col justify-between lg:hidden">
             <div className="flex flex-col">
               <p className="text-base leading-normal">
                 Захист корів від усіх видів насильства має величезну важливість.
@@ -71,7 +71,7 @@ const About = () => {
               {isOpened1 ? (
                 <div className="flex gap-3">
                   <span>
-                    <img src={arrorIcon} alt="arror" className="scale-x-[-1]" />
+                    <img src={arrowIcon} alt="arror" className="scale-x-[-1]" />
                   </span>
                   <span className="text-lg font-medium leading-[1.2]">
                     {/* {t('excursions:excursion.show_more_btn')} */}
@@ -87,7 +87,7 @@ const About = () => {
                     </p>
                   </span>
                   <span>
-                    <img src={arrorIcon} alt="arror" />
+                    <img src={arrowIcon} alt="arror" />
                   </span>
                 </div>
               )}
