@@ -21,8 +21,10 @@ export type ExcursionsData = {
   description: string;
   mainImgSrc: string;
   mainImgSrc_tablet: string;
+  mainImgSrc_mobile: string;
   imagesSrs: string[];
   imagesSrs_tablet: string[];
+  imagesSrs_mobile: string;
 };
 
 export type SupportCard = {

@@ -8,6 +8,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { useAppDispatch } from '@/store/hook';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
+// import ExcursionOrderModal from './ExcursionOrderModal';
 
 type ExcursionsModalProps = {
   excursion: ExcursionsData;
@@ -85,7 +86,7 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
             )}
           </div>
           <div className="flex w-[592px] lg:w-[28.75rem] flex-col justify-between gap-4">
-                  <h3 className="leading-6 text-xl lg:text-2xl md:mt-0 lg:mt-10 font-bold text-white">{t(excursion.title)}</h3>
+                  <h3 className="leading-normal text-xl lg:text-2xl md:mt-0 lg:mt-10 font-bold text-white">{t(excursion.title)}</h3>
                   <p className="text-base font-normal text-white">{t(excursion.description)}</p>
             <div className="flex gap-6">
               <button className="h-11 w-[14.44rem] transition-all duration-300 bg-accent text-lg font-medium leading-[1.375rem] focus:bg-lemon active:bg-lemon hover:bg-lemon">
@@ -104,6 +105,7 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
           <img src={close_icon} width={44} height={44}></img>
         </button>
       </div>
+      {/* <ExcursionOrderModal /> */}
     </div>
   );
 };

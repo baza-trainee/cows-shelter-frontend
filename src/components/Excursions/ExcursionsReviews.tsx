@@ -68,6 +68,29 @@ const ExcursionsReviews = () => {
         setFinish(9);
       }
     }
+    if (windowWidth >= 320 && windowWidth < 768) {
+      setItemsPerPage(1);
+      if (currentPage === 1) {
+        setStart(0);
+        setFinish(1);
+      }
+      if (currentPage === 2) {
+        setStart(1);
+        setFinish(2);
+      }
+      if (currentPage === 3) {
+        setStart(2);
+        setFinish(3);
+      }
+      if (currentPage === 4) {
+        setStart(3);
+        setFinish(4);
+      }
+      if (currentPage === 5) {
+        setStart(4);
+        setFinish(5);
+      }
+    }
   }, [windowWidth, currentPage]);
 
   return (
@@ -78,13 +101,13 @@ const ExcursionsReviews = () => {
         pagesLength={pagesLength}
         isReviews={true}
       >
-        <ul className="mb-10 flex gap-6 ">
+        <ul className="mb-10 flex gap-6">
           {data.map((item: Reviews) => (
             <li
               key={item.id}
               className="h-[8.75rem] border-r border-disabled pr-16 md:h-40"
             >
-              <p className="mb-2.5 text-sm leading-5 md:text-xl md:leading-6 lg:text-2xl">
+              <p className="mb-2.5 text-sm leading-tight md:text-xl md:leading-6 lg:text-2xl">
                 {t(item.name)}
               </p>
               <p className="default-text"> {t(item.review)}</p>
