@@ -49,17 +49,14 @@ const BurgerMenu = () => {
       className="fixed left-0 top-0 z-50 h-screen w-screen bg-black bg-opacity-40"
       onClick={handleOverlayClick}
     >
-      <div
-        className={`absolute right-0 top-0 h-full w-[320px] bg-white text-[1.07rem] font-medium transition-all duration-500 md:h-[580px] md:w-[304px]`}
-        style={{ transitionDuration: '0.3s' }}
-      >
+      <div className="absolute right-0 top-0 h-full w-[320px] overflow-y-scroll bg-white pb-8 text-[1.07rem] font-medium transition-all duration-500 md:h-[580px] md:w-[304px]">
         <div className=" bg-lightgrey pl-6 md:pl-14 ">
           <h2 className=" py-[13px] md:py-[27px]">{t('header:menu')}</h2>
         </div>
         <button
           type="button"
           onClick={closeBurgerMenu}
-          className="absolute right-3 top-3 "
+          className="absolute right-3 top-3 md:right-12 md:top-7"
         >
           <CloseIcon />
         </button>
