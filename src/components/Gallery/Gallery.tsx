@@ -71,7 +71,7 @@ const Gallery = () => {
   }, [screenWidth, currentPage]);
 
   return (
-    <section id="gallery" className="relative mx-[48px] lg:mx-[120px]">
+    <section id="gallery" className="px-12 lg:px-[7.5rem]">
       {isModalOpen && type === 'lightbox' && (
         <LightBox images={data} image={image} />
       )}
@@ -80,7 +80,7 @@ const Gallery = () => {
         setCurrentPage={setCurrentPage}
         pagesLength={pagesLength}
       >
-        <div className="gridContainer ">
+        <div className="gridContainer ml-2 pr-8 lg:ml-0 lg:pr-0 ">
           {data.map((item: GalleryItem, index: number) => (
             <div
               key={item.id}

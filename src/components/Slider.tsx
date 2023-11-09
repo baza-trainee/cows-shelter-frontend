@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
@@ -26,7 +25,8 @@ const Slider = ({
   title,
   subtitle,
   isReviews,
-  isExcursions
+  isExcursions,
+  setCurrentPage
 }: SliderProps) => {
   const sliderRef = useRef(null);
 
@@ -45,9 +45,7 @@ const Slider = ({
 
   return (
     <div className={``}>
-      <div
-        className={`mx-auto mb-8 mt-4 flex w-full items-center justify-between`}
-      >
+      <div className={`mx-auto mb-8 mt-4 flex  items-center justify-between`}>
         {title && <h2 className="text-[64px] font-medium ">{title}</h2>}
         {subtitle && (
           <h2 className="text-lg font-semibold leading-6 md:text-xl md:font-bold lg:text-2xl">
@@ -64,14 +62,14 @@ const Slider = ({
         </div>
       </div>
       <div
-        className={`my-8 flex w-full items-start  justify-start ${
+        className={`my-8 flex items-start justify-start ${
           isReviews ? 'h-[50%] ' : 'h-full'
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
         <Swiper
           className={`relative flex ${
             isReviews ? 'max-h-[250px] pt-11' : 'h-[600px]'
-          } w-[100vw] md:w-[768px] lg:w-[1198px] ${
+          } w-[100%] md:w-[768px] lg:w-full ${
             isExcursions ? 'max-h-[320px]' : 'h-[600px]'
           }`}
           spaceBetween={100}
@@ -79,9 +77,11 @@ const Slider = ({
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
           loop={true}
-          // onActiveIndexChange={(swiperCore) => {
-          //   setCurrentPage!(swiperCore.activeIndex + 1);
-          // }}
+          onActiveIndexChange={(swiper) => {
+            if (setCurrentPage !== undefined) {
+              setCurrentPage(swiper.activeIndex + 1);
+            }
+          }}
           onSwiper={(swiper) => {
             (sliderRef.current as any) = swiper;
           }}
