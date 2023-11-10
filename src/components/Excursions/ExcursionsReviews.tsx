@@ -25,13 +25,14 @@ const ExcursionsReviews = () => {
   const [finish, setFinish] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(3);
-  const pagesLength = reviews.length / itemsPerPage;
+  const [pagesLength, setPagesLength] = useState(reviews.length / itemsPerPage);
 
   const data = usePaginatedData(reviews, start, finish);
 
   useEffect(() => {
     if (windowWidth >= 1280) {
       setItemsPerPage(3);
+      setPagesLength(reviews.length / itemsPerPage);
       if (currentPage === 1) {
         setStart(0);
         setFinish(3);
@@ -47,6 +48,7 @@ const ExcursionsReviews = () => {
     }
     if (windowWidth >= 768 && windowWidth < 1280) {
       setItemsPerPage(2);
+      setPagesLength(6);
       if (currentPage === 1) {
         setStart(0);
         setFinish(2);
@@ -70,6 +72,7 @@ const ExcursionsReviews = () => {
     }
     if (windowWidth >= 320 && windowWidth < 768) {
       setItemsPerPage(1);
+      setPagesLength(4);
       if (currentPage === 1) {
         setStart(0);
         setFinish(1);
@@ -86,15 +89,11 @@ const ExcursionsReviews = () => {
         setStart(3);
         setFinish(4);
       }
-      if (currentPage === 5) {
-        setStart(4);
-        setFinish(5);
-      }
     }
-  }, [windowWidth, currentPage]);
+  }, [windowWidth, currentPage, itemsPerPage]);
 
   return (
-    <section className="px-12">
+    <section className="mb-0 px-12 md:-mb-10 lg:mb-0">
       <Slider
         subtitle={t('excursions:reviews.reviews_title')}
         setCurrentPage={setCurrentPage}

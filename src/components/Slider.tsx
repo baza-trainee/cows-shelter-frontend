@@ -46,8 +46,10 @@ const Slider = ({
 
   return (
     <div
-      className={`relative ${isReviews ? 'h-[35vh]' : 'h-[75vh] lg:h-full'} 
-      ${isExcursions ? 'h-[55vh]' : 'h-[75vh] lg:h-full'}
+      className={`relative  ${
+        isReviews ? 'h-[30%] lg:h-[40%]' : 'h-[75vh] lg:h-full'
+      } 
+      ${isExcursions ? 'h-[45%]' : 'h-[75vh] lg:h-full'} 
       `}
     >
       <div
@@ -71,16 +73,17 @@ const Slider = ({
         </div>
       </div>
       <div
-        className={`my-8 flex w-full items-start  justify-start ${
-          isReviews ? 'h-[50%] ' : 'h-full'
+        className={`my-8 flex w-full items-start justify-start ${
+          isReviews ? 'h-[50%]' : 'h-full'
         }`}
       >
         <Swiper
           className={`relative flex ${
-            isReviews ? 'h-[225px] pt-11' : 'h-[600px]'
+            isReviews ? 'h-[165px] pt-11 md:h-[230px]' : 'h-[600px]'
           } w-[1000vw] md:w-[768px] lg:w-[1198px] ${
-            isExcursions ? 'h-[300px]' : 'h-[600px]'
-          }`}
+            isExcursions ? 'h-[350px]' : 'h-[600px]'
+          }
+          `}
           spaceBetween={50}
           slidesPerView={1}
           modules={[Pagination, Navigation]}

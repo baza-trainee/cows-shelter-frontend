@@ -79,11 +79,11 @@ const Excursions = () => {
       className="bg-[#F3F3F5] px-6 py-6 md:px-12 md:py-16 lg:px-[7.5rem] lg:py-20"
     >
       {windowWidth < 768 && (
-        <div className="bg-yellow-500">
+        <div>
           <h2 className="mb-10 text-2xl font-bold leading-normal">
             {t('excursions:title')}
           </h2>
-          <ul className="mb-[8.75rem] flex flex-col gap-4">
+          <ul className="mb-5 flex flex-col items-center gap-4">
             {excursions.map((item: ExcursionsData, index: number) => (
               <li key={item.id} className="drop-shadow">
                 <div className="relative">

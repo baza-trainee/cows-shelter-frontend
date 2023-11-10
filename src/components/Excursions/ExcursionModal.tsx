@@ -3,12 +3,12 @@
 import people_icon from '@/assets/icons/people_icon.svg';
 import time_icon from '@/assets/icons/time_icon.svg';
 import close_icon from '@/assets/icons/close_icon.svg';
-import { closeModal } from '@/store/slices/modalSlice';
+import { closeModal, openModal } from '@/store/slices/modalSlice';
 import { MouseEvent, useEffect, useState } from 'react';
-import { useAppDispatch } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
-// import ExcursionOrderModal from './ExcursionOrderModal';
+import ExcursionOrderModal from './ExcursionOrderModal';
 
 type ExcursionsModalProps = {
   excursion: ExcursionsData;
@@ -30,6 +30,9 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
     };
   }, []);
 
+  const type = useAppSelector((state) => state.modals.type);
+  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+
   const closeExcursionsModal = () => dispatch(closeModal());
 
   const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -38,22 +41,36 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
     }
   };
 
+  const openExcursionOrderModal = () => {
+    dispatch(
+      openModal({ data: {}, type: 'order' })
+    );
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen]);
+
   return (
     <div
       className="fixed left-0 top-0 z-50 h-[100%] w-full bg-black/[.60]"
       onClick={handleOverlayClick}
     >
-      <div className="absolute left-1/2 top-1/2 lg:w-[1136px] md:w-[672px] translate-x-[-50%] translate-y-[-50%] border-2 border-solid border-white bg-graphite lg:px-[3.75rem] md:px-10 lg:pb-[3.75rem] md:pb-10 pt-10">
-        <div className="flex lg:gap-10 md:gap-6 md:flex-col lg:flex-row">
+      <div className="absolute overflow-auto h-[587px] md:h-auto left-1/2 top-1/2 w-[85%] lg:w-[1136px] md:w-[672px] translate-x-[-50%] translate-y-[-50%] border-2 border-solid border-white bg-graphite lg:px-[3.75rem] md:px-10 px-5 lg:pb-[3.75rem] md:pb-10 pb-12 md:pt-10 pt-4">
+        <div className="flex lg:gap-10 md:gap-6 flex-col lg:flex-row">
           <div className="flex flex-col gap-4">
-            <div className="flex gap-9">
+            <div className="flex flex-col md:flex-row gap-2 md:gap-6 lg:gap-9">
               <div className="flex gap-3">
                 <img src={time_icon} width={24} height={24}></img>
-                <span className="text-base text-accent">{t('excursions:excursion.duration')}</span>
+                <span className="text-sm md:text-base leading-normal text-accent">{t('excursions:excursion.duration')}</span>
               </div>
               <div className="flex gap-3">
                 <img src={people_icon} width={24} height={24}></img>
-                <span className="text-base text-accent"> {t('excursions:excursion.number_of_people')} </span>
+                <span className="text-sm md:text-base leading-normal text-accent"> {t('excursions:excursion.number_of_people')} </span>
               </div>
             </div>
             {windowWidth >= 1280 && (
@@ -64,7 +81,7 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
               ></img>
               <img
                 src={excursion.imagesSrs[1]}
-                className="h-full w-full object-cover md:hidden lg:block"
+                className="h-full w-full object-cover"
               ></img>
               <img
                 className="col-start-1 col-end-3 h-full w-full object-cover"
@@ -84,15 +101,23 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
               ></img>
             </div>
             )}
+            {windowWidth > 320 && windowWidth < 768 && (
+              <img
+                src={excursion.imagesSrs_mobile}
+                className="h-full w-full object-cover"
+              ></img>
+            )}
           </div>
-          <div className="flex w-[592px] lg:w-[28.75rem] flex-col justify-between gap-4">
-                  <h3 className="leading-normal text-xl lg:text-2xl md:mt-0 lg:mt-10 font-bold text-white">{t(excursion.title)}</h3>
-                  <p className="text-base font-normal text-white">{t(excursion.description)}</p>
-            <div className="flex gap-6">
-              <button className="h-11 w-[14.44rem] transition-all duration-300 bg-accent text-lg font-medium leading-[1.375rem] focus:bg-lemon active:bg-lemon hover:bg-lemon">
+          <div className="flex w-[90%] md:w-[592px] lg:w-[28.75rem] flex-col justify-between md:gap-4 gap-3.5 mt-[1.25rem] md:mt-0">
+                  <h3 className="leading-normal text-lg md:text-xl lg:text-2xl md:mt-0 lg:mt-10 font-semibold md:font-bold text-white">{t(excursion.title)}</h3>
+                  <p className="text-sm md:text-base leading-normal font-normal text-white">{t(excursion.description)}</p>
+            <div className="flex gap-3 md:gap-6 flex-col md:flex-row">
+              <button className="h-10 md:h-11 max-w-[17.5rem] md:w-[14.44rem] transition-all duration-300 bg-accent text-lg font-medium leading-[1.375rem] focus:bg-lemon active:bg-lemon hover:bg-lemon" onClick={() => {
+                          openExcursionOrderModal();
+                        }}>
                 {t('excursions:excursion.order_btn')}
               </button>
-              <button className="h-11 w-[14.44rem] border border-solid transition-all duration-300 border-white text-lg font-medium leading-[1.375rem] text-white focus:border-accent active:border-accent hover:border-accent">
+              <button className="h-10 md:h-11 max-w-[17.5rem] md:w-[14.44rem] border border-solid transition-all duration-300 border-white text-lg font-medium leading-[1.375rem] text-white focus:border-accent active:border-accent hover:border-accent">
                {t('header:btn_donate')}
               </button>
             </div>
@@ -105,7 +130,9 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
           <img src={close_icon} width={44} height={44}></img>
         </button>
       </div>
-      {/* <ExcursionOrderModal /> */}
+      {isModalOpen && type === 'order' && (
+        <ExcursionOrderModal />
+      )}
     </div>
   );
 };
