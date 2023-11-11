@@ -4,7 +4,7 @@ import { Reviews } from '@/types';
 import { reviews } from '@/data/reviews';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
 
-import Slider from '../Slider';
+import Slider from '@/components/Slider';
 
 const ExcursionsReviews = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
