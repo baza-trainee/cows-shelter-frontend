@@ -11,7 +11,7 @@ type ShareModalProps = {
 
 const ShareModal = ({ activeImage, setShowModal }: ShareModalProps) => {
   return (
-    <div className="absolute left-[50%] top-[50%] z-[9999] flex h-[30vh] w-[30vw] -translate-x-[50%] -translate-y-[50%] flex-col items-center justify-center bg-white p-4 text-black">
+    <div className="absolute left-[50%] top-[57%] z-[9999] flex h-[40vh] w-[80%] -translate-x-[50%] -translate-y-[50%] flex-col items-center justify-center bg-white p-4 text-center text-black md:top-[50%] md:h-[40vh] md:w-[50%] lg:h-[30vh] lg:w-[30%]">
       <button
         onClick={() => setShowModal(false)}
         className="absolute right-4 top-4"

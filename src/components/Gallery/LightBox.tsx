@@ -53,7 +53,7 @@ const LightBox = ({ images, image }: LightBoxProps) => {
               className=" relative flex w-full items-center justify-center"
               key={index}
             >
-              <div className="relative max-h-[590px] w-[590px]">
+              <div className="relative max-h-[480px] w-[480px] lg:max-h-[590px] lg:w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
                 <div
                   onClick={() => setShowModal(true)}
