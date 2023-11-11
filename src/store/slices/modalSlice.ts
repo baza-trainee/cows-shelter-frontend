@@ -33,13 +33,13 @@ const modalSlice = createSlice({
       state.isModalOpen = true;
       state.data = action.payload.data;
       state.type = action.payload.type;
-      document.body.classList.add('overflow-hidden');
+      document.getElementById('root')!.style.overflow = 'hidden';
     },
     closeModal(state) {
       state.isModalOpen = false;
       state.data = null;
       state.type = null;
-      document.body.classList.remove('overflow-hidden');
+      document.getElementById('root')!.style.overflow = 'auto';
     }
   }
 });

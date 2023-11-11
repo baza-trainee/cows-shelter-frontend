@@ -16,7 +16,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -27,6 +26,7 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
+  overflow-y: hidden;
 }
 
 @layer utilities {
