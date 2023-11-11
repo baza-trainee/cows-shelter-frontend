@@ -26,6 +26,7 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
+  overflow-y: hidden;
 }
 
 @layer utilities {
@@ -72,6 +73,6 @@ body {
   transition: transform 300ms ease-out;
 }
 
-#map{
+#map {
   z-index: -1;
 }

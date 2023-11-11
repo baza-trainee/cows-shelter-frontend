@@ -53,7 +53,7 @@ const Header = () => {
           isScrolled ? 'bg-white' : 'bg-transparent'
         } fixed left-0 right-0 top-0 z-10 md:py-[15px] lg:py-5`}
       >
-        <div className=" mx-auto flex w-[320px] items-center justify-between px-5 text-lg text-white outline-transparent md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
+        <div className=" mx-auto flex items-center justify-between px-5 text-lg text-white outline-transparent sm:w-[480px] md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
           <a
             className="inline-bloc h-10 w-20 md:h-[50px] md:w-[100px]"
             href="../main.tsx"
@@ -88,7 +88,6 @@ const Header = () => {
               </ul>
             </nav>
           )}
-
           <div className="font-medium md:flex md:items-center md:gap-8 lg:justify-between">
             {windowWidth >= 1280 && (
               <div className=" mr-8">
@@ -118,7 +117,8 @@ const Header = () => {
               </div>
             )}
             {windowWidth >= 768 && (
-              <button
+              <a
+                href="#donate"
                 className={` ${
                   isScrolled
                     ? 'border-black text-black'
@@ -127,7 +127,7 @@ const Header = () => {
                 type="button"
               >
                 {t('header:btn_donate')}
-              </button>
+              </a>
             )}
             {windowWidth < 1280 && (
               <button

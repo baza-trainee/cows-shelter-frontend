@@ -85,9 +85,9 @@
     },
     "amount": "Choose the donation amount",
     "amounts": {
-      "one": "200",
-      "two": "500",
-      "three": "1000",
+      "one": "50",
+      "two": "100",
+      "three": "200",
       "four": "Enter a different amount"
     },
     "pay": "Choose a payment method",
@@ -157,5 +157,18 @@
       "name_9": "Elena",
       "review_9": "I really liked the excursion, I visited it with my children, it was very exciting"
     }
-  }
+  },
+    "contacts": {
+    "titles": {
+      "contacts":"Contacts",
+      "working_hours": "Working Hours",
+      "location": "Location",
+      "payment": "Details for shelter support:"
+    },
+    "working_days": "Monday - Friday",
+    "location_main": "11 Vynohradna Street, Busha Village,",
+    "location_secondary": "Vinnytsia Oblast, Ukraine",
+    "payment_name": "Zeziukova Iryna Mykhailivna",
+    "code": "code"
+    }
 }

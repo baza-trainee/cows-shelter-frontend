@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 280px);
-  gap: 23px;
+  gap: 12px;
 }
 
 .gridItem--1 {
@@ -13,12 +13,12 @@
 .gridItem--2 {
   grid-column: 4/7;
   grid-row: 1/2;
-  width: 486px;
+  width: 476px;
 }
 .gridItem--3 {
   grid-column: 7/8;
   grid-row: 1/2;
-  width: 282px;
+  width: 292px;
 }
 .gridItem--4 {
   grid-column: 1/4;

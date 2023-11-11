@@ -25,7 +25,7 @@ const Support = () => {
     } else {
       setTimeout(() => {
         setShowModal(false);
-      }, 500);
+      }, 300);
     }
   }, [isModalOpen]);
 
@@ -34,7 +34,10 @@ const Support = () => {
       <div
         className={`relative h-[80vh] w-full bg-[url('/support/support_bg.png')] bg-cover bg-fixed bg-center bg-no-repeat `}
       />
-      <div className="flex flex-col items-start justify-center px-[120px]">
+      <div
+        id="donate"
+        className="flex flex-col items-start justify-center px-[120px]"
+      >
         <h2 className="mb-10 mt-20 whitespace-nowrap text-[54px] font-medium lg:text-[64px]">
           {t('support:title')}
         </h2>

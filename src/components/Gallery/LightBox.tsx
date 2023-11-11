@@ -53,11 +53,11 @@ const LightBox = ({ images, image }: LightBoxProps) => {
               className=" relative flex w-full items-center justify-center"
               key={index}
             >
-              <div className="relative max-h-[590px] w-[590px]">
+              <div className="relative max-h-[480px] w-[480px] lg:max-h-[590px] lg:w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
                 <div
                   onClick={() => setShowModal(true)}
-                  className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.8)]"
+                  className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.5)]"
                   title="Share in Social Media"
                 >
                   <ShareIcon />
