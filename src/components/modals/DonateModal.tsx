@@ -70,7 +70,7 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
       <div
         className={`absolute ${
           isOpen ? '-right-4' : '-right-[500px]'
-        } top-[50%] max-h-[90vh] w-[300px] -translate-y-[50%] overflow-auto  bg-white px-3 py-[42px] transition-all  duration-700 md:w-[480px] md:px-20`}
+        } top-[50%] max-h-[90vh] w-[320px] -translate-y-[50%] overflow-auto bg-white px-[37px] py-[40px] transition-all duration-700 md:w-[480px] md:px-20`}
       >
         <button
           onClick={handleClose}
@@ -80,7 +80,9 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
           <CloseIcon />
         </button>
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <p className="mb-5 text-xl font-bold">{t('donate:methode')}</p>
+          <p className=" mb-4 text-lg font-semibold md:mb-5 md:text-xl md:font-bold">
+            {t('donate:methode')}
+          </p>
           <div role="group" className="mb-10 flex flex-wrap gap-3">
             {wayOfHelping.map(({ value, title }) => (
               <label
@@ -114,7 +116,9 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
               </label>
             ))}
           </div>
-          <p className="mb-5 text-xl font-bold">{t('donate:amount')}</p>
+          <p className=" mb-4 text-lg font-semibold md:mb-5 md:text-xl md:font-bold">
+            {t('donate:amount')}
+          </p>
           <div role="group" className="relative mb-10 flex flex-wrap gap-3">
             {amountDonate.map(({ value, title }) => (
               <label
@@ -160,7 +164,9 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
               />
             </label>
           </div>
-          <p className="mb-5 text-xl font-bold">{t('donate:pay')}</p>
+          <p className=" mb-4 text-lg font-semibold md:mb-5 md:text-xl md:font-bold">
+            {t('donate:pay')}
+          </p>
           <div role="group" className="mb-10 flex w-[200px] flex-wrap gap-3">
             {paySystems.map(({ value, title, url }) => (
               <label
