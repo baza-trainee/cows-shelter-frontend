@@ -12,6 +12,7 @@ import ExcursionModal from './ExcursionModal';
 import LittleArrow from '../icons/LittleArrow';
 
 import Slider from '../Slider';
+import ExcursionOrderModal from './ExcursionOrderModal';
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
@@ -185,6 +186,7 @@ const Excursions = () => {
       {isModalOpen && type === 'excursions' && (
         <ExcursionModal excursion={activeExcursion as ExcursionsData} />
       )}
+      {isModalOpen && type === 'order' && <ExcursionOrderModal />}
     </section>
   );
 };

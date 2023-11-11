@@ -5,10 +5,9 @@ import time_icon from '@/assets/icons/time_icon.svg';
 import close_icon from '@/assets/icons/close_icon.svg';
 import { closeModal, openModal } from '@/store/slices/modalSlice';
 import { MouseEvent, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { useAppDispatch } from '@/store/hook';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
-import ExcursionOrderModal from './ExcursionOrderModal';
 
 type ExcursionsModalProps = {
   excursion: ExcursionsData;
@@ -30,9 +29,6 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
     };
   }, []);
 
-  const type = useAppSelector((state) => state.modals.type);
-  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
-
   const closeExcursionsModal = () => dispatch(closeModal());
 
   const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -42,18 +38,16 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
   };
 
   const openExcursionOrderModal = () => {
-    dispatch(
+    setTimeout(() => {
+      dispatch(
       openModal({ data: {}, type: 'order' })
     );
+    }, 300)
   };
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalOpen]);
+  const openDonationModal = () => {
+dispatch(openModal({ data: {}, type: 'donation' }))
+  }
 
   return (
     <div
@@ -112,12 +106,14 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
                   <h3 className="leading-normal text-lg md:text-xl lg:text-2xl md:mt-0 lg:mt-10 font-semibold md:font-bold text-white">{t(excursion.title)}</h3>
                   <p className="text-sm md:text-base leading-normal font-normal text-white">{t(excursion.description)}</p>
             <div className="flex gap-3 md:gap-6 flex-col md:flex-row">
-              <button className="h-10 md:h-11 max-w-[17.5rem] md:w-[14.44rem] transition-all duration-300 bg-accent text-lg font-medium leading-[1.375rem] focus:bg-lemon active:bg-lemon hover:bg-lemon" onClick={() => {
-                          openExcursionOrderModal();
-                        }}>
+              <button className="h-10 md:h-11 max-w-[17.5rem] md:w-[14.44rem] transition-all duration-300 bg-accent text-lg font-medium leading-[1.375rem] focus:bg-lemon active:bg-lemon hover:bg-lemon"
+                onClick={openExcursionOrderModal}
+              >
                 {t('excursions:excursion.order_btn')}
               </button>
-              <button className="h-10 md:h-11 max-w-[17.5rem] md:w-[14.44rem] border border-solid transition-all duration-300 border-white text-lg font-medium leading-[1.375rem] text-white focus:border-accent active:border-accent hover:border-accent">
+              <button className="h-10 md:h-11 max-w-[17.5rem] md:w-[14.44rem] border border-solid transition-all duration-300 border-white text-lg font-medium leading-[1.375rem] text-white focus:border-accent active:border-accent hover:border-accent"
+               onClick={openDonationModal}
+              >
                {t('header:btn_donate')}
               </button>
             </div>
@@ -130,9 +126,6 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
           <img src={close_icon} width={44} height={44}></img>
         </button>
       </div>
-      {isModalOpen && type === 'order' && (
-        <ExcursionOrderModal />
-      )}
     </div>
   );
 };

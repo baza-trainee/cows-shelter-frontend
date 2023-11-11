@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 //external from types/index.ts
 interface NewsData {}
 interface ExcursionsData {}
-// interface OrderData {}
 interface BurgerMenu {}
 interface Partners {}
 interface Donation {}
@@ -21,7 +20,6 @@ export type ModalType =
 type ModalData =
   | NewsData
   | ExcursionsData
-  // | OrderData
   | BurgerMenu
   | Partners
   | Donation
