@@ -75,7 +75,7 @@ const Partners = () => {
         <p className="mb-5 text-[18px] leading-relaxed text-gray-700 md:mb-10 md:text-[20px] lg:w-[1070px] lg:text-[22px]">
           {t('partners:text')}
         </p>
-        <ul className="grid grid-cols-2 gap-x-3 gap-y-2.5 overflow-x-auto md:flex md:flex-wrap md:justify-between md:gap-6 lg:mt-20">
+        <ul className="mb-5 grid grid-cols-2 gap-x-3 gap-y-2.5 overflow-x-auto md:flex md:flex-wrap md:justify-between md:gap-6 lg:mt-20">
           {partners.map(({ title, href, src }) => (
             <li
               key={title}
@@ -101,6 +101,12 @@ const Partners = () => {
             </li>
           ))}
         </ul>
+        <button
+          onClick={openPartnersModal}
+          className="duration-800  bg-accent px-8 py-3 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon active:bg-darkyellow md:inline-block"
+        >
+          {t('partners:become_partner')}
+        </button>
       </div>{' '}
       {isModalOpen && type === 'partners' && <PartnersModal />}
     </section>
