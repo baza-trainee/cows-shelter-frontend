@@ -50,8 +50,8 @@ const Slider = ({
   return (
     <>
       <div
-        className={`mx-auto mb-8 mt-4 flex  w-full items-center justify-between ${
-          isPartners && 'hidden'
+        className={`mx-auto mb-8 mt-4 flex w-full items-center ${
+          isPartners ? 'justify-end' : 'justify-between'
         }`}
       >
         {title && (
@@ -65,7 +65,23 @@ const Slider = ({
           </h2>
         )}
         {screenWidth > 768 && (
-          <div className="flex gap-4">
+          <div
+            className={`${isPartners && 'hidden'} flex
+            gap-4`}
+          >
+            <div onClick={handlePrev} className="cursor-pointer ">
+              <ArrowLeft />
+            </div>
+            <div className="cursor-pointer" onClick={handleNext}>
+              <ArrowRight />
+            </div>
+          </div>
+        )}
+        {isPartners && screenWidth > 1200 && (
+          <div
+            className="flex
+            gap-4"
+          >
             <div onClick={handlePrev} className="cursor-pointer ">
               <ArrowLeft />
             </div>

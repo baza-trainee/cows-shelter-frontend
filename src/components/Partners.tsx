@@ -85,6 +85,10 @@ const Partners = () => {
         setStart(1);
         setFinish(5);
       }
+      if (currentPage === 3) {
+        setStart(0);
+        setFinish(4);
+      }
     }
     if (windowWidth >= 768 && windowWidth < 1280) {
       setItemsPerPage(3);
