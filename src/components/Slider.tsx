@@ -15,6 +15,7 @@ type SliderProps = {
   subtitle?: string;
   isReviews?: boolean;
   isExcursions?: boolean;
+  isPartners?: boolean;
   pagesLength?: number;
   children: React.ReactNode;
   setCurrentPage?: Dispatch<SetStateAction<number>>;
@@ -27,6 +28,7 @@ const Slider = ({
   subtitle,
   isReviews,
   isExcursions,
+  isPartners,
   setCurrentPage
 }: SliderProps) => {
   const sliderRef = useRef(null);
@@ -48,7 +50,9 @@ const Slider = ({
   return (
     <>
       <div
-        className={`mx-auto mb-8 mt-4 flex  w-full items-center justify-between`}
+        className={`mx-auto mb-8 mt-4 flex  w-full items-center justify-between ${
+          isPartners && 'hidden'
+        }`}
       >
         {title && (
           <h2 className="text-[24px] font-medium md:text-[54px] lg:text-[64px] ">
@@ -78,7 +82,7 @@ const Slider = ({
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
         <Swiper
-          className={`relative flex w-full items-center justify-center ${
+          className={`relative flex w-full items-center  ${
             isReviews ? 'max-h-[250px] pt-11' : 'h-full'
           } w-full md:w-[768px] lg:w-full ${
             isExcursions ? 'max-h-[320px]' : 'h-full'
@@ -100,7 +104,9 @@ const Slider = ({
           {[...Array(slidesLength)].map((_, index) => (
             <SwiperSlide
               key={index}
-              className="bottom-[40px] flex h-full w-full items-center justify-center"
+              className={`${
+                isPartners ? 'bottom-0' : 'bottom-[40px]'
+              }  flex h-full w-full items-center justify-center`}
             >
               {children}
             </SwiperSlide>

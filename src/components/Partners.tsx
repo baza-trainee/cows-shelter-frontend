@@ -70,7 +70,7 @@ const Partners = () => {
   const [finish, setFinish] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(3);
-  const pagesLength = partners.length / itemsPerPage;
+  const pagesLength = partners.length / itemsPerPage + 1;
 
   const data = usePaginatedData(partners, start, finish);
 
@@ -79,30 +79,26 @@ const Partners = () => {
       setItemsPerPage(4);
       if (currentPage === 1) {
         setStart(0);
-        setFinish(3);
+        setFinish(4);
       }
       if (currentPage === 2) {
         setStart(1);
-        setFinish(4);
-      }
-      if (currentPage === 3) {
-        setStart(1);
-        setFinish(4);
+        setFinish(5);
       }
     }
     if (windowWidth >= 768 && windowWidth < 1280) {
       setItemsPerPage(3);
       if (currentPage === 1) {
         setStart(0);
-        setFinish(2);
+        setFinish(3);
       }
       if (currentPage === 2) {
         setStart(1);
-        setFinish(3);
+        setFinish(4);
       }
       if (currentPage === 3) {
         setStart(2);
-        setFinish(4);
+        setFinish(5);
       }
     }
   }, [windowWidth, currentPage]);
@@ -129,7 +125,7 @@ const Partners = () => {
             {t('partners:become_partner')}
           </button>
         </div>
-        <p className="mb-5 text-[18px] leading-relaxed text-gray-700 md:mb-10 md:text-[20px] lg:w-[1070px] lg:text-[22px]">
+        <p className="mb-5 text-[18px] leading-relaxed text-gray-700  md:mb-10 md:text-[20px] lg:w-[1070px] lg:text-[22px]">
           {t('partners:text')}
         </p>
         {/* mobile only */}
@@ -149,8 +145,8 @@ const Partners = () => {
                   className="m-auto mb-6 scale-100 transform"
                   src={src}
                   alt={title}
-                  width={282}
-                  height={282}
+                  width={134}
+                  height={134}
                 />
                 <p className="mb-5 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
                   {title}
@@ -161,13 +157,14 @@ const Partners = () => {
         </ul>
         {/* tablet + desktop */}
         <div className="hidden md:block">
-          <Slider setCurrentPage={setCurrentPage} pagesLength={pagesLength}>
-            <ul className="mb-5  flex justify-between gap-6 gap-x-3 gap-y-2.5 overflow-x-auto lg:mt-20">
+          <Slider
+            isPartners
+            setCurrentPage={setCurrentPage}
+            pagesLength={pagesLength}
+          >
+            <ul className="mb-5  flex justify-between gap-6 lg:mt-20">
               {data.map((item: PartnersType) => (
-                <li
-                  key={item.title}
-                  className="flex flex-col md:mb-6 md:w-[calc(50%-0.75rem)]"
-                >
+                <li key={item.title} className="flex justify-around">
                   <a
                     href={item.href}
                     target="_blank"
@@ -178,10 +175,10 @@ const Partners = () => {
                       className="m-auto mb-6 scale-100 transform"
                       src={item.src}
                       alt={item.title}
-                      width={282}
-                      height={282}
+                      width={208}
+                      height={208}
                     />
-                    <p className="mb-5 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
+                    <p className="mb-5 w-[208px] text-center text-[1rem] leading-relaxed md:text-[20px] lg:mb-[4.125rem] lg:w-[282px] lg:text-[22px]">
                       {item.title}
                     </p>
                   </a>
