@@ -4,8 +4,8 @@
 // import Footer from '@/components/Footer/Footer';
 // import UnderFooter from '@/components/Footer/UnderFooter';
 import Layout from '@/components/Layout';
-// import Excursions from '@/components/Excursions/Excursions';
-// import Gallery from '@/components/Gallery/Gallery';
+import Excursions from '@/components/Excursions/Excursions';
+import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
 // import News from '@/components/News/News';
 // import FAQ from '@/components/FAQ';
@@ -15,12 +15,12 @@ import Partners from '@/components/Partners';
 const HomePage = () => {
   return (
     <Layout>
-      {/* <Header />
-      <Hero />
-      <About />
+      {/* <Header /> */}
+      {/* <Hero /> */}
+      {/* <About /> */}
       <Excursions />
       <Gallery />
-      <News /> */}
+      {/* <News /> */}
       <Partners />
       {/* <Support />
       <FAQ />
