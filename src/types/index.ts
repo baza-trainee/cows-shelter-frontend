@@ -36,8 +36,15 @@ export type ExcursionsData = {
 };
 
 export type SupportCard = {
+  id: number;
   title: string;
   subtitle: string;
   banner: string;
   image: string;
+};
+
+export type PartnersType = {
+  title: string;
+  href: string;
+  src: string;
 };
