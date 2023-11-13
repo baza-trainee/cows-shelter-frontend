@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type ModalType =
-  | 'news'
+  | 'order'
   | 'excursions'
+  | 'news'
   | 'burgerMenu'
   | 'partners'
   | 'donation'

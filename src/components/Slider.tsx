@@ -93,16 +93,17 @@ const Slider = ({
       </div>
 
       <div
-        className={`my-8 flex w-full items-start justify-start  ${
+        className={`my-8 flex w-full items-start  justify-start ${
           isReviews ? 'h-[50%] ' : 'h-full'
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
         <Swiper
-          className={`relative flex w-full items-center  ${
-            isReviews ? 'max-h-[250px] pt-11' : 'h-full'
+          className={`relative flex w-full items-center ${
+            isReviews ? 'max-h-[165px] pt-11 md:max-h-[230px]' : 'h-full'
           } w-full md:w-[768px] lg:w-full ${
-            isExcursions ? 'max-h-[320px]' : 'h-full'
-          }`}
+            isExcursions ? 'max-h-[350px]' : 'h-full'
+          }
+          `}
           spaceBetween={10}
           slidesPerView={1}
           modules={[Pagination, Navigation]}

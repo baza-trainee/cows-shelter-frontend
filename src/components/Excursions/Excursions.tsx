@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
-
 import { excursions } from '@/data/excursions';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +9,8 @@ import { usePaginatedData } from '@/hooks/usePaginatedData';
 import ExcursionsReviews from './ExcursionsReviews';
 import ExcursionModal from './ExcursionModal';
 import LittleArrow from '../icons/LittleArrow';
-import Slider from '../Slider';
+import Slider from '@/components/Slider';
+import ExcursionOrderModal from './ExcursionOrderModal';
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
@@ -65,7 +65,42 @@ const Excursions = () => {
   }, [currentPage]);
 
   return (
-    <section className="bg-[#F3F3F5] px-12 py-16 lg:px-[7.5rem] lg:py-20">
+    <section
+      id="#excursions"
+      className="bg-[#F3F3F5] px-6 py-6 md:px-12 md:py-16 lg:px-[7.5rem] lg:py-20"
+    >
+      {windowWidth < 768 && (
+        <div>
+          <h2 className="mb-10 text-2xl font-bold leading-normal">
+            {t('excursions:title')}
+          </h2>
+          <ul className="mb-5 flex flex-col items-center gap-4">
+            {excursions.map((item: ExcursionsData, index: number) => (
+              <li key={item.id} className="drop-shadow">
+                <div className="relative">
+                  <img src={item.mainImgSrc_mobile} alt={t(item.title)}></img>
+                  <div className="absolute bottom-0 left-0 flex flex-col gap-3 pb-5 pl-5 text-white">
+                    <p className="text-lg leading-normal">{t(item.title)}</p>
+                    <a>
+                      <button
+                        className="flex gap-3 border border-solid border-white py-2.5 pl-5 pr-4"
+                        onClick={() => {
+                          setExcursion(index), openExcursionModal();
+                        }}
+                      >
+                        <span className="text-base leading-tight">
+                          {t('excursions:excursion.show_more_btn')}
+                        </span>
+                        <LittleArrow />
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {windowWidth < 1280 && windowWidth >= 768 && (
         <Slider
           title={t('excursions:title')}
@@ -141,6 +176,7 @@ const Excursions = () => {
       {isModalOpen && type === 'excursions' && (
         <ExcursionModal excursion={activeExcursion as ExcursionsData} />
       )}
+      {isModalOpen && type === 'order' && <ExcursionOrderModal />}
     </section>
   );
 };
