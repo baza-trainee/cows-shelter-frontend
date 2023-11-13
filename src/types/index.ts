@@ -40,3 +40,9 @@ export type SupportCard = {
   banner: string;
   image: string;
 };
+
+export type PartnersType = {
+  title: string;
+  href: string;
+  src: string;
+};
