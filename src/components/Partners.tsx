@@ -22,10 +22,6 @@ const Partners = () => {
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
 
-  const openPartnersModal = () => {
-    dispatch(openModal({ data: {}, type: 'partners' }));
-  };
-
   const partners = [
     {
       title: t('partners:partners.uaAnimals'),
@@ -53,6 +49,11 @@ const Partners = () => {
       src: logo_eur
     }
   ];
+
+  const openPartnersModal = () => {
+    console.log('openPartnersModal is called');
+    dispatch(openModal({ data: {}, type: 'partners' }));
+  };
 
   const handleChangedSize = () => {
     setWindowWidth(window.innerWidth);
