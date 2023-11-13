@@ -81,7 +81,6 @@
     "methods": {
       "one_time": "One-time donate",
       "monthly": "Monthly donate"
-
     },
     "amount": "Choose the donation amount",
     "amounts": {
@@ -108,15 +107,15 @@
     "text": "Friends, thank you to everyone who supports the shelter, realizing the great benefit of our good work with you. Join the purchase of feed for cows to help these wonderful creatures and fill the world with positive energy.",
     "card_title_1": "One-time assistance",
     "card_subtitle_1": "When cows are in love, they fulfill their natural function",
-    "card_banner_1": "We are always happy for new like-minded people who want to become participants in the good and sunny moods broadcast by the residents of the shelter! Any amount will be your sincere contribution to improving our world.",
+    "card_banner_1": "We are always happy for new \nlike-minded people, \nwho want to become participants \nin the good and sunny moods \nbroadcast by the residents of the shelter! \n \nAny amount will be your sincere \ncontribution to improving \nour world.",
     "card_title_2": "Monthly assistance",
     "card_subtitle_2": "Repay any amount every month. Cows need stability and your care",
-    "card_banner_2": "If charity is your life's work, help provide the cows with everything they need, even a little at a time, but regularly. We believe in the power of unity and only thanks to this faith we continue to stay in line!",
+    "card_banner_2": "If charity is your life's work, help provide \nthe cows with everything they need, \neven a little at a time, but regularly. \n\nWe believe in the power of unity \nand only thanks to this faith \nwe continue to stay in line!",
     "read_more": "Read More",
     "help": "Help",
-    "support":"To Support"
+    "support": "To Support"
   },
-    "excursions": {
+  "excursions": {
     "title": "Excursions",
     "excursion": {
       "title_1": "Art therapy with cows",
@@ -130,7 +129,7 @@
       "duration": "30 - 60 minutes",
       "number_of_people": "2 - 14 people",
       "order_btn": "Order an excursion"
-  },
+    },
     "reviews": {
       "reviews_title": "Reviews",
       "name_1": "Anna",
@@ -153,9 +152,9 @@
       "review_9": "I really liked the excursion, I visited it with my children, it was very exciting"
     }
   },
-    "contacts": {
+  "contacts": {
     "titles": {
-      "contacts":"Contacts",
+      "contacts": "Contacts",
       "working_hours": "Working Hours",
       "location": "Location",
       "payment": "Details for shelter support:"
@@ -165,5 +164,5 @@
     "location_secondary": "Vinnytsia Oblast, Ukraine",
     "payment_name": "Zeziukova Iryna Mykhailivna",
     "code": "code"
-    }
+  }
 }

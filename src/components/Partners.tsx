@@ -1,32 +1,22 @@
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
+
 import logo_uaanimals from '@/assets/images/logo_uaanimals.png';
 import logo_sloboda from '@/assets/images/logo_svoboda.png';
 import logo_zhitta from '@/assets/images/logo_zhitta.png';
 import logo_baza from '@/assets/images/logo_baza.png';
 import PartnersModal from './modals/PartnersModal';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { useEffect } from 'react';
-import { openModal } from '@/store/slices/modalSlice';
 
 const Partners = () => {
   const { t } = useTranslation();
-
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
 
   const openPartnersModal = () => {
-    console.log('openPartnersModal is called');
     dispatch(openModal({ data: {}, type: 'partners' }));
   };
-
-  useEffect(() => {
-    if (isModalOpen === true) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalOpen]);
 
   const partners = [
     {
