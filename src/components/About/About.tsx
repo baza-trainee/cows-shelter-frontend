@@ -1,9 +1,12 @@
 // import { useWidth } from '@/hooks/useWidth';
+
 import image1 from '../../assets/images/about-img1.jpg';
 import image2 from '../../assets/images/about-img2.jpg';
 import image3 from '../../assets/images/about-img3.jpg';
 import arrorIcon from '../../assets/icons/arrow-right.svg';
 import { useTranslation } from 'react-i18next';
+
+
 
 import { useState } from 'react';
 

@@ -4,16 +4,20 @@ import icon_paypal from '@/assets/icons/icon_paypal.svg';
 import icon_western_union from '@/assets/icons/icon_western_union.svg';
 import icon_swift from '@/assets/icons/icon_swift.svg';
 import Map from './Map';
+import { useTranslation } from 'react-i18next';
 
 const Contacts = () => {
+  const { t } = useTranslation();
   return (
-    <div className="container mx-auto max-w-[1440px]">
+    <section className="container mx-auto max-w-[1440px]" id="partners">
       <div
-        className={`relative h-[80vh] bg-[url('@/assets/imgs/img_cow_contacts.png')] bg-cover bg-fixed bg-center bg-no-repeat`}
+        className={`relative h-[240px] overflow-hidden bg-[url('/img_cow_contacts.png')] bg-fixed bg-top bg-no-repeat lg:h-[80vh] lg:bg-center`}
       />
-      <div className="flex flex-row px-56 py-20">
+      <div className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
         <div className="basis-1/2">
-          <h3 className="mb-5 text-2xl font-bold">Контакти</h3>
+          <h3 className="mb-5 text-2xl font-bold">
+            {t('contacts:titles.contacts')}
+          </h3>
           <ul className="mb-6 flex flex-col gap-2">
             <li>
               <a
@@ -34,31 +38,37 @@ const Contacts = () => {
               </a>
             </li>
           </ul>
-          <h4 className="mb-5 text-2xl font-bold">Режим роботи</h4>
+          <h4 className="mb-5 text-2xl font-bold">
+            {t('contacts:titles.working_hours')}
+          </h4>
           <ul className="mb-6 flex flex-col gap-2">
             <li>
-              <p className="text-graphite">Понеділок - П&#39;ятниця</p>
+              <p className="text-graphite">{t('contacts:working_days')}</p>
             </li>
             <li>
               <p className="text-graphite">10:00 - 20:00</p>
             </li>
           </ul>
-          <h4 className="mb-5 text-2xl font-bold">Локація</h4>
-          <p className="mb-2 text-graphite">Україна, Вінницька область,</p>
-          <p className="text-graphite">с. Буша, вул. Виноградна, 11</p>
+          <h4 className="mb-5 text-2xl font-bold">
+            {t('contacts:titles.location')}
+          </h4>
+          <p className="mb-2 text-graphite">{t('contacts:location_main')}</p>
+          <p className="text-graphite">{t('contacts:location_secondary')}</p>
         </div>
         <div className="basis-1/2">
           <h4 className="mb-5 text-2xl font-bold">
-            Реквізити для підтримки притулку:
+            {t('contacts:titles.payment')}
           </h4>
           <ul>
             <li className="mb-3 flex gap-4 border-b border-disabled py-2">
               <img src={icon_privat} alt="privat bank" />
-              <p>Приватбанк: 4149 6293 8909 9391</p>
+              <p>{t('donate:pay_systems.one')}: 4149 6293 8909 9391</p>
             </li>
             <li className="mb-3 flex gap-4 border-b border-disabled py-2">
               <img src={icon_mono} alt="mono bank" />
-              <p className="text-graphite">Монобанк: 4441 1144 6464 4952</p>
+              <p className="text-graphite">
+                {t('donate:pay_systems.two')}: 4441 1144 6464 4952
+              </p>
             </li>
             <li className="mb-3 flex gap-4 border-b border-disabled py-2">
               <img src={icon_paypal} alt="paypal" />
@@ -67,18 +77,20 @@ const Contacts = () => {
             <li className="mb-3 flex gap-4 border-b border-disabled py-2">
               <img src={icon_western_union} alt="western union" />
               <p className="text-graphite">
-                Western Union: Зезюкова Ірина Михайлівна
+                Western Union: {t('contacts:payment_name')}
               </p>
             </li>
             <li className="mb-3 flex gap-4 border-b border-disabled py-2">
               <img src={icon_swift} alt="swift" />
-              <p className="text-graphite">Swift /BIC код - PBANUA2X</p>
+              <p className="text-graphite">
+                Swift /BIC {t('contacts:code')} - PBANUA2X
+              </p>
             </li>
           </ul>
         </div>
       </div>
       <Map />
-    </div>
+    </section>
   );
 };
 

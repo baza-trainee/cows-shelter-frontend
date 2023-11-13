@@ -5,8 +5,8 @@ const UnderFooter = () => {
 
   return (
     <div>
-      <div className="border-t-2 py-5 text-center">
-        <p className="default-text">
+      <div className="border-t-2 px-5 py-4 text-center md:py-5">
+        <p className="text-base ">
           {t('footer:allRightsReserved.created')}{' '}
           <a
             href="https://baza-trainee.tech/ua"
