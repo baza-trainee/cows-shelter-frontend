@@ -6,7 +6,8 @@ export type ModalType =
   | 'burgerMenu'
   | 'partners'
   | 'donation'
-  | 'lightbox';
+  | 'lightbox'
+  | 'support_info';
 
 type ModalData = Record<string, any>;
 
@@ -33,13 +34,11 @@ const modalSlice = createSlice({
       state.isModalOpen = true;
       state.data = action.payload.data;
       state.type = action.payload.type;
-      document.getElementById('root')!.style.overflow = 'hidden';
     },
     closeModal(state) {
       state.isModalOpen = false;
       state.data = null;
       state.type = null;
-      document.getElementById('root')!.style.overflow = 'auto';
     }
   }
 });

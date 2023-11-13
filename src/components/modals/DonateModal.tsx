@@ -63,14 +63,14 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
 
   return (
     <div
-      className={`fixed left-0 top-0 z-[9999] h-screen w-screen bg-black  transition-all  duration-700 ${
+      className={`fixed left-0 top-0 z-[9999] h-screen w-screen bg-black transition-all duration-700 ${
         isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
       } `}
     >
       <div
         className={`absolute ${
-          isOpen ? '-right-4' : '-right-[500px]'
-        } top-[50%] max-h-[90vh] w-[320px] -translate-y-[50%] overflow-auto bg-white px-[37px] py-[40px] transition-all duration-700 md:w-[480px] md:px-20`}
+          isOpen ? 'right-0' : '-right-[500px]'
+        } no-scrollbar top-[45%] max-h-[90vh] w-full -translate-y-[50%] overflow-auto bg-white px-[37px] py-[40px] transition-all duration-700 md:top-[50%] md:w-[480px] md:px-20`}
       >
         <button
           onClick={handleClose}

@@ -49,6 +49,16 @@ body {
   }
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 .swiper-pagination-bullet {
   width: 44px;
   height: 4px;

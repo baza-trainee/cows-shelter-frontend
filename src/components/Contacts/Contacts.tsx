@@ -11,7 +11,7 @@ const Contacts = () => {
   return (
     <section className="container mx-auto max-w-[1440px]" id="partners">
       <div
-        className={`relative h-[80vh] bg-[url('/img_cow_contacts.png')] bg-cover bg-fixed bg-center bg-no-repeat`}
+        className={`relative h-[240px] overflow-hidden bg-[url('/img_cow_contacts.png')] bg-fixed bg-top bg-no-repeat lg:h-[80vh] lg:bg-center`}
       />
       <div className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
         <div className="basis-1/2">
