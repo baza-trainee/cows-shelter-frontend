@@ -5,17 +5,22 @@ import { excursions } from '@/data/excursions';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
+import { useInView } from 'react-intersection-observer';
 
 import ExcursionsReviews from './ExcursionsReviews';
 import ExcursionModal from './ExcursionModal';
 import LittleArrow from '../icons/LittleArrow';
 import Slider from '@/components/Slider';
 import ExcursionOrderModal from './ExcursionOrderModal';
+import { setActiveLink } from '@/store/slices/observationSlice';
 
 const Excursions = () => {
   const dispatch = useAppDispatch();
   const [activeExcursion, setActiveExcursion] = useState<ExcursionsData>();
   const [excursion, setExcursion] = useState(0);
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
 
   const { t } = useTranslation();
 
@@ -64,9 +69,18 @@ const Excursions = () => {
     }
   }, [currentPage]);
 
+  useEffect(() => {
+    if (inView) {
+      dispatch(setActiveLink('#excursions'));
+    } else {
+      dispatch(setActiveLink(''));
+    }
+  }, [inView, dispatch]);
+
   return (
     <section
-      id="#excursions"
+      id="excursions"
+      ref={ref}
       className="bg-[#F3F3F5] px-6 py-6 md:px-12 md:py-16 lg:px-[7.5rem] lg:py-20"
     >
       {windowWidth < 768 && (

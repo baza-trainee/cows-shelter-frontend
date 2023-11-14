@@ -1,19 +1,41 @@
+import { useTranslation } from 'react-i18next';
+import { useInView } from 'react-intersection-observer';
+import { setActiveLink } from '@/store/slices/observationSlice';
+import { useEffect } from 'react';
+import { useAppDispatch } from '@/store/hook';
+
 import icon_privat from '@/assets/icons/icon_privat.svg';
 import icon_mono from '@/assets/icons/icon_mono.svg';
 import icon_paypal from '@/assets/icons/icon_paypal.svg';
 import icon_western_union from '@/assets/icons/icon_western_union.svg';
 import icon_swift from '@/assets/icons/icon_swift.svg';
 import Map from './Map';
-import { useTranslation } from 'react-i18next';
 
 const Contacts = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
+
+  useEffect(() => {
+    if (inView) {
+      dispatch(setActiveLink('#contacts'));
+    } else {
+      dispatch(setActiveLink(''));
+    }
+  }, [inView, dispatch]);
+
   return (
-    <section className="container mx-auto max-w-[1440px]" id="partners">
+    <section className="container mx-auto max-w-[1440px]">
       <div
         className={`relative h-[240px] w-full bg-[url('/img_cow_contacts.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       />
-      <div className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
+      <div
+        className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20"
+        id="contacts"
+        ref={ref}
+      >
         <div className="basis-1/2">
           <h3 className="mb-5 text-2xl font-bold">
             {t('contacts:titles.contacts')}
