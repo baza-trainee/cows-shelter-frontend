@@ -1,4 +1,7 @@
 // import { useWidth } from '@/hooks/useWidth';
+import { useInView } from 'react-intersection-observer';
+import { setActiveLink } from '@/store/slices/observationSlice';
+import { useAppDispatch } from '@/store/hook';
 
 import image1 from '../../assets/images/about-img1.jpg';
 import image2 from '../../assets/images/about-img2.jpg';
@@ -6,20 +9,33 @@ import image3 from '../../assets/images/about-img3.jpg';
 import arrorIcon from '../../assets/icons/arrow-right.svg';
 import { useTranslation } from 'react-i18next';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const About = () => {
+  const dispatch = useAppDispatch();
   const [isOpened1, setIsOpened1] = useState(false);
   const [isOpened2, setIsOpened2] = useState(false);
   const [isOpened3, setIsOpened3] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0
+  });
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (inView) {
+      dispatch(setActiveLink('#about-us'));
+    } else {
+      dispatch(setActiveLink(''));
+    }
+  }, [inView, dispatch]);
 
   return (
     <>
       <section
-        className="bg-[#FDFDFF] px-[3rem] pt-20 min-[1280px]:px-[7.5rem]"
         id="about-us"
+        ref={ref}
+        className="bg-[#FDFDFF] px-[3rem] pt-20 min-[1280px]:px-[7.5rem] "
       >
         <h2 className="mb-10 text-[4rem] font-medium leading-normal">
           {t('about_us:header')}

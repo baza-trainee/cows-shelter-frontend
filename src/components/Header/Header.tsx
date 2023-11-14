@@ -18,6 +18,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+  const activeLink = useAppSelector((state) => state.observer.activeLink);
 
   const handleScroll = () => {
     if (window.scrollY >= 100) {
@@ -33,6 +34,7 @@ const Header = () => {
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
   };
+
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -46,6 +48,12 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (activeLink.length) {
+      setActiveSection(activeLink);
+    }
+  }, [activeLink]);
+
   return (
     <>
       <header
@@ -55,7 +63,7 @@ const Header = () => {
       >
         <div className=" mx-auto flex items-center justify-between px-5 text-lg text-white outline-transparent sm:w-[480px] md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
           <a
-            className="inline-bloc h-10 w-20 md:h-[50px] md:w-[100px]"
+            className="inline-block h-10 w-20 md:h-[50px] md:w-[100px]"
             href="/"
           >
             {isScrolled ? (
@@ -82,6 +90,7 @@ const Header = () => {
                   >
                     <a href={href} onClick={() => handleSectionChange(href)}>
                       {t(title)}
+                      {activeSection === href}
                     </a>
                   </li>
                 ))}
