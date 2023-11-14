@@ -28,7 +28,7 @@ const SideBar = () => {
   const paths = Object.values(params)[0]?.split('/');
 
   return (
-    <div className="relative flex h-[100vh] w-1/6 flex-col items-center justify-start bg-black text-white">
+    <div className="relative flex min-h-[100vh] w-[280px] flex-col items-center justify-start bg-black text-white">
       <div className=" flex h-[30vh] w-full items-center justify-center">
         <Link to="/" className="flex items-center justify-center gap-2">
           <img src="/favicon.svg" alt="" className="w-13 h-13" />

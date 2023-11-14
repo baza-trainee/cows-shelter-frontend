@@ -33,7 +33,7 @@ const LightBox = ({ images, image }: LightBoxProps) => {
       <div className="fixed left-[50%] top-[50%] z-[9999] flex h-full w-full -translate-x-[50%] -translate-y-[50%] items-center justify-center ">
         <button
           onClick={() => dispatch(closeModal())}
-          className="absolute right-4 top-0 z-50 cursor-pointer text-3xl text-white"
+          className="absolute right-4 top-4 z-50 cursor-pointer text-3xl text-white"
         >
           <CloseIcon />
         </button>

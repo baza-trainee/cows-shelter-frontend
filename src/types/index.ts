@@ -48,3 +48,11 @@ export type PartnersType = {
   href: string;
   src: string;
 };
+
+export type NewsFormInput = {
+  titleUa: string;
+  titleEn: string;
+  contentUa: string;
+  contentEn: string;
+  image: File[];
+};

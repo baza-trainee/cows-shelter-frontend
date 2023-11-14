@@ -7,14 +7,16 @@ import { images } from '@/data/gallery';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
+import { setActiveLink } from '@/store/slices/observationSlice';
+import { useInView } from 'react-intersection-observer';
 
+import ShareIcon from '../icons/ShareIcon';
+import ShareModal from '../modals/ShareModal';
 import ZoomArrow from '@/components/icons/ZoomArrow';
 import Slider from '@/components/Slider';
 import LightBox from './LightBox';
 
 import '@/styles/gallery.css';
-import ShareIcon from '../icons/ShareIcon';
-import ShareModal from '../modals/ShareModal';
 
 const Gallery = () => {
   const screenWidth = useWidth();
@@ -29,6 +31,9 @@ const Gallery = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
   const type = useAppSelector((state) => state.modals.type);
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
 
   useEffect(() => {
     if (screenWidth > 1280) {
@@ -92,8 +97,20 @@ const Gallery = () => {
 
   const data = usePaginatedData(images, start, finish);
 
+  useEffect(() => {
+    if (inView) {
+      dispatch(setActiveLink('#gallery'));
+    } else {
+      dispatch(setActiveLink(''));
+    }
+  }, [inView, dispatch]);
+
   return (
-    <section id="gallery" className="px-[20px] md:px-[48px] lg:px-[120px]">
+    <section
+      id="gallery"
+      ref={ref}
+      className="px-[20px] md:px-[48px] lg:px-[120px]"
+    >
       {isModalOpen && type === 'lightbox' && (
         <LightBox images={data} image={image} />
       )}

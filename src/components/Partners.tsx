@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { PartnersType } from '@/types';
+import { useInView } from 'react-intersection-observer';
+import { setActiveLink } from '@/store/slices/observationSlice';
 
 import logo_uaanimals from '@/assets/images/logo_uaanimals.png';
 import logo_sloboda from '@/assets/images/logo_svoboda.png';
@@ -21,6 +23,9 @@ const Partners = () => {
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
 
   const partners = [
     {
@@ -55,16 +60,23 @@ const Partners = () => {
     dispatch(openModal({ data: {}, type: 'partners' }));
   };
 
-  const handleChangedSize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
   useEffect(() => {
+    const handleChangedSize = () => {
+      setWindowWidth(window.innerWidth);
+    };
     window.addEventListener('resize', handleChangedSize);
     return () => {
       window.removeEventListener('resize', handleChangedSize);
     };
   }, []);
+
+  useEffect(() => {
+    if (inView) {
+      dispatch(setActiveLink('#partners'));
+    } else {
+      dispatch(setActiveLink(''));
+    }
+  }, [inView, dispatch]);
 
   const [start, setStart] = useState(0);
   const [finish, setFinish] = useState(3);
@@ -116,7 +128,7 @@ const Partners = () => {
   }, [isModalOpen]);
 
   return (
-    <section className="mx-auto bg-[#F3F3F5] ">
+    <section id="partners" ref={ref} className="mx-auto bg-[#F3F3F5] ">
       <div className="flex max-w-[1440px] flex-col px-5 py-6 md:px-12 md:pt-12 lg:px-[7.5rem] lg:py-20">
         <div className="sectionHeader mb-5 flex-row md:mb-8 lg:mb-14 lg:flex  lg:items-center lg:justify-between">
           <h2 className="text-[1.5rem] font-medium md:mb-6 md:text-[3rem] lg:text-[4rem]">

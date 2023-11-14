@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Confirm from '@/components/admin/Confirm';
+// import { useState } from 'react';
+// import Confirm from '@/components/admin/Confirm';
 import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { excursions } from '@/data/excursions';
@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 const Excursions = () => {
   const { t } = useTranslation();
-  const [showConfirm, setShowConfirm] = useState(false);
+  // const [showConfirm, setShowConfirm] = useState(false);
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center p-8">
       <div className="grid grid-cols-3 gap-4">
@@ -29,7 +29,7 @@ const Excursions = () => {
               </button>
               <button
                 className="text-xl text-white hover:text-red-500"
-                onClick={() => setShowConfirm(true)}
+                // onClick={() => setShowConfirm(true)}
               >
                 <BsFillTrash3Fill />
               </button>
@@ -43,7 +43,7 @@ const Excursions = () => {
         </button>
       </Link>
 
-      {showConfirm && <Confirm setShowConfirm={setShowConfirm} />}
+      {/* {showConfirm && <Confirm setShowConfirm={setShowConfirm} />} */}
     </div>
   );
 };
