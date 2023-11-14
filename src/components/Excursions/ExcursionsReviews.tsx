@@ -95,21 +95,21 @@ const ExcursionsReviews = () => {
   return (
     <section className="mb-0 px-12 md:-mb-10 lg:mb-0">
       <Slider
-        subtitle={t('excursions:reviews.reviews_title')}
+        subtitle={t('reviews:reviews_title')}
         setCurrentPage={setCurrentPage}
         pagesLength={pagesLength}
         isReviews={true}
       >
-        <ul className="mb-10 flex gap-6">
+        <ul className="flex gap-6">
           {data.map((item: Reviews) => (
             <li
               key={item.id}
-              className="h-[8.75rem] border-r border-disabled pr-16 md:h-40"
+              className="border-r border-disabled pr-5 md:h-40 md:max-w-[50%] md:pr-10 lg:max-w-[33.3%] lg:pr-16"
             >
-              <p className="mb-2.5 text-sm leading-tight md:text-xl md:leading-6 lg:text-2xl">
+              <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
                 {t(item.name)}
               </p>
-              <p className="default-text"> {t(item.review)}</p>
+              <p className="default-text md:text-base"> {t(item.review)}</p>
             </li>
           ))}
         </ul>

@@ -71,7 +71,7 @@ const Excursions = () => {
     >
       {windowWidth < 768 && (
         <div>
-          <h2 className="mb-10 text-2xl font-bold leading-normal">
+          <h2 className="mb-10 text-2xl font-medium leading-normal">
             {t('excursions:title')}
           </h2>
           <ul className="mb-5 flex flex-col items-center gap-4">
@@ -80,7 +80,9 @@ const Excursions = () => {
                 <div className="relative">
                   <img src={item.mainImgSrc_mobile} alt={t(item.title)}></img>
                   <div className="absolute bottom-0 left-0 flex flex-col gap-3 pb-5 pl-5 text-white">
-                    <p className="text-lg leading-normal">{t(item.title)}</p>
+                    <p className="text-lg font-medium leading-normal">
+                      {t(item.title)}
+                    </p>
                     <a>
                       <button
                         className="flex gap-3 border border-solid border-white py-2.5 pl-5 pr-4"
@@ -115,7 +117,9 @@ const Excursions = () => {
                   <img src={item.mainImgSrc_tablet} alt={t(item.title)}></img>
                   <div className="fixed left-0 top-0 h-full w-full"></div>
                   <div className="absolute bottom-0 left-0 flex flex-col gap-5 pb-6 pl-6 text-white">
-                    <p className="text-xl">{t(item.title)}</p>
+                    <p className="text-xl font-semibold leading-normal">
+                      {t(item.title)}
+                    </p>
                     <a>
                       <button
                         className="flex gap-3 border border-solid border-white py-[0.69rem] pl-6 pr-2.5"
@@ -123,7 +127,7 @@ const Excursions = () => {
                           setExcursion(index), openExcursionModal();
                         }}
                       >
-                        <span className="text-lg font-medium leading-[1.35rem]">
+                        <span className="text-lg font-medium leading-tight">
                           {t('excursions:excursion.show_more_btn')}
                         </span>
                         <LittleArrow />
@@ -148,7 +152,9 @@ const Excursions = () => {
                   <img src={item.mainImgSrc} alt={t(item.title)}></img>
                   <div className="fixed left-0 top-0 h-full w-full bg-black/[.60] opacity-0 transition-all duration-700 group-hover:opacity-100"></div>
                   <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
-                    <p className="text-2xl leading-6">{t(item.title)}</p>
+                    <p className="text-[22px] font-semibold leading-normal">
+                      {t(item.title)}
+                    </p>
                     <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
                       {t('excursions:excursion.small_description')}
                     </p>
@@ -159,7 +165,7 @@ const Excursions = () => {
                           setExcursion(index), openExcursionModal();
                         }}
                       >
-                        <span className="text-lg font-medium leading-[1.35rem]">
+                        <span className="text-lg font-medium leading-tight">
                           {t('excursions:excursion.show_more_btn')}
                         </span>
                         <LittleArrow />

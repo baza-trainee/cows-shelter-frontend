@@ -50,7 +50,7 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
       className="fixed left-0 top-0 z-50 h-[100%] w-full bg-black/[.60]"
       onClick={handleOverlayClick}
     >
-      <div className="absolute left-1/2 top-1/2 h-[587px] w-[85%] translate-x-[-50%] translate-y-[-50%] overflow-auto border-2 border-solid border-white bg-graphite px-5 pb-12 pt-4 md:h-auto md:w-[672px] md:px-10 md:pb-10 md:pt-10 lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]">
+      <div className="absolute left-1/2 top-1/2 h-[587px] w-[85%] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-graphite px-5 pb-12 pt-4 md:h-auto md:w-[672px] md:px-10 md:pb-10 md:pt-10 lg:w-[1136px] lg:border-2 lg:border-solid lg:border-white lg:px-[3.75rem] lg:pb-[3.75rem]">
         <div className="flex flex-col md:gap-6 lg:flex-row lg:gap-10">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2 md:flex-row md:gap-6 lg:gap-9">
@@ -104,7 +104,7 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
             )}
           </div>
           <div className="mt-[1.25rem] flex w-[90%] flex-col justify-between gap-3.5 md:mt-0 md:w-[592px] md:gap-4 lg:w-[28.75rem]">
-            <h3 className="text-lg font-semibold leading-normal text-white md:mt-0 md:text-xl md:font-bold lg:mt-10 lg:text-2xl">
+            <h3 className="text-lg font-semibold leading-normal text-white md:mt-0 md:text-xl lg:mt-10 lg:text-2xl lg:font-bold">
               {t(excursion.title)}
             </h3>
             <p className="text-sm font-normal leading-normal text-white md:text-base">
