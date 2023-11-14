@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useWidth } from '@/hooks/useWidth';
 import { cards, steps } from '@/data/support';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
@@ -12,6 +13,7 @@ import SupportInfoModal from '../modals/SupportInfoModal';
 const Support = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const screenWidth = useWidth();
   const [showModal, setShowModal] = useState(false);
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
@@ -67,25 +69,32 @@ const Support = () => {
           />
           ;
         </div>
-        <div className="relative mt-10 flex w-full ">
+        <div className="relative mt-10 w-full md:flex ">
           <ul className="flex-1">
             {steps.map((step, index) => (
               <li
                 key={index}
-                className="mb-[24px] flex items-center justify-start gap-4"
+                className="mx-auto mb-[24px] flex w-[90%] items-center justify-start gap-4"
               >
-                <div>
-                  <span className="flex h-[50px] w-[51px]  items-center justify-center rounded-full border-2 border-yellowshadow text-[1.5rem] font-bold text-darkgray lg:h-[58px] lg:w-[59px] lg:text-[24px]">
-                    {index + 1}
-                  </span>
+                <div className="w-[0.5rem] md:w-[4rem]">
+                  {screenWidth >= 768 ? (
+                    <div className="">
+                      <span className="flex h-[50px] w-[51px]  items-center justify-center rounded-full border-2 border-yellowshadow text-[1.5rem] font-bold text-darkgray lg:h-[58px] lg:w-[59px] lg:text-[24px]">
+                        {index + 1}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="h-[3px] w-[3px] rounded-full bg-black"></div>
+                  )}
                 </div>
-                <p className=" text-[14px] lg:text-[22px]">
+
+                <p className="text-[14px] lg:text-[22px]">
                   {t(`support:${step}`)}
                 </p>
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-end pb-4 md:justify-center">
             <button
               onClick={openDonateModal}
               className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
