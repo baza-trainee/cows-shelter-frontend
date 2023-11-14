@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Confirm from '@/components/admin/Confirm';
+// import Confirm from '@/components/admin/Confirm';
 import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import Edit from './edit';
 
@@ -10,7 +10,7 @@ const contacts = {
 
 const Contacts = () => {
   const [data, setData] = useState('');
-  const [showConfirm, setShowConfirm] = useState(false);
+  // const [showConfirm, setShowConfirm] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center p-8">
@@ -29,7 +29,7 @@ const Contacts = () => {
           </button>
           <button
             className="text-xl text-black hover:text-red-500"
-            onClick={() => setShowConfirm(true)}
+            // onClick={() => setShowConfirm(true)}
           >
             <BsFillTrash3Fill />
           </button>
@@ -50,14 +50,14 @@ const Contacts = () => {
           </button>
           <button
             className="text-xl text-black hover:text-red-500"
-            onClick={() => setShowConfirm(true)}
+            // onClick={() => setShowConfirm(true)}
           >
             <BsFillTrash3Fill />
           </button>
         </div>
       </div>
       {isModalOpen && <Edit setIsModalOpen={setIsModalOpen} data={data} />}
-      {showConfirm && <Confirm setShowConfirm={setShowConfirm} />}
+      {/* {showConfirm && <Confirm setShowConfirm={setShowConfirm} />} */}
     </div>
   );
 };

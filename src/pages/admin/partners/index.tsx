@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import Confirm from '@/components/admin/Confirm';
+// import { useState } from 'react';
+// import Confirm from '@/components/admin/Confirm';
 import { partners } from '@/data/partners';
 import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const Partners = () => {
-  const [showConfirm, setShowConfirm] = useState(false);
+  // const [showConfirm, setShowConfirm] = useState(false);
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center p-8">
       <div className="grid grid-cols-4 gap-4">
@@ -30,7 +30,7 @@ const Partners = () => {
               </button>
               <button
                 className="text-xl text-black hover:text-red-500"
-                onClick={() => setShowConfirm(true)}
+                // onClick={() => setShowConfirm(true)}
               >
                 <BsFillTrash3Fill />
               </button>
@@ -44,7 +44,7 @@ const Partners = () => {
         </button>
       </Link>
 
-      {showConfirm && <Confirm setShowConfirm={setShowConfirm} />}
+      {/* {showConfirm && <Confirm setShowConfirm={setShowConfirm} />} */}
     </div>
   );
 };
