@@ -195,20 +195,19 @@
         "p1": "The shelter has a charitable basis, not a commodity-economic one, and from the very beginning it was created and existed solely with the funds of the family and a few like-minded people. Every conscious person can participate in the purchase of fodder for the shelter to provide cows and bulls with comfortable conditions life to a deep happy old age.",
         "p2": "We are grateful to our partners and like-minded people for every hryvnia of help and we believe in the forces of kindness and love that motivate smart people not to let shelter wards perish from hunger."
       }
-    },
-
-    "contacts": {
-      "titles": {
-        "contacts": "Contacts",
-        "working_hours": "Working Hours",
-        "location": "Location",
-        "payment": "Details for shelter support:"
-      },
-      "working_days": "Monday - Friday",
-      "location_main": "11 Vynohradna Street, Busha Village,",
-      "location_secondary": "Vinnytsia Oblast, Ukraine",
-      "payment_name": "Zeziukova Iryna Mykhailivna",
-      "code": "code"
     }
+  },
+  "contacts": {
+    "titles": {
+      "contacts": "Contacts",
+      "working_hours": "Working Hours",
+      "location": "Location",
+      "payment": "Details for shelter support:"
+    },
+    "working_days": "Monday - Friday",
+    "location_main": "11 Vynohradna Street, Busha Village,",
+    "location_secondary": "Vinnytsia Oblast, Ukraine",
+    "payment_name": "Zeziukova Iryna Mykhailivna",
+    "code": "code"
   }
 }
