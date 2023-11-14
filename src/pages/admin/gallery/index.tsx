@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Confirm from '@/components/admin/Confirm';
+// import Confirm from '@/components/admin/Confirm';
 import { BsFillTrash3Fill } from 'react-icons/bs';
 import { images } from '@/data/gallery';
 import AddImage from './add';
 
 const Gallery = () => {
-  const [showConfirm, setShowConfirm] = useState(false);
+  // const [showConfirm, setShowConfirm] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ const Gallery = () => {
             <div className="buttons absolute right-2 top-2 flex gap-2">
               <button
                 className="text-xl text-white hover:text-red-500"
-                onClick={() => setShowConfirm(true)}
+                // onClick={() => setShowConfirm(true)}
               >
                 <BsFillTrash3Fill />
               </button>
@@ -38,7 +38,7 @@ const Gallery = () => {
         ))}
       </div>
       {isModalOpen && <AddImage setIsModalOpen={setIsModalOpen} />}
-      {showConfirm && <Confirm setShowConfirm={setShowConfirm} />}
+      {/* {showConfirm && <Confirm setShowConfirm={setShowConfirm} />} */}
     </div>
   );
 };

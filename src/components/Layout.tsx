@@ -9,6 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
+      document.body.style.overflowX = 'hidden';
     }
   }, [isModalOpen]);
 

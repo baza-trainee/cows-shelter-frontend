@@ -14,7 +14,8 @@ export default {
         darkyellow: '#B1A016',
         lightyellow: '#FFFDED',
         yellowshadow: '#DEDCCD',
-        lightgrey: '#F3F3F5'
+        lightgrey: '#F3F3F5',
+        error: '#ba0f30'
       },
       fontFamily: {
         namu: ['namu', 'sans-serif']
