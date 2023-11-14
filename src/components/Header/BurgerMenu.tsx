@@ -11,12 +11,15 @@ const BurgerMenu = () => {
   const {
     i18n: { changeLanguage, language }
   } = useTranslation();
-  const handleSectionChange = (section: string) => {
-    setActiveSection(section);
-  };
+
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const closeBurgerMenu = () => dispatch(closeModal());
+
+  const handleSectionChange = (section: string) => {
+    setActiveSection(section);
+    closeBurgerMenu();
+  };
 
   const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget === event.target) {
@@ -103,12 +106,14 @@ const BurgerMenu = () => {
           </button>
         </div>
         {windowWidth < 768 && (
-          <button
+          <a
+            onClick={closeBurgerMenu}
+            href="#donate"
             className=" mx-auto flex h-11 w-[272px] items-center justify-center border border-black border-transparent bg-accent py-3 text-lg text-black transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black focus:bg-lemon focus:text-black active:bg-darkyellow active:text-black"
             type="button"
           >
             {t('header:btn_donate')}
-          </button>
+          </a>
         )}
       </div>
     </div>

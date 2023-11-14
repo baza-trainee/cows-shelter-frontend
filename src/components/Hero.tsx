@@ -28,7 +28,7 @@ const Hero = () => {
         <div className="relative flex items-end justify-between ">
           <a
             className="  flex gap-3 border-b fill-white pb-3 text-base text-white transition-all duration-300 hover:border-accent hover:text-accent focus:border-accent focus:text-accent lg:text-[1.06rem]"
-            href="#location"
+            href="#contacts"
           >
             <LocationIcon />
             {t('hero:address')}

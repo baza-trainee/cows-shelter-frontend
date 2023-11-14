@@ -116,7 +116,7 @@ const Partners = () => {
   }, [isModalOpen]);
 
   return (
-    <section className="mx-auto bg-[#F3F3F5] ">
+    <section className="mx-auto bg-[#F3F3F5] " id="partners">
       <div className="flex max-w-[1440px] flex-col px-5 py-6 md:px-12 md:pt-12 lg:px-[7.5rem] lg:py-20">
         <div className="sectionHeader mb-5 flex-row md:mb-8 lg:mb-14 lg:flex  lg:items-center lg:justify-between">
           <h2 className="text-[1.5rem] font-medium md:mb-6 md:text-[3rem] lg:text-[4rem]">

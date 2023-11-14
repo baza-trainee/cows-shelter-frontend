@@ -17,7 +17,10 @@ const About = () => {
 
   return (
     <>
-      <section className="bg-[#FDFDFF] px-[3rem] pt-20 min-[1280px]:px-[7.5rem] ">
+      <section
+        className="bg-[#FDFDFF] px-[3rem] pt-20 min-[1280px]:px-[7.5rem]"
+        id="about-us"
+      >
         <h2 className="mb-10 text-[4rem] font-medium leading-normal">
           {t('about_us:header')}
         </h2>

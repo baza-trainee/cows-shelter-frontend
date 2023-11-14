@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 const Contacts = () => {
   const { t } = useTranslation();
   return (
-    <section className="container mx-auto max-w-[1440px]" id="partners">
+    <section className="container mx-auto max-w-[1440px]" id="contacts">
       <div
         className={`relative h-[240px] w-full bg-[url('/img_cow_contacts.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       />

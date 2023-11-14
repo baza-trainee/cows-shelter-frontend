@@ -66,7 +66,7 @@ const Excursions = () => {
 
   return (
     <section
-      id="#excursions"
+      id="excursions"
       className="bg-[#F3F3F5] px-6 py-6 md:px-12 md:py-16 lg:px-[7.5rem] lg:py-20"
     >
       {windowWidth < 768 && (
