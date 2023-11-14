@@ -6,8 +6,6 @@ import image3 from '../../assets/images/about-img3.jpg';
 import arrorIcon from '../../assets/icons/arrow-right.svg';
 import { useTranslation } from 'react-i18next';
 
-
-
 import { useState } from 'react';
 
 const About = () => {
@@ -223,7 +221,7 @@ const About = () => {
         </div>
       </section>
       <div
-        className={`relative h-[80vh] bg-[url('@/assets/imgs/img_cow_about.jpg')] bg-cover bg-fixed bg-center bg-no-repeat`}
+        className={`relative h-[240px] w-full bg-[url('/about/img_cow_about.webp')] bg-cover   bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       ></div>
     </>
   );

@@ -40,11 +40,11 @@ const Support = () => {
   return (
     <section className="">
       <div
-        className={`relative h-[240px] w-full bg-[url('/support/support_bg.png')]  bg-fixed bg-top bg-no-repeat md:h-[240px] lg:h-[80vh] lg:bg-center`}
+        className={`relative h-[240px] w-full bg-[url('/support/support_bg.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       />
       <div
         id="donate"
-        className="flex flex-col items-start justify-center px-[20px] md:px-[48px] lg:px-[120px]"
+        className="flex flex-col items-start justify-center px-[21px] md:px-[48px] lg:px-[120px]"
       >
         <h2 className="my-[20px] text-[24px] font-medium md:text-[54px] lg:text-[64px] ">
           {t('support:title')}
@@ -75,7 +75,7 @@ const Support = () => {
                 className="mb-[24px] flex items-center justify-start gap-4"
               >
                 <div>
-                  <span className="flex h-[50px] w-[51px]  items-center justify-center rounded-full border border-yellowshadow text-[1.5rem] lg:h-[58px] lg:w-[59px] lg:text-[2rem]">
+                  <span className="flex h-[50px] w-[51px]  items-center justify-center rounded-full border-2 border-yellowshadow text-[1.5rem] font-bold text-darkgray lg:h-[58px] lg:w-[59px] lg:text-[24px]">
                     {index + 1}
                   </span>
                 </div>

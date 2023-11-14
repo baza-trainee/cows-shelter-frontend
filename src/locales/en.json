@@ -129,12 +129,11 @@
       "duration": "30 - 60 minutes",
       "number_of_people": "2 - 14 people",
       "order_btn": "Order an excursion"
-  },
+    },
     "order_modal": {
       "title": "Order an excursion!",
       "text": "Contact us and we will provide you with the information you need",
       "address": "Vinnytsia region, v.Busha, str. Vynogradna 11"
-  }
     },
     "reviews": {
       "reviews_title": "Reviews",
@@ -156,6 +155,7 @@
       "review_8": "I really liked the excursion, I visited it with my children, it was very exciting",
       "name_9": "Elena",
       "review_9": "I really liked the excursion, I visited it with my children, it was very exciting"
+    }
   },
 
   "about_us": {
@@ -197,19 +197,18 @@
       }
     },
 
-  "contacts": {
-    "titles": {
-      "contacts": "Contacts",
-      "working_hours": "Working Hours",
-      "location": "Location",
-      "payment": "Details for shelter support:"
-    },
-    "working_days": "Monday - Friday",
-    "location_main": "11 Vynohradna Street, Busha Village,",
-    "location_secondary": "Vinnytsia Oblast, Ukraine",
-    "payment_name": "Zeziukova Iryna Mykhailivna",
-    "code": "code"
-
+    "contacts": {
+      "titles": {
+        "contacts": "Contacts",
+        "working_hours": "Working Hours",
+        "location": "Location",
+        "payment": "Details for shelter support:"
+      },
+      "working_days": "Monday - Friday",
+      "location_main": "11 Vynohradna Street, Busha Village,",
+      "location_secondary": "Vinnytsia Oblast, Ukraine",
+      "payment_name": "Zeziukova Iryna Mykhailivna",
+      "code": "code"
+    }
   }
-}
 }
