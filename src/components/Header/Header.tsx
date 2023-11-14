@@ -56,7 +56,7 @@ const Header = () => {
         <div className=" mx-auto flex items-center justify-between px-5 text-lg text-white outline-transparent sm:w-[480px] md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
           <a
             className="inline-bloc h-10 w-20 md:h-[50px] md:w-[100px]"
-            href="../main.tsx"
+            href="/"
           >
             {isScrolled ? (
               <img src="/Logo-black.svg" alt="" />
