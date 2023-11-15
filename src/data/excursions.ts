@@ -42,7 +42,7 @@ export const excursions = [
     description: 'excursions:excursion.description_3',
     mainImgSrc: 'excursions/excursion_3.jpg',
     mainImgSrc_tablet: 'excursions/excursion_3_tablet.jpg',
-    mainImgSrc_mobile: 'excursions/excursion_2_mobile.jpg',
+    mainImgSrc_mobile: 'excursions/excursion_3_mobile.jpg',
     imagesSrs: [
       'excursions/excursion3.jpg',
       'excursions/excursion_modal_1_2.jpg',
