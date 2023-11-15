@@ -13,11 +13,13 @@ import Partners from './pages/admin/partners';
 import AddPartner from './pages/admin/partners/add';
 import EditPartner from './pages/admin/partners/edit';
 import Contacts from './pages/admin/contacts';
+import Login from './pages/admin/login';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="login" element={<Login />} />
       <Route path="admin/*" element={<AdminPage />}>
         <Route index element={<News />} />
         <Route path="news/add" element={<AddNews />} />
