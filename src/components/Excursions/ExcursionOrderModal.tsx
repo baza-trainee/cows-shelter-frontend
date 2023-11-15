@@ -5,12 +5,26 @@ import icon_phone from '@/assets/icons/icon_phone.svg';
 import icon_email from '@/assets/icons/icon_email.svg';
 import logo_icon from '@/assets/icons/logo_icon.svg';
 import { closeModal } from '@/store/slices/modalSlice';
-import { MouseEvent, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useState
+} from 'react';
 
 import close_icon_black from '@/assets/icons/close_icon_black.svg';
 import close_icon from '@/assets/icons/close_icon.svg';
 
-const ExcursionOrderModal = () => {
+type ExcursionOrderModalProps = {
+  isOpen: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+};
+
+const ExcursionOrderModal = ({
+  isOpen,
+  setShowModal
+}: ExcursionOrderModalProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -26,7 +40,12 @@ const ExcursionOrderModal = () => {
     };
   }, []);
 
-  const closeExcursionsModal = () => dispatch(closeModal());
+  const closeExcursionsModal = () => {
+    setShowModal(false);
+    setTimeout(() => {
+      dispatch(closeModal());
+    }, 500);
+  };
 
   const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget === event.target) {
@@ -35,10 +54,17 @@ const ExcursionOrderModal = () => {
   };
   return (
     <div
-      className="fixed left-0 top-0 z-50 h-[100%] w-full bg-black/[.60]"
+      className={`fixed left-0 top-0 z-50 h-screen w-screen bg-black transition-all duration-700 ${
+        isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
+      } `}
       onClick={handleOverlayClick}
     >
-      <div className="absolute left-1/2 top-1/2 w-full translate-x-[-50%] translate-y-[-50%] bg-white px-5 pb-5 pt-[1.88rem] md:w-[672px] md:px-0 md:pb-0 md:pr-0 md:pt-0 lg:h-[485px] lg:w-[1044px]">
+      <div
+        className={`absolute left-1/2 top-1/2 ${
+          isOpen ? 'translate-x-0' : 'translate-x-[100%]'
+        } w-full translate-x-[-50%] translate-y-[-50%] bg-white 
+      px-5 pb-5 pt-[1.88rem] transition-all duration-700 md:w-[672px] md:px-0 md:pb-0 md:pr-0 md:pt-0 lg:h-[485px] lg:w-[1044px]`}
+      >
         <div className="md:flex">
           <div className="pl-0 pr-0  md:py-10 md:pl-12 md:pr-12 lg:py-[3.75rem] lg:pl-20">
             {windowWidth >= 768 && (

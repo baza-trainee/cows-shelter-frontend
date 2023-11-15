@@ -2,16 +2,28 @@ import people_icon from '@/assets/icons/people_icon.svg';
 import time_icon from '@/assets/icons/time_icon.svg';
 import close_icon from '@/assets/icons/close_icon.svg';
 import { closeModal, openModal } from '@/store/slices/modalSlice';
-import { MouseEvent, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useEffect,
+  useState
+} from 'react';
 import { useAppDispatch } from '@/store/hook';
 import { ExcursionsData } from '@/types';
 import { useTranslation } from 'react-i18next';
 
 type ExcursionsModalProps = {
   excursion: ExcursionsData;
+  isOpen: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
+const ExcursionModal = ({
+  excursion,
+  isOpen,
+  setShowModal
+}: ExcursionsModalProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -27,7 +39,12 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
     };
   }, []);
 
-  const closeExcursionsModal = () => dispatch(closeModal());
+  const closeExcursionsModal = () => {
+    setShowModal(false);
+    setTimeout(() => {
+      dispatch(closeModal());
+    }, 500);
+  };
 
   const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget === event.target) {
@@ -47,24 +64,32 @@ const ExcursionModal = ({ excursion }: ExcursionsModalProps) => {
 
   return (
     <div
-      className="fixed left-0 top-0 z-50 h-[100%] w-full bg-black/[.60]"
+      className={`fixed left-0 top-0 z-50 h-screen w-screen bg-black transition-all duration-700 ${
+        isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
+      } `}
       onClick={handleOverlayClick}
     >
-      <div className="absolute left-1/2 top-1/2 h-[587px] w-[85%] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-graphite px-5 pb-12 pt-4 md:h-auto md:w-[672px] md:px-10 md:pb-10 md:pt-10 lg:w-[1136px] lg:border-2 lg:border-solid lg:border-white lg:px-[3.75rem] lg:pb-[3.75rem]">
+      <div
+        className={`absolute left-1/2 top-1/2 ${
+          isOpen ? 'translate-x-0' : 'translate-x-[100%]'
+        } h-[675px] w-[85%] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-graphite 
+        px-5 pb-12 pt-4 transition-all duration-700 md:h-auto md:w-[672px] md:px-10 md:pb-10 
+         md:pt-10 lg:w-[1136px] lg:border-2 lg:border-solid lg:border-white lg:px-[3.75rem] lg:pb-[3.75rem]`}
+      >
         <div className="flex flex-col md:gap-6 lg:flex-row lg:gap-10">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2 md:flex-row md:gap-6 lg:gap-9">
               <div className="flex gap-3">
                 <img src={time_icon} width={24} height={24}></img>
                 <span className="text-sm leading-normal text-accent md:text-base">
-                  {t('excursions:excursion.duration')}
+                  {t(excursion.duration)}
                 </span>
               </div>
               <div className="flex gap-3">
                 <img src={people_icon} width={24} height={24}></img>
                 <span className="text-sm leading-normal text-accent md:text-base">
                   {' '}
-                  {t('excursions:excursion.number_of_people')}{' '}
+                  {t(excursion.number_of_people)}
                 </span>
               </div>
             </div>

@@ -93,7 +93,7 @@ const ExcursionsReviews = () => {
   }, [windowWidth, currentPage, itemsPerPage]);
 
   return (
-    <section className="mb-0 px-12 md:-mb-10 lg:mb-0">
+    <section className="mb-0 px-5 md:-mb-10 md:px-12 lg:mb-0">
       <Slider
         subtitle={t('reviews:reviews_title')}
         setCurrentPage={setCurrentPage}
