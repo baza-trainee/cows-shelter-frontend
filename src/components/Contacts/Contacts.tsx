@@ -1,22 +1,43 @@
+import { useTranslation } from 'react-i18next';
+import { useInView } from 'react-intersection-observer';
+import { setActiveLink } from '@/store/slices/observationSlice';
+import { useEffect } from 'react';
+import { useAppDispatch } from '@/store/hook';
+
 import icon_privat from '@/assets/icons/icon_privat.svg';
 import icon_mono from '@/assets/icons/icon_mono.svg';
 import icon_paypal from '@/assets/icons/icon_paypal.svg';
 import icon_western_union from '@/assets/icons/icon_western_union.svg';
 import icon_swift from '@/assets/icons/icon_swift.svg';
 import Map from './Map';
-import { useTranslation } from 'react-i18next';
 
 const Contacts = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
+
+  useEffect(() => {
+    if (inView) {
+      dispatch(setActiveLink('#contacts'));
+    } else {
+      dispatch(setActiveLink(''));
+    }
+  }, [inView, dispatch]);
 
   return (
-    <section className="container mx-auto max-w-[1440px]" id="partners">
+    <section className="container mx-auto max-w-[1440px]">
       <div
-        className={`relative sm:h-[30vh] md:h-[60vh] lg:h-[80vh] bg-[url('@/assets/imgs/img_cow_contacts.png')] bg-cover bg-fixed bg-center bg-no-repeat`}
-      ></div>
-      <div className="flex sm:flex-col-reverse sm:px-5 sm:py-6 md:flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20">
-        <div className="basis-1/2 sm:mb-16">
-          <h3 className="mb-5 font-bold sm:text-lg md:text-xl lg:text-2xl">
+        className={`relative h-[240px] w-full bg-[url('/img_cow_contacts.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
+      />
+      <div
+        className="flex flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20"
+        id="contacts"
+        ref={ref}
+      >
+        <div className="basis-1/2">
+          <h3 className="mb-5 text-2xl font-bold">
             {t('contacts:titles.contacts')}
           </h3>
           <ul className="mb-6 flex flex-col gap-2 text-graphite sm:text-sm md:text-base lg:text-[17px]">

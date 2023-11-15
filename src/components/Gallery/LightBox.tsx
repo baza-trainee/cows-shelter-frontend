@@ -33,7 +33,7 @@ const LightBox = ({ images, image }: LightBoxProps) => {
       <div className="fixed left-[50%] top-[50%] z-[9999] flex h-full w-full -translate-x-[50%] -translate-y-[50%] items-center justify-center ">
         <button
           onClick={() => dispatch(closeModal())}
-          className="absolute right-4 top-0 z-50 cursor-pointer text-3xl text-white"
+          className="absolute right-4 top-4 z-50 cursor-pointer text-3xl text-white"
         >
           <CloseIcon />
         </button>
@@ -53,11 +53,11 @@ const LightBox = ({ images, image }: LightBoxProps) => {
               className=" relative flex w-full items-center justify-center"
               key={index}
             >
-              <div className="relative max-h-[590px] w-[590px]">
+              <div className="relative max-h-[480px] w-[480px] lg:max-h-[590px] lg:w-[590px]">
                 <img src={image.url} className="w-full object-cover" />
                 <div
                   onClick={() => setShowModal(true)}
-                  className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.8)]"
+                  className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.5)]"
                   title="Share in Social Media"
                 >
                   <ShareIcon />

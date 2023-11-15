@@ -63,14 +63,14 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
 
   return (
     <div
-      className={`fixed left-0 top-0 z-[9999] h-screen w-screen bg-black  transition-all  duration-700 ${
+      className={`fixed left-0 top-0 z-[9999] h-screen w-screen bg-black transition-all duration-700 ${
         isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
       } `}
     >
       <div
         className={`absolute ${
-          isOpen ? '-right-4' : '-right-[500px]'
-        } top-[50%] max-h-[90vh] w-[300px] -translate-y-[50%] overflow-auto  bg-white px-3 py-[42px] transition-all  duration-700 md:w-[480px] md:px-20`}
+          isOpen ? 'right-0' : '-right-[500px]'
+        } no-scrollbar top-[45%] max-h-[90vh] w-full -translate-y-[50%] overflow-auto bg-white px-[37px] py-[40px] transition-all duration-700 md:top-[50%] md:w-[480px] md:px-20`}
       >
         <button
           onClick={handleClose}
@@ -80,7 +80,9 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
           <CloseIcon />
         </button>
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <p className="mb-5 text-xl font-bold">{t('donate:methode')}</p>
+          <p className=" mb-4 text-lg font-semibold md:mb-5 md:text-xl md:font-bold">
+            {t('donate:methode')}
+          </p>
           <div role="group" className="mb-10 flex flex-wrap gap-3">
             {wayOfHelping.map(({ value, title }) => (
               <label
@@ -114,7 +116,9 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
               </label>
             ))}
           </div>
-          <p className="mb-5 text-xl font-bold">{t('donate:amount')}</p>
+          <p className=" mb-4 text-lg font-semibold md:mb-5 md:text-xl md:font-bold">
+            {t('donate:amount')}
+          </p>
           <div role="group" className="relative mb-10 flex flex-wrap gap-3">
             {amountDonate.map(({ value, title }) => (
               <label
@@ -160,7 +164,9 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
               />
             </label>
           </div>
-          <p className="mb-5 text-xl font-bold">{t('donate:pay')}</p>
+          <p className=" mb-4 text-lg font-semibold md:mb-5 md:text-xl md:font-bold">
+            {t('donate:pay')}
+          </p>
           <div role="group" className="mb-10 flex w-[200px] flex-wrap gap-3">
             {paySystems.map(({ value, title, url }) => (
               <label

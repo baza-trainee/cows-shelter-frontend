@@ -81,13 +81,12 @@
     "methods": {
       "one_time": "One-time donate",
       "monthly": "Monthly donate"
-
     },
     "amount": "Choose the donation amount",
     "amounts": {
-      "one": "200",
-      "two": "500",
-      "three": "1000",
+      "one": "50",
+      "two": "100",
+      "three": "200",
       "four": "Enter a different amount"
     },
     "pay": "Choose a payment method",
@@ -108,15 +107,15 @@
     "text": "Friends, thank you to everyone who supports the shelter, realizing the great benefit of our good work with you. Join the purchase of feed for cows to help these wonderful creatures and fill the world with positive energy.",
     "card_title_1": "One-time assistance",
     "card_subtitle_1": "When cows are in love, they fulfill their natural function",
-    "card_banner_1": "We are always happy for new like-minded people who want to become participants in the good and sunny moods broadcast by the residents of the shelter! Any amount will be your sincere contribution to improving our world.",
+    "card_banner_1": "We are always happy for new \nlike-minded people, \nwho want to become participants \nin the good and sunny moods \nbroadcast by the residents of the shelter! \n \nAny amount will be your sincere \ncontribution to improving \nour world.",
     "card_title_2": "Monthly assistance",
     "card_subtitle_2": "Repay any amount every month. Cows need stability and your care",
-    "card_banner_2": "If charity is your life's work, help provide the cows with everything they need, even a little at a time, but regularly. We believe in the power of unity and only thanks to this faith we continue to stay in line!",
+    "card_banner_2": "If charity is your life's work, help provide \nthe cows with everything they need, \neven a little at a time, but regularly. \n\nWe believe in the power of unity \nand only thanks to this faith \nwe continue to stay in line!",
     "read_more": "Read More",
     "help": "Help",
-    "support":"To Support"
+    "support": "To Support"
   },
-    "excursions": {
+  "excursions": {
     "title": "Excursions",
     "excursion": {
       "title_1": "Art therapy with cows",
@@ -130,7 +129,12 @@
       "duration": "30 - 60 minutes",
       "number_of_people": "2 - 14 people",
       "order_btn": "Order an excursion"
-  },
+    },
+    "order_modal": {
+      "title": "Order an excursion!",
+      "text": "Contact us and we will provide you with the information you need",
+      "address": "Vinnytsia region, v.Busha, str. Vynogradna 11"
+    },
     "reviews": {
       "reviews_title": "Reviews",
       "name_1": "Anna",
@@ -153,9 +157,49 @@
       "review_9": "I really liked the excursion, I visited it with my children, it was very exciting"
     }
   },
-    "contacts": {
+
+  "about_us": {
+    "header": "About us",
+    "main_text": "Healthy Life is a cow protection shelter whose activities aim to maintain and restore the cow population based on protected, spiritual and moral principles, to replace agricultural consumers.",
+    "s1_header": "Our Mission",
+    "s2_header": "Natural properties of cows",
+    "s3_header": "About Help",
+    "btn": {
+      "show_more": "Show more",
+      "show_less": "Hide"
+    },
+    "desktop": {
+      "s1": {
+        "p1": "The protection of cows from all kinds of violence is very important. When cows are in conditions of love and care, they maximally realize their natural function laid down by the Almighty to organize the surrounding space at the energy level.",
+        "p2": "With faith in a bright future and not looking at the difficult conditions in the country, the shelter of cows and bulls Healthy Life continues to strive to fill the world with goodness, and positive emotions and to give people the opportunity to visit the shelter and receive the psycho-emotional relief that is needed today from interaction with the shelter's residents!"
+      },
+      "s2": {
+        "p1": "The properties of cows, bulls, and calves that live a non-violent life have a powerful positive effect on the psycho-emotional state of people. In connection with the hostilities, people from under shelling began to come to our shelter; people in difficult emotional states, who were forced to leave their homes and cities. Adults bring children. After 30-60 minutes of contact with our wards, people's morale changes radically, psychological tension decreases and the general condition improves. Horned 'psychologists' are important and needed at all times, and now, in such a difficult time for Ukraine, they are extremely necessary. Our healthy team is always happy to have new like-minded people in the creation and development of such an important cause for the good of the world."
+      },
+      "s3": {
+        "p1": "The shelter has a charitable basis, not a commodity-economic one, and from the very beginning it was created and existed solely with the funds of the family and a few like-minded people.",
+        "p2": "We greatly appreciate the support of our partners and helpers who, despite difficult times, provide support to the shelter.",
+        "p3": "The shelter has a charitable basis, not a commodity-economic one, and from the very beginning it was created and existed solely with the funds of the family and a few like-minded people."
+      }
+    },
+    "tablet": {
+      "s1": {
+        "p1": "The protection of cows from all kinds of violence is very important. When cows are in conditions of love and care, they maximally realize their natural function given by the Almighty to organize the surrounding space at the energy level.",
+        "p2": "With faith in a bright future and despite the difficult conditions in the country, the shelter for cows and bulls Healthy Life continues to strive to fill the world with goodness, positive emotions and to give people the opportunity by visiting the shelter to get such a necessary psycho-emotional release from interaction with the shelter's residents !"
+      },
+      "s2": {
+        "p1": "The properties of cows, bulls, and calves that live a non-violent life have a powerful positive effect on the psycho-emotional state of people. After 30-60 minutes of contact with our wards, people's morale changes radically, psychological tension decreases and the general condition improves. ",
+        "p2": "Horned 'psychologists' are important and needed at all times, and now, in such a difficult time for Ukraine, they are extremely necessary. Our strong team is always happy to have new like-minded people in the creation and development of such an important cause for the good of the world."
+      },
+      "s3": {
+        "p1": "The shelter has a charitable basis, not a commodity-economic one, and from the very beginning it was created and existed solely with the funds of the family and a few like-minded people. Every conscious person can participate in the purchase of fodder for the shelter to provide cows and bulls with comfortable conditions life to a deep happy old age.",
+        "p2": "We are grateful to our partners and like-minded people for every hryvnia of help and we believe in the forces of kindness and love that motivate smart people not to let shelter wards perish from hunger."
+      }
+    }
+  },
+  "contacts": {
     "titles": {
-      "contacts":"Contacts",
+      "contacts": "Contacts",
       "working_hours": "Working Hours",
       "location": "Location",
       "payment": "Details for shelter support:"
@@ -165,5 +209,5 @@
     "location_secondary": "Vinnytsia Oblast, Ukraine",
     "payment_name": "Zeziukova Iryna Mykhailivna",
     "code": "code"
-    }
+  }
 }
