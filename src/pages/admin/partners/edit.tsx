@@ -4,7 +4,8 @@ import { partners } from '@/data/partners';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { PartnersFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
-
+import { PartnersFormSchema } from './partnersValidation';
+import { zodResolver } from '@hookform/resolvers/zod';
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextInput from '@/components/admin/inputs/TextInput';
 
@@ -20,7 +21,8 @@ const EditPartner = () => {
     formState: { errors }
   } = useForm<PartnersFormInput>({
     mode: 'onChange',
-    defaultValues: defaultValues
+    defaultValues: defaultValues,
+    resolver: zodResolver(PartnersFormSchema)
   });
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const EditPartner = () => {
       <div className="flex  ">
         <div>
           <div>
-            <h1 className="text-3xl font-bold">Редагування Партнера</h1>
+            <h1 className="mb-8 text-3xl font-bold">Редагування Партнера</h1>
           </div>
 
           <form
@@ -98,17 +100,21 @@ const EditPartner = () => {
                 />
               </section>
             </div>
-            <div className="flex gap-4">
-              <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-                Розмістити
-              </button>
+            <div>
+              <p className="mb-3 text-disabled">Застосувати зміни?</p>
 
-              <Link to="/admin">
-                <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
-                  Скасувати
+              <div className="flex gap-4">
+                <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
+                  Розмістити
                 </button>
-              </Link>
-            </div>
+
+                <Link to="/admin/partners">
+                  <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+                    Скасувати
+                  </button>
+                </Link>
+              </div>
+            </div>{' '}
           </form>
         </div>
 
@@ -120,20 +126,15 @@ const EditPartner = () => {
                 alt={currentValues.title}
                 width={205}
                 height={205}
-                className="rounded-md"
+                className="mb-5 rounded-md"
               />
               <h2
-                className={` bottom-4 left-2 text-xl font-bold
+                className={` bottom-4 left-2 mb-6 text-center text-xl font-bold
                 `}
               >
                 {currentValues.title}
               </h2>
-              <h2
-                className={` bottom-4 left-2 text-xl font-bold
-                `}
-              >
-                {currentValues.href}
-              </h2>
+              <h2 className="bottom-4 left-2 ">{currentValues.href}</h2>
             </div>
           </div>
         </section>
