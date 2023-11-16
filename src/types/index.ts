@@ -33,6 +33,8 @@ export type ExcursionsData = {
   imagesSrs: string[];
   imagesSrs_tablet: string[];
   imagesSrs_mobile: string;
+  duration: string;
+  number_of_people: string;
 };
 
 export type SupportCard = {
@@ -61,4 +63,10 @@ export type PartnersFormInput = {
   title: string;
   href: string;
   image: File[];
+};
+
+export type AboutData = {
+  title: string;
+  description: string[];
+  mainImg: string;
 };
