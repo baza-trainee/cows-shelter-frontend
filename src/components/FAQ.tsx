@@ -21,7 +21,7 @@ const FAQ = () => {
 
   return (
     <section className="bg-lightgrey">
-      <div className="mx-auto w-[100%] px-5 py-8 sm:w-[480px] md:w-[768px] md:px-12 md:py-16 lg:w-[1440px]  lg:px-[120px] lg:py-20">
+      <div className="mx-auto w-[100%] px-5 py-8 sm:w-[480px] md:w-[768px] md:px-12 md:py-16 lg:w-[1280px] lg:px-[120px] lg:py-20 xl:w-[1440px]">
         <h2 className="lg:text-[4rem mb-6 text-2xl text-black md:mb-8 md:text-[3.375rem] md:leading-[5.063rem] lg:leading-[6rem]">
           {t('faq:title')}
         </h2>
