@@ -94,7 +94,7 @@ const Slider = ({
 
       <div
         className={`my-8 flex w-full items-start  justify-start ${
-          isReviews ? 'h-[50%] ' : 'h-full'
+          isReviews ? 'h-[50%]' : 'h-full'
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
         <Swiper

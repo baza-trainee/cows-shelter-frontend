@@ -57,6 +57,20 @@ const Excursions = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pagesLength = excursions.length / itemsPerPage;
 
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setTimeout(() => {
+        setShowModal(true);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        setShowModal(false);
+      }, 300);
+    }
+  }, [isModalOpen]);
+
   const data = usePaginatedData(excursions, start, finish);
   useEffect(() => {
     if (currentPage === 1) {
@@ -170,7 +184,7 @@ const Excursions = () => {
                       {t(item.title)}
                     </p>
                     <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
-                      {t('excursions:excursion.small_description')}
+                      {t(item.duration)} / {t(item.number_of_people)}
                     </p>
                     <a>
                       <button
@@ -194,9 +208,15 @@ const Excursions = () => {
       )}
       <ExcursionsReviews />
       {isModalOpen && type === 'excursions' && (
-        <ExcursionModal excursion={activeExcursion as ExcursionsData} />
+        <ExcursionModal
+          excursion={activeExcursion as ExcursionsData}
+          isOpen={showModal}
+          setShowModal={setShowModal}
+        />
       )}
-      {isModalOpen && type === 'order' && <ExcursionOrderModal />}
+      {isModalOpen && type === 'order' && (
+        <ExcursionOrderModal isOpen={showModal} setShowModal={setShowModal} />
+      )}
     </section>
   );
 };
