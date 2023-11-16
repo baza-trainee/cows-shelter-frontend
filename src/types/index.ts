@@ -56,3 +56,13 @@ export type NewsFormInput = {
   contentEn: string;
   image: File[];
 };
+
+export type ForgotPasswordProps = {
+  email: string;
+  closePopup: () => void;
+};
+
+export type FormValuesSignIn = {
+  email: string;
+  password: string;
+};
