@@ -2,11 +2,16 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { partners } from '@/data/partners';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { PartnersFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
 
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextInput from '@/components/admin/inputs/TextInput';
+
+export type PartnersFormInput = {
+  title: string;
+  href: string;
+  image: File[];
+};
 
 const EditPartner = () => {
   const { id } = useParams();

@@ -56,9 +56,3 @@ export type NewsFormInput = {
   contentEn: string;
   image: File[];
 };
-
-export type PartnersFormInput = {
-  title: string;
-  href: string;
-  image: File[];
-};
