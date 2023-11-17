@@ -64,3 +64,14 @@ export type AboutData = {
   description: string[];
   mainImg: string;
 };
+
+export type ExcursionsFormInput = {
+  titleUa: string;
+  titleEn: string;
+  descriptionUa: string;
+  descriptionEn: string;
+  image: File[];
+  timeFrom: string;
+  timeTill: string;
+  visitorsNumber: string;
+};
