@@ -1,43 +1,58 @@
 import { nanoid } from 'nanoid';
-import { InputHTMLAttributes } from 'react';
+import {
+  InputHTMLAttributes,
+  forwardRef,
+  Ref,
+  LegacyRef,
+  ForwardedRef
+} from 'react';
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   title?: string;
   errorText?: string;
+  inputRef?: Ref<HTMLInputElement> | LegacyRef<HTMLInputElement> | null;
 }
 
-const TextInput = ({
-  title,
-  errorText,
-  value = '',
-  ...rest
-}: TextInputProps) => {
-  const id = nanoid();
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  function TextInput(
+    { title, errorText, value = '', inputRef, ...rest },
+    forwardedRef
+  ) {
+    const id = nanoid();
 
-  const inputClassName = `w-full rounded-md border-2 p-2 placeholder:text-sm
-${
-  errorText
-    ? 'border-error caret-error outline-error focus:outline-error'
-    : 'border-lightgrey focus:outline-darkgray'
-}
-`;
+    const inputClassName = `w-full rounded-md border-2 p-2 placeholder:text-sm
+      ${
+        errorText
+          ? 'border-error caret-error outline-error focus:outline-error'
+          : 'border-lightgrey focus:outline-darkgray'
+      }
+    `;
 
-  return (
-    <div
-      className={`w-full min-w-[450px] ${
-        errorText ? 'text-error' : 'text-inherit'
-      }`}
-    >
-      {!!title && (
-        <label htmlFor={id} className="text-sm font-medium">
-          {title}
-        </label>
-      )}
-      <input {...rest} id={id} value={value} className={inputClassName} />
+    return (
+      <div
+        className={`w-full min-w-[450px] ${
+          errorText ? 'text-error' : 'text-inherit'
+        }`}
+      >
+        {!!title && (
+          <label htmlFor={id} className="text-sm font-medium">
+            {title}
+          </label>
+        )}
+        <input
+          {...rest}
+          id={id}
+          value={value}
+          className={inputClassName}
+          ref={(inputRef as ForwardedRef<HTMLInputElement>) || forwardedRef}
+        />
 
-      {errorText && <span className="ml-2 text-xs">{errorText}</span>}
-    </div>
-  );
-};
+        {errorText && <span className="ml-2 text-xs">{errorText}</span>}
+      </div>
+    );
+  }
+);
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;
