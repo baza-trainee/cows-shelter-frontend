@@ -75,3 +75,10 @@ export type ExcursionsFormInput = {
   timeTill: string;
   visitorsNumber: string;
 };
+
+export type ReviewsFormInput = {
+  nameUa: string;
+  nameEn: string;
+  reviewUa: string;
+  reviewEn: string;
+};

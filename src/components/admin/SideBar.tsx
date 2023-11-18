@@ -10,6 +10,10 @@ const links = [
     path: 'excursions'
   },
   {
+    name: 'Відгуки',
+    path: 'reviews'
+  },
+  {
     name: 'Галерея',
     path: 'gallery'
   },
