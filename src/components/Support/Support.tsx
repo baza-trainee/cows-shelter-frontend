@@ -46,7 +46,7 @@ const Support = () => {
       />
       <div
         id="donate"
-        className="flex flex-col items-start justify-center px-[21px] md:px-[48px] lg:px-[120px]"
+        className="mx-auto flex flex-col items-start justify-center px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]"
       >
         <h2 className="my-[20px] text-[24px] font-medium md:text-[54px] lg:text-[64px] ">
           {t('support:title')}
@@ -55,7 +55,10 @@ const Support = () => {
         <p className="mb-10 text-[14px] leading-normal text-darkgray md:text-[20px] lg:w-[1020px] lg:text-[22px]">
           {t('support:text')}
         </p>
-        <div className="w-full justify-center gap-4 text-white md:flex">
+        <div
+          className="w-full justify-center gap-4 text-white md:flex"
+          id="support"
+        >
           <Card
             card={cards[0]}
             openDonateModal={openDonateModal}
@@ -69,12 +72,12 @@ const Support = () => {
           />
           ;
         </div>
-        <div className="relative mt-10 w-full md:flex ">
+        <div className="relative mt-10 w-full md:flex">
           <ul className="flex-1">
             {steps.map((step, index) => (
               <li
                 key={index}
-                className="mx-auto mb-[24px] flex w-[90%] items-center justify-start gap-4"
+                className="mx-auto mb-[24px] flex w-full items-center justify-start gap-4"
               >
                 <div className="w-[0.5rem] md:w-[4rem]">
                   {screenWidth >= 768 ? (
@@ -95,12 +98,14 @@ const Support = () => {
             ))}
           </ul>
           <div className="flex items-center justify-end pb-4 md:justify-center">
-            <button
-              onClick={openDonateModal}
-              className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
-            >
-              {t('support:support')}
-            </button>
+            {!isModalOpen && (
+              <button
+                onClick={openDonateModal}
+                className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
+              >
+                {t('support:support')}
+              </button>
+            )}
           </div>
           {isModalOpen && type === 'support_info' && (
             <SupportInfoModal

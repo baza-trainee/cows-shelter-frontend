@@ -51,7 +51,7 @@ const Gallery = () => {
         setFinish(18);
       }
     }
-    if (screenWidth > 768 && screenWidth < 1280) {
+    if (screenWidth > 768 && screenWidth <= 1280) {
       setItemsPerPage(4);
       if (currentPage === 1) {
         setStart(0);
@@ -106,78 +106,76 @@ const Gallery = () => {
   }, [inView, dispatch]);
 
   return (
-    <section
-      id="gallery"
-      ref={ref}
-      className="px-[20px] md:px-[48px] lg:px-[120px]"
-    >
-      {isModalOpen && type === 'lightbox' && (
-        <LightBox images={data} image={image} />
-      )}
+    <section id="gallery" ref={ref}>
+      <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
+        {isModalOpen && type === 'lightbox' && (
+          <LightBox images={data} image={image} />
+        )}
 
-      {screenWidth > 768 && (
-        <Slider
-          title={t('gallery:gallery')}
-          setCurrentPage={setCurrentPage}
-          pagesLength={pagesLength}
-        >
-          <div className="gridContainer ml-4 w-full overflow-hidden pr-8 lg:ml-0 lg:pr-0 ">
-            {data.map((item: GalleryItem, index: number) => (
-              <div
-                key={item.id}
-                className={`gridItem relative h-[281px] min-w-[282px] max-w-[486px] overflow-hidden gridItem--${
-                  index + 1
-                }`}
-              >
-                <img
-                  src={item.url}
-                  alt="cow"
-                  className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
-                />
-                <div
-                  onClick={() => {
-                    setImage(index),
-                      dispatch(openModal({ data: {}, type: 'lightbox' }));
-                  }}
-                  className="absolute bottom-4 left-4 z-50 cursor-pointer"
-                >
-                  <ZoomArrow />
-                </div>
-              </div>
-            ))}
-          </div>
-        </Slider>
-      )}
-      {screenWidth < 768 && (
-        <Slider
-          title={t('gallery:gallery')}
-          setCurrentPage={setCurrentPage}
-          pagesLength={4}
-        >
-          <div
-            className={`relative mx-auto h-[281px] w-full  min-w-[282px] overflow-hidden sm:w-[70%]`}
+        {screenWidth > 768 && (
+          <Slider
+            title={t('gallery:gallery')}
+            setCurrentPage={setCurrentPage}
+            pagesLength={pagesLength}
           >
-            <img
-              src={data[0].url}
-              alt="cow"
-              className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
-            />
-            <div
-              onClick={() => setShowModal(true)}
-              className="absolute bottom-2 left-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.5)]"
-              title="Share in Social Media"
-            >
-              <ShareIcon />
+            <div className="gridContainer ml-4 w-full overflow-hidden pr-8 lg:ml-0 lg:pr-0 ">
+              {data.map((item: GalleryItem, index: number) => (
+                <div
+                  key={item.id}
+                  className={`gridItem relative h-[281px] min-w-[282px] max-w-[486px] overflow-hidden gridItem--${
+                    index + 1
+                  }`}
+                >
+                  <img
+                    src={item.url}
+                    alt="cow"
+                    className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
+                  />
+                  <div
+                    onClick={() => {
+                      setImage(index),
+                        dispatch(openModal({ data: {}, type: 'lightbox' }));
+                    }}
+                    className="absolute bottom-4 left-4 z-50 cursor-pointer"
+                  >
+                    <ZoomArrow />
+                  </div>
+                </div>
+              ))}
             </div>
-            {showModal && (
-              <ShareModal
-                activeImage={data[0].url}
-                setShowModal={setShowModal}
+          </Slider>
+        )}
+        {screenWidth < 768 && (
+          <Slider
+            title={t('gallery:gallery')}
+            setCurrentPage={setCurrentPage}
+            pagesLength={4}
+          >
+            <div
+              className={`relative mx-auto h-[281px] w-full  min-w-[282px] overflow-hidden sm:w-[70%]`}
+            >
+              <img
+                src={data[0].url}
+                alt="cow"
+                className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
               />
-            )}
-          </div>
-        </Slider>
-      )}
+              <div
+                onClick={() => setShowModal(true)}
+                className="absolute bottom-2 left-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.5)]"
+                title="Share in Social Media"
+              >
+                <ShareIcon />
+              </div>
+              {showModal && (
+                <ShareModal
+                  activeImage={data[0].url}
+                  setShowModal={setShowModal}
+                />
+              )}
+            </div>
+          </Slider>
+        )}
+      </div>
     </section>
   );
 };

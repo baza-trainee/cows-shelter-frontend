@@ -27,20 +27,20 @@ const Contacts = () => {
   }, [inView, dispatch]);
 
   return (
-    <section className="container mx-auto max-w-[1440px]">
+    <section className="">
       <div
         className={`relative h-[240px] w-full bg-[url('/img_cow_contacts.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       />
       <div
-        className="flex sm:flex-col-reverse sm:px-5 sm:py-6 md:flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20"
+        className="xs:w-[320px] xs:flex-col-reverse mx-auto flex px-5 sm:w-[480px] sm:py-6 md:w-[768px] md:flex-row md:gap-6 md:p-12 md:px-12 lg:w-[1280px] lg:px-[120px] lg:py-20 xl:w-[1440px]"
         id="contacts"
         ref={ref}
       >
         <div className="basis-1/2">
-          <h3 className="mb-5 text-2xl font-bold">
+          <h3 className="xs:text-lg mb-5 font-bold md:text-xl lg:text-2xl">
             {t('contacts:titles.contacts')}
           </h3>
-          <ul className="mb-6 flex flex-col gap-2 text-graphite sm:text-sm md:text-base lg:text-[17px]">
+          <ul className="xs:text-sm mb-6 flex flex-col gap-2 text-graphite md:text-base lg:text-[17px]">
             <li>
               <a href="mailto:zdravejutta@gmail.com">zdravejutta@gmail.com</a>
             </li>
@@ -48,10 +48,10 @@ const Contacts = () => {
               <a href="tel:+380987675765">+380 987 675 765</a>
             </li>
           </ul>
-          <h4 className="mb-5 font-bold sm:text-lg md:text-xl lg:text-2xl">
+          <h4 className="xs:text-lg mb-5 font-bold md:text-xl lg:text-2xl">
             {t('contacts:titles.working_hours')}
           </h4>
-          <ul className="mb-6 flex flex-col gap-2 text-graphite sm:text-sm md:text-base lg:text-[17px]">
+          <ul className="xs:text-sm mb-6 flex flex-col gap-2 text-graphite md:text-base lg:text-[17px]">
             <li>
               <p>{t('contacts:working_days')}</p>
             </li>
@@ -59,21 +59,21 @@ const Contacts = () => {
               <p>10:00 - 20:00</p>
             </li>
           </ul>
-          <h4 className="mb-5 font-bold sm:text-lg md:text-xl lg:text-2xl">
+          <h4 className="xs:text-lg mb-5 font-bold md:text-xl lg:text-2xl">
             {t('contacts:titles.location')}
           </h4>
-          <p className="mb-2 text-graphite sm:text-sm md:text-base lg:text-[17px]">
+          <p className="xs:text-sm mb-2 text-graphite md:text-base lg:text-[17px]">
             {t('contacts:location_main')}
           </p>
-          <p className="text-graphite sm:text-sm md:text-base lg:text-[17px]">
+          <p className="xs:text-sm text-graphite md:text-base lg:text-[17px]">
             {t('contacts:location_secondary')}
           </p>
         </div>
-        <div className="basis-1/2 sm:mb-3">
-          <h4 className="mb-5 font-bold sm:text-lg md:text-xl lg:text-2xl">
+        <div className="xs:mb-3 basis-1/2">
+          <h4 className="xs:text-lg mb-5 font-bold md:text-xl lg:text-2xl">
             {t('contacts:titles.payment')}
           </h4>
-          <ul className="text-graphite sm:text-sm md:text-base lg:text-[17px]">
+          <ul className="xs:text-sm text-graphite md:text-base lg:text-[17px]">
             <li className="mb-3 flex gap-4 border-b border-disabled py-2">
               <img src={icon_privat} alt="privat bank" />
               <p>{t('donate:pay_systems.one')}: 4149 6293 8909 9391</p>

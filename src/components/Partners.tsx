@@ -128,8 +128,8 @@ const Partners = () => {
   }, [isModalOpen]);
 
   return (
-    <section id="partners" ref={ref} className="mx-auto bg-[#F3F3F5] ">
-      <div className="flex max-w-[1440px] flex-col px-5 py-6 md:px-12 md:pt-12 lg:px-[7.5rem] lg:py-20">
+    <section id="partners" ref={ref} className=" bg-[#F3F3F5] ">
+      <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
         <div className="sectionHeader mb-5 flex-row md:mb-8 lg:mb-14 lg:flex  lg:items-center lg:justify-between">
           <h2 className="text-[1.5rem] font-medium md:mb-6 md:text-[3rem] lg:text-[4rem]">
             {t('partners:header')}

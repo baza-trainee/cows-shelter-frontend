@@ -13,7 +13,7 @@ const Map = () => {
           width: '100%',
           maxWidth: '100vw'
         }}
-        className="sm:h-[210px] md:h-[360px] lg:h-[560px]"
+        className="xs:h-[210px] md:h-[360px] lg:h-[560px]"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -22,7 +22,7 @@ const Map = () => {
         <object
           type="image/svg+xml"
           data={'marker.svg'}
-          className="absolute z-[9999] h-[4rem] w-[4rem] sm:left-[45%] sm:top-[28%] md:left-[46%] md:top-[36%] lg:left-[48%] lg:top-[41%]"
+          className="absolute z-[9999] h-[4rem] w-[4rem] xs:left-[45%] xs:top-[28%] md:left-[46%] md:top-[36%] lg:left-[48%] lg:top-[41%]"
         />
       </MapContainer>
     </div>
