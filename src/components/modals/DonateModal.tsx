@@ -61,8 +61,15 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
     }, 500);
   };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
   return (
     <div
+      onClick={handleBackdropClick}
       className={`fixed left-0 top-0 z-[9999] h-screen w-screen bg-black transition-all duration-700 ${
         isOpen ? 'bg-opacity-40' : 'bg-opacity-0'
       } `}
