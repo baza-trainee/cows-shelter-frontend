@@ -269,7 +269,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.facebook.com/profile.php?id=100060159926539"
+                      href="https://www.instagram.com/p/Cg1i8heLQdo/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
