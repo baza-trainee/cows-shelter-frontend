@@ -55,7 +55,10 @@ const Support = () => {
         <p className="mb-10 text-[14px] leading-normal text-darkgray md:text-[20px] lg:w-[1020px] lg:text-[22px]">
           {t('support:text')}
         </p>
-        <div className="w-full justify-center gap-4 text-white md:flex">
+        <div
+          className="w-full justify-center gap-4 text-white md:flex"
+          id="support"
+        >
           <Card
             card={cards[0]}
             openDonateModal={openDonateModal}
@@ -69,7 +72,7 @@ const Support = () => {
           />
           ;
         </div>
-        <div className="relative mt-10 w-full md:flex ">
+        <div className="relative mt-10 w-full md:flex">
           <ul className="flex-1">
             {steps.map((step, index) => (
               <li
