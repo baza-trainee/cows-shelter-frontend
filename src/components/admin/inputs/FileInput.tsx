@@ -27,11 +27,11 @@ const FileInput = <T extends FieldValues>({
     formState.errors[name] as DeepMap<FieldValues, FieldError>
   )?.message;
 
-  const inputWrapperStyle = `relative w-full max-w-[320px] ${
+  const inputWrapperStyle = `relative w-full ${
     errorMessage ? 'text-error' : ''
   }`;
 
-  const inputContainerStyle = `mb-8 mt-[2.8rem] flex h-12 bg-lightgrey w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
+  const inputContainerStyle = `mt-[2.8rem] flex h-12 bg-lightgrey w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
     errorMessage ? 'border-error' : 'border-lightgray'
   }`;
 

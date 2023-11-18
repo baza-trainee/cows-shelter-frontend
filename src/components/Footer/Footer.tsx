@@ -177,9 +177,11 @@ const Footer = () => {
             />
             <p className="default-text mb-0.5">{t('footer:shelter_p1')}</p>
             <p className="default-text mb-8">{t('footer:shelter_p2')} </p>
-            <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
-              {t('footer:button_help')}{' '}
-            </button>
+            <a href="#support">
+              <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
+                {t('footer:button_help')}{' '}
+              </button>
+            </a>
           </li>
 
           {/* second col tablet */}
@@ -267,7 +269,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.facebook.com/profile.php?id=100060159926539"
+                      href="https://www.instagram.com/p/Cg1i8heLQdo/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
