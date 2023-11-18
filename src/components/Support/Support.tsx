@@ -77,7 +77,7 @@ const Support = () => {
             {steps.map((step, index) => (
               <li
                 key={index}
-                className="mx-auto mb-[24px] flex w-[90%] items-center justify-start gap-4"
+                className="mx-auto mb-[24px] flex w-full items-center justify-start gap-4"
               >
                 <div className="w-[0.5rem] md:w-[4rem]">
                   {screenWidth >= 768 ? (
@@ -98,12 +98,14 @@ const Support = () => {
             ))}
           </ul>
           <div className="flex items-center justify-end pb-4 md:justify-center">
-            <button
-              onClick={openDonateModal}
-              className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
-            >
-              {t('support:support')}
-            </button>
+            {!isModalOpen && (
+              <button
+                onClick={openDonateModal}
+                className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
+              >
+                {t('support:support')}
+              </button>
+            )}
           </div>
           {isModalOpen && type === 'support_info' && (
             <SupportInfoModal

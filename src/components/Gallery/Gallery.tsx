@@ -51,7 +51,7 @@ const Gallery = () => {
         setFinish(18);
       }
     }
-    if (screenWidth > 768 && screenWidth < 1280) {
+    if (screenWidth > 768 && screenWidth <= 1280) {
       setItemsPerPage(4);
       if (currentPage === 1) {
         setStart(0);
