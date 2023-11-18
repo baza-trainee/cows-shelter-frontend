@@ -54,16 +54,31 @@ const SideBar = () => {
         {links.map((link, index) => (
           <li
             key={index}
-            className="flex w-full border-b border-darkgray/50 px-[24px] py-1 py-[8px] text-[16px] font-light "
+            className={`group flex w-full border-b border-t px-[24px] py-1 py-[8px] text-[16px] font-light transition-all hover:border-accent hover:bg-[#1e1e1e] ${
+              link.path === paths?.[0]
+                ? 'border-accent bg-[#1e1e1e]'
+                : 'border-darkgray/50 bg-inherit'
+            }`}
           >
             <Link
               to={`/admin/${link.path}`}
-              className={`flex items-center justify-center gap-[16px] hover:text-accent ${
+              className={`flex items-center justify-center gap-[16px] group-hover:text-accent ${
                 link.path === paths?.[0] ? 'text-accent' : 'text-white'
               }`}
             >
-              <span className="rounded-full bg-[#232323] p-[12px]">
-                <img src={`/admin/${link.icon}.svg`} alt="news" />
+              <span
+                className={`rounded-full  p-[12px] group-hover:bg-black  ${
+                  link.path === paths?.[0] ? 'bg-black' : 'bg-[#1e1e1e]'
+                }`}
+              >
+                <img
+                  src={
+                    link.path === paths?.[0]
+                      ? `/admin/${link.icon}_active.svg`
+                      : `/admin/${link.icon}.svg`
+                  }
+                  alt="news"
+                />
               </span>
               {link.name}
             </Link>
@@ -71,8 +86,8 @@ const SideBar = () => {
         ))}
       </ul>
       <div className="my-[64px] w-full px-[24px] py-[8px]">
-        <button className="flex gap-4 rounded-full bg-[#232323] px-[16px] py-[12px]">
-          <img src="/admin/exit.svg" alt="exit" />
+        <button className="flex gap-4 rounded-full bg-[#1e1e1e] px-[16px] py-[12px]">
+          <img src="/admin/exit.svg" alt="exit" className="fill-red-500" />
           <span>Вийти</span>
         </button>
       </div>
