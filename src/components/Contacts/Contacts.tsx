@@ -37,7 +37,7 @@ const Contacts = () => {
         ref={ref}
       >
         <div className="basis-1/2">
-          <h3 className="mb-5 text-2xl font-bold">
+          <h3 className="xs:text-lg mb-5 font-bold md:text-xl lg:text-2xl">
             {t('contacts:titles.contacts')}
           </h3>
           <ul className="xs:text-sm mb-6 flex flex-col gap-2 text-graphite md:text-base lg:text-[17px]">
