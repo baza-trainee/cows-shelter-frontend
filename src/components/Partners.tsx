@@ -59,6 +59,20 @@ const Partners = () => {
     dispatch(openModal({ data: {}, type: 'partners' }));
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setTimeout(() => {
+        setShowModal(true);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        setShowModal(false);
+      }, 300);
+    }
+  }, [isModalOpen]);
+
   useEffect(() => {
     const handleChangedSize = () => {
       setWindowWidth(window.innerWidth);
@@ -209,7 +223,9 @@ const Partners = () => {
           {t('partners:become_partner')}
         </button>
       </div>{' '}
-      {isModalOpen && type === 'partners' && <PartnersModal />}
+      {isModalOpen && type === 'partners' && (
+        <PartnersModal isOpen={showModal} setShowModal={setShowModal} />
+      )}
     </section>
   );
 };

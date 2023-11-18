@@ -82,7 +82,7 @@ body {
 
 .partner-scale:hover img,
 .partner-scale:focus img {
-  transform: scale(0.88);
+  transform: scale(1.08);
   transition: transform 300ms ease-out;
 }
 
