@@ -27,12 +27,12 @@ const Contacts = () => {
   }, [inView, dispatch]);
 
   return (
-    <section className="container mx-auto max-w-[1440px]">
+    <section className="">
       <div
         className={`relative h-[240px] w-full bg-[url('/img_cow_contacts.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       />
       <div
-        className="flex sm:flex-col-reverse sm:px-5 sm:py-6 md:flex-row md:gap-6 md:p-12 lg:px-56 lg:py-20"
+        className="mx-auto flex  px-5 sm:w-[480px] sm:flex-col-reverse sm:py-6 md:w-[768px] md:flex-row md:gap-6 md:p-12 md:px-12 lg:w-[1280px] lg:px-[120px] lg:py-20 xl:w-[1440px]"
         id="contacts"
         ref={ref}
       >
