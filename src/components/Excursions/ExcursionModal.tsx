@@ -109,7 +109,7 @@ const ExcursionModal = ({
                 ></img>
               </div>
             )}
-            {windowWidth > 768 && windowWidth < 1280 && (
+            {windowWidth >= 768 && windowWidth < 1280 && (
               <div className="flex gap-3">
                 <img
                   src={excursion.imagesSrs_tablet[0]}
