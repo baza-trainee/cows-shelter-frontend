@@ -46,7 +46,7 @@ const Support = () => {
       />
       <div
         id="donate"
-        className="flex flex-col items-start justify-center px-[21px] md:px-[48px] lg:px-[120px]"
+        className="mx-auto flex flex-col items-start justify-center px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]"
       >
         <h2 className="my-[20px] text-[24px] font-medium md:text-[54px] lg:text-[64px] ">
           {t('support:title')}

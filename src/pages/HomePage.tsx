@@ -20,8 +20,8 @@ const HomePage = () => {
       <About />
       <Excursions />
       <Gallery />
-      <News />
       <Partners />
+      <News />
       <Support />
       <FAQ />
       <Contacts />
