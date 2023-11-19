@@ -3,8 +3,7 @@ import {
   InputHTMLAttributes,
   forwardRef,
   Ref,
-  LegacyRef,
-  ForwardedRef
+  LegacyRef
 } from 'react';
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -15,8 +14,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(
-    { title, errorText, value = '', inputRef, ...rest },
-    forwardedRef
+    { title, errorText, value = '', inputRef, ...rest }
   ) {
     const id = nanoid();
 
@@ -28,24 +26,18 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       }
     `;
 
-    return (
-      <div
-        className={`w-full min-w-[450px] ${
-          errorText ? 'text-error' : 'text-inherit'
-        }`}
-      >
-        {!!title && (
-          <label htmlFor={id} className="text-sm font-medium">
-            {title}
-          </label>
-        )}
-        <input
-          {...rest}
-          id={id}
-          value={value}
-          className={inputClassName}
-          ref={(inputRef as ForwardedRef<HTMLInputElement>) || forwardedRef}
-        />
+  return (
+    <div
+      className={`w-full min-w-[130px] ${
+        errorText ? 'text-error' : 'text-inherit'
+      }`}
+    >
+      {!!title && (
+        <label htmlFor={id} className="text-sm font-medium">
+          {title}
+        </label>
+      )}
+      <input {...rest} id={id} value={value} className={inputClassName} />
 
         {errorText && <span className="ml-2 text-xs">{errorText}</span>}
       </div>
