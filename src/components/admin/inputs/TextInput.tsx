@@ -3,8 +3,7 @@ import {
   InputHTMLAttributes,
   forwardRef,
   Ref,
-  LegacyRef,
-  ForwardedRef
+  LegacyRef
 } from 'react';
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
