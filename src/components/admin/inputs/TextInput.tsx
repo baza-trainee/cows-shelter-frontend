@@ -14,8 +14,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(
-    { title, errorText, value = '', inputRef, ...rest },
-    forwardedRef
+    { title, errorText, value = '', inputRef, ...rest }
   ) {
     const id = nanoid();
 
