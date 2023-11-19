@@ -124,7 +124,7 @@ const Slider = ({
             <SwiperSlide
               key={index}
               className={`${
-                isPartners ? 'bottom-0' : 'bottom-[40px]'
+                isPartners ? 'bottom-[28px]' : 'bottom-[40px]'
               }  flex h-full w-full items-center justify-center`}
             >
               {children}
