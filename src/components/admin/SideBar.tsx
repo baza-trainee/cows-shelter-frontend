@@ -7,10 +7,6 @@ const links = [
     icon: 'news'
   },
   {
-    name: 'Відгуки',
-    path: 'reviews'
-  },
-  {
     name: 'Галерея',
     path: 'gallery',
     icon: 'gallery'
