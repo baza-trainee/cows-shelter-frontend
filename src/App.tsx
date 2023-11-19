@@ -13,6 +13,7 @@ import Partners from './pages/admin/partners';
 import AddPartner from './pages/admin/partners/add';
 import EditPartner from './pages/admin/partners/edit';
 import Contacts from './pages/admin/contacts';
+import EditContacts from './pages/admin/contacts/edit';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="partners/add" element={<AddPartner />} />
         <Route path="partners/edit/:id" element={<EditPartner />} />
         <Route path="contacts" element={<Contacts />} />
+        <Route path="contacts/edit/:contact" element={<EditContacts />} />
       </Route>
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/add" element={<AddPost />} />

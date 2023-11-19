@@ -1,78 +1,148 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import cross from '@/assets/icons/icon_close.svg'
+import { Link, useParams } from 'react-router-dom';
 
-type EditContactsProps = {
-  data: string;
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-};
+//type EditContactsProps = {
+//  data?: string;
+  //setIsModalOpen?: Dispatch<SetStateAction<boolean>>;
+//};
 
-const Edit = ({ setIsModalOpen, data }: EditContactsProps) => {
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [currentType, setCurrentType] = useState('');
-
+const EditContacts = () => {
+  const [phone, setPhone] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [currentType, setCurrentType] = useState<string>('');
+  const [error, setError] = useState<boolean>(false);
+  const [disable, setDisable] = useState<boolean>(true);
+  const { contact } = useParams();
+  const possessiveCaseText = getText(currentType, 'possessive');
+  const subjectiveCaseText = getText(currentType, 'subjective');
+  const accusativeCaseText = getText(currentType, 'accusative');
+  
   useEffect(() => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-    if (emailRegex.test(data)) {
-      setEmail(data);
-      setCurrentType('email');
-    } else {
-      setPhone(data);
-      setCurrentType('phone');
+    if (contact) {
+      if (emailRegex.test(contact)) {
+        setEmail(contact);
+        setCurrentType('email');
+      } else {
+        setPhone(contact);
+        setCurrentType('phone');
+      }
     }
-  }, [data]);
+  }, [contact]);
 
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (currentType === 'email') {
+      setEmail(e.target.value);
+    } else {
+      setPhone(e.target.value);
+    }
+    if (isValidEmail(email) || isValidPhone(phone)) {
+      setError(false);
+      setDisable(false);
+    } else {
+      setError(true);
+      setDisable(true);
+    }
+  };
+
+  function isValidEmail(email: string) {
+    let isValid = /\S+@\S+\.\S+/.test(email);
+    return isValid;
+  };
+
+  function isValidPhone(phone: string) {
+    let isValid =
+      /^((\+38)?\(?\d{3}\)?[\s\.-]?(\d{7}|\d{3}[\s\.-]\d{2}[\s\.-]\d{2}|\d{3}-\d{4}))/.test(
+        phone
+      );
+    return isValid;
+  };
+
+  function getText(curType: string, caseContact: string) {
+    let resultedText = '';
+    if (curType === "email") {
+        switch(caseContact) {
+          case "subjective" :
+            resultedText += " електронна пошта";
+          break;
+          case "possessive" : 
+            resultedText += ' електронної пошти';
+          break;
+          case "accusative": 
+            resultedText += ' електронну пошту';
+          break;
+        }
+    } else {
+        switch (caseContact) {
+          case 'subjective':
+            resultedText += ' номер телефону';
+            break;
+          case 'possessive':
+            resultedText += ' номера телефону';
+            break;
+          case 'accusative':
+            resultedText += ' номер телефону';
+            break;
+        }
+    }
+    return resultedText;
+  };
   console.log(currentType === 'email' ? email : phone);
 
   return (
-    <div className="left-1/6 fixed top-0 z-20 h-full w-5/6 bg-[rgba(0,0,0,0.6)]">
-      <div className="absolute left-[50%] top-[50%] z-[9999] flex h-[60vh] w-[50vw] -translate-x-[50%] -translate-y-[50%] items-center justify-center gap-4 bg-white px-4 py-8 text-black">
-        <form className="flex flex-1 flex-col gap-4 p-4 text-base">
+    <div className="flex justify-center pt-[3.75rem]">
+      <Link to="/admin/contacts">
+        <img src={cross} className="absolute right-5 top-5" />
+      </Link>
+      <div className="max-w-[25rem]">
+        <form className="flex flex-1 flex-col gap-4 text-base">
           <h4 className="text-2xl font-bold">
-            {`Зміна 
-            ${
-              currentType === 'email' ? 'електронної пошти' : 'номера телефону'
-            }`}
+            {`Зміна ${possessiveCaseText}`}
           </h4>
-          <p className="text-graphite">
-            {`Ваш ${
-              currentType === 'email' ? 'електронна пошта' : 'номер телефону'
-            }: `}
-            <span className="text-[17px]">{data}</span>
+          <p className="tracking-tight text-graphite">
+            {`${
+              currentType === 'email' ? 'Ваша' : 'Ваш'
+            } ${subjectiveCaseText}:`}
+            <span className="text-[1.06rem]"> {contact}</span>
           </p>
           <label>
             {`
             ${
-              currentType === 'email'
-                ? 'Оновлена електронна пошта'
-                : 'Оновлений номер телефону'
-            }:`}
+              currentType === 'email' ? 'Оновлена' : 'Оновлений'
+            } ${subjectiveCaseText}:`}
             <input
               type="text"
               placeholder={`Введіть ${
-                currentType === 'email' ? 'електронну пошту' : 'номер телефону'
+                currentType === 'email' ? 'нову адресу' : 'номер телефону'
               }`}
-              //value={}
-              className="my-2 w-full border-2 border-black p-2"
-              onChange={(e) =>
-                currentType === 'email'
-                  ? setEmail(e.target.value)
-                  : setPhone(e.target.value)
-              }
+              className={`${
+                error
+                  ? "border-red focus: border bg-[url('/src/assets/icons/icon_alert_circle.svg')] bg-[98%_50%] bg-no-repeat focus:border-transparent"
+                  : ''
+              } my-2 mr-[2.3rem] w-full border-2 border-black p-2`}
+              onChange={changeHandler}
             />
+            {error ? (
+              <span className="text-red">
+                {`Некоректний формат ${possessiveCaseText}`}
+              </span>
+            ) : null}
           </label>
-          <p className="text-[17px] text-disabled">{`Змінити ${
-            currentType === 'email' ? 'електронну пошту' : 'номер телефону'
-          }?`}</p>
-          <div className="flex gap-4">
-            <button className="mt-4 w-[8rem] text-white bg-disabled p-2 hover:bg-gray-300">
+          <p className="text-[17px] text-disabled">{`Змінити ${accusativeCaseText}?`}</p>
+          <div className="flex w-full gap-5">
+            <button
+              className={`mt-4 w-[12rem] ${
+                disable ? 'bg-disabled' : 'bg-accent'
+              } py-2 text-white`}
+            >
               Змінити
             </button>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="mt-4 w-[8rem] bg-white p-2 hover:bg-red-300 border"
-            >
-              Скасувати
-            </button>
+            <Link to="/admin/contacts">
+              <button className="mt-4 w-[12rem] border bg-white py-2 hover:bg-red-300">
+                Скасувати
+              </button>
+            </Link>
           </div>
         </form>
       </div>
@@ -80,4 +150,4 @@ const Edit = ({ setIsModalOpen, data }: EditContactsProps) => {
   );
 };
 
-export default Edit;
+export default EditContacts;
