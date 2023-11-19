@@ -1,12 +1,15 @@
 import { nanoid } from 'nanoid';
-import { InputHTMLAttributes } from 'react';
+import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 
 interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   title?: string;
   errorText?: string;
 }
 
-const TextArea = ({ title, errorText, value = '', ...rest }: TextAreaProps) => {
+const TextArea = forwardRef(function TextArea(
+  { title, errorText, value = '', ...rest }: TextAreaProps,
+  _ref: ForwardedRef<HTMLInputElement>
+) {
   const id = nanoid();
 
   const inputClassName = `w-full rounded-md border-2 p-2 placeholder:text-sm
@@ -33,6 +36,8 @@ ${
       {errorText && <span className=" ml-2 text-xs">{errorText}</span>}
     </div>
   );
-};
+});
+
+TextArea.displayName = 'TextArea';
 
 export default TextArea;
