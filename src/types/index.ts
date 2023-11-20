@@ -82,3 +82,8 @@ export type ReviewsFormInput = {
   reviewUa: string;
   reviewEn: string;
 };
+
+export type Contacts = {
+  email?: string;
+  phone?: string;
+};
