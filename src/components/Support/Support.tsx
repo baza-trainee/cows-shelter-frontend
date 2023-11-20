@@ -48,17 +48,17 @@ const Support = () => {
         id="donate"
         className="mx-auto flex flex-col items-start justify-center px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]"
       >
-        <h2 className="my-[20px] text-[24px] font-medium md:text-[54px] lg:text-[64px] ">
+        <h2
+          className="my-[20px] text-[24px] font-medium md:text-[54px] lg:text-[64px] "
+          id="support"
+        >
           {t('support:title')}
         </h2>
 
         <p className="mb-10 text-[14px] leading-normal text-darkgray md:text-[20px] lg:w-[1020px] lg:text-[22px]">
           {t('support:text')}
         </p>
-        <div
-          className="w-full justify-center gap-4 text-white md:flex"
-          id="support"
-        >
+        <div className="w-full justify-center gap-4 text-white md:flex">
           <Card
             card={cards[0]}
             openDonateModal={openDonateModal}
