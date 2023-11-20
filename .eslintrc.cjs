@@ -33,6 +33,7 @@ module.exports = {
     'react-refresh/only-export-components': 0,
     'no-irregular-whitespace': 0,
     'react/no-unescaped-entities': 0,
-    '@typescript-eslint/no-explicit-any': 0
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-unused-vars': 0
   }
 };

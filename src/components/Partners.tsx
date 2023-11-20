@@ -56,9 +56,22 @@ const Partners = () => {
   ];
 
   const openPartnersModal = () => {
-    console.log('openPartnersModal is called');
     dispatch(openModal({ data: {}, type: 'partners' }));
   };
+
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setTimeout(() => {
+        setShowModal(true);
+      }, 300);
+    } else {
+      setTimeout(() => {
+        setShowModal(false);
+      }, 300);
+    }
+  }, [isModalOpen]);
 
   useEffect(() => {
     const handleChangedSize = () => {
@@ -164,7 +177,7 @@ const Partners = () => {
                   width={134}
                   height={134}
                 />
-                <p className="mb-5 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
+                <p className="mb-4 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
                   {title}
                 </p>
               </a>
@@ -178,7 +191,7 @@ const Partners = () => {
             setCurrentPage={setCurrentPage}
             pagesLength={pagesLength}
           >
-            <ul className="mb-5  flex justify-between gap-6 lg:mt-20">
+            <ul className="mb-5  flex gap-6 lg:mt-20">
               {data.map((item: PartnersType) => (
                 <li key={item.title} className="flex justify-around">
                   <a
@@ -188,7 +201,7 @@ const Partners = () => {
                     className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
                   >
                     <img
-                      className="m-auto mb-6 scale-100 transform"
+                      className="m-auto mb-6 scale-100 transform md:h-[208px] md:w-[208px] lg:h-[245px] lg:w-[245px]"
                       src={item.src}
                       alt={item.title}
                       width={208}
@@ -210,7 +223,9 @@ const Partners = () => {
           {t('partners:become_partner')}
         </button>
       </div>{' '}
-      {isModalOpen && type === 'partners' && <PartnersModal />}
+      {isModalOpen && type === 'partners' && (
+        <PartnersModal isOpen={showModal} setShowModal={setShowModal} />
+      )}
     </section>
   );
 };
