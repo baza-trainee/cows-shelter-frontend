@@ -2,12 +2,12 @@ import { ReviewsFormInput } from '@/types';
 import { useEffect } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
-import { excursions } from '@/data/excursions';
 import { useTranslation } from 'react-i18next';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import { defaultValues } from './defaultValues';
 import { reviewsValidation } from './reviewsValidation';
+import { reviews } from '@/data/reviews';
 
 const EditReviews = () => {
   const { t } = useTranslation();
@@ -25,13 +25,13 @@ const EditReviews = () => {
 
   useEffect(() => {
     if (!id) return;
-    const postData = excursions.find((item) => item.id === id);
+    const postData = reviews.find((item) => item.id === id);
     console.log(postData);
     if (!postData) return;
-    setValue('nameUa', t(`${postData.title}`));
-    setValue('nameEn', t(`${postData.title}`));
-    setValue('reviewUa', t(`${postData.description}`));
-    setValue('reviewEn', t(`${postData.description}`));
+    setValue('nameUa', t(`${postData.name}`));
+    setValue('nameEn', postData.nameEn);
+    setValue('reviewUa', t(`${postData.review}`));
+    setValue('reviewEn', postData.reviewEn);
   }, [id, setValue, t]);
 
   const onSubmit: SubmitHandler<ReviewsFormInput> = () => {};
@@ -112,7 +112,7 @@ const EditReviews = () => {
           </p>
           <div className="flex gap-4">
             <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+              Застосувати
             </button>
 
             <Link to="/admin">

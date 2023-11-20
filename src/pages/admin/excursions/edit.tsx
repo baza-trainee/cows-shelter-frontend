@@ -40,12 +40,12 @@ const EditExcursions = () => {
     console.log(postData);
     if (!postData) return;
     setValue('titleUa', t(`${postData.title}`));
-    setValue('titleEn', t(`${postData.title}`));
+    setValue('titleEn', postData.titleEn);
     setValue('descriptionUa', t(`${postData.description}`));
-    setValue('descriptionEn', t(`${postData.description}`));
+    setValue('descriptionEn', postData.descriptionEn);
     setImage(postData.mainImgSrc);
-    setValue('timeFrom', t(`${postData.duration}`));
-    setValue('timeTill', t(`${postData.duration}`));
+    setValue('timeFrom', t(`${postData.timeFrom}`));
+    setValue('timeTill', t(`${postData.timeTill}`));
     setValue('visitorsNumber', t(`${postData.number_of_people}`));
   }, [id, setValue, t]);
 
@@ -101,7 +101,7 @@ const EditExcursions = () => {
           className="flex flex-1 flex-col gap-4"
         >
           <div className="flex gap-2">
-            <section className="flex flex-col items-center justify-center gap-4">
+            <section className="flex flex-col items-center justify-center gap-6">
               <Controller
                 name="titleUa"
                 rules={{ required: 'Введіть назву' }}
@@ -158,7 +158,7 @@ const EditExcursions = () => {
             </section>
 
             <section className="flex flex-col items-center justify-center gap-4 px-8">
-              <div className="mt-[5vh] flex w-full flex-col items-center justify-center gap-8 ">
+              <div className="mt-[5vh] flex w-full flex-col items-center justify-center gap-7">
                 <div className="relative text-left">
                   <img
                     src={image ? image : '/placeholder-image.jpeg'}
@@ -183,11 +183,13 @@ const EditExcursions = () => {
                   title="Оберіть файл"
                 />
               </div>
-              <div>
-                <p>Введіть часовий проміжок:</p>
+              <div className="flex flex-col gap-6">
+                <p className="-mb-5 text-sm font-medium">
+                  Введіть часовий проміжок:
+                </p>
                 <div className="flex gap-6">
                   <div className="flex items-center gap-3">
-                    <p>Від</p>
+                    <p className="text-sm font-medium">Від</p>
                     <Controller
                       name="timeFrom"
                       rules={{ required: 'Введіть назву' }}
@@ -201,7 +203,7 @@ const EditExcursions = () => {
                     />
                   </div>
                   <div className="flex items-center gap-3">
-                    <p>До</p>
+                    <p className="text-sm font-medium">До</p>
                     <Controller
                       name="timeTill"
                       rules={{ required: 'Введіть назву' }}
@@ -214,19 +216,30 @@ const EditExcursions = () => {
                       )}
                     />
                   </div>
+                  <p className="flex items-center text-sm font-medium">
+                    хвилин
+                  </p>
                 </div>
-                <Controller
-                  name="visitorsNumber"
-                  rules={{ required: 'Введіть назву' }}
-                  control={control}
-                  render={({ field }) => (
-                    <TextInput
-                      {...field}
-                      errorText={errors.visitorsNumber?.message}
-                      title="Введіть кількість відвідувачів:"
-                    />
-                  )}
-                />
+                <div className="flex items-center gap-6">
+                  <p className="flex items-center pt-5 text-sm font-medium">
+                    до
+                  </p>
+                  <Controller
+                    name="visitorsNumber"
+                    rules={{ required: 'Введіть назву' }}
+                    control={control}
+                    render={({ field }) => (
+                      <TextInput
+                        {...field}
+                        errorText={errors.visitorsNumber?.message}
+                        title="Введіть кількість відвідувачів:"
+                      />
+                    )}
+                  />
+                  <p className="flex items-center pt-5 text-sm font-medium">
+                    відвідувачів
+                  </p>
+                </div>
               </div>
             </section>
           </div>
