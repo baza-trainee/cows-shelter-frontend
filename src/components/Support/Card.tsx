@@ -75,8 +75,8 @@ const Card = ({ card, openDonateModal, openInfoModal }: CardProps) => {
         </div>
       )}
       {isBanner && (
-        <div className="absolute bottom-0 left-0 z-50 h-1/2 w-full overflow-auto bg-white p-4 text-black">
-          <p className="mb-4 text-[14px] lg:text-[20px]">
+        <div className="absolute bottom-0 left-0 z-50 h-2/3 w-full overflow-auto bg-white p-4 text-black">
+          <p className="mb-4 text-[14px] lg:text-[18px]">
             {t(`support:${card.banner}`)}
           </p>
           <button

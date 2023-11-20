@@ -61,7 +61,7 @@ const Header = () => {
           isScrolled ? 'bg-white' : 'bg-transparent'
         } fixed left-0 right-0 top-0 z-10 md:py-[15px] lg:py-5`}
       >
-        <div className=" mx-auto flex items-center justify-between px-5 text-lg text-white outline-transparent sm:w-[480px] md:w-[768px] md:px-12  lg:w-[1440px] lg:px-[120px] ">
+        <div className=" mx-auto flex items-center justify-between px-5 text-lg text-white outline-transparent sm:w-[480px] md:w-[768px] md:px-12 lg:w-[1280px] lg:px-[120px]  xl:w-[1440px] ">
           <a
             className="inline-block h-10 w-20 md:h-[50px] md:w-[100px]"
             href="/"

@@ -94,14 +94,16 @@ const Slider = ({
 
       <div
         className={`my-8 flex w-full items-start  justify-start ${
-          isReviews ? 'h-[50%] ' : 'h-full'
+          isReviews ? 'h-[50%]' : 'h-full'
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
         <Swiper
           className={`relative flex w-full items-center ${
-            isReviews ? 'max-h-[165px] pt-11 md:max-h-[230px]' : 'h-full'
+            isReviews
+              ? 'min-h-[165px] pb-5 pt-11 md:max-h-[230px] md:pb-10'
+              : 'h-full'
           } w-full md:w-[768px] lg:w-full ${
-            isExcursions ? 'max-h-[350px]' : 'h-full'
+            isExcursions ? 'h-[330px]' : 'h-full'
           }
           `}
           spaceBetween={10}
@@ -122,7 +124,7 @@ const Slider = ({
             <SwiperSlide
               key={index}
               className={`${
-                isPartners ? 'bottom-0' : 'bottom-[40px]'
+                isPartners ? 'bottom-[28px]' : 'bottom-[40px]'
               }  flex h-full w-full items-center justify-center`}
             >
               {children}

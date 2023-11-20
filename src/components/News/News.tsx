@@ -42,14 +42,16 @@ const News = () => {
   }, [inView, dispatch]);
 
   return (
-    <section id="news" ref={ref} className="container mx-auto flex flex-col ">
-      <Slider title="Новини" pagesLength={3}>
-        <NewsBlock />
-      </Slider>
+    <section id="news" ref={ref}>
+      <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
+        <Slider title="Новини" pagesLength={3}>
+          <NewsBlock />
+        </Slider>
 
-      {isModalOpen && type === 'news' && (
-        <NewsModal isOpen={showModal} setShowModal={openNewsModal} />
-      )}
+        {isModalOpen && type === 'news' && (
+          <NewsModal isOpen={showModal} setShowModal={openNewsModal} />
+        )}
+      </div>
     </section>
   );
 };

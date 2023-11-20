@@ -26,14 +26,33 @@ const Edit = ({ setIsModalOpen, data }: EditContactsProps) => {
   return (
     <div className="left-1/6 fixed top-0 z-20 h-full w-5/6 bg-[rgba(0,0,0,0.6)]">
       <div className="absolute left-[50%] top-[50%] z-[9999] flex h-[60vh] w-[50vw] -translate-x-[50%] -translate-y-[50%] items-center justify-center gap-4 bg-white px-4 py-8 text-black">
-        <form className="flex flex-1 flex-col gap-4 p-4">
+        <form className="flex flex-1 flex-col gap-4 p-4 text-base">
+          <h4 className="text-2xl font-bold">
+            {`Зміна 
+            ${
+              currentType === 'email' ? 'електронної пошти' : 'номера телефону'
+            }`}
+          </h4>
+          <p className="text-graphite">
+            {`Ваш ${
+              currentType === 'email' ? 'електронна пошта' : 'номер телефону'
+            }: `}
+            <span className="text-[17px]">{data}</span>
+          </p>
           <label>
-            Оновіть телефон або емейл
+            {`
+            ${
+              currentType === 'email'
+                ? 'Оновлена електронна пошта'
+                : 'Оновлений номер телефону'
+            }:`}
             <input
               type="text"
-              placeholder="edit contact"
-              value={data}
-              className="my-2 w-full rounded-md border-2 border-black p-2"
+              placeholder={`Введіть ${
+                currentType === 'email' ? 'електронну пошту' : 'номер телефону'
+              }`}
+              //value={}
+              className="my-2 w-full border-2 border-black p-2"
               onChange={(e) =>
                 currentType === 'email'
                   ? setEmail(e.target.value)
@@ -41,15 +60,18 @@ const Edit = ({ setIsModalOpen, data }: EditContactsProps) => {
               }
             />
           </label>
+          <p className="text-[17px] text-disabled">{`Змінити ${
+            currentType === 'email' ? 'електронну пошту' : 'номер телефону'
+          }?`}</p>
           <div className="flex gap-4">
-            <button className="mt-4 w-[8rem] rounded-md bg-gray-200 p-2 hover:bg-gray-300">
-              Submit
+            <button className="mt-4 w-[8rem] text-white bg-disabled p-2 hover:bg-gray-300">
+              Змінити
             </button>
             <button
               onClick={() => setIsModalOpen(false)}
-              className="mt-4 w-[8rem] rounded-md bg-red-200 p-2 hover:bg-red-300"
+              className="mt-4 w-[8rem] bg-white p-2 hover:bg-red-300 border"
             >
-              Cancel
+              Скасувати
             </button>
           </div>
         </form>

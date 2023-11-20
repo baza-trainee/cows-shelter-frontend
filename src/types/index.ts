@@ -33,6 +33,8 @@ export type ExcursionsData = {
   imagesSrs: string[];
   imagesSrs_tablet: string[];
   imagesSrs_mobile: string;
+  duration: string;
+  number_of_people: string;
 };
 
 export type SupportCard = {
@@ -65,4 +67,28 @@ export type ForgotPasswordProps = {
 export type FormValuesSignIn = {
   email: string;
   password: string;
+};
+
+export type AboutData = {
+  title: string;
+  description: string[];
+  mainImg: string;
+};
+
+export type ExcursionsFormInput = {
+  titleUa: string;
+  titleEn: string;
+  descriptionUa: string;
+  descriptionEn: string;
+  image: File[];
+  timeFrom: string;
+  timeTill: string;
+  visitorsNumber: string;
+};
+
+export type ReviewsFormInput = {
+  nameUa: string;
+  nameEn: string;
+  reviewUa: string;
+  reviewEn: string;
 };
