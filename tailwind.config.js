@@ -14,14 +14,16 @@ export default {
         darkyellow: '#B1A016',
         lightyellow: '#FFFDED',
         yellowshadow: '#DEDCCD',
-        lightgrey: '#F3F3F5'
+        lightgrey: '#F3F3F5',
+        error: '#ba0f30'
       },
       fontFamily: {
         namu: ['namu', 'sans-serif']
       }
     },
     screens: {
-      sm: '320px',
+      xs: '320px',
+      sm: '480px',
       md: '768px',
       lg: '1280px',
       xl: '1440px'

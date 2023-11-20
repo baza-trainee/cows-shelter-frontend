@@ -7,24 +7,12 @@ import Layout from '@/components/Layout';
 import Excursions from '@/components/Excursions/Excursions';
 import Gallery from '@/components/Gallery/Gallery';
 import Partners from '@/components/Partners';
-import News from '@/components/News';
+import News from '@/components/News/News';
 import FAQ from '@/components/FAQ';
 import Support from '@/components/Support/Support';
-import { useAppSelector } from '@/store/hook';
-import { useEffect } from 'react';
 import About from '@/components/About/About';
 
 const HomePage = () => {
-  const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isModalOpen]);
-
   return (
     <Layout>
       <Header />
@@ -32,8 +20,8 @@ const HomePage = () => {
       <About />
       <Excursions />
       <Gallery />
-      <News />
       <Partners />
+      <News />
       <Support />
       <FAQ />
       <Contacts />

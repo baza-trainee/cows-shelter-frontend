@@ -27,12 +27,12 @@ const FileInput = <T extends FieldValues>({
     formState.errors[name] as DeepMap<FieldValues, FieldError>
   )?.message;
 
-  const inputWrapperStyle = `relative w-full max-w-[32.6rem] ${
-    errorMessage ? 'text-critic-light' : ''
+  const inputWrapperStyle = `relative w-full ${
+    errorMessage ? 'text-error' : ''
   }`;
 
-  const inputContainerStyle = `mb-8 mt-[2.8rem] flex h-16 w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
-    errorMessage ? 'border-critic-light' : 'border-neutral-300'
+  const inputContainerStyle = `mt-[2.8rem] flex h-12 bg-lightgrey w-full gap-6 rounded-[0.4rem] border p-[0.8rem] cursor-pointer ${
+    errorMessage ? 'border-error' : 'border-lightgray'
   }`;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,13 +42,19 @@ const FileInput = <T extends FieldValues>({
   };
   return (
     <div className={inputWrapperStyle}>
-      {!!title && <label className="absolute left-0 top-0">{title}</label>}
+      {!!title && (
+        <label className="absolute left-0 top-4 text-sm font-medium">
+          {title}
+        </label>
+      )}
 
       <label htmlFor={title + 'file'}>
         <div className={inputContainerStyle}>
-          <span className="w-full truncate">{fileName || placeholder}</span>
+          <span className="w-full truncate text-center text-sm text-gray-400">
+            {fileName || placeholder}
+          </span>
 
-          <UploadIcon className={!errorMessage ? 'text-neutral-800' : ''} />
+          <UploadIcon className={!errorMessage ? 'text-gray-400' : ''} />
         </div>
       </label>
 
@@ -62,9 +68,7 @@ const FileInput = <T extends FieldValues>({
       />
 
       {!!errorMessage && (
-        <span className="absolute bottom-0 left-0 text-[1.2rem]">
-          {errorMessage}
-        </span>
+        <span className="absolute bottom-2 left-0 text-xs">{errorMessage}</span>
       )}
     </div>
   );

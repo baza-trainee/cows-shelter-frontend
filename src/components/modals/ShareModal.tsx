@@ -1,5 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { FacebookShareButton, FacebookIcon } from 'react-share';
+import { TelegramShareButton, TelegramIcon } from 'react-share';
+import { WhatsappShareButton, WhatsappIcon } from 'react-share';
+import { EmailShareButton, EmailIcon } from 'react-share';
 
 type ShareModalProps = {
   activeImage: string;
@@ -8,16 +11,32 @@ type ShareModalProps = {
 
 const ShareModal = ({ activeImage, setShowModal }: ShareModalProps) => {
   return (
-    <div className="absolute left-[50%] top-[50%] z-[9999] flex h-[30vh] w-[30vw] -translate-x-[50%] -translate-y-[50%] items-center justify-center bg-white p-4 text-black">
+    <div className="absolute left-[50%] top-[57%] z-[9999] flex h-[70%] w-[90%] -translate-x-[50%] -translate-y-[50%] flex-col items-center justify-center bg-white p-4 text-center text-black md:top-[50%] md:h-[15rem] md:w-[50%] lg:h-[30%] lg:w-[30%]">
       <button
         onClick={() => setShowModal(false)}
-        className="absolute right-2 top-2"
+        className="absolute right-4 top-4"
       >
-        X
+        <img src="/gallery/vector.png" alt="close share modal" />
       </button>
-      <FacebookShareButton url={activeImage} quote={'Share it'} hashtag="#cows">
-        <FacebookIcon iconFillColor="white" round={true} />
-      </FacebookShareButton>
+      <h1 className="mb-4">Поділітись фото у соціальних мережах</h1>
+      <div className="flex items-center justify-center gap-2">
+        <FacebookShareButton
+          url={activeImage}
+          quote={'Share it on Facebook'}
+          hashtag="#zdrave_juttia"
+        >
+          <FacebookIcon iconFillColor="white" round={true} size={32} />
+        </FacebookShareButton>
+        <TelegramShareButton url={activeImage} title="Здраве Життя">
+          <TelegramIcon iconFillColor="white" round={true} size={32} />
+        </TelegramShareButton>
+        <WhatsappShareButton url={activeImage} title="Здраве Життя">
+          <WhatsappIcon iconFillColor="white" round={true} size={32} />
+        </WhatsappShareButton>
+        <EmailShareButton url={activeImage} subject="Здраве Життя">
+          <EmailIcon iconFillColor="white" round={true} size={32} />
+        </EmailShareButton>
+      </div>
     </div>
   );
 };

@@ -1,108 +1,148 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { partners } from '@/data/partners';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { defaultValues } from './defaultValues';
+import { PartnersFormSchema } from './partnersValidation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import FileInput from '@/components/admin/inputs/FileInput';
+import TextInput from '@/components/admin/inputs/TextInput';
+
+export type PartnersFormInput = {
+  title: string;
+  href: string;
+  image: File[];
+};
 
 const EditPartner = () => {
   const { id } = useParams();
-  const [title, setTitle] = useState('');
-  const [link, setLink] = useState('');
-  const [isError, setIsError] = useState(true);
-  const [imageFile, setImageFile] = useState<FileList | null>(null);
   const [image, setImage] = useState('');
-  const partner = partners.find((item) => item.id === id);
+
+  const {
+    handleSubmit,
+    watch,
+    control,
+    setValue,
+    formState: { errors }
+  } = useForm<PartnersFormInput>({
+    mode: 'onChange',
+    defaultValues: defaultValues,
+    resolver: zodResolver(PartnersFormSchema)
+  });
 
   useEffect(() => {
-    if (id && partner) {
-      setTitle(partner.title);
-      setLink(partner.href);
-      setImage(partner.src);
-      setIsError(true);
-    }
-  }, [id, partner]);
+    if (!id) return;
+    const partnerData = partners.find((item) => item.id === id);
+    if (!partnerData) return;
+    setValue('title', partnerData.title);
+    setValue('href', partnerData.href);
+    setImage(partnerData.src);
+  }, [id, setValue]);
 
-  const setFileToBase64 = (file: File) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImage(reader.result as string);
-    };
+  const currentValues = watch();
+
+  const setImagePreview = (file: File) => {
+    const img = URL.createObjectURL(file);
+    setImage(img);
   };
 
   useEffect(() => {
-    if (imageFile !== null) {
-      const file = imageFile[0];
-      setFileToBase64(file);
-      setIsError(true);
-    }
-  }, [imageFile]);
+    if (!currentValues.image?.length) return;
+    const file = currentValues.image[0];
+    setImagePreview(file);
+  }, [currentValues.image]);
+
+  const onSubmit: SubmitHandler<PartnersFormInput> = () => {};
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center gap-4 ">
-      <form className="flex w-1/2 flex-col gap-4 p-4">
-        <div className="flex flex-col gap-4">
-          <label className="flex-1">
-            Назва Партнера
-            <input
-              type="text"
-              placeholder="add title"
-              className=" w-full rounded-md border-2 border-black p-2"
-              onChange={(e) => setTitle(e.target.value)}
-              value={title}
-            />
-            {isError && (
-              <span className="text-sm text-red-500">Example Error</span>
-            )}
-          </label>
+    <div className="flex flex-col gap-4 px-[108px] pt-[60px] ">
+      <div className="flex  ">
+        <div>
+          <div>
+            <h1 className="mb-8 text-3xl font-bold">Редагування Партнера</h1>
+          </div>
 
-          <label className="flex-1">
-            Лінк до сторінки партнера
-            <input
-              type="text"
-              placeholder="add title"
-              className="w-full rounded-md border-2 border-black p-2"
-              onChange={(e) => setLink(e.target.value)}
-              value={link}
-            />
-          </label>
-        </div>
-        <label className="flex flex-col">
-          Логотип партнера
-          <input
-            type="file"
-            name="image"
-            id=""
-            placeholder="upload image"
-            onChange={(e) => setImageFile(e.target.files)}
-          />
-        </label>
-        <div className="flex gap-4">
-          <button className="mt-4 w-[8rem] rounded-md bg-gray-200 p-2 hover:bg-gray-300">
-            Submit
-          </button>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-1 flex-col gap-10"
+          >
+            <div className="flex flex-col gap-6">
+              <FileInput
+                name="image"
+                control={control}
+                accept="image/*"
+                placeholder={'Оберіть файл'}
+                title="Змінити логотип Партнера:"
+                className="w-full "
+              />
+              <Controller
+                name="title"
+                rules={{ required: 'Введіть назву' }}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.title?.message}
+                    placeholder="Введіть назву Партнера"
+                    title="Змінити назву Партнера:"
+                  />
+                )}
+              />
 
-          <Link to="/admin/partners">
-            <button className="mt-4 w-[8rem] rounded-md bg-red-200 p-2 hover:bg-red-300">
-              Cancel
-            </button>
-          </Link>
-        </div>
-      </form>
+              <section className="flex flex-col items-center justify-center gap-4">
+                <Controller
+                  name="href"
+                  rules={{ required: 'Введіть URL' }}
+                  control={control}
+                  render={({ field }) => (
+                    <TextInput
+                      {...field}
+                      errorText={errors.href?.message}
+                      placeholder="Введіть посилання на сторінку Партнера"
+                      title="Змінити посилання на сторінку Партнера:"
+                    />
+                  )}
+                />
+              </section>
+            </div>
+            <div>
+              <p className="mb-3 text-disabled">Застосувати зміни?</p>
 
-      <div className="mb-[10vh]">
-        <div className="relative text-left">
-          <img
-            src={
-              image
-                ? image
-                : 'https://healvets.org/wp-content/uploads/2021/10/ef3-placeholder-image.jpeg'
-            }
-            alt={title}
-            className="h-[200px] w-[200px] rounded-full object-cover"
-          />
-          <h2 className={`mt-2 text-center text-xl font-bold text-darkgray `}>
-            {title ? title : 'Type Something...'}
-          </h2>
+              <div className="flex gap-4">
+                <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
+                  Розмістити
+                </button>
+
+                <Link to="/admin/partners">
+                  <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+                    Скасувати
+                  </button>
+                </Link>
+              </div>
+            </div>{' '}
+          </form>
         </div>
+
+        <section className="flex flex-col items-center  gap-4 px-8">
+          <div className="flex  flex-col items-center  gap-8 ">
+            <div className="text-left">
+              <img
+                src={image ? image : '/placeholder-image.jpeg'}
+                alt={currentValues.title}
+                width={205}
+                height={205}
+                className="mb-5 rounded-md"
+              />
+              <h2
+                className={` bottom-4 left-2 mb-6 text-center text-xl font-bold
+                `}
+              >
+                {currentValues.title}
+              </h2>
+              <h2 className="bottom-4 left-2 ">{currentValues.href}</h2>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
