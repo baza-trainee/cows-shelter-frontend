@@ -1,6 +1,6 @@
 import { formatBytes } from '@/utils/formatBytes';
 
-const sizeLimit = 500 * 1024;
+const sizeLimit = 1024 * 1024;
 
 export const newsValidation = {
   titleUa: {
