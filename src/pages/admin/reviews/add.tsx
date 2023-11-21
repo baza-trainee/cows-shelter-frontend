@@ -20,7 +20,7 @@ const AddReviews = () => {
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
-      <div className="mb-[12px] mt-[48px]">
+      <div className="mb-9 mt-12">
         <h1 className="text-3xl font-bold">Додавання відгуку</h1>
       </div>
       <div className="flex w-full">
@@ -29,7 +29,7 @@ const AddReviews = () => {
           autoComplete="off"
           className="flex flex-1 flex-col gap-4"
         >
-          <div className="flex gap-2">
+          <div className="mb-5 flex gap-2">
             <section className="flex flex-col gap-4">
               <div className="flex gap-6">
                 <Controller
@@ -95,7 +95,7 @@ const AddReviews = () => {
           </p>
           <div className="flex gap-4">
             <button className="w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+              Додати
             </button>
             <Link to="/admin">
               <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
