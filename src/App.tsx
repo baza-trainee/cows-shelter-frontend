@@ -14,15 +14,18 @@ import AddPartner from './pages/admin/partners/add';
 import EditPartner from './pages/admin/partners/edit';
 import Contacts from './pages/admin/contacts';
 import SignIn from './pages/admin/login/signIn';
+import SignUp from './pages/admin/login/signUp';
 import Reviews from './pages/admin/reviews';
 import AddReviews from './pages/admin/reviews/add';
 import EditReviews from './pages/admin/reviews/edit';
+import NewPassword from './pages/admin/login/newPassword/NewPasword';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="signin" element={<SignIn />} />
+      <Route path="signup" element={<SignUp />} />
       <Route path="admin/*" element={<AdminPage />}>
         <Route index element={<News />} />
         <Route path="news/add" element={<AddNews />} />
@@ -38,6 +41,7 @@ const App = () => {
         <Route path="partners/add" element={<AddPartner />} />
         <Route path="partners/edit/:id" element={<EditPartner />} />
         <Route path="contacts" element={<Contacts />} />
+        <Route path="newpaswword" element={<NewPassword />} />
       </Route>
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/add" element={<AddPost />} />

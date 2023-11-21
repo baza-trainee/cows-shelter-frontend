@@ -4,30 +4,31 @@ import ShowPasword from '@/components/icons/ShowPasword';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { singInSchema } from './schema/sindInSchema';
-import PopUpForgotPassword from './PopUrForgotPassword';
-import { FormValuesSignIn } from '@/types';
+import { singUpSchema } from './singUpSchema';
+type FormValuesSignUp = {
+  email: string;
+  password: string;
+  confirmpassword: string;
+};
 
-const SingInForm = () => {
+const SingUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showPopUp, setShowPopUp] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
-    getValues,
-    watch,
     formState: { errors, isValid, touchedFields }
-  } = useForm<FormValuesSignIn>({
-    resolver: zodResolver(singInSchema),
+  } = useForm<FormValuesSignUp>({
+    resolver: zodResolver(singUpSchema),
     mode: 'onChange'
   });
 
-  const isEmailField = Boolean(watch().email);
   const isShowPassword = () => setShowPassword((prev) => !prev);
-  const onSubmit: SubmitHandler<FormValuesSignIn> = (data) => {
+  const isShowConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
+  const onSubmit: SubmitHandler<FormValuesSignUp> = (data) => {
     console.log(data);
   };
-  const handleForgotPassword = () => setShowPopUp((prev) => !prev);
 
   return (
     <form
@@ -83,21 +84,38 @@ const SingInForm = () => {
           </div>
         )}
       </label>
-      <button
-        onClick={handleForgotPassword}
-        className="mx-auto mb-[77px] block border-b border-current text-darkyellow disabled:text-disabled"
-        disabled={!isEmailField || !!errors.email}
-      >
-        Не пам’ятаю пароль
-      </button>
-      {showPopUp && (
-        <PopUpForgotPassword
-          email={getValues('email')}
-          closePopup={handleForgotPassword}
+      <label htmlFor="" className="relative mb-6 block">
+        Підтвердіть пароль:
+        <input
+          {...register('confirmpassword')}
+          className={`block  w-[100%] border ${
+            errors.confirmpassword && 'border-red'
+          } border-darkgray px-[14px] py-[10px] placeholder:text-disabled`}
+          type={showConfirmPassword ? 'text' : 'password'}
+          placeholder="Введіть пароль ще раз "
         />
-      )}
+        {!errors.confirmpassword && (
+          <button
+            className="absolute right-[14px] top-9"
+            type="button"
+            onClick={isShowConfirmPassword}
+          >
+            {showConfirmPassword ? <HidePassword /> : <ShowPasword />}
+          </button>
+        )}
+        {errors.confirmpassword && (
+          <div className="relative">
+            <p className="text-[0.75rem] text-red">
+              {errors.confirmpassword.message}
+            </p>
+            <div className="absolute -top-[30px] right-[14px]">
+              <ErrorIcon />
+            </div>
+          </div>
+        )}
+      </label>
       <button
-        className=" mx-auto inline-block w-[330px]  bg-accent px-5 py-3 text-lg transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white "
+        className=" mx-auto inline-block w-[330px]  bg-accent px-5 py-3 text-lg disabled:bg-disabled disabled:text-white"
         type="submit"
         disabled={!isValid}
       >
@@ -107,4 +125,4 @@ const SingInForm = () => {
   );
 };
 
-export default SingInForm;
+export default SingUpForm;
