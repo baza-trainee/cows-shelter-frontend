@@ -50,7 +50,7 @@ const FileInput = <T extends FieldValues>({
 
       <label htmlFor={title + 'file'}>
         <div className={inputContainerStyle}>
-          <span className="w-full truncate text-center text-sm text-gray-400">
+          <span className="w-[250px] truncate text-center text-sm text-gray-400">
             {fileName || placeholder}
           </span>
 
@@ -68,7 +68,9 @@ const FileInput = <T extends FieldValues>({
       />
 
       {!!errorMessage && (
-        <span className="absolute bottom-2 left-0 text-xs">{errorMessage}</span>
+        <span className="absolute -bottom-6 left-0 text-xs">
+          {errorMessage}
+        </span>
       )}
     </div>
   );
