@@ -127,7 +127,7 @@ export const editPost = createAsyncThunk(
 );
 
 const newsSlice = createSlice({
-  name: 'todos',
+  name: 'news',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
