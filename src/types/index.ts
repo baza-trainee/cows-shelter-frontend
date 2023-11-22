@@ -62,6 +62,8 @@ export type PartnersType = {
 export type NewsFormInput = {
   titleUa: string;
   titleEn: string;
+  subTitleUa: string;
+  subTitleEn: string;
   contentUa: string;
   contentEn: string;
   image: File[];

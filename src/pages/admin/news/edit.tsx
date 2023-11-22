@@ -10,12 +10,14 @@ import { editPost, fetchPostById } from '@/store/slices/newsSlice';
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import TextInput from '@/components/admin/inputs/TextInput';
+import { newsValidation } from './newsValidation';
 
 const EditNews = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
   const posts = useAppSelector((state) => state.posts.posts);
 
   const {
@@ -39,6 +41,8 @@ const EditNews = () => {
     if (!postData) return;
     setValue('titleUa', postData.title_ua);
     setValue('titleEn', postData.title_en);
+    setValue('subTitleUa', postData.subtitle_ua);
+    setValue('subTitleEn', postData.subtitle_en);
     setValue('contentUa', postData.content_ua);
     setValue('contentEn', postData.content_en);
     setValue('image_id', postData.image_id);
@@ -62,7 +66,9 @@ const EditNews = () => {
   const onSubmit: SubmitHandler<NewsFormInput> = async (
     values: NewsFormInput
   ) => {
+    setIsProcessing(true);
     await dispatch(editPost({ id, values }));
+    setIsProcessing(false);
     navigate(-1);
   };
 
@@ -80,7 +86,7 @@ const EditNews = () => {
             <section className="flex flex-col items-center justify-center gap-4">
               <Controller
                 name="titleUa"
-                rules={{ required: 'Введіть назву' }}
+                rules={newsValidation.titleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -93,7 +99,7 @@ const EditNews = () => {
               />
               <Controller
                 name="titleEn"
-                rules={{ required: 'Введіть назву' }}
+                rules={newsValidation.titleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -101,6 +107,32 @@ const EditNews = () => {
                     errorText={errors.titleEn?.message}
                     placeholder="Введіть заголовок"
                     title="Заголовок англійською:"
+                  />
+                )}
+              />
+              <Controller
+                name="subTitleUa"
+                rules={newsValidation.titleUa}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.subTitleUa?.message}
+                    placeholder="Введіть заголовок"
+                    title="Підзаголовок:"
+                  />
+                )}
+              />
+              <Controller
+                name="subTitleEn"
+                rules={newsValidation.titleEn}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.subTitleEn?.message}
+                    placeholder="Введіть заголовок"
+                    title="Підзаголовок англійською:"
                   />
                 )}
               />
@@ -157,13 +189,17 @@ const EditNews = () => {
                   accept="image/*"
                   placeholder={'Оберіть файл'}
                   title="Оберіть файл"
+                  rules={newsValidation.image}
                 />
               </div>
             </section>
           </div>
+          <span className="mt-4 text-sm text-gray-500">
+            Додати новину на сайт?
+          </span>
           <div className="flex gap-4">
             <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+              {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
 
             <Link to="/admin">
