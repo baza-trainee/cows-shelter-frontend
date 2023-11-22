@@ -4,8 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { passwordSchema } from './schema/passwordSchema';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { newPassword } from '../fetchin/fetchin';
+import { FormValuesPassword } from '@/types';
 
-type FormValuesPassword = {
+type FormValuesPasswordd = {
   password: string;
   confirmpassword: string;
 };
@@ -18,7 +19,7 @@ const NewPassword = () => {
     setError,
     clearErrors,
     formState: { errors, isValid, touchedFields }
-  } = useForm<FormValuesPassword>({
+  } = useForm<FormValuesPasswordd>({
     resolver: zodResolver(passwordSchema),
     mode: 'onChange'
   });
@@ -44,12 +45,13 @@ const NewPassword = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<FormValuesPassword> = async (data) => {
-    // console.log(data);
-    const storage = localStorage.getItem('user');
-    const email = JSON.parse(storage);
-    const body = { email: email.email, pasword: data.password };
-    // console.log(email);
+  const onSubmit: SubmitHandler<FormValuesPasswordd> = async (data) => {
+    const user = localStorage.getItem('user');
+    const email = JSON.parse(user as string);
+    const body = {
+      email: email.email,
+      password: data.password
+    };
     console.log(body);
     try {
       const result = await newPassword(body);

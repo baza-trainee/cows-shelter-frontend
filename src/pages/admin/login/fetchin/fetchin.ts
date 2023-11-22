@@ -1,6 +1,6 @@
 import instance from '@/utils/axios';
 import axios from 'axios';
-import { ForgotPassword, FormValuesSignIn } from '@/types';
+import { ForgotPassword, FormValuesPassword, FormValuesSignIn } from '@/types';
 
 const token = {
   set(token: string) {
@@ -22,7 +22,7 @@ export const forgotPassword = async (body: ForgotPassword) => {
   return data;
 };
 
-export const newPassword = async (body: FormValuesSignIn) => {
+export const newPassword = async (body: FormValuesPassword) => {
   const data = await instance.post('/api/password/change', body);
   return data;
 };

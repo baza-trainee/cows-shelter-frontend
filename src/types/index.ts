@@ -78,8 +78,13 @@ export type FormValuesSignIn = {
   password: string;
 };
 
+export type FormValuesPassword = {
+  email: any;
+  password: string;
+};
+
 export type ForgotPassword = {
-  email: string;
+  email: string | null;
 };
 
 export type AboutData = {
