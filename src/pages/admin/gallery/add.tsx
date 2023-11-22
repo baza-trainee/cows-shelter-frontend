@@ -14,6 +14,7 @@ type AddImageProps = {
 const AddImage = ({ setIsModalOpen }: AddImageProps) => {
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const { handleSubmit, watch, control } = useForm<NewsFormInput>({
     mode: 'onChange',
@@ -36,7 +37,9 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
   const onSubmit: SubmitHandler<NewsFormInput> = async (
     values: NewsFormInput
   ) => {
+    setIsProcessing(true);
     await dispatch(addNewImage(values));
+    setIsProcessing(false);
     setIsModalOpen(false);
   };
 
@@ -68,7 +71,7 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
             </span>
             <div className="flex gap-4">
               <button className=" w-full rounded-sm bg-gray-200 p-2 hover:bg-lemon">
-                Submit
+                {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
               </button>
 
               <button

@@ -12,6 +12,8 @@ export type Post = {
   id: string;
   title_ua: string;
   title_en: string;
+  subtitle_ua: string;
+  subtitle_en: string;
   content_ua: string;
   content_en: string;
   image_url: string;
@@ -78,6 +80,8 @@ export const addNewPost = createAsyncThunk(
       const newPost = {
         title_ua: values.titleUa,
         title_en: values.titleEn,
+        subtitle_ua: values.subTitleUa,
+        subtitle_en: values.subTitleEn,
         content_ua: values.contentUa,
         content_en: values.contentEn,
         image_url: data.image_url,
@@ -103,6 +107,8 @@ export const editPost = createAsyncThunk(
         const newPost = {
           title_ua: newsData.values.titleUa,
           title_en: newsData.values.titleEn,
+          subtitle_ua: newsData.values.subTitleUa,
+          subtitle_en: newsData.values.subTitleEn,
           content_ua: newsData.values.contentUa,
           content_en: newsData.values.contentEn,
           image_url: data.image_url,
@@ -113,6 +119,8 @@ export const editPost = createAsyncThunk(
         const newPost = {
           title_ua: newsData.values.titleUa,
           title_en: newsData.values.titleEn,
+          subtitle_ua: newsData.values.subTitleUa,
+          subtitle_en: newsData.values.subTitleEn,
           content_ua: newsData.values.contentUa,
           content_en: newsData.values.contentEn,
           image_url: newsData.values.image[0].name
