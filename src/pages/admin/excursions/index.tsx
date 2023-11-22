@@ -15,11 +15,11 @@ const Excursions = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center p-8">
-      <div className="px-12">
+    <div className="relative flex min-h-screen flex-col px-12 py-10">
+      <div className="mb-9">
         <h1 className="text-3xl font-bold">Екскурсії</h1>
       </div>
-      <div className="flex gap-5 p-12">
+      <div className="flex gap-5">
         <div className="border-lightgray relative flex h-[180px] w-[288px] flex-col items-center justify-center gap-2 border-2">
           <Link to="/admin/excursions/add">
             <AddIcon />

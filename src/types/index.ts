@@ -21,20 +21,28 @@ export type Reviews = {
   id: string;
   name: string;
   review: string;
+  nameEn: string;
+  reviewEn: string;
 };
 
 export type ExcursionsData = {
   id: string;
   title: string;
+  titleEn: string;
   description: string;
+  descriptionEn: string;
   mainImgSrc: string;
   mainImgSrc_tablet: string;
   mainImgSrc_mobile: string;
   imagesSrs: string[];
   imagesSrs_tablet: string[];
   imagesSrs_mobile: string;
-  duration: string;
+  timeFrom: string;
+  timeTill: string;
   number_of_people: string;
+  minutes: string;
+  to: string;
+  visitors: string;
 };
 
 export type SupportCard = {
@@ -57,6 +65,7 @@ export type NewsFormInput = {
   contentUa: string;
   contentEn: string;
   image: File[];
+  image_id: string;
 };
 
 export type ForgotPasswordProps = {

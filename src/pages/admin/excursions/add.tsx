@@ -127,7 +127,7 @@ const AddExcursions = () => {
             </section>
 
             <section className="flex flex-col items-center justify-center gap-4 px-8">
-              <div className="mt-[5vh] flex w-full flex-col items-center justify-center gap-8 ">
+              <div className="mt-[5vh] flex w-full flex-col items-center justify-center gap-7">
                 <div className="relative text-left">
                   <img
                     src={
@@ -159,10 +159,10 @@ const AddExcursions = () => {
               </div>
 
               <div>
-                <p>Введіть часовий проміжок:</p>
+                <p className="text-sm font-medium">Введіть часовий проміжок:</p>
                 <div className="flex gap-6">
                   <div className="flex items-center gap-3">
-                    <p>Від</p>
+                    <p className="text-sm font-medium">Від</p>
                     <Controller
                       name="timeFrom"
                       rules={excursionsValidation.timeFrom}
@@ -176,7 +176,7 @@ const AddExcursions = () => {
                     />
                   </div>
                   <div className="flex items-center gap-3">
-                    <p>До</p>
+                    <p className="text-sm font-medium">До</p>
                     <Controller
                       name="timeTill"
                       rules={excursionsValidation.timeTill}
@@ -189,21 +189,30 @@ const AddExcursions = () => {
                       )}
                     />
                   </div>
+                  <p className="flex items-center text-sm font-medium">
+                    хвилин
+                  </p>
                 </div>
               </div>
 
-              <Controller
-                name="visitorsNumber"
-                rules={excursionsValidation.visitorsNumber}
-                control={control}
-                render={({ field }) => (
-                  <TextInput
-                    {...field}
-                    errorText={errors.visitorsNumber?.message}
-                    title="Введіть кількість відвідувачів:"
-                  />
-                )}
-              />
+              <div className="flex items-center gap-6">
+                <p className="flex items-center pt-5 text-sm font-medium">до</p>
+                <Controller
+                  name="visitorsNumber"
+                  rules={excursionsValidation.visitorsNumber}
+                  control={control}
+                  render={({ field }) => (
+                    <TextInput
+                      {...field}
+                      errorText={errors.visitorsNumber?.message}
+                      title="Введіть кількість відвідувачів:"
+                    />
+                  )}
+                />
+                <p className="flex items-center pt-5 text-sm font-medium">
+                  відвідувачів
+                </p>
+              </div>
             </section>
           </div>
 

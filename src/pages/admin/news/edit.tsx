@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { news } from '@/data/news';
 import { Link, useParams } from 'react-router-dom';
 import { NewsFormInput } from '@/types';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { editPost, fetchPostById } from '@/store/slices/newsSlice';
 
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextArea from '@/components/admin/inputs/TextArea';
@@ -11,7 +13,10 @@ import TextInput from '@/components/admin/inputs/TextInput';
 
 const EditNews = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
+  const posts = useAppSelector((state) => state.posts.posts);
 
   const {
     handleSubmit,
@@ -26,14 +31,20 @@ const EditNews = () => {
 
   useEffect(() => {
     if (!id) return;
-    const postData = news.find((item) => item.id === id);
+    dispatch(fetchPostById(id));
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    const postData = posts[0];
     if (!postData) return;
-    setValue('titleUa', postData.titleUa);
-    setValue('titleEn', postData.titleEn);
-    setValue('contentUa', postData.textUa);
-    setValue('contentEn', postData.textEn);
-    setImage(postData.image);
-  }, [id, setValue]);
+    setValue('titleUa', postData.title_ua);
+    setValue('titleEn', postData.title_en);
+    setValue('contentUa', postData.content_ua);
+    setValue('contentEn', postData.content_en);
+    setValue('image_id', postData.image_id);
+    setValue('image', [new File([], postData.image_url)]);
+    setImage(postData.image_url);
+  }, [setValue, posts]);
 
   const currentValues = watch();
 
@@ -43,12 +54,17 @@ const EditNews = () => {
   };
 
   useEffect(() => {
-    if (!currentValues.image?.length) return;
+    if (!currentValues.image[0]?.size) return;
     const file = currentValues.image[0];
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<NewsFormInput> = () => {};
+  const onSubmit: SubmitHandler<NewsFormInput> = async (
+    values: NewsFormInput
+  ) => {
+    await dispatch(editPost({ id, values }));
+    navigate(-1);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
