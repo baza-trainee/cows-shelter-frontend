@@ -1,4 +1,4 @@
-import { instance } from '@/utils/axios';
+import instance from '@/utils/axios';
 import axios from 'axios';
 import { ForgotPassword, FormValuesSignIn } from '@/types';
 
