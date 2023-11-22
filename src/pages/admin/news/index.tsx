@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@/components/icons/AddIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchPosts, removePost } from '@/store/slices/newsSlice';
+import Loader from '@/components/admin/Loader';
 
 const News = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ const News = () => {
     setShowConfirm(false);
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="relative flex min-h-screen flex-col items-start justify-center px-[48px]">
