@@ -16,7 +16,10 @@ const EditNews = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
-  const posts = useAppSelector((state) => state.posts.posts);
+  const posts = useAppSelector((state) => {
+    state.posts.posts;
+    console.log(state);
+  });
 
   const {
     handleSubmit,
