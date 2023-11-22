@@ -15,6 +15,7 @@ const AddPost = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const {
     handleSubmit,
@@ -42,7 +43,9 @@ const AddPost = () => {
   const onSubmit: SubmitHandler<NewsFormInput> = async (
     values: NewsFormInput
   ) => {
+    setIsProcessing(true);
     await dispatch(addNewPost(values));
+    setIsProcessing(false);
     navigate(-1);
   };
 
@@ -82,6 +85,32 @@ const AddPost = () => {
                     errorText={errors.titleEn?.message}
                     placeholder="Введіть заголовок"
                     title="Заголовок англійською:"
+                  />
+                )}
+              />
+              <Controller
+                name="subTitleUa"
+                rules={newsValidation.subTitleUa}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.subTitleUa?.message}
+                    placeholder="Введіть заголовок"
+                    title="Підзаголовок:"
+                  />
+                )}
+              />
+              <Controller
+                name="subTitleEn"
+                rules={newsValidation.subTitleEn}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.subTitleEn?.message}
+                    placeholder="Введіть заголовок"
+                    title="Підзаголовок англійською:"
                   />
                 )}
               />
@@ -147,9 +176,12 @@ const AddPost = () => {
               </div>
             </section>
           </div>
+          <span className="mt-4 text-sm text-gray-500">
+            Додати новину на сайт?
+          </span>
           <div className="flex gap-4">
             <button className="w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+              {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
 
             <Link to="/admin">
