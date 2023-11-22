@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { passwordSchema } from './schema/passwordSchema';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { newPassword } from '../fetchin/fetchin';
-import { FormValuesPassword } from '@/types';
 
 type FormValuesPasswordd = {
   password: string;

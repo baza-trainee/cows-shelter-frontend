@@ -1,5 +1,4 @@
 import SingInForm from './SingInForm';
-import { NavLink } from 'react-router-dom';
 
 const SignIn = () => {
   return (
