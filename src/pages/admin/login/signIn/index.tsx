@@ -12,12 +12,12 @@ const SignIn = () => {
           Підтвердіть свій акаунт
         </h3>
         <SingInForm />
-        <div className="flex justify-center gap-2">
+        {/* <div className="flex justify-center gap-2">
           <p>Не маєте акаунту? </p>
           <NavLink className="text-darkyellow" to="/signup">
             Зареєструватись
           </NavLink>
-        </div>
+        </div> */}
       </div>
       <img src="/admin/img-login.png" width="660px" alt="cow" />
     </section>

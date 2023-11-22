@@ -69,6 +69,10 @@ export type FormValuesSignIn = {
   password: string;
 };
 
+export type ForgotPassword = {
+  email: string;
+};
+
 export type AboutData = {
   title: string;
   description: string[];

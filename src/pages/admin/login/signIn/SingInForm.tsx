@@ -7,15 +7,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { singInSchema } from './schema/sindInSchema';
 import PopUpForgotPassword from './PopUrForgotPassword';
 import { FormValuesSignIn } from '@/types';
+import { forgotPassword, login } from '../fetchin/fetchin';
+import { useNavigate } from 'react-router-dom';
 
 const SingInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     getValues,
     watch,
+    setError,
     formState: { errors, isValid, touchedFields }
   } = useForm<FormValuesSignIn>({
     resolver: zodResolver(singInSchema),
@@ -24,10 +28,35 @@ const SingInForm = () => {
 
   const isEmailField = Boolean(watch().email);
   const isShowPassword = () => setShowPassword((prev) => !prev);
-  const onSubmit: SubmitHandler<FormValuesSignIn> = (data) => {
-    console.log(data);
+
+  const onSubmit: SubmitHandler<FormValuesSignIn> = async (data) => {
+    try {
+      const result: any = await login(data);
+
+      navigate('/admin');
+      localStorage.setItem('user', JSON.stringify(result.data));
+    } catch (error: any) {
+      console.log(error);
+      setError('password', {
+        type: 'manual',
+        message: error.response.data.message
+      });
+    }
   };
-  const handleForgotPassword = () => setShowPopUp((prev) => !prev);
+
+  const handleForgotPassword = async () => {
+    const body = { email: getValues('email') };
+    try {
+      await forgotPassword(body);
+      console.log('success');
+      setShowPopUp((prev) => !prev);
+    } catch (error) {
+      setError('email', {
+        type: 'manual',
+        message: 'Сервер не відповідає'
+      });
+    }
+  };
 
   return (
     <form
@@ -93,7 +122,7 @@ const SingInForm = () => {
       {showPopUp && (
         <PopUpForgotPassword
           email={getValues('email')}
-          closePopup={handleForgotPassword}
+          closePopup={() => setShowPopUp((prev) => !prev)}
         />
       )}
       <button
