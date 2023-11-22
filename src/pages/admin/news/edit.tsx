@@ -41,6 +41,7 @@ const EditNews = () => {
     setValue('titleEn', postData.title_en);
     setValue('contentUa', postData.content_ua);
     setValue('contentEn', postData.content_en);
+    setValue('image_id', postData.image_id);
     setValue('image', [new File([], postData.image_url)]);
     setImage(postData.image_url);
   }, [setValue, posts]);

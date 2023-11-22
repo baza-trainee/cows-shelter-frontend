@@ -15,6 +15,7 @@ export type Post = {
   content_ua: string;
   content_en: string;
   image_url: string;
+  image_id: string;
 };
 
 type NewsState = {
@@ -79,7 +80,8 @@ export const addNewPost = createAsyncThunk(
         title_en: values.titleEn,
         content_ua: values.contentUa,
         content_en: values.contentEn,
-        image_url: data.image_url
+        image_url: data.image_url,
+        image_id: data.image_id
       };
       await axios.post('api/news', newPost);
     } catch (error) {
@@ -103,7 +105,8 @@ export const editPost = createAsyncThunk(
           title_en: newsData.values.titleEn,
           content_ua: newsData.values.contentUa,
           content_en: newsData.values.contentEn,
-          image_url: data.image_url
+          image_url: data.image_url,
+          image_id: data.image_id
         };
         await axios.patch(`api/news/${newsData.id}`, newPost);
       } else {

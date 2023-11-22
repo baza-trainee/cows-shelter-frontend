@@ -65,6 +65,7 @@ export type NewsFormInput = {
   contentUa: string;
   contentEn: string;
   image: File[];
+  image_id: string;
 };
 
 export type AboutData = {

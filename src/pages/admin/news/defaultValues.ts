@@ -3,5 +3,6 @@ export const defaultValues = {
   titleEn: '',
   contentUa: '',
   contentEn: '',
+  image_id: '',
   image: []
 };
