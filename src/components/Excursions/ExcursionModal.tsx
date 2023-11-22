@@ -82,14 +82,15 @@ const ExcursionModal = ({
               <div className="flex gap-3">
                 <img src={time_icon} width={24} height={24}></img>
                 <span className="text-sm leading-normal text-darkyellow md:text-base">
-                  {t(excursion.duration)}
+                  {t(excursion.timeFrom)} - {t(excursion.timeTill)}{' '}
+                  {t(excursion.minutes)}
                 </span>
               </div>
               <div className="flex gap-3">
                 <img src={people_icon} width={24} height={24}></img>
                 <span className="text-sm leading-normal text-darkyellow md:text-base">
-                  {' '}
-                  {t(excursion.number_of_people)}
+                  {t(excursion.to)} {t(excursion.number_of_people)}{' '}
+                  {t(excursion.visitors)}
                 </span>
               </div>
             </div>

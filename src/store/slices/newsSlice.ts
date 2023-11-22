@@ -1,89 +1,135 @@
-import { PostRequest } from '@/types';
+import { NewsFormInput } from '@/types';
 import {
   AnyAction,
   createAsyncThunk,
   createSlice,
   PayloadAction
 } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+import axios from '@/utils/axios';
 
 export type Post = {
   id: string;
-  title: string;
-  body: string;
+  title_ua: string;
+  title_en: string;
+  content_ua: string;
+  content_en: string;
+  image_url: string;
+  image_id: string;
 };
 
 type NewsState = {
-  list: Post[];
+  posts: Post[];
   loading: boolean;
   error: string | null;
 };
 
 const initialState: NewsState = {
-  list: [],
+  posts: [],
   loading: false,
   error: null
 };
 
-export const fetchPosts = createAsyncThunk<
-  Post[],
-  undefined,
-  { rejectValue: string }
->('todos/fetchPosts', async function (_, { rejectWithValue }) {
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_limit=6'
-  );
-
-  if (!response.ok) {
-    return rejectWithValue('Server Error!');
+export const fetchPosts = createAsyncThunk('news/fetchPosts', async () => {
+  try {
+    const response = await axios.get<Post[]>('api/news');
+    const data = response.data;
+    return data;
+  } catch (error) {
+    const err = error as AxiosError;
+    return err.message;
   }
-
-  const data = await response.json();
-
-  console.log(data);
-
-  return data;
 });
 
-export const addNewPost = createAsyncThunk<
-  Post,
-  PostRequest,
-  { rejectValue: string }
->('todos/addNewPost', async function (post, { rejectWithValue }) {
-  const newPost = {
-    title: post.title,
-    text: post.text
-  };
-
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newPost)
-  });
-
-  if (!response.ok) {
-    return rejectWithValue("Can't add task. Server error.");
+export const fetchPostById = createAsyncThunk(
+  'news/fetchPostById',
+  async (id: string) => {
+    try {
+      const response = await axios.get<Post>(`api/news/${id}`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
   }
+);
 
-  return (await response.json()) as Post;
-});
+export const removePost = createAsyncThunk(
+  'news/removePost',
+  async (id: string) => {
+    try {
+      await axios.delete(`api/news/${id}`);
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const addNewPost = createAsyncThunk(
+  'news/addnewPost',
+  async (values: NewsFormInput) => {
+    try {
+      const file = values.image[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      const { data } = await axios.post('api/news/upload', formData);
+      const newPost = {
+        title_ua: values.titleUa,
+        title_en: values.titleEn,
+        content_ua: values.contentUa,
+        content_en: values.contentEn,
+        image_url: data.image_url,
+        image_id: data.image_id
+      };
+      await axios.post('api/news', newPost);
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const editPost = createAsyncThunk(
+  'news/editPost',
+  async (newsData: { id?: string; values: NewsFormInput }) => {
+    try {
+      if (newsData.values.image[0].size > 0) {
+        const file = newsData.values.image[0];
+        const formData = new FormData();
+        formData.append('file', file);
+        const { data } = await axios.post('api/news/upload', formData);
+        const newPost = {
+          title_ua: newsData.values.titleUa,
+          title_en: newsData.values.titleEn,
+          content_ua: newsData.values.contentUa,
+          content_en: newsData.values.contentEn,
+          image_url: data.image_url,
+          image_id: data.image_id
+        };
+        await axios.patch(`api/news/${newsData.id}`, newPost);
+      } else {
+        const newPost = {
+          title_ua: newsData.values.titleUa,
+          title_en: newsData.values.titleEn,
+          content_ua: newsData.values.contentUa,
+          content_en: newsData.values.contentEn,
+          image_url: newsData.values.image[0].name
+        };
+        await axios.patch(`api/news/${newsData.id}`, newPost);
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
 
 const newsSlice = createSlice({
-  name: 'todos',
+  name: 'news',
   initialState,
-  reducers: {
-    addPost(state, action: PayloadAction<PostRequest>) {
-      state.list.push({
-        id: new Date().toISOString(),
-        title: action.payload.title,
-        body: action.payload.text
-      });
-    },
-    removePost(state, action: PayloadAction<string>) {
-      state.list = state.list.filter((todo) => todo.id !== action.payload);
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -91,8 +137,22 @@ const newsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.list = action.payload;
+        state.posts = action.payload as Post[];
         state.loading = false;
+      })
+      .addCase(fetchPostById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.posts = [];
+      })
+      .addCase(fetchPostById.fulfilled, (state, action) => {
+        state.posts.push(action.payload as Post);
+        state.loading = false;
+      })
+      .addCase(removePost.fulfilled, (state, action) => {
+        state.posts = state.posts.filter(
+          (item) => item.id !== (action.meta.arg as string)
+        );
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
@@ -101,7 +161,7 @@ const newsSlice = createSlice({
   }
 });
 
-export const { addPost, removePost } = newsSlice.actions;
+// export const { addPost, removePost } = newsSlice.actions;
 
 export default newsSlice.reducer;
 

@@ -1,14 +1,19 @@
-import FileInput from '@/components/admin/inputs/FileInput';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
 import { NewsFormInput } from '@/types';
+import { newsValidation } from './newsValidation';
+import { useAppDispatch } from '@/store/hook';
+import { addNewPost } from '@/store/slices/newsSlice';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
-import { newsValidation } from './newsValidation';
+import FileInput from '@/components/admin/inputs/FileInput';
 
 const AddPost = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
 
   const {
@@ -34,7 +39,12 @@ const AddPost = () => {
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<NewsFormInput> = () => {};
+  const onSubmit: SubmitHandler<NewsFormInput> = async (
+    values: NewsFormInput
+  ) => {
+    await dispatch(addNewPost(values));
+    navigate(-1);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
