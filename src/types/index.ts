@@ -53,12 +53,19 @@ export type SupportCard = {
   image: string;
 };
 
-export type PartnersType = {
+export type PartnersData = {
   title: string;
   href: string;
   src: string;
 };
 
+export type PartnersFormInput = {
+  title: string;
+  link: string;
+  image: File[];
+  id?: string;
+  image_id: string;
+};
 export type NewsFormInput = {
   titleUa: string;
   titleEn: string;

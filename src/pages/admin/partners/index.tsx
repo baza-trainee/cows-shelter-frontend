@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Confirm from '@/components/admin/Confirm';
-import { partners } from '@/data/partners';
 import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import AddIcon from '@/components/icons/AddIcon';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { fetchPartners, removePartner } from '@/store/slices/partnersSlice';
+import Loader from '@/components/admin/Loader';
 
 const Partners = () => {
+  const dispatch = useAppDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [currentId, setCurrentId] = useState('');
+  const isLoading = useAppSelector((state) => state.partners.loading);
+  const partners = useAppSelector((state) => state.partners.partners);
+
+  useEffect(() => {
+    dispatch(fetchPartners());
+  }, [dispatch]);
 
   const deletePartner = () => {
-    console.log('deleted');
+    dispatch(removePartner(currentId));
     setShowConfirm(false);
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="px-12 pt-10">
@@ -29,30 +41,32 @@ const Partners = () => {
           <h2 className="w-[147px]">Додати Партнера</h2>
         </div>
         <div className="flex flex-wrap gap-5">
-          {partners.map((post) => (
+          {partners.map((partner) => (
             <div
-              key={post.id}
+              key={partner.id}
               className="flex h-[288px] w-[211px] flex-col border-2 border-blue-300 px-[25.5px] pt-6"
             >
               <img
-                src={post.src}
-                alt={post.title}
+                src={partner.logo}
+                alt={partner.name}
                 width={160}
                 height={160}
                 className="mb-4"
               />
               <h2 className=" text-center text-lg font-bold text-darkgray">
-                {post.title}
+                {partner.name}
               </h2>
               <div className="buttons mt-auto flex justify-between gap-2">
                 <button className="flex h-10 w-10 items-center justify-center text-xl text-black hover:text-accent">
-                  <Link to={`/admin/partners/edit/${post.id}`}>
+                  <Link to={`/admin/partners/edit/${partner.id}`}>
                     <BsFillPencilFill />
                   </Link>
                 </button>
                 <button
-                  className="flex h-10 w-10 items-center justify-center text-xl text-black hover:text-red-500"
-                  onClick={() => setShowConfirm(true)}
+                  className="hover:text-red-500 flex h-10 w-10 items-center justify-center text-xl text-black"
+                  onClick={() => {
+                    setShowConfirm(true), setCurrentId(partner.id);
+                  }}
                 >
                   <BsFillTrash3Fill />
                 </button>
