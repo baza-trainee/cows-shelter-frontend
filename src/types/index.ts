@@ -112,3 +112,8 @@ export type ReviewsFormInput = {
   reviewUa: string;
   reviewEn: string;
 };
+
+export type PdfFormInput = {
+  title: string;
+  document: File[];
+};
