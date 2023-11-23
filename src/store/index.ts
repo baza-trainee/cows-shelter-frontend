@@ -3,12 +3,14 @@ import newsReducer from './slices/newsSlice';
 import modalReducer from './slices/modalSlice';
 import observationReducer from './slices/observationSlice';
 import gallerySlice from './slices/gallerySlice';
+import excursionsReducer from './slices/excursionsSlice';
 
 const rootReducer = combineReducers({
   posts: newsReducer,
   modals: modalReducer,
   gallery: gallerySlice,
-  observer: observationReducer
+  observer: observationReducer,
+  excursions: excursionsReducer
 });
 
 export const store = configureStore({

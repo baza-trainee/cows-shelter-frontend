@@ -1,27 +1,27 @@
 import { ExcursionsFormInput } from '@/types';
 import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
-import { excursions } from '@/data/excursions';
+// import { excursions } from '@/data/excursions';
 import { useTranslation } from 'react-i18next';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import {
+  editExcursion,
+  fetchExcursionById
+} from '@/store/slices/excursionsSlice';
 
 const EditExcursions = () => {
-  const { t } = useTranslation();
-  // const { id } = useParams();
-  // const [titleUa, setTitleUa] = useState('');
-  // const [titleEn, setTitleEn] = useState('');
-  // const [textUa, setTextUa] = useState('');
-  // const [textEn, setTextEn] = useState('');
-  // const [isError, setIsError] = useState(true);
-  // const [imageFile, setImageFile] = useState<FileList | null>(null);
-  const [image, setImage] = useState('');
-  // const post = excursions.find((item) => item.id === id);
-
   const { id } = useParams();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [image, setImage] = useState('');
+
+  const excursions = useAppSelector((state) => state.excursions.excursions);
 
   const {
     handleSubmit,
@@ -36,18 +36,23 @@ const EditExcursions = () => {
 
   useEffect(() => {
     if (!id) return;
-    const postData = excursions.find((item) => item.id === id);
-    console.log(postData);
-    if (!postData) return;
-    setValue('titleUa', t(`${postData.title}`));
-    setValue('titleEn', postData.titleEn);
-    setValue('descriptionUa', t(`${postData.description}`));
-    setValue('descriptionEn', postData.descriptionEn);
-    setImage(postData.mainImgSrc);
-    setValue('timeFrom', t(`${postData.timeFrom}`));
-    setValue('timeTill', t(`${postData.timeTill}`));
-    setValue('visitorsNumber', t(`${postData.number_of_people}`));
-  }, [id, setValue, t]);
+    dispatch(fetchExcursionById(id));
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    const postExcursions = excursions[0];
+    if (!postExcursions) return;
+    console.log(postExcursions);
+    setValue('titleUa', t(`${postExcursions.title_ua}`));
+    setValue('titleEn', postExcursions.title_en);
+    setValue('descriptionUa', t(`${postExcursions.description_ua}`));
+    setValue('descriptionEn', postExcursions.description_en);
+    setValue('timeFrom', t(`${postExcursions.time_from}`));
+    setValue('timeTill', t(`${postExcursions.time_to}`));
+    setValue('visitorsNumber', t(`${postExcursions.amount_of_persons}`));
+    setValue('image', [new File([], postExcursions.image_url)]);
+    setImage(postExcursions.image_url);
+  }, [excursions, setValue, t]);
 
   const currentValues = watch();
 
@@ -57,38 +62,17 @@ const EditExcursions = () => {
   };
 
   useEffect(() => {
-    if (!currentValues.image?.length) return;
+    if (!currentValues.image[0]?.size) return;
     const file = currentValues.image[0];
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<ExcursionsFormInput> = () => {};
-
-  // useEffect(() => {
-  //   if (id && post) {
-  //     setTitleUa(t(`${post.title}`));
-  //     setTextUa(t(`${post.description}`));
-  //     setTitleEn(t(`${post.title}`));
-  //     setTextEn(t(`${post.description}`));
-  //     setImage(post.mainImgSrc);
-  //     setIsError(true);
-  //   }
-  // }, [id, post, t]);
-
-  // const setFileToBase64 = (file: File) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setImage(reader.result as string);
-  //   };
-  // };
-
-  // useEffect(() => {
-  //   if (imageFile !== null) {
-  //     const file = imageFile[0];
-  //     setFileToBase64(file);
-  //   }
-  // }, [imageFile]);
+  const onSubmit: SubmitHandler<ExcursionsFormInput> = async (
+    values: ExcursionsFormInput
+  ) => {
+    await dispatch(editExcursion({ id, values }));
+    navigate(-1);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">

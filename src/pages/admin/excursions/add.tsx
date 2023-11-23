@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { ExcursionsFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
@@ -7,23 +7,13 @@ import { excursionsValidation } from './excursionsValidation';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
+import { useAppDispatch } from '@/store/hook';
+import { addNewExcursion } from '@/store/slices/excursionsSlice';
 
 const AddExcursions = () => {
-  // const [titleUa, setTitleUa] = useState('');
-  // const [titleEn, setTitleEn] = useState('');
-  // const [textUa, setTextUa] = useState('');
-  // const [textEn, setTextEn] = useState('');
-  // const [isError, setIsError] = useState(true);
-  // const [imageFile, setImageFile] = useState<FileList | null>(null);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
-
-  // const setFileToBase64 = (file: File) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setImage(reader.result as string);
-  //   };
-  // };
 
   const {
     handleSubmit,
@@ -48,15 +38,12 @@ const AddExcursions = () => {
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<ExcursionsFormInput> = () => {};
-
-  // useEffect(() => {
-  //   if (imageFile !== null) {
-  //     const file = imageFile[0];
-  //     // setFileToBase64(file);
-  //     // setIsError(true);
-  //   }
-  // }, [imageFile]);
+  const onSubmit: SubmitHandler<ExcursionsFormInput> = async (
+    values: ExcursionsFormInput
+  ) => {
+    await dispatch(addNewExcursion(values));
+    navigate(-1);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
