@@ -5,6 +5,7 @@ import observationReducer from './slices/observationSlice';
 import gallerySlice from './slices/gallerySlice';
 import excursionsReducer from './slices/excursionsSlice';
 import pdfSlice from './slices/pdfSlice';
+import partnersSlice from './slices/partnersSlice';
 
 const rootReducer = combineReducers({
   posts: newsReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   gallery: gallerySlice,
   pdf: pdfSlice,
   observer: observationReducer,
-  excursions: excursionsReducer
+  excursions: excursionsReducer,
+  partners: partnersSlice
 });
 
 export const store = configureStore({
