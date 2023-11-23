@@ -1,4 +1,4 @@
-import { NewsFormInput } from '@/types';
+import { PdfFormInput } from '@/types';
 import {
   AnyAction,
   createAsyncThunk,
@@ -8,27 +8,27 @@ import {
 import { AxiosError } from 'axios';
 import axios from '@/utils/axios';
 
-export type Image = {
+export type Pdf = {
   id: string;
-  image_url: string;
-  image_id: string;
+  document_url: string;
+  document_id: string;
 };
 
-type ImageState = {
-  images: Image[];
+type PdfState = {
+  documents: Pdf[];
   loading: boolean;
   error: string | null;
 };
 
-const initialState: ImageState = {
-  images: [],
+const initialState: PdfState = {
+  documents: [],
   loading: false,
   error: null
 };
 
-export const fetchImages = createAsyncThunk('gallery/fetchImages', async () => {
+export const fetchPdfs = createAsyncThunk('pdf/fetchPdfs', async () => {
   try {
-    const response = await axios.get<Image[]>('api/gallery');
+    const response = await axios.get<Pdf[]>('api/pdf');
     const data = response.data;
     return data;
   } catch (error) {
@@ -37,11 +37,11 @@ export const fetchImages = createAsyncThunk('gallery/fetchImages', async () => {
   }
 });
 
-export const fetchImageById = createAsyncThunk(
-  'gallery/fetchImageById',
+export const fetchPdfById = createAsyncThunk(
+  'pdf/fetchPdfById',
   async (id: string) => {
     try {
-      const response = await axios.get<Image>(`api/gallery/${id}`);
+      const response = await axios.get<Pdf>(`api/pdf/${id}`);
       const data = response.data;
       return data;
     } catch (error) {
@@ -51,11 +51,11 @@ export const fetchImageById = createAsyncThunk(
   }
 );
 
-export const removeImage = createAsyncThunk(
-  'gallery/removeImage',
+export const removePdf = createAsyncThunk(
+  'pdf/removePdf',
   async (id: string) => {
     try {
-      await axios.delete(`api/gallery/${id}`);
+      await axios.delete(`api/pdf/${id}`);
     } catch (error) {
       const err = error as AxiosError;
       return err.message;
@@ -63,19 +63,20 @@ export const removeImage = createAsyncThunk(
   }
 );
 
-export const addNewImage = createAsyncThunk(
-  'gallery/addNewImage',
-  async (values: NewsFormInput) => {
+export const addNewPdf = createAsyncThunk(
+  'pdf/addNewPdf',
+  async (values: PdfFormInput) => {
     try {
-      const file = values.image[0];
+      const file = values.document[0];
       const formData = new FormData();
       formData.append('file', file);
-      const { data } = await axios.post('api/gallery/upload', formData);
-      const newImage = {
-        image_url: data.image_url,
-        image_id: data.image_id
+      const { data } = await axios.post('api/pdf/upload', formData);
+      const newPdf = {
+        title: values.title,
+        document_url: data.document_url,
+        document_id: data.document_id
       };
-      await axios.post('api/gallery', newImage);
+      await axios.post('api/pdf', newPdf);
     } catch (error) {
       const err = error as AxiosError;
       return err.message;
@@ -83,31 +84,31 @@ export const addNewImage = createAsyncThunk(
   }
 );
 
-const gallerySlice = createSlice({
-  name: 'gallery',
+const pdfSlice = createSlice({
+  name: 'pdf',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchImages.pending, (state) => {
+      .addCase(fetchPdfs.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchImages.fulfilled, (state, action) => {
-        state.images = action.payload as Image[];
+      .addCase(fetchPdfs.fulfilled, (state, action) => {
+        state.documents = action.payload as Pdf[];
         state.loading = false;
       })
-      .addCase(fetchImageById.pending, (state) => {
+      .addCase(fetchPdfById.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.images = [];
+        state.documents = [];
       })
-      .addCase(fetchImageById.fulfilled, (state, action) => {
-        state.images.push(action.payload as Image);
+      .addCase(fetchPdfById.fulfilled, (state, action) => {
+        state.documents.push(action.payload as Pdf);
         state.loading = false;
       })
-      .addCase(removeImage.fulfilled, (state, action) => {
-        state.images = state.images.filter(
+      .addCase(removePdf.fulfilled, (state, action) => {
+        state.documents = state.documents.filter(
           (item) => item.id !== (action.meta.arg as string)
         );
       })
@@ -118,7 +119,7 @@ const gallerySlice = createSlice({
   }
 });
 
-export default gallerySlice.reducer;
+export default pdfSlice.reducer;
 
 function isError(action: AnyAction) {
   return action.type.endsWith('rejected');
