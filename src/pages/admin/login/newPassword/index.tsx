@@ -1,9 +1,12 @@
 import ErrorIcon from '@/components/icons/ErrorIcon';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { passwordSchema } from './schema/passwordSchema';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { newPassword } from '../fetchin/fetchin';
+import { NavLink } from 'react-router-dom';
+import { changePassword } from '../fetchin/fetchin';
+import { useState } from 'react';
+import PopUpConfirmPassword from './PopUpConfirmPassword';
+import PopUpSuccessNewPassword from './PopUpSuccessNewPassword';
 
 type FormValuesPasswordd = {
   password: string;
@@ -11,11 +14,14 @@ type FormValuesPasswordd = {
 };
 
 const NewPassword = () => {
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [successChangePassword, setsuccessChangePassword] = useState(false);
   const {
     register,
     handleSubmit,
     watch,
     setError,
+    getValues,
     clearErrors,
     formState: { errors, isValid, touchedFields }
   } = useForm<FormValuesPasswordd>({
@@ -24,7 +30,6 @@ const NewPassword = () => {
   });
 
   const isPasswordField = Boolean(watch().password);
-  const navigate = useNavigate();
 
   const onPasswordChange = () => {
     const passwordValue = watch('password');
@@ -44,18 +49,22 @@ const NewPassword = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<FormValuesPasswordd> = async (data) => {
-    const user = localStorage.getItem('user');
-    const email = JSON.parse(user as string);
-    const body = {
-      email: email.email,
-      password: data.password
-    };
-    console.log(body);
+  const closeConfirmPassword = () => setShowConfirm(false);
+  const openConfirmPassword = () => setShowConfirm(true);
+
+  const onSubmit = async () => {
     try {
-      const result = await newPassword(body);
-      navigate('/admin');
-      localStorage.setItem('password', JSON.stringify(result.data));
+      const user = localStorage.getItem('user');
+      const { email } = JSON.parse(user as string);
+      const password = getValues('password');
+      const body = {
+        email,
+        password
+      };
+
+      const result = await changePassword(body);
+      localStorage.setItem('user', JSON.stringify(result.data));
+      setsuccessChangePassword(true);
     } catch (error: any) {
       setError('confirmpassword', {
         type: 'manual',
@@ -67,7 +76,7 @@ const NewPassword = () => {
   return (
     <div className="px-12 py-10">
       <h2 className=" mb-[59px] text-[2rem] font-semibold">Зміна пароля</h2>
-      <form onSubmit={handleSubmit(onSubmit)} action="" className="">
+      <form onSubmit={handleSubmit(openConfirmPassword)} action="" className="">
         <label htmlFor="" className="relative mb-6 block w-[386px]">
           Новий пароль:
           <input
@@ -155,6 +164,15 @@ const NewPassword = () => {
           </NavLink>
         </div>
       </form>
+      {showConfirm && (
+        <PopUpConfirmPassword
+          onSubmit={onSubmit}
+          closeConfirmPassword={closeConfirmPassword}
+        />
+      )}
+      {successChangePassword && (
+        <PopUpSuccessNewPassword password={getValues('password')} />
+      )}
     </div>
   );
 };

@@ -22,7 +22,13 @@ export const forgotPassword = async (body: ForgotPassword) => {
   return data;
 };
 
-export const newPassword = async (body: FormValuesPassword) => {
+export const changePassword = async (body: FormValuesPassword) => {
   const data = await instance.post('/api/password/change', body);
+  token.set(data.data.token);
+  return data;
+};
+
+export const resetPassword = async (body: FormValuesPassword) => {
+  const data = await instance.post('/api/password/reset', body);
   return data;
 };
