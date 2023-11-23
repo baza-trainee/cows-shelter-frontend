@@ -70,6 +70,25 @@ export type NewsFormInput = {
   image_id: string;
 };
 
+export type ForgotPasswordProps = {
+  email: string;
+  closePopup: () => void;
+};
+
+export type FormValuesSignIn = {
+  email: string;
+  password: string;
+};
+
+export type FormValuesPassword = {
+  email: any;
+  password: string;
+};
+
+export type ForgotPassword = {
+  email: string | null;
+};
+
 export type AboutData = {
   title: string;
   description: string[];
