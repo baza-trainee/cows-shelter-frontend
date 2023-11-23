@@ -4,7 +4,7 @@ import { PdfFormInput } from '@/types';
 import { useAppDispatch } from '@/store/hook';
 import { addNewPdf } from '@/store/slices/pdfSlice';
 import FileInput from '@/components/admin/inputs/FileInput';
-// import { imageValidation } from './imageValidation';
+import { pdfValidation } from './pdfValidation';
 import CloseIcon from '@/components/icons/CloseIconMenu';
 import TextInput from '@/components/admin/inputs/TextInput';
 
@@ -53,7 +53,7 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
             </h1>
             <Controller
               name="title"
-              //   rules={newsValidation.titleUa}
+              rules={pdfValidation.title}
               control={control}
               render={({ field }) => (
                 <TextInput
@@ -70,7 +70,7 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
               accept="image/*"
               placeholder={'Оберіть файл:'}
               title="Оберіть файл"
-              //   rules={imageValidation.image}
+              rules={pdfValidation.pdf}
             />
             <span className="mt-4 text-sm text-gray-500">
               Розмістити фото в галереї?
