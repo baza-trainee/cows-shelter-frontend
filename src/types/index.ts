@@ -10,11 +10,15 @@ export type GalleryItem = {
 };
 
 export type NewsData = {
-  title: string;
+  id: string;
+  titleUa: string;
+  titleEn: string;
+  textUa: string;
+  textEn: string;
+  image: string;
   description: string;
-  url: string;
+  descriptionEn: string;
   date: string;
-  text: string;
 };
 
 export type Reviews = {

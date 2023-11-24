@@ -1,0 +1,38 @@
+/* news.css */
+
+.news-gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.news-gridItem--1 {
+  grid-column: span 1;
+  grid-row: span 2;
+  width: auto;
+}
+
+.news-gridItem--2 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.news-gridItem--3 {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+
+@media screen and (max-width: 1279px) {
+  .news-gridItem--1 {
+    grid-column: span 1;
+    grid-row: span 2;
+    width: 324px;
+  }
+
+  .news-gridItem--2 {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    width: 324px;
+  }
+}
