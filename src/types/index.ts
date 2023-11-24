@@ -112,3 +112,13 @@ export type ReviewsFormInput = {
   reviewUa: string;
   reviewEn: string;
 };
+
+export type FormResetPassword = {
+  token: string | undefined;
+  password: string;
+};
+
+export type FormValueResetPassword = {
+  password: string;
+  confirmpassword: string;
+};

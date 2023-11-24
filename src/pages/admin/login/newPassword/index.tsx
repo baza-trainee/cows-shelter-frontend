@@ -7,6 +7,7 @@ import { changePassword } from '../fetchin/fetchin';
 import { useState } from 'react';
 import PopUpConfirmPassword from './PopUpConfirmPassword';
 import PopUpSuccessNewPassword from './PopUpSuccessNewPassword';
+import LoaderSmoll from '@/components/admin/LoaderSmoll';
 
 type FormValuesPasswordd = {
   password: string;
@@ -16,6 +17,7 @@ type FormValuesPasswordd = {
 const NewPassword = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [successChangePassword, setsuccessChangePassword] = useState(false);
+  const [isLoader, setIsLoader] = useState(false);
   const {
     register,
     handleSubmit,
@@ -23,7 +25,7 @@ const NewPassword = () => {
     setError,
     getValues,
     clearErrors,
-    formState: { errors, isValid, touchedFields }
+    formState: { errors, isValid }
   } = useForm<FormValuesPasswordd>({
     resolver: zodResolver(passwordSchema),
     mode: 'onChange'
@@ -53,6 +55,7 @@ const NewPassword = () => {
   const openConfirmPassword = () => setShowConfirm(true);
 
   const onSubmit = async () => {
+    setIsLoader(true);
     try {
       const user = localStorage.getItem('user');
       const { email } = JSON.parse(user as string);
@@ -70,6 +73,8 @@ const NewPassword = () => {
         type: 'manual',
         message: error.response.data.message
       });
+    } finally {
+      setIsLoader(false);
     }
   };
 
@@ -89,18 +94,16 @@ const NewPassword = () => {
             placeholder="Введіть новий пароль "
           />
           <div className="relative">
-            {!isValid && (
-              <p
-                className={`text-[0.875rem] ${
-                  errors.password ? 'text-red' : ' text-darkgray'
-                } `}
-              >
-                Пароль має складатись з 6-12 символів і містити цифри та
-                латинські літери
-              </p>
-            )}
+            <p
+              className={`text-[0.875rem] ${
+                errors.password ? 'text-red' : ' text-darkgray'
+              } `}
+            >
+              Пароль має складатись з 6-12 символів і містити цифри та латинські
+              літери
+            </p>
 
-            {touchedFields.password && errors.password && (
+            {errors.password && (
               <div className="absolute -top-[30px] right-[14px]">
                 <ErrorIcon />
               </div>
@@ -148,21 +151,25 @@ const NewPassword = () => {
         >
           Змінити пароль?
         </p>
-        <div className="flex gap-5 text-lg font-medium">
-          <button
-            type="submit"
-            disabled={!isValid}
-            className="w-[183px] bg-accent px-5 py-3 transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white"
-          >
-            Змінити
-          </button>
-          <NavLink
-            to="/admin"
-            className="w-[183px] border border-black px-5 py-3 text-center transition-all duration-300 hover:border-transparent hover:bg-lemon  focus:bg-lemon  active:bg-darkyellow "
-          >
-            Скасувати
-          </NavLink>
-        </div>
+        {isLoader ? (
+          <LoaderSmoll />
+        ) : (
+          <div className="flex gap-5 text-lg font-medium">
+            <button
+              type="submit"
+              disabled={!isValid}
+              className="w-[183px] bg-accent px-5 py-3 transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white"
+            >
+              Змінити
+            </button>
+            <NavLink
+              to="/admin"
+              className="w-[183px] border border-black px-5 py-3 text-center transition-all duration-300 hover:border-transparent hover:bg-lemon  focus:bg-lemon  active:bg-darkyellow "
+            >
+              Скасувати
+            </NavLink>
+          </div>
+        )}
       </form>
       {showConfirm && (
         <PopUpConfirmPassword

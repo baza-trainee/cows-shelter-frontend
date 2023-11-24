@@ -1,38 +1,34 @@
 import ErrorIcon from '@/components/icons/ErrorIcon';
-import HidePassword from '@/components/icons/HidePassword';
-import ShowPasword from '@/components/icons/ShowPasword';
-import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { resetSchema } from './schema/schema';
-import { FormValuesSignIn } from '@/types';
-// import { forgotPassword, login, resetPassword } from '../fetchin/fetchin';
-// import { useNavigate } from 'react-router-dom';
+import { passwordSchema } from '../newPassword/schema/passwordSchema';
+import { errorHandling } from '@/utils/errorHandling';
+import { useNavigate, useParams } from 'react-router-dom';
+import { resetPassword } from '../fetchin/fetchin';
+import { useState } from 'react';
+import LoaderSmoll from '@/components/admin/LoaderSmoll';
 
-type ResetPasswordValue = {
-  email: string;
+type FormValuesPasswordd = {
   password: string;
   confirmpassword: string;
 };
 
-const ReserPasswordForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+const NewPassword = () => {
   const {
     register,
     handleSubmit,
     watch,
-    clearErrors,
     setError,
-    formState: { errors, isValid, touchedFields }
-  } = useForm<ResetPasswordValue>({
-    resolver: zodResolver(resetSchema),
+    clearErrors,
+    formState: { errors, isValid }
+  } = useForm<FormValuesPasswordd>({
+    resolver: zodResolver(passwordSchema),
     mode: 'onChange'
   });
-
+  const { token } = useParams();
+  const navigate = useNavigate();
+  const [isLoader, setIsLoader] = useState(false);
   const isPasswordField = Boolean(watch().password);
-
   const onPasswordChange = () => {
     const passwordValue = watch('password');
     const confirmPasswordValue = watch('confirmpassword');
@@ -51,26 +47,21 @@ const ReserPasswordForm = () => {
     }
   };
 
-  const isShowPassword = () => setShowPassword((prev) => !prev);
-  const isShowConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
-
-  const onSubmit: SubmitHandler<FormValuesSignIn> = async ({
-    email,
-    password
-  }) => {
-    const body = { email, password };
-    console.log(body);
-    // try {
-    //   await resetPassword(body);
-    //   console.log('success');
-    //   navigate('/signin');
-    // } catch (error: any) {
-    //   console.log(error);
-    //   setError('password', {
-    //     type: 'manual',
-    //     message: error.response.data.message
-    //   });
-    // }
+  const onSubmit: SubmitHandler<FormValuesPasswordd> = async ({ password }) => {
+    setIsLoader(true);
+    try {
+      const body = { token, password };
+      await resetPassword(body);
+      navigate('/signin');
+    } catch (error: any) {
+      console.log(error);
+      setError('confirmpassword', {
+        type: 'manual',
+        message: errorHandling(error.response.status)
+      });
+    } finally {
+      setIsLoader(false);
+    }
   };
 
   return (
@@ -80,74 +71,56 @@ const ReserPasswordForm = () => {
       className="mx-auto mb-[60px] w-[330px]"
     >
       <label htmlFor="" className="relative mb-4 block">
-        Email:
-        <input
-          {...register('email')}
-          className={` block w-[100%] border ${
-            errors.email && 'border-red'
-          } border-darkgray px-[14px] py-[10px] placeholder:text-disabled`}
-          placeholder="Введіть свій email"
-        />
-        {touchedFields.email && errors.email && (
-          <div className="">
-            <p className="w-[330px]  text-[0.75rem]  text-red">
-              {errors.email.message}
-            </p>
-            <div className="absolute right-[14px] top-[38px]">
-              <ErrorIcon />
-            </div>
-          </div>
-        )}
-      </label>
-      <label htmlFor="" className="relative mb-6 block">
-        Пароль:
+        Новий пароль:
         <input
           {...register('password')}
           className={`block  w-[100%] border ${
             errors.password && 'border-red'
           } border-darkgray px-[14px] py-[10px] placeholder:text-disabled`}
-          type={showPassword ? 'text' : 'password'}
-          placeholder="Введіть пароль "
+          type="text"
+          onBlur={onPasswordChange}
+          placeholder="Введіть новий пароль "
         />
-        {!errors.password && (
-          <button
-            className="absolute right-[14px] top-9"
-            type="button"
-            onClick={isShowPassword}
-          >
-            {showPassword ? <HidePassword /> : <ShowPasword />}
-          </button>
-        )}
-        {touchedFields.password && errors.password && (
-          <div className="relative">
-            <p className="text-[0.75rem] text-red">{errors.password.message}</p>
-            <div className="absolute -top-[30px] right-[14px]">
-              <ErrorIcon />
+        <div className="relative">
+          {!errors.password && (
+            <p className="text-[0.875rem] text-darkgray">
+              Пароль має складатись з 6-12 символів і містити цифри та латинські
+              літери
+            </p>
+          )}
+          {errors.password && (
+            <div className="relative">
+              <p className="text-[0.75rem] text-red">
+                {errors.password.message}
+              </p>
+              <div className="absolute -top-[30px] right-[14px]">
+                <ErrorIcon />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </label>
-      <label htmlFor="" className="relative mb-6 block">
+      <label
+        htmlFor=""
+        className={`${
+          !isPasswordField || !!errors.password ? 'text-disabled' : 'text-black'
+        } relative mb-10 block`}
+      >
         Підтвердження нового пароля:
         <input
           {...register('confirmpassword')}
-          className={`block  w-[100%] border ${
+          className={`mt-1 block w-[100%] border disabled:text-disabled ${
             errors.confirmpassword && 'border-red'
-          } border-darkgray px-[14px] py-[10px] placeholder:text-disabled`}
-          type={showConfirmPassword ? 'text' : 'password'}
+          } ${
+            !isPasswordField || !!errors.password
+              ? 'border-disabled'
+              : 'border-darkgray'
+          }  px-[14px] py-[10px] placeholder:text-disabled`}
+          type="text"
           placeholder="Введіть новий пароль ще раз"
           onBlur={onPasswordChange}
           disabled={!isPasswordField || !!errors.password}
         />
-        {!errors.confirmpassword && (
-          <button
-            className="absolute right-[14px] top-9"
-            type="button"
-            onClick={isShowConfirmPassword}
-          >
-            {showConfirmPassword ? <HidePassword /> : <ShowPasword />}
-          </button>
-        )}
         {errors.confirmpassword && (
           <div className="relative">
             <p className="text-[0.75rem]  text-red">
@@ -159,15 +132,19 @@ const ReserPasswordForm = () => {
           </div>
         )}
       </label>
-      <button
-        className=" mx-auto mt-16 inline-block w-[330px] bg-accent px-5 py-3 text-lg transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white "
-        type="submit"
-        disabled={!isValid}
-      >
-        Увійти
-      </button>
+      {isLoader ? (
+        <LoaderSmoll />
+      ) : (
+        <button
+          type="submit"
+          disabled={!isValid}
+          className=" mx-auto mt-16 inline-block w-[330px] bg-accent px-5 py-3 text-lg transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white "
+        >
+          Змінити
+        </button>
+      )}
     </form>
   );
 };
 
-export default ReserPasswordForm;
+export default NewPassword;
