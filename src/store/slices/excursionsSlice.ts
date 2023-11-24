@@ -102,37 +102,37 @@ export const addNewExcursion = createAsyncThunk(
 
 export const editExcursion = createAsyncThunk(
   'excursions/editExcursion',
-  async (ExcursionsData: { id?: string; values: ExcursionsFormInput }) => {
+  async (excursionsData: { id?: string; values: ExcursionsFormInput }) => {
     try {
-      if (ExcursionsData.values.image[0].size > 0) {
-        const file = ExcursionsData.values.image[0];
+      if (excursionsData.values.image[0].size > 0) {
+        const file = excursionsData.values.image[0];
         const formData = new FormData();
         formData.append('file', file);
         const { data } = await axios.post('api/excursions/upload', formData);
         const newExcursion = {
-          title_ua: ExcursionsData.values.titleUa,
-          title_en: ExcursionsData.values.titleEn,
-          description_ua: ExcursionsData.values.descriptionUa,
-          description_en: ExcursionsData.values.descriptionEn,
-          amount_of_persons: ExcursionsData.values.visitorsNumber,
-          time_from: ExcursionsData.values.timeFrom,
-          time_to: ExcursionsData.values.timeTill,
+          title_ua: excursionsData.values.titleUa,
+          title_en: excursionsData.values.titleEn,
+          description_ua: excursionsData.values.descriptionUa,
+          description_en: excursionsData.values.descriptionEn,
+          amount_of_persons: excursionsData.values.visitorsNumber,
+          time_from: excursionsData.values.timeFrom,
+          time_to: excursionsData.values.timeTill,
           image_url: data.image_url,
           image_id: data.image_id
         };
-        await axios.patch(`api/excursions/${ExcursionsData.id}`, newExcursion);
+        await axios.patch(`api/excursions/${excursionsData.id}`, newExcursion);
       } else {
         const newExcursion = {
-          title_ua: ExcursionsData.values.titleUa,
-          title_en: ExcursionsData.values.titleEn,
-          description_ua: ExcursionsData.values.descriptionUa,
-          description_en: ExcursionsData.values.descriptionEn,
-          amount_of_persons: ExcursionsData.values.visitorsNumber,
-          time_from: ExcursionsData.values.timeFrom,
-          time_to: ExcursionsData.values.timeTill,
-          image_url: ExcursionsData.values.image[0].name
+          title_ua: excursionsData.values.titleUa,
+          title_en: excursionsData.values.titleEn,
+          description_ua: excursionsData.values.descriptionUa,
+          description_en: excursionsData.values.descriptionEn,
+          amount_of_persons: excursionsData.values.visitorsNumber,
+          time_from: excursionsData.values.timeFrom,
+          time_to: excursionsData.values.timeTill,
+          image_url: excursionsData.values.image[0].name
         };
-        await axios.patch(`api/excursions/${ExcursionsData.id}`, newExcursion);
+        await axios.patch(`api/excursions/${excursionsData.id}`, newExcursion);
       }
     } catch (error) {
       const err = error as AxiosError;
@@ -142,7 +142,7 @@ export const editExcursion = createAsyncThunk(
 );
 
 const excursionsSlice = createSlice({
-  name: 'todos',
+  name: 'excursions',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
