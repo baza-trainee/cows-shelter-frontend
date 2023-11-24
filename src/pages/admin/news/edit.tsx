@@ -203,7 +203,7 @@ const EditNews = () => {
             </button>
 
             <Link to="/admin">
-              <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
             </Link>

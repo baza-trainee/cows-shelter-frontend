@@ -76,7 +76,7 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
 
               <button
                 onClick={() => setIsModalOpen(false)}
-                className=" w-full rounded-sm border border-gray-500  p-2 hover:border-red-300 hover:bg-red-300"
+                className=" hover:border-red-300 hover:bg-red-300 w-full rounded-sm  border border-gray-500 p-2"
               >
                 Cancel
               </button>
