@@ -1,4 +1,4 @@
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cross from '@/assets/icons/icon_close.svg'
 import { Link, useParams } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
