@@ -1,57 +1,55 @@
 export const news = [
   {
-    id: '1',
-    titleUa: 'Розвантажили фуру з тюками сіна',
-    titleEn: 'Unloaded a truck with hay bales',
-    textUa: 'Розвантажили фуру з тюками сіна',
-    textEn: 'Unloaded a truck with hay bales',
-    image: '/news/news_1.jpg',
-    description: 'Розвантажили фуру з тюками сіна',
-    descriptionEn: 'Unloaded a truck with hay bales',
-    date: ''
+    title_en: 'Розвантажили фуру з тюками сіна',
+    title_ua: 'Unloaded a truck with hay bales',
+    content_en: 'Розвантажили фуру з тюками сіна',
+    content_ua: 'Unloaded a truck with hay bales',
+    subtitle_en: 'Розвантажили фуру з тюками сіна',
+    subtitle_ua: 'Unloaded a truck with hay bales',
+    image_url: '/news/news_1.jpg',
+    image_id: '1'
   },
   {
-    id: '2',
-    titleUa: 'Розвантажили фуру з тюками сіна',
-    titleEn: 'Unloaded a truck with hay bales',
-    textUa: 'Розвантажили фуру з тюками сіна',
-    textEn: 'Unloaded a truck with hay bales',
-    image: '/news/news_2.jpg',
-    description: 'Розвантажили фуру з тюками сіна',
-    descriptionEn: 'Unloaded a truck with hay bales',
-    date: ''
+    title_en: 'Розвантажили фуру з тюками сіна',
+    title_ua: 'Unloaded a truck with hay bales',
+    content_en: 'Розвантажили фуру з тюками сіна',
+    content_ua: 'Unloaded a truck with hay bales',
+    subtitle_en: 'Розвантажили фуру з тюками сіна',
+    subtitle_ua: 'Unloaded a truck with hay bales',
+
+    image_url: '/news/news_2.jpg',
+    image_id: '2'
   },
   {
-    id: '3',
-    titleUa: 'Розвантажили фуру з тюками сіна',
-    titleEn: 'Unloaded a truck with hay bales',
-    textUa: 'Розвантажили фуру з тюками сіна',
-    textEn: 'Unloaded a truck with hay bales',
-    image: '/public/news/news_3.jpg',
-    description: 'Розвантажили фуру з тюками сіна',
-    descriptionEn: 'Unloaded a truck with hay bales',
-    date: ''
+    title_en: 'Розвантажили фуру з тюками сіна',
+    title_ua: 'Unloaded a truck with hay bales',
+    content_en: 'Розвантажили фуру з тюками сіна',
+    content_ua: 'Unloaded a truck with hay bales',
+    subtitle_en: 'Розвантажили фуру з тюками сіна',
+    subtitle_ua: 'Unloaded a truck with hay bales',
+
+    image_url: '/public/news/news_3.jpg',
+    image_id: '3'
   },
   {
-    id: '4',
-    titleUa: 'Розвантажили фуру з тюками сіна',
-    titleEn: 'Unloaded a truck with hay bales',
-    textUa: 'Розвантажили фуру з тюками сіна',
-    textEn: 'Unloaded a truck with hay bales',
-    image: '/public/news/news_4.jpg',
-    description: 'Розвантажили фуру з тюками сіна',
-    descriptionEn: 'Unloaded a truck with hay bales',
-    date: ''
+    title_en: 'Розвантажили фуру з тюками сіна',
+    title_ua: 'Unloaded a truck with hay bales',
+    content_en: 'Розвантажили фуру з тюками сіна',
+    content_ua: 'Unloaded a truck with hay bales',
+    subtitle_en: 'Розвантажили фуру з тюками сіна',
+    subtitle_ua: 'Unloaded a truck with hay bales',
+
+    image_url: '/public/news/news_4.jpg',
+    image_id: '4'
   },
   {
-    id: '5',
-    titleUa: 'Розвантажили фуру з тюками сіна',
-    titleEn: 'Unloaded a truck with hay bales',
-    textUa: 'Розвантажили фуру з тюками сіна',
-    textEn: 'Unloaded a truck with hay bales',
-    image: '/public/news/news_5.jpg',
-    description: 'Розвантажили фуру з тюками сіна',
-    descriptionEn: 'Unloaded a truck with hay bales',
-    date: ''
+    title_en: 'Розвантажили фуру з тюками сіна',
+    title_ua: 'Unloaded a truck with hay bales',
+    content_en: 'Розвантажили фуру з тюками сіна',
+    content_ua: 'Unloaded a truck with hay bales',
+    subtitle_en: 'Розвантажили фуру з тюками сіна',
+    subtitle_ua: 'Unloaded a truck with hay bales',
+    image_url: '/public/news/news_5.jpg',
+    image_id: '5'
   }
 ];

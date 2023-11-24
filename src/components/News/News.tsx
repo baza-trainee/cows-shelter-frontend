@@ -122,7 +122,7 @@ const News = () => {
       <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
         {screenWidth > 768 && (
           <Slider
-            title={t('news:news')}
+            title={t('news:news not working translation')}
             setCurrentPage={setCurrentPage}
             pagesLength={pagesLength}
           >
@@ -130,29 +130,31 @@ const News = () => {
               {data.map((item: NewsData, index: number) => (
                 <li
                   key={item.id}
-                  className={`news-gridItem relative  overflow-hidden news-gridItem--${
+                  className={`news-gridItem relative overflow-hidden news-gridItem--${
                     index + 1
-                  }`}
+                  } group`}
                 >
                   <img
                     src={item.image}
                     alt={`News Image`}
                     className="h-full w-full object-cover"
                   />
-                  <div className="z-2000 absolute inset-0 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
+                  <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
                   <div className="via-opacity-30 absolute inset-0 z-30 flex cursor-pointer flex-col bg-gradient-to-b from-transparent to-black/40">
                     <div className="flex h-full flex-col justify-end text-white">
                       <div className="translate-y-14 space-y-3 p-4 duration-300 ease-in-out group-hover:translate-y-0">
-                        <h2 className="text-2xl font-normal">{item.titleUa}</h2>
+                        <h2 className="text-2xl font-normal">
+                          {t(item.title)}
+                        </h2>
                         <div className="text-sm opacity-0 group-hover:opacity-100">
-                          {item.description}
+                          {t(item.description)}
                         </div>
                       </div>
                     </div>
                     <div>
                       <button
                         onClick={() => openNewsModal(item)}
-                        className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
+                        className="relative mb-6 ml-6 mt-5 border py-1 text-white hover:opacity-100 group-hover:border-yellow-500"
                       >
                         <div className="flex items-center">
                           <p className="px-4">Показати більше</p>
@@ -171,24 +173,20 @@ const News = () => {
             setCurrentPage={setCurrentPage}
             pagesLength={4}
           >
-            <ul className="news-gridContainer w-full overflow-hidden lg:ml-0 lg:pr-0 ">
+            <ul className="news-gridContainer overflow-hidden  ">
               {data.map((item: NewsData, index: number) => (
                 <li
                   key={item.id}
-                  className={`news-gridItem relative  overflow-hidden news-gridItem--${
+                  className={`news-gridItem relative overflow-hidden  news-gridItem--${
                     index + 1
-                  }`}
+                  } group`}
                 >
-                  <img
-                    src={item.image}
-                    alt={`News Image`}
-                    className="h-full w-full object-cover"
-                  />
+                  <img src={item.image} alt={`News Image`} />
                   <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
                   <div className="via-opacity-30 absolute inset-0 z-30 flex cursor-pointer flex-col bg-gradient-to-b from-transparent to-black/40">
                     <div className="flex h-full flex-col justify-end text-white">
                       <div className="translate-y-14 space-y-3 p-4 duration-300 ease-in-out group-hover:translate-y-0">
-                        <h2 className="text-2xl font-normal">{item.titleUa}</h2>
+                        <h2 className="text-2xl font-normal">{item.title}</h2>
                         <div className="text-sm opacity-0 group-hover:opacity-100">
                           {item.description}
                         </div>
@@ -197,7 +195,7 @@ const News = () => {
                     <div>
                       <button
                         onClick={() => openNewsModal(item)}
-                        className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
+                        className="relative mb-6 ml-6 mt-5 border py-1 text-white hover:opacity-100 group-hover:border-yellow-500"
                       >
                         <div className="flex items-center">
                           <p className="px-4">Показати більше</p>
