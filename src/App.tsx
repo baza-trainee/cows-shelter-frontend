@@ -19,6 +19,7 @@ import AddReviews from './pages/admin/reviews/add';
 import EditReviews from './pages/admin/reviews/edit';
 import NewPassword from './pages/admin/login/newPassword';
 import ResetPassword from './pages/admin/login/resetPassword';
+import Pdf from './pages/admin/pdf';
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="partners/edit/:id" element={<EditPartner />} />
         <Route path="contacts" element={<Contacts />} />
         <Route path="newpaswword" element={<NewPassword />} />
+        <Route path="pdf" element={<Pdf />} />
       </Route>
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/add" element={<AddPost />} />
