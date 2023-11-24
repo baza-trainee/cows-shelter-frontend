@@ -31,7 +31,7 @@ const Partners = () => {
         Партнери
       </h1>
       <div className="flex gap-5">
-        <div className="flex h-[288px]  flex-col	 items-center justify-center border-2 border-blue-300 px-8 ">
+        <div className="flex h-[288px]  flex-col items-center justify-center border-2 border-gray-300 px-8 ">
           {' '}
           <Link to="/admin/partners/add">
             <button className="mb-4">
@@ -44,7 +44,7 @@ const Partners = () => {
           {partners.map((partner) => (
             <div
               key={partner.id}
-              className="flex h-[288px] w-[211px] flex-col border-2 border-blue-300 px-[25.5px] pt-6"
+              className="flex h-[288px] w-[211px] flex-col border-2 border-gray-300 px-[25.5px] pt-6"
             >
               <img
                 src={partner.logo}
