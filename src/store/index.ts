@@ -5,14 +5,20 @@ import observationReducer from './slices/observationSlice';
 import gallerySlice from './slices/gallerySlice';
 import excursionsReducer from './slices/excursionsSlice';
 import reviewsReducer from './slices/reviewsSlice';
+import pdfSlice from './slices/pdfSlice';
+import partnersSlice from './slices/partnersSlice';
+import contactsSlice from './slices/contactsSlice';
 
 const rootReducer = combineReducers({
   posts: newsReducer,
   modals: modalReducer,
   gallery: gallerySlice,
+  pdf: pdfSlice,
   observer: observationReducer,
   excursions: excursionsReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  partners: partnersSlice,
+  contacts: contactsSlice
 });
 
 export const store = configureStore({

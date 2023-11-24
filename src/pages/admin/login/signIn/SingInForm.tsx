@@ -9,11 +9,15 @@ import PopUpForgotPassword from './PopUrForgotPassword';
 import { FormValuesSignIn } from '@/types';
 import { forgotPassword, login } from '../fetchin/fetchin';
 import { useNavigate } from 'react-router-dom';
+import { errorHandling } from '@/utils/errorHandling';
+import LoaderSmoll from '@/components/admin/LoaderSmoll';
 
 const SingInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const navigate = useNavigate();
+  const [isLoader, setIsLoader] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -30,21 +34,31 @@ const SingInForm = () => {
   const isShowPassword = () => setShowPassword((prev) => !prev);
 
   const onSubmit: SubmitHandler<FormValuesSignIn> = async (data) => {
+    setIsLoader(true);
     try {
       const result: any = await login(data);
 
       navigate('/admin');
       localStorage.setItem('user', JSON.stringify(result.data));
     } catch (error: any) {
-      console.log(error);
-      setError('password', {
-        type: 'manual',
-        message: error.response.data.message
-      });
+      if (error.response.status === 404) {
+        setError('email', {
+          type: 'manual',
+          message: errorHandling(error.response.status)
+        });
+      } else {
+        setError('password', {
+          type: 'manual',
+          message: errorHandling(error.response.status)
+        });
+      }
+    } finally {
+      setIsLoader(false);
     }
   };
 
   const handleForgotPassword = async () => {
+    setIsLoader(true);
     const body = { email: getValues('email') };
     try {
       await forgotPassword(body);
@@ -53,8 +67,10 @@ const SingInForm = () => {
     } catch (error) {
       setError('email', {
         type: 'manual',
-        message: 'Сервер не відповідає'
+        message: 'Сервер не відповідає. Спробуйте ще.'
       });
+    } finally {
+      setIsLoader(false);
     }
   };
 
@@ -112,26 +128,33 @@ const SingInForm = () => {
           </div>
         )}
       </label>
-      <button
-        onClick={handleForgotPassword}
-        className="mx-auto mb-[77px] block border-b border-current text-darkyellow disabled:text-disabled"
-        disabled={!isEmailField || !!errors.email}
-      >
-        Не пам’ятаю пароль
-      </button>
+      {!isLoader && (
+        <button
+          onClick={handleForgotPassword}
+          className="mx-auto mb-[77px] block border-b border-current text-darkyellow disabled:text-disabled"
+          disabled={!isEmailField || !!errors.email}
+        >
+          Не пам’ятаю пароль
+        </button>
+      )}
+
       {showPopUp && (
         <PopUpForgotPassword
           email={getValues('email')}
-          closePopup={() => setShowPopUp((prev) => !prev)}
+          closePopup={() => setShowPopUp(false)}
         />
       )}
-      <button
-        className=" mx-auto inline-block w-[330px]  bg-accent px-5 py-3 text-lg transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white "
-        type="submit"
-        disabled={!isValid}
-      >
-        Увійти
-      </button>
+      {isLoader ? (
+        <LoaderSmoll />
+      ) : (
+        <button
+          className=" mx-auto inline-block w-[330px]  bg-accent px-5 py-3 text-lg transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white "
+          type="submit"
+          disabled={!isValid}
+        >
+          Увійти
+        </button>
+      )}
     </form>
   );
 };

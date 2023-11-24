@@ -1,44 +1,35 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { NewsFormInput } from '@/types';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { PdfFormInput } from '@/types';
 import { useAppDispatch } from '@/store/hook';
-import { addNewImage } from '@/store/slices/gallerySlice';
+import { addNewPdf } from '@/store/slices/pdfSlice';
 import FileInput from '@/components/admin/inputs/FileInput';
-import { imageValidation } from './imageValidation';
+import { pdfValidation } from './pdfValidation';
 import CloseIcon from '@/components/icons/CloseIconMenu';
+import TextInput from '@/components/admin/inputs/TextInput';
 
-type AddImageProps = {
+type AddPdfProps = {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const AddImage = ({ setIsModalOpen }: AddImageProps) => {
+const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
   const dispatch = useAppDispatch();
-  const [image, setImage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const { handleSubmit, watch, control } = useForm<NewsFormInput>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors }
+  } = useForm<PdfFormInput>({
     mode: 'onChange',
-    defaultValues: { image: [] }
+    defaultValues: { title: '', document: [] }
   });
 
-  const currentValues = watch();
-
-  const setImagePreview = (file: File) => {
-    const img = URL.createObjectURL(file);
-    setImage(img);
-  };
-
-  useEffect(() => {
-    if (!currentValues.image?.length) return;
-    const file = currentValues.image[0];
-    setImagePreview(file);
-  }, [currentValues.image]);
-
-  const onSubmit: SubmitHandler<NewsFormInput> = async (
-    values: NewsFormInput
+  const onSubmit: SubmitHandler<PdfFormInput> = async (
+    values: PdfFormInput
   ) => {
     setIsProcessing(true);
-    await dispatch(addNewImage(values));
+    await dispatch(addNewPdf(values));
     setIsProcessing(false);
     setIsModalOpen(false);
   };
@@ -57,14 +48,29 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex w-1/2 flex-1 flex-col gap-4 p-4"
           >
-            <h1 className=" text-left text-xl font-bold">Додавання світлини</h1>
+            <h1 className=" text-left text-xl font-bold">
+              Додавання Документу
+            </h1>
+            <Controller
+              name="title"
+              rules={pdfValidation.title}
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  errorText={errors.title?.message}
+                  placeholder="Введіть назву документу"
+                  title="Назва документу:"
+                />
+              )}
+            />
             <FileInput
-              name="image"
+              name="document"
               control={control}
               accept="image/*"
               placeholder={'Оберіть файл:'}
               title="Оберіть файл"
-              rules={imageValidation.image}
+              rules={pdfValidation.pdf}
             />
             <span className="mt-4 text-sm text-gray-500">
               Розмістити фото в галереї?
@@ -85,7 +91,7 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
 
           <div className="flex w-1/2 justify-center">
             <div className="relative text-left">
-              <img
+              {/* <img
                 src={
                   image
                     ? image
@@ -93,7 +99,7 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
                 }
                 alt={'image'}
                 className="h-[280px] w-[384px] rounded-sm object-cover"
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -102,4 +108,4 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
   );
 };
 
-export default AddImage;
+export default AddPdf;
