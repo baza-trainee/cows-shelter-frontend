@@ -1,6 +1,11 @@
 import instance from '@/utils/axios';
 import axios from 'axios';
-import { ForgotPassword, FormValuesPassword, FormValuesSignIn } from '@/types';
+import {
+  ForgotPassword,
+  FormValuesPassword,
+  FormValuesSignIn,
+  FormResetPassword
+} from '@/types';
 
 const token = {
   set(token: string) {
@@ -28,7 +33,7 @@ export const changePassword = async (body: FormValuesPassword) => {
   return data;
 };
 
-export const resetPassword = async (body: FormValuesPassword) => {
-  const data = await instance.post('/api/password/reset', body);
+export const resetPassword = async (body: FormResetPassword) => {
+  const data = await instance.post('/api/password/reset/:token', body);
   return data;
 };

@@ -120,6 +120,16 @@ export type ReviewsFormInput = {
   reviewEn: string;
 };
 
+export type FormResetPassword = {
+  token: string | undefined;
+  password: string;
+};
+
+export type FormValueResetPassword = {
+  password: string;
+  confirmpassword: string;
+};
+
 export type PdfFormInput = {
   title: string;
   document: File[];
