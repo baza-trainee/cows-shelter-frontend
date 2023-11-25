@@ -1,5 +1,5 @@
 export const addSuccessResponseMessage = (item: string) => {
-  return `${item.toUpperCase()} не вдалося успішно додано`;
+  return `${item.toUpperCase()} успішно додано`;
 };
 export const deleteSuccessResponseMessage = (item: string) => {
   return `${item.toUpperCase()} успішно видалено`;
