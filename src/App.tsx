@@ -13,11 +13,20 @@ import Partners from './pages/admin/partners';
 import AddPartner from './pages/admin/partners/add';
 import EditPartner from './pages/admin/partners/edit';
 import Contacts from './pages/admin/contacts';
+import SignIn from './pages/admin/login/signIn';
+import Reviews from './pages/admin/reviews';
+import AddReviews from './pages/admin/reviews/add';
+import EditReviews from './pages/admin/reviews/edit';
+import NewPassword from './pages/admin/login/newPassword';
+import ResetPassword from './pages/admin/login/resetPassword';
+import Pdf from './pages/admin/pdf';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="signin" element={<SignIn />} />
+      <Route path="reset/:token" element={<ResetPassword />} />
       <Route path="admin/*" element={<AdminPage />}>
         <Route index element={<News />} />
         <Route path="news/add" element={<AddNews />} />
@@ -25,11 +34,16 @@ const App = () => {
         <Route path="excursions" element={<Excursions />} />
         <Route path="excursions/add" element={<AddExcursion />} />
         <Route path="excursions/edit/:id" element={<EditExcursion />} />
+        <Route path="reviews" element={<Reviews />} />
+        <Route path="reviews/add" element={<AddReviews />} />
+        <Route path="reviews/edit/:id" element={<EditReviews />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="partners" element={<Partners />} />
         <Route path="partners/add" element={<AddPartner />} />
         <Route path="partners/edit/:id" element={<EditPartner />} />
         <Route path="contacts" element={<Contacts />} />
+        <Route path="newpaswword" element={<NewPassword />} />
+        <Route path="pdf" element={<Pdf />} />
       </Route>
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/add" element={<AddPost />} />

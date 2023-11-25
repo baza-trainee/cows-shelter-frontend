@@ -1,6 +1,6 @@
 import { formatBytes } from '@/utils/formatBytes';
 
-const sizeLimit = 500 * 1024;
+const sizeLimit = 1024 * 1024;
 
 export const newsValidation = {
   titleUa: {
@@ -10,11 +10,11 @@ export const newsValidation = {
       message: 'Мінімальна довжина поля 2 символи'
     },
     maxLength: {
-      value: 25,
+      value: 55,
       message: 'Максимальна довжина поля 55 символів'
     },
     pattern: {
-      value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’-]+$/,
+      value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’.,-:;"()!?]+$/,
       message: 'Введіть коректну назву'
     }
   },
@@ -26,11 +26,43 @@ export const newsValidation = {
       message: 'Мінімальна довжина поля 2 символи'
     },
     maxLength: {
-      value: 25,
+      value: 55,
       message: 'Максимальна довжина поля 55 символів'
     },
     pattern: {
-      value: /^[a-zA-Z\s\d'’-]+$/,
+      value: /^[a-zA-Z\s\d'’.,-:;"()!?-]+$/,
+      message: 'Введіть коректну назву'
+    }
+  },
+
+  subTitleUa: {
+    required: 'Введіть назву',
+    minLength: {
+      value: 2,
+      message: 'Мінімальна довжина поля 2 символи'
+    },
+    maxLength: {
+      value: 100,
+      message: 'Максимальна довжина поля 100 символів'
+    },
+    pattern: {
+      value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’.,-:;"()!?]+$/,
+      message: 'Введіть коректну назву'
+    }
+  },
+
+  subTitleEn: {
+    required: 'Введіть назву',
+    minLength: {
+      value: 2,
+      message: 'Мінімальна довжина поля 2 символи'
+    },
+    maxLength: {
+      value: 100,
+      message: 'Максимальна довжина поля 100 символів'
+    },
+    pattern: {
+      value: /^[a-zA-Z\s\d'’.,-:;"()!?-]+$/,
       message: 'Введіть коректну назву'
     }
   },
@@ -42,8 +74,8 @@ export const newsValidation = {
       message: 'Мінімальна довжина поля 5 символів'
     },
     maxLength: {
-      value: 300,
-      message: 'Максимальна довжина поля 300 символів'
+      value: 2000,
+      message: 'Максимальна довжина поля 2000 символів'
     },
     pattern: {
       value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
@@ -52,14 +84,14 @@ export const newsValidation = {
   },
 
   contentEn: {
-    required: 'Введіть текст відгуку',
+    required: 'Введіть текст новини',
     minLength: {
       value: 5,
       message: 'Мінімальна довжина поля 5 символів'
     },
     maxLength: {
-      value: 300,
-      message: 'Максимальна довжина поля 300 символів'
+      value: 2000,
+      message: 'Максимальна довжина поля 2000 символів'
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’.,:;"()!?-]+$/,

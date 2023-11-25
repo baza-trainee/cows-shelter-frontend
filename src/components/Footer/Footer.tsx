@@ -51,10 +51,11 @@ const Footer = () => {
           </li>
           {/* button gelp */}
           <li>
-            {' '}
-            <button className=" duration-800 bg-accent px-[2.68rem] py-3 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
-              {t('footer:button_help')}{' '}
-            </button>
+            <a href="#support" onClick={() => console.log('hi')}>
+              <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
+                {t('footer:button_help')}{' '}
+              </button>
+            </a>
           </li>
           {/* documents */}
           <li>
@@ -127,7 +128,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://www.facebook.com/profile.php?id=100060159926539"
+                  href="https://www.instagram.com/busha_zdravaja_zhizn/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -163,9 +164,14 @@ const Footer = () => {
                 <p className="default-text">10:00 - 20:00</p>
               </li>
             </ul>
-            <button className=" duration-800 w-[180px] bg-accent px-[38px] py-2 text-lg font-medium leading-6 hover:bg-lemon focus:bg-lemon  active:bg-darkyellow lg:w-[14.44rem] lg:px-[4.16rem]">
-              {t('footer:button_help')}{' '}
-            </button>
+            <a href="#support">
+              <button
+                onClick={() => console.log('hi')}
+                className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow"
+              >
+                {t('footer:button_help')}{' '}
+              </button>
+            </a>
           </li>
           <li className="hidden flex-col lg:flex">
             <img
@@ -178,7 +184,10 @@ const Footer = () => {
             <p className="default-text mb-0.5">{t('footer:shelter_p1')}</p>
             <p className="default-text mb-8">{t('footer:shelter_p2')} </p>
             <a href="#support">
-              <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
+              <button
+                onClick={() => console.log('hi')}
+                className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow"
+              >
                 {t('footer:button_help')}{' '}
               </button>
             </a>
@@ -269,7 +278,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.instagram.com/p/Cg1i8heLQdo/"
+                      href="https://www.instagram.com/busha_zdravaja_zhizn/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -372,7 +381,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://www.facebook.com/profile.php?id=100060159926539"
+                  href="https://www.instagram.com/busha_zdravaja_zhizn/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -185,7 +185,9 @@ const Excursions = () => {
                         {t(item.title)}
                       </p>
                       <p className="opacity-0 transition-all duration-700 group-hover:opacity-100">
-                        {t(item.duration)} / {t(item.number_of_people)}
+                        {t(item.timeFrom)} - {t(item.timeTill)}{' '}
+                        {t(item.minutes)} / {t(item.to)}{' '}
+                        {t(item.number_of_people)}{' '} {t(item.visitors)}
                       </p>
                       <a>
                         <button
