@@ -42,11 +42,11 @@ export const excursionsValidation = {
       message: 'Мінімальна довжина поля 5 символів'
     },
     maxLength: {
-      value: 300,
+      value: 750,
       message: 'Максимальна довжина поля 750 символів'
     },
     pattern: {
-      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
+      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"—()!?-]+$/,
       message: 'Введіть коректний текст'
     }
   },
@@ -58,8 +58,8 @@ export const excursionsValidation = {
       message: 'Мінімальна довжина поля 5 символів'
     },
     maxLength: {
-      value: 750,
-      message: 'Максимальна довжина поля 750 символів'
+      value: 790,
+      message: 'Максимальна довжина поля 790 символів'
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’.,:;"()!?-]+$/,

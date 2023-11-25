@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
-// import { excursions } from '@/data/excursions';
-import { useTranslation } from 'react-i18next';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
@@ -16,7 +14,6 @@ import {
 
 const EditExcursions = () => {
   const { id } = useParams();
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
@@ -41,16 +38,18 @@ const EditExcursions = () => {
   useEffect(() => {
     const postExcursions = excursions[0];
     if (!postExcursions) return;
-    setValue('titleUa', t(`${postExcursions.title_ua}`));
+
+    console.log(postExcursions);
+    setValue('titleUa', postExcursions.title_ua);
     setValue('titleEn', postExcursions.title_en);
-    setValue('descriptionUa', t(`${postExcursions.description_ua}`));
+    setValue('descriptionUa', postExcursions.description_ua);
     setValue('descriptionEn', postExcursions.description_en);
-    setValue('timeFrom', t(`${postExcursions.time_from}`));
-    setValue('timeTill', t(`${postExcursions.time_to}`));
-    setValue('visitorsNumber', t(`${postExcursions.amount_of_persons}`));
+    setValue('timeFrom', postExcursions.time_from);
+    setValue('timeTill', postExcursions.time_to);
+    setValue('visitorsNumber', postExcursions.amount_of_persons);
     setValue('image', [new File([], postExcursions.image_url)]);
     setImage(postExcursions.image_url);
-  }, [excursions, setValue, t]);
+  }, [excursions, setValue]);
 
   const currentValues = watch();
 

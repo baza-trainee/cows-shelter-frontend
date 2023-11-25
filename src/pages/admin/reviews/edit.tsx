@@ -1,17 +1,20 @@
 import { ReviewsFormInput } from '@/types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { Link, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import { defaultValues } from './defaultValues';
 import { reviewsValidation } from './reviewsValidation';
-import { reviews } from '@/data/reviews';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { editReview, fetchReviewById } from '@/store/slices/reviewsSlice';
 
 const EditReviews = () => {
-  const { t } = useTranslation();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const reviews = useAppSelector((state) => state.reviews.reviews);
 
   const {
     handleSubmit,
@@ -25,16 +28,27 @@ const EditReviews = () => {
 
   useEffect(() => {
     if (!id) return;
-    const postData = reviews.find((item) => item.id === id);
+    dispatch(fetchReviewById(id));
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    const postData = reviews[0];
     console.log(postData);
     if (!postData) return;
-    setValue('nameUa', t(`${postData.name}`));
-    setValue('nameEn', postData.nameEn);
-    setValue('reviewUa', t(`${postData.review}`));
-    setValue('reviewEn', postData.reviewEn);
-  }, [id, setValue, t]);
+    setValue('nameUa', postData.name_ua);
+    setValue('nameEn', postData.name_en);
+    setValue('reviewUa', postData.review_ua);
+    setValue('reviewEn', postData.review_en);
+  }, [reviews, setValue]);
 
-  const onSubmit: SubmitHandler<ReviewsFormInput> = () => {};
+  const onSubmit: SubmitHandler<ReviewsFormInput> = async (
+    values: ReviewsFormInput
+  ) => {
+    setIsProcessing(true);
+    await dispatch(editReview({ id, values }));
+    setIsProcessing(false);
+    navigate(-1);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
@@ -112,7 +126,7 @@ const EditReviews = () => {
           </p>
           <div className="flex gap-4">
             <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Застосувати
+              {isProcessing ? 'Обробка запиту...' : 'Застосувати'}
             </button>
 
             <Link to="/admin">

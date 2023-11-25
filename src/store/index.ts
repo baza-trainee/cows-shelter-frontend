@@ -4,6 +4,7 @@ import modalReducer from './slices/modalSlice';
 import observationReducer from './slices/observationSlice';
 import gallerySlice from './slices/gallerySlice';
 import excursionsReducer from './slices/excursionsSlice';
+import reviewsReducer from './slices/reviewsSlice';
 import pdfSlice from './slices/pdfSlice';
 import partnersSlice from './slices/partnersSlice';
 import contactsSlice from './slices/contactsSlice';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   pdf: pdfSlice,
   observer: observationReducer,
   excursions: excursionsReducer,
+  reviews: reviewsReducer,
   partners: partnersSlice,
   contacts: contactsSlice,
   alert: responseAlertSlice

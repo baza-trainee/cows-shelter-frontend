@@ -13,6 +13,7 @@ import { addNewExcursion } from '@/store/slices/excursionsSlice';
 const AddExcursions = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [isProcessing, setIsProcessing] = useState(false);
   const [image, setImage] = useState('');
 
   const {
@@ -41,7 +42,9 @@ const AddExcursions = () => {
   const onSubmit: SubmitHandler<ExcursionsFormInput> = async (
     values: ExcursionsFormInput
   ) => {
+    setIsProcessing(true);
     await dispatch(addNewExcursion(values));
+    setIsProcessing(false);
     navigate(-1);
   };
 
@@ -208,10 +211,10 @@ const AddExcursions = () => {
           </p>
           <div className="flex gap-4">
             <button className="w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+              {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
             <Link to="/admin">
-              <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
             </Link>
