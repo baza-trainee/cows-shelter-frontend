@@ -17,7 +17,6 @@ const EditExcursions = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
-
   const excursions = useAppSelector((state) => state.excursions.excursions);
 
   const {
@@ -39,6 +38,7 @@ const EditExcursions = () => {
   useEffect(() => {
     const postExcursions = excursions[0];
     if (!postExcursions) return;
+
     console.log(postExcursions);
     setValue('titleUa', postExcursions.title_ua);
     setValue('titleEn', postExcursions.title_en);

@@ -8,6 +8,7 @@ import reviewsReducer from './slices/reviewsSlice';
 import pdfSlice from './slices/pdfSlice';
 import partnersSlice from './slices/partnersSlice';
 import contactsSlice from './slices/contactsSlice';
+import responseAlertSlice from './slices/responseAlertSlice';
 
 const rootReducer = combineReducers({
   posts: newsReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   excursions: excursionsReducer,
   reviews: reviewsReducer,
   partners: partnersSlice,
-  contacts: contactsSlice
+  contacts: contactsSlice,
+  alert: responseAlertSlice
 });
 
 export const store = configureStore({

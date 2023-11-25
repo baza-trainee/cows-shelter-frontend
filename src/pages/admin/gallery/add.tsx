@@ -6,6 +6,11 @@ import { addNewImage } from '@/store/slices/gallerySlice';
 import FileInput from '@/components/admin/inputs/FileInput';
 import { imageValidation } from './imageValidation';
 import CloseIcon from '@/components/icons/CloseIconMenu';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  addSuccessResponseMessage,
+  addErrorResponseMessage
+} from '@/utils/responseMessages';
 
 type AddImageProps = {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -37,10 +42,15 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
   const onSubmit: SubmitHandler<NewsFormInput> = async (
     values: NewsFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(addNewImage(values));
-    setIsProcessing(false);
-    setIsModalOpen(false);
+    try {
+      setIsProcessing(true);
+      await dispatch(addNewImage(values));
+      setIsProcessing(false);
+      setIsModalOpen(false);
+      dispatch(openAlert(addSuccessResponseMessage('світлину')));
+    } catch (error: any) {
+      dispatch(openAlert(addErrorResponseMessage('світлину')));
+    }
   };
 
   return (
