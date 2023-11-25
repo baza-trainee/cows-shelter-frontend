@@ -132,7 +132,7 @@ const Excursions = () => {
             </ul>
           </div>
         )}
-        {windowWidth < 1280 && windowWidth >= 768 && (
+        {windowWidth >= 768 && windowWidth < 1280 && (
           <Slider
             title={t('excursions:title')}
             setCurrentPage={setCurrentPage}

@@ -73,8 +73,8 @@ const ExcursionModal = ({
         className={`absolute left-1/2 top-1/2 ${
           isOpen ? 'translate-x-0' : 'translate-x-[100%]'
         } h-[675px] w-[85%] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white 
-        px-5 pb-12 pt-4 transition-all duration-700 md:h-auto md:w-[672px] md:px-10 md:pb-10 
-         md:pt-10 lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]`}
+        px-5 pb-12 pt-4 transition-all duration-700 md:h-[832px] md:w-[672px] md:px-10 md:pb-10 md:pt-10 
+         lg:h-auto lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]`}
       >
         <div className="flex flex-col md:gap-6 lg:flex-row lg:gap-10">
           <div className="flex flex-col gap-4">
@@ -121,14 +121,14 @@ const ExcursionModal = ({
                 ></img>
               </div>
             )}
-            {windowWidth > 320 && windowWidth < 768 && (
+            {windowWidth < 768 && (
               <img
                 src={excursion.imagesSrs_mobile}
                 className="h-full w-full object-cover"
               ></img>
             )}
           </div>
-          <div className="mt-[1.25rem] flex w-[90%] flex-col justify-between gap-3.5 md:mt-0 md:w-[592px] md:gap-4 lg:w-[28.75rem]">
+          <div className="mt-[1.25rem] flex w-[90%] flex-col justify-between gap-3.5 md:mt-0 md:w-[592px] md:gap-6 lg:w-[28.75rem]">
             <h3 className="pb-[7px] text-lg font-semibold leading-normal text-black md:mt-0 md:text-xl lg:border-b lg:border-disabled lg:text-2xl lg:font-bold">
               {t(excursion.title)}
             </h3>

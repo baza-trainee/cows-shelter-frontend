@@ -64,7 +64,7 @@ const Slider = ({
             {subtitle}
           </h2>
         )}
-        {screenWidth > 768 && (
+        {screenWidth >= 768 && (
           <div
             className={`${isPartners && 'hidden'} flex
             gap-4`}
@@ -100,7 +100,7 @@ const Slider = ({
         <Swiper
           className={`relative flex w-full items-center ${
             isReviews
-              ? 'min-h-[165px] pb-5 pt-11 md:max-h-[230px] md:pb-10'
+              ? 'min-h-[165px] pb-5 pt-11 md:min-h-[320px] md:pb-10 md:pt-0'
               : 'h-full'
           } w-full md:w-[768px] lg:w-full ${
             isExcursions ? 'h-[330px]' : 'h-full'
@@ -110,7 +110,7 @@ const Slider = ({
           slidesPerView={1}
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
-          loop={true}
+          loop={false}
           onActiveIndexChange={(swiper) => {
             if (setCurrentPage !== undefined) {
               setCurrentPage(swiper.activeIndex + 1);
