@@ -11,6 +11,12 @@ import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
 
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  addSuccessResponseMessage,
+  addErrorResponseMessage
+} from '@/utils/responseMessages';
+
 const AddPost = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -43,14 +49,19 @@ const AddPost = () => {
   const onSubmit: SubmitHandler<NewsFormInput> = async (
     values: NewsFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(addNewPost(values));
-    setIsProcessing(false);
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(addNewPost(values));
+      setIsProcessing(false);
+      dispatch(openAlert(addSuccessResponseMessage('новину')));
+      navigate(-1);
+    } catch (error: any) {
+      dispatch(openAlert(addErrorResponseMessage('новину')));
+    }
   };
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
+    <div className="relative flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
       <div className="mb-[12px] mt-[48px]">
         <h1 className="text-3xl font-bold">Додавання Новини</h1>
       </div>

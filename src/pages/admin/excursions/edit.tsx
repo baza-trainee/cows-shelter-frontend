@@ -20,7 +20,6 @@ const EditExcursions = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
-
   const excursions = useAppSelector((state) => state.excursions.excursions);
 
   const {
@@ -42,7 +41,6 @@ const EditExcursions = () => {
   useEffect(() => {
     const postExcursions = excursions[0];
     if (!postExcursions) return;
-    console.log(postExcursions);
     setValue('titleUa', t(`${postExcursions.title_ua}`));
     setValue('titleEn', postExcursions.title_en);
     setValue('descriptionUa', t(`${postExcursions.description_ua}`));
@@ -236,7 +234,7 @@ const EditExcursions = () => {
             </button>
 
             <Link to="/admin">
-              <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
             </Link>

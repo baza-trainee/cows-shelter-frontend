@@ -6,6 +6,12 @@ import AddIcon from '@/components/icons/AddIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchPosts, removePost } from '@/store/slices/newsSlice';
 import Loader from '@/components/admin/Loader';
+import ResponseAlert from '@/components/admin/ResponseAlert';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  deleteSuccessResponseMessage,
+  deleteErrorResponseMessage
+} from '@/utils/responseMessages';
 
 const News = () => {
   const dispatch = useAppDispatch();
@@ -13,14 +19,20 @@ const News = () => {
   const [currentId, setCurrentId] = useState('');
   const isLoading = useAppSelector((state) => state.posts.loading);
   const posts = useAppSelector((state) => state.posts.posts);
+  const isAlertOpen = useAppSelector((state) => state.alert.isAlertOpen);
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
   const deletePost = () => {
-    dispatch(removePost(currentId));
-    setShowConfirm(false);
+    try {
+      dispatch(removePost(currentId));
+      setShowConfirm(false);
+      dispatch(openAlert(deleteSuccessResponseMessage('новину')));
+    } catch (error: any) {
+      dispatch(openAlert(deleteErrorResponseMessage('новину')));
+    }
   };
 
   if (isLoading) return <Loader />;
@@ -72,6 +84,7 @@ const News = () => {
           onConfirm={deletePost}
         />
       )}
+      {isAlertOpen && <ResponseAlert />}
     </div>
   );
 };
