@@ -6,6 +6,12 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchImages, removeImage } from '@/store/slices/gallerySlice';
 import Loader from '@/components/admin/Loader';
 import AddImage from './add';
+import {
+  deleteErrorResponseMessage,
+  deleteSuccessResponseMessage
+} from '@/utils/responseMessages';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import ResponseAlert from '@/components/admin/ResponseAlert';
 
 const Gallery = () => {
   const dispatch = useAppDispatch();
@@ -14,14 +20,20 @@ const Gallery = () => {
   const [showModal, setShowModal] = useState(false);
   const isLoading = useAppSelector((state) => state.posts.loading);
   const images = useAppSelector((state) => state.gallery.images);
+  const isAlertOpen = useAppSelector((state) => state.alert.isAlertOpen);
 
   useEffect(() => {
     dispatch(fetchImages());
   }, [dispatch, showModal]);
 
   const deletePost = () => {
-    dispatch(removeImage(currentId));
-    setShowConfirm(false);
+    try {
+      dispatch(removeImage(currentId));
+      dispatch(openAlert(deleteSuccessResponseMessage('світлину')));
+      setShowConfirm(false);
+    } catch (error: any) {
+      dispatch(openAlert(deleteErrorResponseMessage('світлину')));
+    }
   };
 
   if (isLoading) return <Loader />;
@@ -69,6 +81,7 @@ const Gallery = () => {
           onConfirm={deletePost}
         />
       )}
+      {isAlertOpen && <ResponseAlert />}
     </div>
   );
 };
