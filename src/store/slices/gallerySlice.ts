@@ -14,8 +14,14 @@ export type Image = {
   image_id: string;
 };
 
+type ResponseWithPagination = {
+  images: Image[];
+  totalLength: number;
+};
+
 type ImageState = {
   images: Image[];
+  paginatedData: ResponseWithPagination;
   loading: boolean;
   error: string | null;
 };
@@ -23,7 +29,11 @@ type ImageState = {
 const initialState: ImageState = {
   images: [],
   loading: false,
-  error: null
+  error: null,
+  paginatedData: {
+    images: [],
+    totalLength: 0
+  }
 };
 
 export const fetchImages = createAsyncThunk('gallery/fetchImages', async () => {
@@ -42,6 +52,22 @@ export const fetchImageById = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await axios.get<Image>(`api/gallery/${id}`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const fetchImagesWithPagination = createAsyncThunk(
+  'gallery/fetchImagesWithPagination',
+  async (query: { page: number; limit: number }) => {
+    try {
+      const response = await axios.get<ResponseWithPagination>(
+        `api/gallery/pagination?page=${query.page}&limit=${query.limit}`
+      );
       const data = response.data;
       return data;
     } catch (error) {
@@ -95,6 +121,14 @@ const gallerySlice = createSlice({
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
         state.images = action.payload as Image[];
+        state.loading = false;
+      })
+      .addCase(fetchImagesWithPagination.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchImagesWithPagination.fulfilled, (state, action) => {
+        state.paginatedData = action.payload as ResponseWithPagination;
         state.loading = false;
       })
       .addCase(fetchImageById.pending, (state) => {

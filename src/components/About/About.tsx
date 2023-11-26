@@ -387,7 +387,7 @@ const About = () => {
         </div>
       </section>
       <div
-        className={`relative h-[240px] w-full bg-[url('/about/img_cow_about.webp')] bg-cover   bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
+        className={`relative h-[240px] w-full bg-[url('/about/bg_cow_about.webp')] bg-cover   bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       ></div>
     </>
   );
