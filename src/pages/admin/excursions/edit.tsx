@@ -11,12 +11,18 @@ import {
   editExcursion,
   fetchExcursionById
 } from '@/store/slices/excursionsSlice';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  editErrorResponseMessage,
+  editSuccessResponseMessage
+} from '@/utils/responseMessages';
 
 const EditExcursions = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
   const excursions = useAppSelector((state) => state.excursions.excursions);
 
   const {
@@ -24,7 +30,7 @@ const EditExcursions = () => {
     watch,
     control,
     setValue,
-    formState: { errors }
+    formState: { errors, isDirty, isValid }
   } = useForm<ExcursionsFormInput>({
     mode: 'onChange',
     defaultValues: defaultValues
@@ -67,8 +73,15 @@ const EditExcursions = () => {
   const onSubmit: SubmitHandler<ExcursionsFormInput> = async (
     values: ExcursionsFormInput
   ) => {
-    await dispatch(editExcursion({ id, values }));
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(editExcursion({ id, values }));
+      setIsProcessing(false);
+      dispatch(openAlert(editSuccessResponseMessage('екскурсію')));
+      navigate(-1);
+    } catch (error: any) {
+      dispatch(openAlert(editErrorResponseMessage('екскурсію')));
+    }
   };
 
   return (
@@ -81,7 +94,7 @@ const EditExcursions = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-1 flex-col gap-4"
         >
-          <div className="flex gap-2">
+          <div className="flex items-start gap-2">
             <section className="flex flex-col items-center justify-center gap-6">
               <Controller
                 name="titleUa"
@@ -138,16 +151,16 @@ const EditExcursions = () => {
               />
             </section>
 
-            <section className="flex flex-col items-center justify-center gap-4 px-8">
-              <div className="mt-[5vh] flex w-full flex-col items-center justify-center gap-7">
+            <section className="flex flex-col gap-7 px-8">
+              <div className="flex w-[365px] flex-col gap-7">
                 <div className="relative text-left">
                   <img
                     src={image ? image : '/placeholder-image.jpeg'}
                     alt={currentValues.titleUa}
-                    className="h-[240px] w-[320px] rounded-md object-cover"
+                    className="h-[220px] w-[365px] object-cover"
                   />
                   <h2
-                    className={`absolute bottom-4 left-2 text-xl font-bold ${
+                    className={`absolute bottom-4 left-4 text-xl font-semibold ${
                       !image ? 'text-gray-400' : 'text-white'
                     } `}
                   >
@@ -164,75 +177,89 @@ const EditExcursions = () => {
                   title="Оберіть файл"
                 />
               </div>
-              <div className="flex flex-col gap-6">
-                <p className="-mb-5 text-sm font-medium">
-                  Введіть часовий проміжок:
-                </p>
-                <div className="flex gap-6">
-                  <div className="flex items-center gap-3">
-                    <p className="text-sm font-medium">Від</p>
-                    <Controller
-                      name="timeFrom"
-                      rules={{ required: 'Введіть назву' }}
-                      control={control}
-                      render={({ field }) => (
-                        <TextInput
-                          {...field}
-                          errorText={errors.timeFrom?.message}
-                        />
-                      )}
-                    />
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <p className="text-sm font-medium">До</p>
-                    <Controller
-                      name="timeTill"
-                      rules={{ required: 'Введіть назву' }}
-                      control={control}
-                      render={({ field }) => (
-                        <TextInput
-                          {...field}
-                          errorText={errors.timeTill?.message}
-                        />
-                      )}
-                    />
-                  </div>
-                  <p className="flex items-center text-sm font-medium">
-                    хвилин
+              <div className="flex w-[365px] flex-col gap-6">
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-sm font-medium">
+                    Введіть часовий проміжок:
                   </p>
-                </div>
-                <div className="flex items-center gap-6">
-                  <p className="flex items-center pt-5 text-sm font-medium">
-                    до
-                  </p>
-                  <Controller
-                    name="visitorsNumber"
-                    rules={{ required: 'Введіть назву' }}
-                    control={control}
-                    render={({ field }) => (
-                      <TextInput
-                        {...field}
-                        errorText={errors.visitorsNumber?.message}
-                        title="Введіть кількість відвідувачів:"
+                  <div className="flex flex-row gap-4">
+                    <div className="flex items-center gap-3">
+                      <p className="text-sm font-normal">Від</p>
+                      <Controller
+                        name="timeFrom"
+                        rules={{ required: 'Введіть назву' }}
+                        control={control}
+                        render={({ field }) => (
+                          <TextInput
+                            {...field}
+                            errorText={errors.timeFrom?.message}
+                          />
+                        )}
                       />
-                    )}
-                  />
-                  <p className="flex items-center pt-5 text-sm font-medium">
-                    відвідувачів
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <p className="text-sm font-normal">До</p>
+                      <Controller
+                        name="timeTill"
+                        rules={{ required: 'Введіть назву' }}
+                        control={control}
+                        render={({ field }) => (
+                          <TextInput
+                            {...field}
+                            errorText={errors.timeTill?.message}
+                          />
+                        )}
+                      />
+                    </div>
+                    <p className="flex items-center text-sm font-normal">
+                      хвилин
+                    </p>
+                  </div>
+                </div>
+                <div className="flex w-[365px] flex-col gap-1.5">
+                  <p className="text-sm font-medium">
+                    Введіть кількість відвідувачів:
                   </p>
+                  <div className="flex items-center gap-4">
+                    <p className="flex items-center text-sm font-normal">До</p>
+                    <Controller
+                      name="visitorsNumber"
+                      rules={{ required: 'Введіть назву' }}
+                      control={control}
+                      render={({ field }) => (
+                        <TextInput
+                          {...field}
+                          errorText={errors.visitorsNumber?.message}
+                        />
+                      )}
+                    />
+                    <p className="flex items-center text-sm font-normal">
+                      відвідувачів
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
           </div>
-          <p className="text-base leading-normal text-disabled">
+          <p
+            className={`text-base leading-normal ${
+              isDirty && isValid ? 'text-black' : 'text-disabled'
+            }`}
+          >
             Застосувати зміни?
           </p>
           <div className="flex gap-4">
-            <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+            <button
+              className={`w-[13.5rem] rounded-md px-6 py-2 ${
+                isDirty && isValid
+                  ? 'cursor-pointer bg-accent'
+                  : 'cursor-not-allowed bg-gray-200'
+              }`}
+            >
+              {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
 
-            <Link to="/admin">
+            <Link to="/admin/excursions">
               <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>

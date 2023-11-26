@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Confirm from '@/components/admin/Confirm';
 import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-// import { excursions } from '@/data/excursions';
 import { useTranslation } from 'react-i18next';
 import AddIcon from '@/components/icons/AddIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -11,6 +10,12 @@ import {
   removeExcursion
 } from '@/store/slices/excursionsSlice';
 import Loader from '@/components/admin/Loader';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  deleteErrorResponseMessage,
+  deleteSuccessResponseMessage
+} from '@/utils/responseMessages';
+import ResponseAlert from '@/components/admin/ResponseAlert';
 
 const Excursions = () => {
   const { t } = useTranslation();
@@ -20,14 +25,20 @@ const Excursions = () => {
   const [currentId, setCurrentId] = useState('');
   const isLoading = useAppSelector((state) => state.excursions.loading);
   const excursions = useAppSelector((state) => state.excursions.excursions);
+  const isAlertOpen = useAppSelector((state) => state.alert.isAlertOpen);
 
   useEffect(() => {
     dispatch(fetchExcursion());
   }, [dispatch]);
 
-  const deletePost = () => {
-    dispatch(removeExcursion(currentId));
-    setShowConfirm(false);
+  const deleteExcursion = () => {
+    try {
+      dispatch(removeExcursion(currentId));
+      setShowConfirm(false);
+      dispatch(openAlert(deleteSuccessResponseMessage('екскурсію')));
+    } catch (error: any) {
+      dispatch(openAlert(deleteErrorResponseMessage('екскурсію')));
+    }
   };
 
   if (isLoading) return <Loader />;
@@ -35,10 +46,10 @@ const Excursions = () => {
   return (
     <div className="relative flex min-h-screen flex-col px-12 py-10">
       <div className="mb-9">
-        <h1 className="text-3xl font-bold">Екскурсії</h1>
+        <h1 className="text-3xl font-semibold">Екскурсії</h1>
       </div>
       <div className="flex gap-5">
-        <div className="border-lightgray relative flex h-[180px] w-[288px] flex-col items-center justify-center gap-2 border-2">
+        <div className="relative flex h-[180px] w-[288px] flex-col items-center justify-center gap-4 border-2 border-disabled">
           <Link to="/admin/excursions/add">
             <AddIcon />
           </Link>
@@ -60,7 +71,7 @@ const Excursions = () => {
               </h2>
               <div className="absolute left-0 right-0 top-4 flex w-full items-center justify-between gap-2 px-6  py-2">
                 <button
-                  className="rounded-full p-[8px] text-xl text-white backdrop-blur-xl backdrop-contrast-75  transition-all hover:text-error"
+                  className="rounded-full p-[8px] text-xl text-white backdrop-blur-xl backdrop-contrast-75 transition-all hover:text-error"
                   onClick={() => {
                     setShowConfirm(true), setCurrentId(excursion.id);
                   }}
@@ -81,9 +92,10 @@ const Excursions = () => {
         <Confirm
           setShowConfirm={setShowConfirm}
           title="Ви впевнені, що хочете видалити екскурсію зі сторінки?"
-          onConfirm={deletePost}
+          onConfirm={deleteExcursion}
         />
       )}
+      {isAlertOpen && <ResponseAlert />}
     </div>
   );
 };

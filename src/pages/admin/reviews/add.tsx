@@ -8,6 +8,12 @@ import { reviewsValidation } from './reviewsValidation';
 import { useAppDispatch } from '@/store/hook';
 import { useState } from 'react';
 import { addNewReview } from '@/store/slices/reviewsSlice';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  addErrorResponseMessage,
+  addSuccessResponseMessage
+} from '@/utils/responseMessages';
+// import { useForm } from "react-hook-form";
 
 const AddReviews = () => {
   const navigate = useNavigate();
@@ -17,7 +23,7 @@ const AddReviews = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors, isDirty, isValid }
   } = useForm<ReviewsFormInput>({
     mode: 'onChange',
     defaultValues: defaultValues
@@ -26,14 +32,19 @@ const AddReviews = () => {
   const onSubmit: SubmitHandler<ReviewsFormInput> = async (
     values: ReviewsFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(addNewReview(values));
-    setIsProcessing(false);
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(addNewReview(values));
+      setIsProcessing(false);
+      dispatch(openAlert(addSuccessResponseMessage('вігук')));
+      navigate(-1);
+    } catch (error: any) {
+      dispatch(openAlert(addErrorResponseMessage('вігук')));
+    }
   };
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
+    <div className="flex min-h-screen w-full flex-col items-start justify-center pb-[134px] pl-[48px] pr-[142px] ">
       <div className="mb-9 mt-12">
         <h1 className="text-3xl font-bold">Додавання відгуку</h1>
       </div>
@@ -104,14 +115,24 @@ const AddReviews = () => {
               </div>
             </section>
           </div>
-          <p className="text-base leading-normal text-disabled">
+          <p
+            className={`text-base leading-normal ${
+              isDirty && isValid ? 'text-black' : 'text-disabled'
+            }`}
+          >
             Додати новий відгук на сайт?
           </p>
           <div className="flex gap-4">
-            <button className="w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
+            <button
+              className={`w-[13.5rem] rounded-md px-6 py-2 ${
+                isDirty && isValid
+                  ? 'cursor-pointer bg-accent'
+                  : 'cursor-not-allowed bg-gray-200'
+              }`}
+            >
               {isProcessing ? 'Обробка запиту...' : 'Додати'}
             </button>
-            <Link to="/admin">
+            <Link to="/admin/reviews">
               <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
