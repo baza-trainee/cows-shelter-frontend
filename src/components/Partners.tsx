@@ -9,6 +9,7 @@ import PartnersModal from './modals/PartnersModal';
 import { openModal } from '@/store/slices/modalSlice';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
 import { Partner, fetchPartners } from '@/store/slices/partnersSlice';
+import Loader from './admin/Loader';
 
 const Partners = () => {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ const Partners = () => {
 
   const dispatch = useAppDispatch();
   const partners = useAppSelector((state) => state.partners.partners);
+  const isLoading = useAppSelector((state) => state.partners.loading);
 
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
@@ -112,8 +114,10 @@ const Partners = () => {
     }
   }, [isModalOpen]);
 
+  if (isLoading) return <Loader />;
+
   return (
-    <section id="partners" ref={ref} className=" bg-[#F3F3F5] ">
+    <section id="partners" ref={ref} className="relative bg-[#F3F3F5] ">
       <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] lg:py-[80px] xl:w-[1440px]">
         <div className="sectionHeader mb-5 flex-row md:mb-8 lg:mb-14 lg:flex  lg:items-center lg:justify-between">
           <h2 className="text-[1.5rem] font-medium md:mb-6 md:text-[3rem] lg:text-[4rem]">
