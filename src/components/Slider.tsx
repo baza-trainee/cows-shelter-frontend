@@ -127,7 +127,7 @@ const Slider = ({
                 isPartners
                   ? 'md:bottom-[0px] lg:bottom-[28px]'
                   : 'md:bottom-[40px]'
-              } flex h-full w-full items-center justify-center`}
+              } bottom-8 flex h-full w-full items-center justify-center`}
             >
               {children}
             </SwiperSlide>

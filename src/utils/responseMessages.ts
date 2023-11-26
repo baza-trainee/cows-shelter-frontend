@@ -1,8 +1,8 @@
 export const addSuccessResponseMessage = (item: string) => {
-  return `${item.toUpperCase()} успішно додано`;
+  return `${item} успішно додано`;
 };
 export const deleteSuccessResponseMessage = (item: string) => {
-  return `${item.toUpperCase()} успішно видалено`;
+  return `${item} успішно видалено`;
 };
 export const editSuccessResponseMessage = (item: string) => {
   return `Зміни до ${item} успішно застосовано`;
