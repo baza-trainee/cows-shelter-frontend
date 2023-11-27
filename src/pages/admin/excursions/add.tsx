@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { ExcursionsFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
@@ -7,29 +7,20 @@ import { excursionsValidation } from './excursionsValidation';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
+import { useAppDispatch } from '@/store/hook';
+import { addNewExcursion } from '@/store/slices/excursionsSlice';
 
 const AddExcursions = () => {
-  // const [titleUa, setTitleUa] = useState('');
-  // const [titleEn, setTitleEn] = useState('');
-  // const [textUa, setTextUa] = useState('');
-  // const [textEn, setTextEn] = useState('');
-  // const [isError, setIsError] = useState(true);
-  // const [imageFile, setImageFile] = useState<FileList | null>(null);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [isProcessing, setIsProcessing] = useState(false);
   const [image, setImage] = useState('');
-
-  // const setFileToBase64 = (file: File) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setImage(reader.result as string);
-  //   };
-  // };
 
   const {
     handleSubmit,
     watch,
     control,
-    formState: { errors }
+    formState: { errors, isDirty, isValid }
   } = useForm<ExcursionsFormInput>({
     mode: 'onChange',
     defaultValues: defaultValues
@@ -48,15 +39,14 @@ const AddExcursions = () => {
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<ExcursionsFormInput> = () => {};
-
-  // useEffect(() => {
-  //   if (imageFile !== null) {
-  //     const file = imageFile[0];
-  //     // setFileToBase64(file);
-  //     // setIsError(true);
-  //   }
-  // }, [imageFile]);
+  const onSubmit: SubmitHandler<ExcursionsFormInput> = async (
+    values: ExcursionsFormInput
+  ) => {
+    setIsProcessing(true);
+    await dispatch(addNewExcursion(values));
+    setIsProcessing(false);
+    navigate(-1);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
@@ -69,7 +59,7 @@ const AddExcursions = () => {
           autoComplete="off"
           className="flex flex-1 flex-col gap-4"
         >
-          <div className="flex gap-2">
+          <div className="flex items-start gap-2">
             <section className="flex flex-col items-center justify-center gap-4">
               <Controller
                 name="titleUa"
@@ -126,8 +116,8 @@ const AddExcursions = () => {
               />
             </section>
 
-            <section className="flex flex-col items-center justify-center gap-4 px-8">
-              <div className="mt-[5vh] flex w-full flex-col items-center justify-center gap-7">
+            <section className="flex flex-col gap-4 px-8">
+              <div className="flex w-[365px] flex-col gap-7">
                 <div className="relative text-left">
                   <img
                     src={
@@ -136,10 +126,10 @@ const AddExcursions = () => {
                         : 'https://healvets.org/wp-content/uploads/2021/10/ef3-placeholder-image.jpeg'
                     }
                     alt={currentValues.titleUa}
-                    className="h-[240px] w-[320px] rounded-md object-cover"
+                    className="h-[220px] w-[365px] object-cover"
                   />
                   <h2
-                    className={`absolute bottom-4 left-2 text-xl font-bold ${
+                    className={`absolute bottom-4 left-4 text-xl font-semibold ${
                       !image ? 'text-gray-400' : 'text-white'
                     } `}
                   >
@@ -158,11 +148,11 @@ const AddExcursions = () => {
                 />
               </div>
 
-              <div>
+              <div className="flex flex-col gap-1.5">
                 <p className="text-sm font-medium">Введіть часовий проміжок:</p>
-                <div className="flex gap-6">
+                <div className="flex w-[365px] gap-6">
                   <div className="flex items-center gap-3">
-                    <p className="text-sm font-medium">Від</p>
+                    <p className="text-sm font-normal">Від</p>
                     <Controller
                       name="timeFrom"
                       rules={excursionsValidation.timeFrom}
@@ -176,7 +166,7 @@ const AddExcursions = () => {
                     />
                   </div>
                   <div className="flex items-center gap-3">
-                    <p className="text-sm font-medium">До</p>
+                    <p className="text-sm font-normal">До</p>
                     <Controller
                       name="timeTill"
                       rules={excursionsValidation.timeTill}
@@ -189,42 +179,56 @@ const AddExcursions = () => {
                       )}
                     />
                   </div>
-                  <p className="flex items-center text-sm font-medium">
+                  <p className="flex items-center text-sm font-normal">
                     хвилин
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-6">
-                <p className="flex items-center pt-5 text-sm font-medium">до</p>
-                <Controller
-                  name="visitorsNumber"
-                  rules={excursionsValidation.visitorsNumber}
-                  control={control}
-                  render={({ field }) => (
-                    <TextInput
-                      {...field}
-                      errorText={errors.visitorsNumber?.message}
-                      title="Введіть кількість відвідувачів:"
-                    />
-                  )}
-                />
-                <p className="flex items-center pt-5 text-sm font-medium">
-                  відвідувачів
+              <div className="flex w-[365px] flex-col gap-1.5">
+                <p className="text-sm font-medium">
+                  Введіть кількість відвідувачів:
                 </p>
+                <div className="flex items-center gap-6">
+                  <p className="flex items-center text-sm font-normal">До</p>
+                  <Controller
+                    name="visitorsNumber"
+                    rules={excursionsValidation.visitorsNumber}
+                    control={control}
+                    render={({ field }) => (
+                      <TextInput
+                        {...field}
+                        errorText={errors.visitorsNumber?.message}
+                      />
+                    )}
+                  />
+                  <p className="flex items-center text-sm font-normal">
+                    відвідувачів
+                  </p>
+                </div>
               </div>
             </section>
           </div>
 
-          <p className="text-base leading-normal text-disabled">
+          <p
+            className={`text-base leading-normal ${
+              isDirty && isValid ? 'text-black' : 'text-disabled'
+            }`}
+          >
             Розмістити нову екскурсію?
           </p>
           <div className="flex gap-4">
-            <button className="w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+            <button
+              className={`w-[13.5rem] rounded-md px-6 py-2 ${
+                isDirty && isValid
+                  ? 'cursor-pointer bg-accent'
+                  : 'cursor-not-allowed bg-gray-200'
+              }`}
+            >
+              {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
-            <Link to="/admin">
-              <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+            <Link to="/admin/excursions">
+              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
             </Link>

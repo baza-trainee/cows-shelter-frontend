@@ -29,25 +29,23 @@ const FAQ = () => {
           {questionsList.map(({ question, answers, id }) => (
             <li key={id} className="w-[100%] sm:w-[435px] md:w-[100%]">
               <a
+                onClick={() => {
+                  if (currentAnswer(id)) {
+                    return closeAnswer(id);
+                  }
+                  showAnswer(id);
+                }}
                 className={`flex items-center justify-between border border-disabled ${
                   currentAnswer(id) ? ' bg-lightyellow' : 'bg-white'
                 }  px-4 py-3 transition-all duration-300 hover:border-[2px] hover:border-darkyellow focus:border-dashed md:gap-4 md:px-12 md:py-6 md:font-bold lg:px-[60px]`}
               >
                 <p>{t(question)}</p>
                 {currentAnswer(id) ? (
-                  <button
-                    type="button"
-                    onClick={() => closeAnswer(id)}
-                    className="pl-3"
-                  >
+                  <button type="button" className="pl-3">
                     <CloseAnswer />
                   </button>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={() => showAnswer(id)}
-                    className="pl-3"
-                  >
+                  <button type="button" className="pl-3">
                     <PlusIcon />
                   </button>
                 )}

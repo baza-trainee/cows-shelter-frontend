@@ -22,7 +22,7 @@ const TextInput = forwardRef(function TextInput(
 
   return (
     <div
-      className={`w-full min-w-[130px] ${
+      className={`w-full min-w-[100px] ${
         errorText ? 'text-error' : 'text-inherit'
       }`}
     >

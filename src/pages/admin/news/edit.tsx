@@ -11,6 +11,11 @@ import FileInput from '@/components/admin/inputs/FileInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import TextInput from '@/components/admin/inputs/TextInput';
 import { newsValidation } from './newsValidation';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  editErrorResponseMessage,
+  editSuccessResponseMessage
+} from '@/utils/responseMessages';
 
 const EditNews = () => {
   const { id } = useParams();
@@ -66,10 +71,15 @@ const EditNews = () => {
   const onSubmit: SubmitHandler<NewsFormInput> = async (
     values: NewsFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(editPost({ id, values }));
-    setIsProcessing(false);
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(editPost({ id, values }));
+      setIsProcessing(false);
+      dispatch(openAlert(editSuccessResponseMessage('новину')));
+      navigate(-1);
+    } catch (error: any) {
+      dispatch(openAlert(editErrorResponseMessage('новину')));
+    }
   };
 
   return (
@@ -203,7 +213,7 @@ const EditNews = () => {
             </button>
 
             <Link to="/admin">
-              <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
             </Link>

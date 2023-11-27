@@ -1,59 +1,33 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { PartnersType } from '@/types';
 import { useInView } from 'react-intersection-observer';
 import { setActiveLink } from '@/store/slices/observationSlice';
-
-import logo_uaanimals from '@/assets/images/logo_uaanimals.png';
-import logo_sloboda from '@/assets/images/logo_svoboda.png';
-import logo_zhitta from '@/assets/images/logo_zhitta.png';
-import logo_baza from '@/assets/images/logo_baza.png';
-import logo_eur from '@/assets/images/logo_european_zoo.png';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 
 import Slider from '@/components/Slider';
 import PartnersModal from './modals/PartnersModal';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { usePaginatedData } from '@/hooks/usePaginatedData';
+import { Partner, fetchPartners } from '@/store/slices/partnersSlice';
+import Loader from './admin/Loader';
 
 const Partners = () => {
   const { t } = useTranslation();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const dispatch = useAppDispatch();
+  const partners = useAppSelector((state) => state.partners.partners);
+  const isLoading = useAppSelector((state) => state.partners.loading);
+
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
   const { ref, inView } = useInView({
     threshold: 0.5
   });
 
-  const partners = [
-    {
-      title: t('partners:partners.uaAnimals'),
-      href: 'https://uanimals.org/',
-      src: logo_uaanimals
-    },
-    {
-      title: t('partners:partners.sloboda_zvierat'),
-      href: 'https://slobodazvierat.sk',
-      src: logo_sloboda
-    },
-    {
-      title: t('partners:partners.zhitta'),
-      href: 'https://www.facebook.com/groups/606065439570544',
-      src: logo_zhitta
-    },
-    {
-      title: t('partners:partners.baza'),
-      href: 'https://baza-trainee.tech/ua',
-      src: logo_baza
-    },
-    {
-      title: t('partners:partners.eur_zoo_org'),
-      href: 'https://baza-trainee.tech/ua',
-      src: logo_eur
-    }
-  ];
+  useEffect(() => {
+    dispatch(fetchPartners());
+  }, [dispatch]);
 
   const openPartnersModal = () => {
     dispatch(openModal({ data: {}, type: 'partners' }));
@@ -140,8 +114,10 @@ const Partners = () => {
     }
   }, [isModalOpen]);
 
+  if (isLoading) return <Loader />;
+
   return (
-    <section id="partners" ref={ref} className=" bg-[#F3F3F5] ">
+    <section id="partners" ref={ref} className="relative bg-[#F3F3F5] ">
       <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] lg:py-[80px] xl:w-[1440px]">
         <div className="sectionHeader mb-5 flex-row md:mb-8 lg:mb-14 lg:flex  lg:items-center lg:justify-between">
           <h2 className="text-[1.5rem] font-medium md:mb-6 md:text-[3rem] lg:text-[4rem]">
@@ -159,26 +135,26 @@ const Partners = () => {
         </p>
         {/* mobile only */}
         <ul className="mb-5 grid grid-cols-2 gap-x-3 gap-y-2.5 overflow-x-auto md:hidden ">
-          {partners.map(({ title, href, src }) => (
+          {partners.map(({ id, name, link, logo }) => (
             <li
-              key={title}
+              key={id}
               className="flex flex-col   md:mb-6 md:w-[calc(50%-0.75rem)]"
             >
               <a
-                href={href}
+                href={link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
               >
                 <img
                   className="m-auto mb-6 scale-100 transform"
-                  src={src}
-                  alt={title}
+                  src={logo}
+                  alt={name}
                   width={134}
                   height={134}
                 />
                 <p className="mb-4 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
-                  {title}
+                  {name}
                 </p>
               </a>
             </li>
@@ -192,23 +168,23 @@ const Partners = () => {
             pagesLength={pagesLength}
           >
             <ul className="mb-5  flex gap-6 lg:mt-20">
-              {data.map((item: PartnersType) => (
-                <li key={item.title} className="flex justify-around">
+              {data.map((item: Partner) => (
+                <li key={item.id} className="flex justify-around">
                   <a
-                    href={item.href}
+                    href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
                   >
                     <img
                       className="m-auto mb-6 scale-100 transform md:h-[208px] md:w-[208px] xl:h-[245px] xl:w-[245px]"
-                      src={item.src}
-                      alt={item.title}
+                      src={item.logo}
+                      alt={item.name}
                       width={208}
                       height={208}
                     />
-                    <p className="mb-5 w-[208px] text-center text-[1rem] leading-relaxed md:text-[20px] lg:mb-[4.125rem] lg:text-[22px] xl:w-[282px]">
-                      {item.title}
+                    <p className=":w-[282px] mb-5 w-[208px] text-center text-[1rem] leading-relaxed md:text-[20px] lg:mb-[4.125rem] lg:text-[22px]">
+                      {item.name}
                     </p>
                   </a>
                 </li>

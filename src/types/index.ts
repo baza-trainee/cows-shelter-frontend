@@ -56,12 +56,19 @@ export type SupportCard = {
   image: string;
 };
 
-export type PartnersType = {
+export type PartnersData = {
   title: string;
   href: string;
   src: string;
 };
 
+export type PartnersFormInput = {
+  title: string;
+  link: string;
+  image: File[];
+  id?: string;
+  image_id: string;
+};
 export type NewsFormInput = {
   titleUa: string;
   titleEn: string;
@@ -71,6 +78,25 @@ export type NewsFormInput = {
   contentEn: string;
   image: File[];
   image_id: string;
+};
+
+export type ForgotPasswordProps = {
+  email: string;
+  closePopup: () => void;
+};
+
+export type FormValuesSignIn = {
+  email: string;
+  password: string;
+};
+
+export type FormValuesPassword = {
+  email: any;
+  password: string;
+};
+
+export type ForgotPassword = {
+  email: string | null;
 };
 
 export type AboutData = {
@@ -95,4 +121,24 @@ export type ReviewsFormInput = {
   nameEn: string;
   reviewUa: string;
   reviewEn: string;
+};
+
+export type FormResetPassword = {
+  token: string | undefined;
+  password: string;
+};
+
+export type FormValueResetPassword = {
+  password: string;
+  confirmpassword: string;
+};
+
+export type PdfFormInput = {
+  title: string;
+  document: File[];
+};
+
+export type ContactsFormInput = {
+  email?: string;
+  phone?: string;
 };
