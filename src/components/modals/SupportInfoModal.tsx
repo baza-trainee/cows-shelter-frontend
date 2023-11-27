@@ -28,7 +28,7 @@ const SupportInfoModal = ({
 
   return (
     <div
-      className={`absolute left-[50%] top-0 z-[9999] flex h-[587px] w-[90vw] -translate-x-[50%] -translate-y-[40%] flex-col items-center justify-start bg-white p-[20px] text-center text-black shadow-2xl transition-all duration-700 ${
+      className={`absolute left-[50%] top-0 z-[99] flex h-[587px] w-[90vw] -translate-x-[50%] -translate-y-[40%] flex-col items-center justify-start bg-white p-[20px] text-center text-black shadow-2xl transition-all duration-700 ${
         isOpen ? `-translate-y-[70%]` : 'translate-y-[100%]'
       }`}
     >

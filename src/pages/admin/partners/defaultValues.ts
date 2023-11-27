@@ -1,5 +1,6 @@
 export const defaultValues = {
-  title: '',
+  name: '',
   link: '',
-  image: []
+  logo: [],
+  image_id: ''
 };

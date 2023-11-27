@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { GalleryItem } from '@/types';
 import { useAppDispatch } from '@/store/hook';
 import { closeModal } from '@/store/slices/modalSlice';
 
@@ -13,9 +12,10 @@ import ShareModal from '@/components/modals/ShareModal';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Image } from '@/store/slices/gallerySlice';
 
 type LightBoxProps = {
-  images: GalleryItem[];
+  images: Image[];
   image: number;
 };
 
@@ -25,7 +25,7 @@ const LightBox = ({ images, image }: LightBoxProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setActiveImage(images[image].url);
+    setActiveImage(images[image].image_url);
   }, [image, images]);
 
   return (
@@ -54,7 +54,7 @@ const LightBox = ({ images, image }: LightBoxProps) => {
               key={index}
             >
               <div className="relative max-h-[480px] w-[480px] lg:max-h-[590px] lg:w-[590px]">
-                <img src={image.url} className="w-full object-cover" />
+                <img src={image.image_url} className="w-full object-cover" />
                 <div
                   onClick={() => setShowModal(true)}
                   className="absolute bottom-2 right-2 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-[rgba(150,150,150,0.5)]"

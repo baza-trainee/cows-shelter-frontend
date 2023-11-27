@@ -118,12 +118,12 @@ const ExcursionOrderModal = ({
                 </li>
                 <li>
                   <div>
-                    <a className="flex gap-5" href="#location">
+                    <div className="flex gap-5">
                       <LocationIcon />
                       <p className="text-sm">
                         {t('excursions:order_modal.address')}
                       </p>
-                    </a>
+                    </div>
                   </div>
                 </li>
               </ul>

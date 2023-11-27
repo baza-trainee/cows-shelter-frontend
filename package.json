@@ -16,6 +16,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^1.9.7",
+    "axios": "^1.6.2",
     "i18next": "^23.6.0",
     "leaflet": "^1.9.4",
     "nanoid": "^5.0.2",

@@ -4,10 +4,13 @@ import { useState, useEffect, MouseEvent } from 'react';
 import { navLinks } from '@/data/navLinks';
 import { useAppDispatch } from '@/store/hook';
 import { closeModal } from '@/store/slices/modalSlice';
+import { useHeight } from '@/hooks/useHeight';
 
 const BurgerMenu = () => {
   const [activeSection, setActiveSection] = useState('#about-us');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setHeight] = useState(window.innerHeight);
+  const screenHeight = useHeight();
   const {
     i18n: { changeLanguage, language }
   } = useTranslation();
@@ -36,7 +39,12 @@ const BurgerMenu = () => {
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
+    setHeight(window.innerHeight);
   };
+
+  useEffect(() => {
+    setHeight(screenHeight);
+  }, [screenHeight]);
 
   useEffect(() => {
     document.addEventListener('keydown', handlePressESC);
@@ -52,7 +60,11 @@ const BurgerMenu = () => {
       className="fixed left-0 top-0 z-50 h-screen w-screen bg-black bg-opacity-40"
       onClick={handleOverlayClick}
     >
-      <div className="absolute right-0 top-0 h-full w-[320px] overflow-y-scroll bg-white pb-8 text-[1.07rem] font-medium transition-all duration-500 md:h-[580px] md:w-[304px]">
+      <div
+        className={`absolute right-0 top-0 h-full w-[320px] overflow-y-scroll bg-white pb-8 text-[1.07rem] font-medium transition-all duration-500 ${
+          windowHeight > 580 && 'md:h-[580px]'
+        } md:w-[304px]`}
+      >
         <div className=" bg-lightgrey pl-6 md:pl-14 ">
           <h2 className=" py-[13px] md:py-[27px]">{t('header:menu')}</h2>
         </div>

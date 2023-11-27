@@ -1,35 +1,71 @@
-import { useState } from 'react';
-// import Confirm from '@/components/admin/Confirm';
+import { useEffect, useState } from 'react';
+import Confirm from '@/components/admin/Confirm';
 import { BsFillTrash3Fill } from 'react-icons/bs';
-import { images } from '@/data/gallery';
+import AddIcon from '@/components/icons/AddIcon';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { fetchImages, removeImage } from '@/store/slices/gallerySlice';
+import Loader from '@/components/admin/Loader';
 import AddImage from './add';
+import {
+  deleteErrorResponseMessage,
+  deleteSuccessResponseMessage
+} from '@/utils/responseMessages';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import ResponseAlert from '@/components/admin/ResponseAlert';
 
 const Gallery = () => {
-  // const [showConfirm, setShowConfirm] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [currentId, setCurrentId] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const isLoading = useAppSelector((state) => state.posts.loading);
+  const images = useAppSelector((state) => state.gallery.images);
+  const isAlertOpen = useAppSelector((state) => state.alert.isAlertOpen);
+
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, [dispatch, showModal]);
+
+  const deletePost = () => {
+    try {
+      dispatch(removeImage(currentId));
+      dispatch(openAlert(deleteSuccessResponseMessage('світлину')));
+      setShowConfirm(false);
+    } catch (error: any) {
+      dispatch(openAlert(deleteErrorResponseMessage('світлину')));
+    }
+  };
+
+  if (isLoading) return <Loader />;
 
   return (
-    <div className="relative flex  min-h-screen flex-col items-center justify-center  overflow-auto px-4">
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="mb-4 rounded-md border-2 border-blue-300 bg-blue-100 px-7 py-2 hover:bg-blue-200"
-      >
-        Add Image +
-      </button>
-
-      <div className="grid max-h-[85vh] grid-cols-3 gap-4 overflow-auto">
-        {images.map((post) => (
-          <div key={post.id} className="relative  text-left">
+    <div className="relative flex min-h-screen flex-col items-start justify-center px-[48px]">
+      <div className="px-12">
+        <h1 className="text-3xl font-bold">Галерея</h1>
+      </div>
+      <div className="grid w-full grid-cols-3 justify-center  gap-[20px] p-12">
+        <div className="border-lightgray relative flex h-[180px] w-[288px] flex-col items-center justify-center gap-2  border-2">
+          <button onClick={() => setShowModal(true)}>
+            <AddIcon />
+          </button>
+          <h1>Додати світлину</h1>
+        </div>
+        {images.map((image) => (
+          <div
+            key={image.id}
+            className="relative h-[180px] w-[288px] text-left"
+          >
             <img
-              src={post.url}
-              alt="image"
-              className="h-full w-full rounded-md object-cover"
+              src={image.image_url}
+              alt={'image'}
+              className="h-full w-full object-cover"
             />
-
-            <div className="buttons absolute right-2 top-2 flex gap-2">
+            <div className="absolute left-0 right-0 top-2 flex flex w-full items-center justify-end gap-2 px-6  py-2">
               <button
-                className="text-xl text-white hover:text-red-500"
-                // onClick={() => setShowConfirm(true)}
+                className="rounded-full p-[8px] text-xl text-white backdrop-blur-xl backdrop-contrast-75  transition-all hover:text-error"
+                onClick={() => {
+                  setShowConfirm(true), setCurrentId(image.id);
+                }}
               >
                 <BsFillTrash3Fill />
               </button>
@@ -37,8 +73,15 @@ const Gallery = () => {
           </div>
         ))}
       </div>
-      {isModalOpen && <AddImage setIsModalOpen={setIsModalOpen} />}
-      {/* {showConfirm && <Confirm setShowConfirm={setShowConfirm} />} */}
+      {showModal && <AddImage setIsModalOpen={setShowModal} />}
+      {showConfirm && (
+        <Confirm
+          setShowConfirm={setShowConfirm}
+          title="Чи ви впевнені, що хочете видалити новину зі сторінки?"
+          onConfirm={deletePost}
+        />
+      )}
+      {isAlertOpen && <ResponseAlert />}
     </div>
   );
 };

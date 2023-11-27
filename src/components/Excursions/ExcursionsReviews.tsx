@@ -48,7 +48,7 @@ const ExcursionsReviews = () => {
     }
     if (windowWidth >= 768 && windowWidth < 1280) {
       setItemsPerPage(2);
-      setPagesLength(6);
+      setPagesLength(5);
       if (currentPage === 1) {
         setStart(0);
         setFinish(2);

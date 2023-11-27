@@ -1,15 +1,27 @@
-import FileInput from '@/components/admin/inputs/FileInput';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
 import { NewsFormInput } from '@/types';
+import { newsValidation } from './newsValidation';
+import { useAppDispatch } from '@/store/hook';
+import { addNewPost } from '@/store/slices/newsSlice';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
-import { newsValidation } from './newsValidation';
+import FileInput from '@/components/admin/inputs/FileInput';
+
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  addSuccessResponseMessage,
+  addErrorResponseMessage
+} from '@/utils/responseMessages';
 
 const AddPost = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const {
     handleSubmit,
@@ -34,10 +46,22 @@ const AddPost = () => {
     setImagePreview(file);
   }, [currentValues.image]);
 
-  const onSubmit: SubmitHandler<NewsFormInput> = () => {};
+  const onSubmit: SubmitHandler<NewsFormInput> = async (
+    values: NewsFormInput
+  ) => {
+    try {
+      setIsProcessing(true);
+      await dispatch(addNewPost(values));
+      setIsProcessing(false);
+      dispatch(openAlert(addSuccessResponseMessage('новину')));
+      navigate(-1);
+    } catch (error: any) {
+      dispatch(openAlert(addErrorResponseMessage('новину')));
+    }
+  };
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
+    <div className="relative flex min-h-screen w-full flex-col items-start justify-center gap-4 pb-[134px] pl-[48px] pr-[142px] ">
       <div className="mb-[12px] mt-[48px]">
         <h1 className="text-3xl font-bold">Додавання Новини</h1>
       </div>
@@ -72,6 +96,32 @@ const AddPost = () => {
                     errorText={errors.titleEn?.message}
                     placeholder="Введіть заголовок"
                     title="Заголовок англійською:"
+                  />
+                )}
+              />
+              <Controller
+                name="subTitleUa"
+                rules={newsValidation.subTitleUa}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.subTitleUa?.message}
+                    placeholder="Введіть заголовок"
+                    title="Підзаголовок:"
+                  />
+                )}
+              />
+              <Controller
+                name="subTitleEn"
+                rules={newsValidation.subTitleEn}
+                control={control}
+                render={({ field }) => (
+                  <TextInput
+                    {...field}
+                    errorText={errors.subTitleEn?.message}
+                    placeholder="Введіть заголовок"
+                    title="Підзаголовок англійською:"
                   />
                 )}
               />
@@ -137,13 +187,16 @@ const AddPost = () => {
               </div>
             </section>
           </div>
+          <span className="mt-4 text-sm text-gray-500">
+            Додати новину на сайт?
+          </span>
           <div className="flex gap-4">
             <button className="w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
-              Розмістити
+              {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
 
             <Link to="/admin">
-              <button className="w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-red-300">
+              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
                 Скасувати
               </button>
             </Link>
