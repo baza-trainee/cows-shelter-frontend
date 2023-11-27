@@ -1,23 +1,23 @@
 module.exports = {
-  trailingComma: 'none',
+  trailingComma: "none",
   tabWidth: 2,
   printWidth: 80,
   useTabs: false,
   semi: true,
   singleQuote: true,
-  quoteProps: 'as-needed',
+  quoteProps: "as-needed",
   bracketSpacing: true,
-  arrowParens: 'always',
+  arrowParens: "always",
   jsxBracketSameLine: false,
-  endOfLine: 'auto',
-  tailwindConfig: './tailwind.config.js',
+  endOfLine: "auto",
+  tailwindConfig: "./tailwind.config.js",
   overrides: [
     {
-      files: '.prettierrc',
+      files: ".prettierrc",
       options: {
-        parser: 'json'
+        parser: "json"
       }
     }
   ],
-  plugins: ['prettier-plugin-tailwindcss']
+  plugins: ["prettier-plugin-tailwindcss"]
 };
