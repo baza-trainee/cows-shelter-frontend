@@ -4,6 +4,7 @@ import { openModal } from '@/store/slices/modalSlice';
 import { navLinks } from '@/data/navLinks';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import BurgerMenu from './BurgerMenu';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,16 +63,16 @@ const Header = () => {
         } fixed left-0 right-0 top-0 z-10 md:py-[15px] lg:py-5`}
       >
         <div className=" mx-auto flex items-center justify-between px-5 text-lg text-white outline-transparent sm:w-[480px] md:w-[768px] md:px-12 lg:w-[1280px] lg:px-[120px]  xl:w-[1440px] ">
-          <a
+          <Link
             className="inline-block h-10 w-20 md:h-[50px] md:w-[100px]"
-            href="/"
+            to="/"
           >
             {isScrolled ? (
               <img src="/Logo-black.svg" alt="" />
             ) : (
               <img src="/logo.svg" alt="" />
             )}
-          </a>
+          </Link>
           {windowWidth >= 1280 && (
             <nav>
               <ul className="flex gap-8 text-[1.07rem] font-medium leading-[1.59rem]">
@@ -101,7 +102,9 @@ const Header = () => {
             {windowWidth >= 1280 && (
               <div className=" mr-8">
                 <button
-                  onClick={() => changeLanguage('uk')}
+                  onClick={() => {
+                    changeLanguage('uk');
+                  }}
                   className={`${
                     language === 'uk'
                       ? `${isScrolled ? 'text-black' : 'text-white'}`
@@ -113,7 +116,9 @@ const Header = () => {
                 </button>
                 <span className="text-disabled">|</span>
                 <button
-                  onClick={() => changeLanguage('en')}
+                  onClick={() => {
+                    changeLanguage('en');
+                  }}
                   className={`${
                     language === 'en'
                       ? `${isScrolled ? 'text-black' : 'text-white'}`
