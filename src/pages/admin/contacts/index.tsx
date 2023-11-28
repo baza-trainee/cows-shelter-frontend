@@ -58,7 +58,7 @@ const Contacts = () => {
         <Edit
           setIsModalOpen={setIsModalOpen}
           data={data}
-          id={contacts[0]?.id}
+          id={contacts[0]?.id }
         />
       )}
     </div>

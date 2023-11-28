@@ -1,6 +1,6 @@
-import { Contacts } from "@/types"
+import { ContactsFormInput } from '@/types';
 
-export const contacts: Contacts = {
+export const contacts: ContactsFormInput = {
   email: 'zdravejutta@gmail.com',
-  phone: '+380 987 675 765',
+  phone: '+380 987 675 765'
 };
