@@ -59,7 +59,7 @@ const Pdf = () => {
                 height={85}
                 className="mb-4"
               />
-              <h2 className="w-3/4 text-center text-[16px] text-darkgray">
+              <h2 className="w-3/4 text-center text-[13px] text-darkgray">
                 {post.title}
               </h2>
               <div className="buttons mt-auto flex w-full justify-center gap-2 border-t  border-gray-300 bg-gray-100">
