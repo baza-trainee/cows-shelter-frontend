@@ -15,7 +15,7 @@ export type Contact = {
 };
 
 type ContactState = {
-  contacts: Contact[];
+  contacts: ContactsFormInput[];
   loading: boolean;
   error: string | null;
 };
