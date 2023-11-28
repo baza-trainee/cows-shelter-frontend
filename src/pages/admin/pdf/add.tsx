@@ -7,6 +7,11 @@ import FileInput from '@/components/admin/inputs/FileInput';
 import { pdfValidation } from './pdfValidation';
 import CloseIcon from '@/components/icons/CloseIconMenu';
 import TextInput from '@/components/admin/inputs/TextInput';
+import {
+  addSuccessResponseMessage,
+  addErrorResponseMessage
+} from '@/utils/responseMessages';
+import { openAlert } from '@/store/slices/responseAlertSlice';
 
 type AddPdfProps = {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -28,10 +33,15 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
   const onSubmit: SubmitHandler<PdfFormInput> = async (
     values: PdfFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(addNewPdf(values));
-    setIsProcessing(false);
-    setIsModalOpen(false);
+    try {
+      setIsProcessing(true);
+      await dispatch(addNewPdf(values));
+      setIsProcessing(false);
+      setIsModalOpen(false);
+      dispatch(openAlert(addSuccessResponseMessage('документ')));
+    } catch (error) {
+      dispatch(openAlert(addErrorResponseMessage('документ')));
+    }
   };
 
   return (
@@ -73,7 +83,7 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
               rules={pdfValidation.pdf}
             />
             <span className="mt-4 text-sm text-gray-500">
-              Розмістити фото в галереї?
+              Розмістити документ на сайті?
             </span>
             <div className="flex gap-4">
               <button className=" w-full rounded-sm bg-gray-200 p-2 hover:bg-lemon">
