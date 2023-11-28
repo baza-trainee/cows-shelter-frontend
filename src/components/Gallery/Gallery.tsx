@@ -15,6 +15,7 @@ import LightBox from './LightBox';
 
 import '@/styles/gallery.css';
 import { fetchImagesWithPagination } from '@/store/slices/gallerySlice';
+
 import Loader from '../admin/Loader';
 
 const Gallery = () => {
@@ -51,6 +52,7 @@ const Gallery = () => {
   }, [screenWidth]);
 
   useEffect(() => {
+    console.log(images);
     dispatch(
       fetchImagesWithPagination({ page: currentPage, limit: itemsPerPage })
     );

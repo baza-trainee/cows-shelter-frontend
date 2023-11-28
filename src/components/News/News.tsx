@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { openModal } from '@/store/slices/modalSlice';
 
 import { useWidth } from '@/hooks/useWidth';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
+import { setActiveLink } from '@/store/slices/observationSlice';
+import { useInView } from 'react-intersection-observer';
 
 import { NewsData } from '@/types';
 import { news } from '@/data/news';
 import NewsModal from '@/components/modals/NewsModal';
-
 import { usePaginatedData } from '@/hooks/usePaginatedData';
-import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { setActiveLink } from '@/store/slices/observationSlice';
-import { useInView } from 'react-intersection-observer';
-
 import Slider from '@/components/Slider';
+
 import '@/styles/news.css';
+import { fetchPostsWithPagination } from '@/store/slices/newsSlice';
+import Loader from '../admin/Loader';
 
 const News = () => {
   const screenWidth = useWidth();
@@ -24,11 +25,14 @@ const News = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
-  const pagesLength = news.length / itemsPerPage;
+  const [pagesLength, setPagesLength] = useState(0);
   const dispatch = useAppDispatch();
 
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+  const { posts, totalLength } = useAppSelector(
+    (state) => state.posts.paginatedData
+  );
 
   const { ref, inView } = useInView({
     threshold: 0.5
@@ -94,6 +98,14 @@ const News = () => {
     }
   }, [screenWidth, currentPage]);
 
+  useEffect(() => {
+    dispatch(
+      fetchPostsWithPagination({ page: currentPage, limit: itemsPerPage })
+    );
+    const pagesNumber = totalLength / itemsPerPage;
+    setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
+  }, [currentPage, dispatch, itemsPerPage, totalLength]);
+
   const data: NewsData[] = usePaginatedData(news, start, finish);
 
   const [showModal, setShowModal] = useState(false);
@@ -129,13 +141,13 @@ const News = () => {
             <ul className="news-gridContainer ml-4 w-full overflow-hidden pr-8 lg:ml-0 lg:pr-0 ">
               {data.map((item: NewsData, index: number) => (
                 <li
-                  key={item.id}
+                  key={item.image_id}
                   className={`news-gridItem relative overflow-hidden news-gridItem--${
                     index + 1
                   } group`}
                 >
                   <img
-                    src={item.image}
+                    src={item.image_url}
                     alt={`News Image`}
                     className="h-full w-full object-cover"
                   />
@@ -144,10 +156,10 @@ const News = () => {
                     <div className="flex h-full flex-col justify-end text-white">
                       <div className="translate-y-14 space-y-3 p-4 duration-300 ease-in-out group-hover:translate-y-0">
                         <h2 className="text-2xl font-normal">
-                          {t(item.title)}
+                          {t(item.title_ua)}
                         </h2>
                         <div className="text-sm opacity-0 group-hover:opacity-100">
-                          {t(item.description)}
+                          {t(item.content_ua)}
                         </div>
                       </div>
                     </div>
@@ -176,19 +188,21 @@ const News = () => {
             <ul className="news-gridContainer overflow-hidden  ">
               {data.map((item: NewsData, index: number) => (
                 <li
-                  key={item.id}
+                  key={item.image_id}
                   className={`news-gridItem relative overflow-hidden  news-gridItem--${
                     index + 1
                   } group`}
                 >
-                  <img src={item.image} alt={`News Image`} />
+                  <img src={item.image_url} alt={`News Image`} />
                   <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
                   <div className="via-opacity-30 absolute inset-0 z-30 flex cursor-pointer flex-col bg-gradient-to-b from-transparent to-black/40">
                     <div className="flex h-full flex-col justify-end text-white">
                       <div className="translate-y-14 space-y-3 p-4 duration-300 ease-in-out group-hover:translate-y-0">
-                        <h2 className="text-2xl font-normal">{item.title}</h2>
+                        <h2 className="text-2xl font-normal">
+                          {item.title_ua}
+                        </h2>
                         <div className="text-sm opacity-0 group-hover:opacity-100">
-                          {item.description}
+                          {item.subtitle_ua}
                         </div>
                       </div>
                     </div>
