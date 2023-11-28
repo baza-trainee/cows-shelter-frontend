@@ -134,10 +134,6 @@ export type PdfFormInput = {
   title: string;
   document: File[];
 };
-export type Contacts = {
-  email?: string;
-  phone?: string;
-};
 
 export type ContactsFormInput = {
   email?: string;
