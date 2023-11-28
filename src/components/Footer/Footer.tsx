@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import logo_dark from '@/assets/icons/logo_dark.svg';
 import fb_icon from '@/assets/icons/icon_facebook.svg';
 import inst_icon from '@/assets/icons/icon_instagram.svg';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
+import { fetchPdfs } from '@/store/slices/pdfSlice';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const documents = useAppSelector((state) => state.pdf.documents);
 
   const anchorLinks = [
     { title: t('footer:anchor_links.about_us'), href: '#about-us' },
@@ -13,6 +19,13 @@ const Footer = () => {
     { title: t('footer:anchor_links.news'), href: '#news' },
     { title: t('footer:anchor_links.partners'), href: '#partners' }
   ];
+
+  useEffect(() => {
+    dispatch(fetchPdfs());
+  }, [dispatch]);
+
+  // console.log(documents);
+
   return (
     <footer className="mx-auto pb-[1.125rem] pt-8  md:pb-10 md:pt-16">
       <div className="container mx-auto  flex flex-col px-5 md:px-12  lg:px-[7.5rem]">
@@ -62,26 +75,13 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <h3 className="title-text"> {t('footer:documents')} </h3>
               <ul className="flex flex-col gap-2">
-                <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="default-text"
-                  >
-                    {t('footer:privacyPolicy')}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="default-text"
-                  >
-                    {t('footer:rulesForUsingTheSite')}
-                  </a>
-                </li>
+                {documents.map((document) => (
+                  <li key={document.id}>
+                    <Link to={`pdf/${document.id}`} className="default-text">
+                      {document.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </li>
@@ -215,26 +215,13 @@ const Footer = () => {
               <li className="flex flex-col gap-3">
                 <h3 className="title-text"> {t('footer:documents')} </h3>
                 <ul className="flex flex-col gap-2">
-                  <li>
-                    <a
-                      href="/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="default-text"
-                    >
-                      {t('footer:privacyPolicy')}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="default-text"
-                    >
-                      {t('footer:rulesForUsingTheSite')}
-                    </a>
-                  </li>
+                  {documents.map((document) => (
+                    <li key={document.id}>
+                      <Link to={`pdf/${document.id}`} className="default-text">
+                        {document.title}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
               <li className="flex flex-col gap-3">
@@ -300,26 +287,13 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <h3 className="title-text"> {t('footer:documents')} </h3>
               <ul className="flex flex-col gap-2">
-                <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="default-text"
-                  >
-                    {t('footer:privacyPolicy')}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="default-text"
-                  >
-                    {t('footer:rulesForUsingTheSite')}
-                  </a>
-                </li>
+                {documents.map((document) => (
+                  <li key={document.id}>
+                    <Link to={`pdf/${document.id}`} className="default-text">
+                      {document.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </li>
