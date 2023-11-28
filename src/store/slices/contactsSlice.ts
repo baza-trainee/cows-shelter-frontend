@@ -26,11 +26,15 @@ const initialState: ContactState = {
   error: null
 };
 
+const BASE_URL = import.meta.env.VITE_APP_API_URL;
+
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async () => {
     try {
-      const response = await axios.get<Contact[]>('api/contacts');
+      const response = await axios.get<Contact[]>(
+        `${BASE_URL}api/contacts`
+      );
       const data = response.data;
       return data;
     } catch (error) {
@@ -47,7 +51,7 @@ export const editEmail = createAsyncThunk(
       const newPost = {
         email: newsData.values.email
       };
-      await axios.patch(`api/contacts/${newsData.id}`, newPost);
+      await axios.patch(`${BASE_URL}api/contacts/${newsData.id}`, newPost);
     } catch (error) {
       const err = error as AxiosError;
       return err.message;
@@ -62,7 +66,7 @@ export const editPhone = createAsyncThunk(
       const newPost = {
         phone: newsData.values.phone
       };
-      await axios.patch(`api/contacts/${newsData.id}`, newPost);
+      await axios.patch(`${BASE_URL}api/contacts/${newsData.id}`, newPost);
     } catch (error) {
       const err = error as AxiosError;
       return err.message;
