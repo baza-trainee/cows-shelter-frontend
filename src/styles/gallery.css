@@ -40,7 +40,8 @@
   .gridItem--1 {
     grid-column: 1/6;
     grid-row: 1/2;
-    width: 401px;
+    width: 451px;
+    border: 1px solid red;
   }
   .gridItem--2 {
     grid-column: 5/9;

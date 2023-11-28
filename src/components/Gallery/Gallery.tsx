@@ -69,8 +69,8 @@ const Gallery = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <section id="gallery" ref={ref} className="relative">
-      <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
+    <section id="gallery" ref={ref} className="relative ">
+      <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px]">
         {isModalOpen && type === 'lightbox' && (
           <LightBox images={images} image={image} />
         )}
@@ -85,7 +85,7 @@ const Gallery = () => {
               {images.map((item: any, index: number) => (
                 <div
                   key={item.id}
-                  className={`gridItem relative h-[281px] min-w-[282px] max-w-[486px] overflow-hidden gridItem--${
+                  className={`gridItem relative h-[281px]  min-w-[282px] max-w-[486px]  overflow-hidden bg-blue-500 gridItem--${
                     index + 1
                   }`}
                 >

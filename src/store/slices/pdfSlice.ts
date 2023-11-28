@@ -10,6 +10,7 @@ import axios from '@/utils/axios';
 
 export type Pdf = {
   id: string;
+  title: string;
   document_url: string;
   document_id: string;
 };
