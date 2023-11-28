@@ -124,7 +124,7 @@
       "timeTill_1": "120",
       "number_of_people_1": "30",
       "title_2": "Help at the shelter",
-      "description_2": "This activity is intended for visitors who want to experience rural life, interact with animals and personally participate in their care. \n\n It takes place in a beautiful village surrounded by green meadows and mountains. Our guests take care of the cows, bulls and calves themselves for 30-60 minutes: feed them, give them hay and pet them. \n\n The exercise offers an opportunity to be inspired by nature and experience true satisfaction from your participation in the noble cause of helping animals. \n\n We believe in and work for the best in the world! Thank you to all like-minded people for paying attention to our good deeds!", 
+      "description_2": "This activity is intended for visitors who want to experience rural life, interact with animals and personally participate in their care. \n\n It takes place in a beautiful village surrounded by green meadows and mountains. Our guests take care of the cows, bulls and calves themselves for 30-60 minutes: feed them, give them hay and pet them. \n\n The exercise offers an opportunity to be inspired by nature and experience true satisfaction from your participation in the noble cause of helping animals. \n\n We believe in and work for the best in the world! Thank you to all like-minded people for paying attention to our good deeds!",
       "timeFrom_2": "60",
       "timeTill_2": "180",
       "number_of_people_2": "30",
@@ -137,9 +137,9 @@
       "show_more_btn": "Show more",
       "order_btn": "Order an excursion",
       "minutes": "minutes",
-      "to":"up to",
+      "to": "up to",
       "visitors": "visitors"
-    }, 
+    },
     "order_modal": {
       "title": "Order an excursion!",
       "text": "Contact us and we will provide you with the information you need",
@@ -185,12 +185,12 @@
         "p2": "With faith in a bright future and not looking at the difficult conditions in the country, the shelter of cows and bulls Healthy Life continues to strive to fill the world with goodness, and positive emotions and to give people the opportunity to visit the shelter and receive the psycho-emotional relief that is needed today from interaction with the shelter's residents!"
       },
       "s2": {
-        "p1": "The properties of cows, bulls, and calves that live a non-violent life have a powerful positive effect on the psycho-emotional state of people. In connection with the hostilities, people from under shelling began to come to our shelter; people in difficult emotional states, who were forced to leave their homes and cities. Adults bring children. After 30-60 minutes of contact with our wards, people's morale changes radically, psychological tension decreases and the general condition improves. Horned 'psychologists' are important and needed at all times, and now, in such a difficult time for Ukraine, they are extremely necessary. Our healthy team is always happy to have new like-minded people in the creation and development of such an important cause for the good of the world."
+        "p1": "The properties of cows, bulls, and calves that live a non-violent life have a powerful positive effect on the psycho-emotional state of people. In connection with the hostilities, people from under shelling began to come to our shelter; people in difficult emotional states, who were forced to leave their homes and cities. Adults bring children. After 30-60 minutes of contact with our wards, people's morale changes radically, psychological tension decreases and the general condition improves. Horned 'psychologists' are important and needed at all times, and now, in such a difficult time for Ukraine, they are extremely necessary. Our team is always happy to have new like-minded people in the creation and development of such an important cause for the good of the world."
       },
       "s3": {
         "p1": "The shelter has a charitable basis, not a commodity-economic one, and from the very beginning it was created and existed solely with the funds of the family and a few like-minded people.",
-        "p2": "We greatly appreciate the support of our partners and helpers who, despite difficult times, provide support to the shelter.",
-        "p3": "The shelter has a charitable basis, not a commodity-economic one, and from the very beginning it was created and existed solely with the funds of the family and a few like-minded people."
+        "p2": "Every conscious person can contribute to the purchase of fodder for the shelter in order to provide cows and bulls with comfortable living conditions until a deep, happy old age.",
+        "p3": "We are grateful to our partners and like-minded people for every hryvnia of help, and we believe in the forces of kindness and love that motivate smart people not to let shelter wards die of hunger."
       }
     },
     "tablet": {
