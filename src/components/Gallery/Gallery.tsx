@@ -51,12 +51,15 @@ const Gallery = () => {
   }, [screenWidth]);
 
   useEffect(() => {
+    const pagesNumber = totalLength / itemsPerPage;
+    setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
+  }, [totalLength, itemsPerPage]);
+
+  useEffect(() => {
     dispatch(
       fetchImagesWithPagination({ page: currentPage, limit: itemsPerPage })
     );
-    const pagesNumber = totalLength / itemsPerPage;
-    setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
-  }, [currentPage, dispatch, itemsPerPage, totalLength]);
+  }, [currentPage, dispatch, itemsPerPage]);
 
   useEffect(() => {
     if (inView) {
