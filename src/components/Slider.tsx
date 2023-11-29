@@ -45,7 +45,7 @@ const Slider = ({
     }
   };
 
-  const slidesLength = Number(pagesLength?.toFixed());
+  const slidesLength = Math.ceil(Number(pagesLength));
 
   return (
     <>

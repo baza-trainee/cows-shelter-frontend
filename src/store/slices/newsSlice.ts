@@ -18,6 +18,12 @@ export type Post = {
   content_en: string;
   image_url: string;
   image_id: string;
+  createdAt: string;
+};
+
+type ResponseWithPagination = {
+  posts: Post[];
+  totalLength: number;
 };
 
 type NewsState = {
@@ -25,6 +31,7 @@ type NewsState = {
   paginatedData: ResponseWithPagination;
   loading: boolean;
   error: string | null;
+  paginatedData: ResponseWithPagination;
 };
 
 type ResponseWithPagination = {
@@ -58,6 +65,22 @@ export const fetchPostById = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await axios.get<Post>(`api/news/${id}`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const fetchNewsWithPagination = createAsyncThunk(
+  'news/fetchNewsWithPagination',
+  async (query: { page: number; limit: number }) => {
+    try {
+      const response = await axios.get<ResponseWithPagination>(
+        `api/news/pagination?page=${query.page}&limit=${query.limit}`
+      );
       const data = response.data;
       return data;
     } catch (error) {
@@ -187,6 +210,14 @@ const newsSlice = createSlice({
         state.posts.push(action.payload as Post);
         state.loading = false;
       })
+      .addCase(fetchNewsWithPagination.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchNewsWithPagination.fulfilled, (state, action) => {
+        state.paginatedData = action.payload as ResponseWithPagination;
+        state.loading = false;
+      })
       .addCase(removePost.fulfilled, (state, action) => {
         state.posts = state.posts.filter(
           (item) => item.id !== (action.meta.arg as string)
@@ -198,8 +229,6 @@ const newsSlice = createSlice({
       });
   }
 });
-
-// export const { addPost, removePost } = newsSlice.actions;
 
 export default newsSlice.reducer;
 
