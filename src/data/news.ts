@@ -28,7 +28,7 @@ export const news = [
     subtitle_en: 'Розвантажили фуру з тюками сіна',
     subtitle_ua: 'Unloaded a truck with hay bales',
 
-    image_url: '/public/news/news_3.jpg',
+    image_url: '/news/news_3.jpg',
     image_id: '3'
   },
   {
@@ -39,7 +39,7 @@ export const news = [
     subtitle_en: 'Розвантажили фуру з тюками сіна',
     subtitle_ua: 'Unloaded a truck with hay bales',
 
-    image_url: '/public/news/news_4.jpg',
+    image_url: '/news/news_4.jpg',
     image_id: '4'
   },
   {
@@ -49,7 +49,7 @@ export const news = [
     content_ua: 'Unloaded a truck with hay bales',
     subtitle_en: 'Розвантажили фуру з тюками сіна',
     subtitle_ua: 'Unloaded a truck with hay bales',
-    image_url: '/public/news/news_5.jpg',
+    image_url: '/news/news_5.jpg',
     image_id: '5'
   }
 ];
