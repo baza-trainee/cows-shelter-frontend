@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '../icons/LogoutIcon';
 
 const links = [
@@ -48,7 +47,6 @@ const links = [
 const SideBar = () => {
   const params = useParams();
   const paths = Object.values(params)[0]?.split('/');
-  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem('user');
