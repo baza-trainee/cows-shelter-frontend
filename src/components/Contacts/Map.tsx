@@ -3,21 +3,22 @@ import 'leaflet/dist/leaflet.css';
 
 const Map = () => {
   return (
-    <div className="h-full w-full">
+    <div className="relative z-0 xs:h-[210px] md:h-[360px] lg:h-[560px]">
       <MapContainer
         id="map"
-        center={[48.3302805, 28.1315992]}
+        center={[48.3302, 28.1315]}
         zoom={13}
         scrollWheelZoom={false}
         style={{
           width: '100%',
+          height: '100%',
           maxWidth: '100vw'
         }}
-        className="xs:h-[210px] md:h-[360px] lg:h-[560px]"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          detectRetina={true}
         />
         <object
           type="image/svg+xml"

@@ -31,7 +31,7 @@ const News = () => {
     if (screenWidth >= 1280) {
       setItemsPerPage(5);
     }
-    if (screenWidth > 768 && screenWidth < 1280) {
+    if (screenWidth >= 768 && screenWidth < 1280) {
       setItemsPerPage(3);
     }
     if (screenWidth > 320 && screenWidth < 768) {

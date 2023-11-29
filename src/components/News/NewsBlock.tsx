@@ -19,7 +19,7 @@ const NewsBlock = ({ posts }: { posts: Post[] }) => {
             key={post.id}
             className={`group relative cursor-pointer  ${
               index === 0
-                ? 'row-span-2 max-h-[201px] w-[302px] max-w-[384px] md:max-h-[586px]'
+                ? 'row-span-2 max-h-[201px] min-w-[302px] max-w-[384px] md:max-h-[586px]'
                 : 'h-[254px] max-w-[384px]'
             }`}
           >
