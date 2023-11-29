@@ -42,7 +42,7 @@ const Gallery = () => {
     if (screenWidth > 1280) {
       setItemsPerPage(6);
     }
-    if (screenWidth > 768 && screenWidth < 1280) {
+    if (screenWidth >= 768 && screenWidth < 1280) {
       setItemsPerPage(4);
     }
     if (screenWidth > 320 && screenWidth < 768) {
@@ -81,11 +81,11 @@ const Gallery = () => {
             setCurrentPage={setCurrentPage}
             pagesLength={pagesLength}
           >
-            <div className="gridContainer ml-4 w-full overflow-hidden pr-8 lg:ml-0 lg:pr-0 ">
+            <div className="gridContainer ml-4 w-full overflow-hidden pr-10 pt-8 lg:ml-0 lg:pr-0 ">
               {images.map((item: any, index: number) => (
                 <div
                   key={item.id}
-                  className={`gridItem relative h-[281px]  min-w-[282px] max-w-[486px]  overflow-hidden bg-blue-500 gridItem--${
+                  className={`gridItem relative min-h-[280px]  min-w-[282px] max-w-[486px]  overflow-hidden gridItem--${
                     index + 1
                   }`}
                 >

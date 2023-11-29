@@ -42,7 +42,10 @@ const Contacts = () => {
           </h3>
           <ul className="mb-6 flex flex-col gap-2 text-graphite xs:text-sm md:text-base lg:text-[17px]">
             <li>
-              <a href="mailto://zdravejutta@gmail.com" rel="noopener noreferrer">
+              <a
+                href="mailto://zdravejutta@gmail.com"
+                rel="noopener noreferrer"
+              >
                 zdravejutta@gmail.com
               </a>
             </li>

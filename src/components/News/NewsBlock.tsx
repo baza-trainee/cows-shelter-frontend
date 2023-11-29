@@ -1,43 +1,48 @@
 import { useAppDispatch } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
-import { newsItems } from '@/data/newsItems';
-import { NewsData } from '@/types';
+import { Post } from '@/store/slices/newsSlice';
+import { useTranslation } from 'react-i18next';
 
-const NewsBlock = () => {
+const NewsBlock = ({ posts }: { posts: Post[] }) => {
+  const { language } = useTranslation().i18n;
   const dispatch = useAppDispatch();
 
-  const openNewsModal = (item: NewsData) => {
+  const openNewsModal = (item: Post) => {
     dispatch(openModal({ data: item, type: 'news' }));
   };
 
   return (
     <div>
-      <ul className=" grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {newsItems.map((news, index) => (
+      <ul className=" grid h-[281px] gap-4 pt-[3rem] md:h-[586px] md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post, index) => (
           <li
-            key={news.id}
+            key={post.id}
             className={`group relative cursor-pointer  ${
-              index === 0 ? 'h-586 w-46 row-span-2' : ''
-            } ${index >= 3 ? 'hidden lg:block' : ''}`}
+              index === 0
+                ? 'row-span-2 max-h-[201px] w-[302px] max-w-[384px] md:max-h-[586px]'
+                : 'h-[254px] max-w-[384px]'
+            }`}
           >
             <img
-              src={news.url}
+              src={post.image_url}
               alt={`News Image`}
-              className=" h-full w-full object-cover "
+              className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
             <div className="  via-opacity-30 absolute inset-0 z-30 flex cursor-pointer flex-col bg-gradient-to-b from-transparent to-black/40  ">
               <div className="flex h-full flex-col justify-end text-white">
                 <div className=" translate-y-14  space-y-3 p-4 duration-300 ease-in-out group-hover:translate-y-0">
-                  <h2 className="text-2xl font-normal">{news.title}</h2>
+                  <h2 className="text-2xl font-normal">
+                    {language === 'uk' ? post.title_ua : post.title_en}
+                  </h2>
                   <div className="text-sm opacity-0 group-hover:opacity-100 ">
-                    {news.description}
+                    {language === 'uk' ? post.subtitle_ua : post.subtitle_en}
                   </div>
                 </div>
               </div>
               <div>
                 <button
-                  onClick={() => openNewsModal(news)}
+                  onClick={() => openNewsModal(post)}
                   className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
                 >
                   <div className="flex items-center">
