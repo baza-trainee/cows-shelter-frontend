@@ -126,7 +126,6 @@ const News = () => {
 
   const data: NewsData[] = usePaginatedData(news, start, finish);
 
-  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     if (inView) {
       dispatch(setActiveLink('#news'));
