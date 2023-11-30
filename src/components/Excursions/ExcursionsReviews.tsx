@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import Slider from '@/components/Slider';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { Review, fetchReviews } from '@/store/slices/reviewsSlice';
+import {
+  Review,
+  fetchReviewsWithPagination
+} from '@/store/slices/reviewsSlice';
 import { useWidth } from '@/hooks/useWidth';
 import Loader from '../admin/Loader';
 
@@ -16,7 +19,9 @@ const ExcursionsReviews = () => {
   const [pagesLength, setPagesLength] = useState(0);
 
   const isLoading = useAppSelector((state) => state.reviews.loading);
-  const reviews = useAppSelector((state) => state.reviews.reviews);
+  const { reviews, totalLength } = useAppSelector(
+    (state) => state.reviews.paginatedData
+  );
 
   useEffect(() => {
     if (screenWidth >= 1280) {
@@ -31,12 +36,14 @@ const ExcursionsReviews = () => {
   }, [screenWidth]);
 
   useEffect(() => {
-    const pagesNumber = reviews.length / itemsPerPage;
+    const pagesNumber = totalLength / itemsPerPage;
     setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
-  }, [reviews, itemsPerPage]);
+  }, [totalLength, itemsPerPage]);
 
   useEffect(() => {
-    dispatch(fetchReviews());
+    dispatch(
+      fetchReviewsWithPagination({ page: currentPage, limit: itemsPerPage })
+    );
   }, [currentPage, dispatch, itemsPerPage]);
 
   if (isLoading) return <Loader />;
