@@ -26,7 +26,7 @@ const ExcursionOrderModal = ({
   setShowModal
 }: ExcursionOrderModalProps) => {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { language } = useTranslation().i18n;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleChangedSize = () => {
@@ -69,14 +69,18 @@ const ExcursionOrderModal = ({
           <div className="pl-0 pr-0  md:py-10 md:pl-12 md:pr-12 lg:py-[3.75rem] lg:pl-20">
             {windowWidth >= 768 && (
               <h2 className="font-bold leading-normal md:mb-5 md:text-xl lg:mb-8 lg:text-4xl">
-                {t('excursions:order_modal.title')}
+                {language === 'uk'
+                  ? 'Замовити екскурсію!'
+                  : 'Order an excursion!'}
               </h2>
             )}
             {windowWidth < 768 && (
               <div>
                 <div className="flex items-start justify-between">
                   <h2 className="mb-[1.38rem] text-lg font-semibold leading-normal">
-                    {t('excursions:order_modal.title')}
+                    {language === 'uk'
+                      ? 'Замовити екскурсію!'
+                      : 'Order an excursion!'}
                   </h2>
                   <img
                     src={close_icon_black}
@@ -93,7 +97,9 @@ const ExcursionOrderModal = ({
             )}
             <div className="mt-[1.13rem] lg:mt-0">
               <p className="mb-8 text-sm leading-normal text-darkgray md:text-base lg:mb-6 lg:text-[1.06rem] lg:text-lg">
-                {t('excursions:order_modal.text')}
+                {language === 'uk'
+                  ? 'Зв’яжіться з нами і ми надамо вам потрібну інфомацію'
+                  : 'Contact us and we will provide you with the information you need'}
               </p>
               <ul className="mt-8 flex flex-col gap-3.5 md:mt-10 md:gap-6 lg:mt-6">
                 <li>
@@ -121,7 +127,9 @@ const ExcursionOrderModal = ({
                     <div className="flex gap-5">
                       <LocationIcon />
                       <p className="text-sm">
-                        {t('excursions:order_modal.address')}
+                        {language === 'uk'
+                          ? 'Вінницька обл, с. Буша, вул. Виноградна 11'
+                          : 'Vinnytsia region, v.Busha, str. Vynogradna 11'}
                       </p>
                     </div>
                   </div>

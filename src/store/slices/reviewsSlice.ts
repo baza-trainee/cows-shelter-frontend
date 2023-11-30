@@ -16,16 +16,26 @@ export type Review = {
   review_en: string;
 };
 
+type ResponseWithPagination = {
+  reviews: Review[];
+  totalLength: number;
+};
+
 type ReviewsState = {
   reviews: Review[];
   loading: boolean;
   error: string | null;
+  paginatedData: ResponseWithPagination;
 };
 
 const initialState: ReviewsState = {
   reviews: [],
   loading: false,
-  error: null
+  error: null,
+  paginatedData: {
+    reviews: [],
+    totalLength: 0
+  }
 };
 
 export const fetchReviews = createAsyncThunk(
@@ -47,6 +57,22 @@ export const fetchReviewById = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await axios.get<Review>(`api/reviews/${id}`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const fetchReviewsWithPagination = createAsyncThunk(
+  'reviews/fetchReviewsWithPagination',
+  async (query: { page: number; limit: number }) => {
+    try {
+      const response = await axios.get<ResponseWithPagination>(
+        `api/reviews/pagination?page=${query.page}&limit=${query.limit}`
+      );
       const data = response.data;
       return data;
     } catch (error) {
@@ -126,6 +152,14 @@ const reviewsSlice = createSlice({
       .addCase(fetchReviewById.fulfilled, (state, action) => {
         state.reviews.push(action.payload as Review);
         state.loading = false;
+      })
+      .addCase(fetchReviewsWithPagination.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchReviewsWithPagination.fulfilled, (state, action) => {
+        state.loading = false;
+        state.paginatedData = action.payload as ResponseWithPagination;
       })
       .addCase(removeReview.fulfilled, (state, action) => {
         state.reviews = state.reviews.filter(
