@@ -7,7 +7,7 @@ import {
   FormResetPassword
 } from '@/types';
 
-const token = {
+export const token = {
   set(token: string) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },

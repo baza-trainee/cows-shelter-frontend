@@ -37,7 +37,6 @@ const SingInForm = () => {
     setIsLoader(true);
     try {
       const result: any = await login(data);
-
       navigate('/admin');
       localStorage.setItem('user', JSON.stringify(result.data));
     } catch (error: any) {
@@ -49,7 +48,11 @@ const SingInForm = () => {
       } else {
         setError('password', {
           type: 'manual',
-          message: errorHandling(error.response.status)
+          message: errorHandling(
+            error.response
+              ? error.response.status
+              : 'Щось пішло не так. Спробуйте ще.'
+          )
         });
       }
     } finally {
