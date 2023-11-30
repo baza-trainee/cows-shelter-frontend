@@ -24,9 +24,11 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
   const excursion = useAppSelector((state) => state.modals.data) as Excursion;
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setHeight] = useState(window.innerHeight);
 
   const handleChangedSize = () => {
     setWindowWidth(window.innerWidth);
+    setHeight(window.innerHeight);
   };
 
   useEffect(() => {
@@ -69,7 +71,9 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
       <div
         className={`absolute left-1/2 top-1/2 ${
           isOpen ? 'translate-x-0' : 'translate-x-[100%]'
-        } h-[675px] w-[85%] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white 
+        } w-[85%] ${
+          windowHeight < 400 && 'h-[380px]'
+        } h-[675px] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white 
         px-5 pb-12 pt-4 transition-all duration-700 md:h-[832px] md:w-[672px] md:px-10 md:pb-10 md:pt-10 
          lg:h-auto lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]`}
       >
@@ -146,7 +150,7 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
                   : 'Order an excursion'}
               </button>
               <button
-                className="h-10 max-w-[17.5rem] border border-solid border-black text-lg font-medium leading-[1.375rem] text-black transition-all duration-300 hover:border-accent focus:border-accent active:border-accent md:h-11 md:w-[14.44rem]"
+                className="h-10 max-w-[17.5rem] border border-solid border-black text-lg font-medium leading-[1.375rem] text-black hover:border-accent focus:border-accent active:border-accent md:h-11 md:w-[14.44rem]"
                 onClick={openDonationModal}
               >
                 {language === 'uk' ? 'Допомогти' : 'Donate'}
