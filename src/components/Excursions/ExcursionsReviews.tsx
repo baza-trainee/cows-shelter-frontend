@@ -3,22 +3,20 @@ import { useTranslation } from 'react-i18next';
 
 import Slider from '@/components/Slider';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { Review } from '@/store/slices/reviewsSlice';
+import { Review, fetchReviews } from '@/store/slices/reviewsSlice';
 import { useWidth } from '@/hooks/useWidth';
 import Loader from '../admin/Loader';
 
 const ExcursionsReviews = () => {
   const screenWidth = useWidth();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { language } = useTranslation().i18n;
-  // const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [pagesLength, setPagesLength] = useState(0);
 
   const isLoading = useAppSelector((state) => state.reviews.loading);
   const reviews = useAppSelector((state) => state.reviews.reviews);
-
-  console.log(reviews);
 
   useEffect(() => {
     if (screenWidth >= 1280) {
@@ -37,11 +35,9 @@ const ExcursionsReviews = () => {
     setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
   }, [reviews, itemsPerPage]);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchReviewsWithPagination({ page: currentPage, limit: itemsPerPage })
-  //   );
-  // }, [currentPage, dispatch, itemsPerPage]);
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [currentPage, dispatch, itemsPerPage]);
 
   if (isLoading) return <Loader />;
 
@@ -49,7 +45,7 @@ const ExcursionsReviews = () => {
     <section className="mb-0 px-5 md:-mb-10 md:px-12 lg:mb-0">
       <Slider
         subtitle={language === 'uk' ? 'Відгуки' : 'Reviews'}
-        // setCurrentPage={setCurrentPage}
+        setCurrentPage={setCurrentPage}
         pagesLength={pagesLength}
         isReviews={true}
       >
