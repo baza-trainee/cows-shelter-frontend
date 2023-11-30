@@ -15,18 +15,18 @@ import About from '@/components/About/About';
 const HomePage = () => {
   return (
     <Layout>
-      {/* <Header />
+      <Header />
       <Hero />
-      <About /> */}
+      <About />
       <Excursions />
-      {/* <Gallery />
+      <Gallery />
       <Partners />
       <News />
       <Support />
       <FAQ />
-      <Contacts /> */}
-      {/* <Footer />
-      <UnderFooter /> */}
+      <Contacts />
+      <Footer />
+      <UnderFooter />
     </Layout>
   );
 };
