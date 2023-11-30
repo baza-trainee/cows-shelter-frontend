@@ -73,13 +73,17 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <h3 className="title-text"> {t('footer:documents')} </h3>
               <ul className="flex flex-col gap-2">
-                {documents.map((document) => (
-                  <li key={document.id}>
-                    <Link to={`pdf/${document.id}`} className="default-text">
-                      {document.title}
-                    </Link>
-                  </li>
-                ))}
+                {documents && Array.isArray(documents) ? (
+                  documents.map((document) => (
+                    <li key={document.id}>
+                      <Link to={`pdf/${document.id}`} className="default-text">
+                        {document.title}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <p>Сервер не відповідає</p>
+                )}
               </ul>
             </div>
           </li>
@@ -213,13 +217,20 @@ const Footer = () => {
               <li className="flex flex-col gap-3">
                 <h3 className="title-text"> {t('footer:documents')} </h3>
                 <ul className="flex flex-col gap-2">
-                  {documents.map((document) => (
-                    <li key={document.id}>
-                      <Link to={`pdf/${document.id}`} className="default-text">
-                        {document.title}
-                      </Link>
-                    </li>
-                  ))}
+                  {documents && Array.isArray(documents) ? (
+                    documents.map((document) => (
+                      <li key={document.id}>
+                        <Link
+                          to={`pdf/${document.id}`}
+                          className="default-text"
+                        >
+                          {document.title}
+                        </Link>
+                      </li>
+                    ))
+                  ) : (
+                    <p>Сервер не відповідає</p>
+                  )}
                 </ul>
               </li>
               <li className="flex flex-col gap-3">
@@ -285,13 +296,17 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <h3 className="title-text"> {t('footer:documents')} </h3>
               <ul className="flex flex-col gap-2">
-                {documents.map((document) => (
-                  <li key={document.id}>
-                    <Link to={`pdf/${document.id}`} className="default-text">
-                      {document.title}
-                    </Link>
-                  </li>
-                ))}
+                {documents && Array.isArray(documents) ? (
+                  documents.map((document) => (
+                    <li key={document.id}>
+                      <Link to={`pdf/${document.id}`} className="default-text">
+                        {document.title}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <p>Сервер не відповідає</p>
+                )}
               </ul>
             </div>
           </li>

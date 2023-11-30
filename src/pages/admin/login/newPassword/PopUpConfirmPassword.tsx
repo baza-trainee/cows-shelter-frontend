@@ -4,11 +4,15 @@ import { NavLink } from 'react-router-dom';
 type ConfirmPasswordProps = {
   onSubmit: () => void;
   closeConfirmPassword: () => void;
+  tittle: string;
+  btn: string;
 };
 
 const PopUpConfirmPassword = ({
   onSubmit,
-  closeConfirmPassword
+  closeConfirmPassword,
+  tittle,
+  btn
 }: ConfirmPasswordProps) => {
   return (
     <div
@@ -22,20 +26,31 @@ const PopUpConfirmPassword = ({
         >
           <CloseIcon />
         </button>
-        <p className=" mb-7 text-[1.063rem] font-medium">
-          Ви впевнені, що хочете змінити свій пароль?
+        <p className=" mb-7 text-center text-[1.063rem] font-medium text-black">
+          {tittle}
         </p>
         <div className="flex gap-5 text-lg font-medium">
-          <button
-            onClick={onSubmit}
-            type="button"
-            className="w-[183px] bg-accent px-5 py-3 transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white"
-          >
-            Змінити
-          </button>
+          {btn === 'Вийти' ? (
+            <NavLink
+              to={'https://cows-shelter-frontend.vercel.app/'}
+              onClick={onSubmit}
+              className="w-[183px] bg-accent px-5 py-3 text-center text-black transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white"
+            >
+              {btn}
+            </NavLink>
+          ) : (
+            <button
+              onClick={onSubmit}
+              type="button"
+              className="w-[183px] bg-accent px-5 py-3 text-black transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white"
+            >
+              {btn}
+            </button>
+          )}
+
           <NavLink
             to="/admin"
-            className="w-[183px] border border-black px-5 py-3 text-center transition-all duration-300 hover:border-transparent hover:bg-lemon  focus:bg-lemon  active:bg-darkyellow "
+            className="w-[183px] border border-black px-5 py-3 text-center text-black transition-all duration-300 hover:border-transparent hover:bg-lemon  focus:bg-lemon  active:bg-darkyellow "
           >
             Скасувати
           </NavLink>
