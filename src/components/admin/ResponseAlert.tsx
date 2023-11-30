@@ -19,11 +19,16 @@ const ResponseAlert = () => {
   return (
     <div className="absolute left-0 top-0 z-[9999] flex h-screen w-full items-center justify-center">
       <div
-        className={` flex h-[180px] w-[492px] items-center justify-center border-b border-b-4 border-b-green-500 bg-white text-[17px] shadow-xl ${
+        className={`relative flex h-[220px] w-[492px] items-center justify-center border-b border-b-4 bg-white text-[17px] shadow-xl ${
           isErrorMessage ? 'border-b-red' : 'border-b-green-500'
         }`}
       >
-        {message}
+        <p className="absolute left-[10%] top-[30%]  z-0">{message}</p>
+        <img
+          src="/admin/bg.svg"
+          alt="cow"
+          className="absolute bottom-0 left-0 right-0 z-0"
+        />
       </div>
     </div>
   );

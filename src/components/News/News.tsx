@@ -29,6 +29,10 @@ const News = () => {
     (state) => state.posts.paginatedData
   );
 
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
+
   useEffect(() => {
     if (screenWidth >= 1280) {
       setItemsPerPage(5);
@@ -51,10 +55,6 @@ const News = () => {
       fetchNewsWithPagination({ page: currentPage, limit: itemsPerPage })
     );
   }, [currentPage, dispatch, itemsPerPage]);
-
-  const { ref, inView } = useInView({
-    threshold: 0.5
-  });
 
   const openNewsModal = () => {
     dispatch(openModal({ data: {}, type: 'news' }));

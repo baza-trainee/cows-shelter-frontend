@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-// import ProtectedRoute from './pages/admin/ProtectedRoute';
+import ProtectedRoute from './pages/admin/ProtectedRoute';
 import AdminPage from './pages/admin';
 import News from './pages/admin/news';
 import AddNews from './pages/admin/news/add';
@@ -29,27 +29,26 @@ const App = () => {
       <Route path="signin" element={<SignIn />} />
       <Route path="reset/:token" element={<ResetPassword />} />
       <Route path="pdf/:id" element={<PdfDisplay />} />
-      <Route path="admin/*" element={<AdminPage />}>
-        <Route index element={<News />} />
-        <Route path="news/add" element={<AddNews />} />
-        <Route path="news/edit/:id" element={<EditNews />} />
-        <Route path="excursions" element={<Excursions />} />
-        <Route path="excursions/add" element={<AddExcursion />} />
-        <Route path="excursions/edit/:id" element={<EditExcursion />} />
-        <Route path="reviews" element={<Reviews />} />
-        <Route path="reviews/add" element={<AddReviews />} />
-        <Route path="reviews/edit/:id" element={<EditReviews />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="partners" element={<Partners />} />
-        <Route path="partners/add" element={<AddPartner />} />
-        <Route path="partners/edit/:id" element={<EditPartner />} />
-        <Route path="contacts" element={<Contacts />} />
-        <Route path="newpaswword" element={<NewPassword />} />
-        <Route path="pdf" element={<Pdf />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="admin/*" element={<AdminPage />}>
+          <Route index element={<News />} />
+          <Route path="news/add" element={<AddNews />} />
+          <Route path="news/edit/:id" element={<EditNews />} />
+          <Route path="excursions" element={<Excursions />} />
+          <Route path="excursions/add" element={<AddExcursion />} />
+          <Route path="excursions/edit/:id" element={<EditExcursion />} />
+          <Route path="reviews" element={<Reviews />} />
+          <Route path="reviews/add" element={<AddReviews />} />
+          <Route path="reviews/edit/:id" element={<EditReviews />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="partners" element={<Partners />} />
+          <Route path="partners/add" element={<AddPartner />} />
+          <Route path="partners/edit/:id" element={<EditPartner />} />
+          <Route path="contacts" element={<Contacts />} />
+          <Route path="newpaswword" element={<NewPassword />} />
+          <Route path="pdf" element={<Pdf />} />
+        </Route>
       </Route>
-      {/* <Route element={<ProtectedRoute />}>
-        <Route path="/add" element={<AddPost />} />
-      </Route> */}
     </Routes>
   );
 };

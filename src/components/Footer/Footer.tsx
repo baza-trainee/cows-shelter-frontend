@@ -6,13 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchPdfs } from '@/store/slices/pdfSlice';
 import { Link } from 'react-router-dom';
-import Loader from '../admin/Loader';
 
 const Footer = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const documents = useAppSelector((state) => state.pdf.documents);
-  const isLoading = useAppSelector((state) => state.pdf.loading);
 
   const anchorLinks = [
     { title: t('footer:anchor_links.about_us'), href: '#about-us' },
@@ -25,8 +23,6 @@ const Footer = () => {
   useEffect(() => {
     dispatch(fetchPdfs());
   }, [dispatch]);
-
-  if (isLoading) return <Loader />;
 
   return (
     <footer className="mx-auto pb-[1.125rem] pt-8  md:pb-10 md:pt-16">
