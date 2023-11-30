@@ -12,6 +12,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useTranslation } from 'react-i18next';
 import { Excursion } from '@/store/slices/excursionsSlice';
+import { fetchImages } from '@/store/slices/gallerySlice';
 
 type ExcursionsModalProps = {
   isOpen: boolean;
@@ -61,6 +62,22 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
     dispatch(openModal({ data: {}, type: 'donation' }));
   };
 
+  const images = useAppSelector((state) => state.gallery.images);
+
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, [dispatch]);
+
+  const generateRandomInteger = (max: number) => {
+    return Math.floor(Math.random() * max) + 1;
+  };
+
+  const imagesToDisplay = [
+    images[generateRandomInteger(images.length)],
+    images[generateRandomInteger(images.length)],
+    images[generateRandomInteger(images.length)]
+  ];
+
   return (
     <div
       className={`fixed left-0 top-0 z-50 h-screen w-screen bg-black transition-all duration-700 ${
@@ -98,35 +115,39 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
             </div>
             {windowWidth >= 1280 && (
               <div className="grid grid-cols-2 gap-3.5">
-                <img
-                  src="excursions/excursion_modal_1_1.jpg"
-                  className="h-full w-full object-cover"
-                ></img>
-                <img
-                  src="excursions/excursion_modal_1_2.jpg"
-                  className="h-full w-full object-cover"
-                ></img>
-                <img
-                  className="col-start-1 col-end-3 h-full w-full object-cover"
-                  src="excursions/excursion_modal_1_3.jpg"
-                ></img>
+                {imagesToDisplay.map((item: any, index: number) => (
+                  <div
+                    key={item.id}
+                    className={`group relative cursor-pointer  ${
+                      index === 2
+                        ? 'col-span-2 h-[260px] w-[490px]'
+                        : 'h-[260px] w-[238px]'
+                    }`}
+                  >
+                    <img
+                      src={item.image_url}
+                      alt="cow"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             )}
             {windowWidth >= 768 && windowWidth < 1280 && (
               <div className="flex gap-3">
                 <img
-                  src="excursions/excursion_modal_1_1_tablet.jpg"
+                  src={imagesToDisplay[0].image_url}
                   className="h-full w-full object-cover"
                 ></img>
                 <img
-                  src="excursions/excursion_modal_1_2_tablet.jpg"
+                  src={imagesToDisplay[1].image_url}
                   className="h-full w-full object-cover"
                 ></img>
               </div>
             )}
             {windowWidth < 768 && (
               <img
-                src="excursions/excursion_modal_1_mobile.jpg"
+                src={imagesToDisplay[0].image_url}
                 className="h-full w-full object-cover"
               ></img>
             )}
