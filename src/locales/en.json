@@ -42,7 +42,8 @@
     }
   },
   "gallery": {
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "share": "Share image in social media"
   },
   "partners": {
     "header": "Partners",

@@ -29,6 +29,10 @@ const News = () => {
     (state) => state.posts.paginatedData
   );
 
+  const { ref, inView } = useInView({
+    threshold: 0.5
+  });
+
   useEffect(() => {
     if (screenWidth >= 1280) {
       setItemsPerPage(5);
@@ -56,86 +60,8 @@ const News = () => {
     threshold: 0.5
   });
 
-  useEffect(() => {
-    if (screenWidth > 1280) {
-      setItemsPerPage(2);
-      if (currentPage === 1) {
-        setStart(0);
-        setFinish(6);
-      }
-      if (currentPage === 2) {
-        setStart(6);
-        setFinish(12);
-      }
-      if (currentPage === 3) {
-        setStart(12);
-        setFinish(18);
-      }
-    }
-    if (screenWidth > 768 && screenWidth < 1280) {
-      setItemsPerPage(4);
-      if (currentPage === 1) {
-        setStart(0);
-        setFinish(4);
-      }
-      if (currentPage === 2) {
-        setStart(4);
-        setFinish(8);
-      }
-      if (currentPage === 3) {
-        setStart(8);
-        setFinish(12);
-      }
-      if (currentPage === 4) {
-        setStart(12);
-        setFinish(16);
-      }
-      if (currentPage === 5) {
-        setStart(14);
-        setFinish(18);
-      }
-    }
-    if (screenWidth > 320 && screenWidth < 768) {
-      setItemsPerPage(1);
-      if (currentPage === 1) {
-        setStart(0);
-        setFinish(1);
-      }
-      if (currentPage === 2) {
-        setStart(1);
-        setFinish(2);
-      }
-      if (currentPage === 3) {
-        setStart(2);
-        setFinish(3);
-      }
-      if (currentPage === 4) {
-        setStart(3);
-        setFinish(4);
-      }
-    }
-  }, [screenWidth, currentPage]);
-
-  useEffect(() => {
-    dispatch(
-      fetchPostsWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
-    const pagesNumber = totalLength / itemsPerPage;
-    setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
-  }, [currentPage, dispatch, itemsPerPage, totalLength]);
-
-  const data: NewsData[] = usePaginatedData(news, start, finish);
-
-  useEffect(() => {
-    if (inView) {
-      dispatch(setActiveLink('#news'));
-    } else {
-      dispatch(setActiveLink(''));
-    }
-  }, [inView, dispatch]);
-
-  const openNewsModal = (item: NewsData) => {
-    dispatch(openModal({ data: item, type: 'news' }));
+  const openNewsModal = () => {
+    dispatch(openModal({ data: {}, type: 'news' }));
   };
 
   useEffect(() => {

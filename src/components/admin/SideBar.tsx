@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import LogoutIcon from '../icons/LogoutIcon';
 
 const links = [
   {
@@ -47,6 +48,11 @@ const SideBar = () => {
   const params = useParams();
   const paths = Object.values(params)[0]?.split('/');
 
+  const logout = () => {
+    localStorage.removeItem('user');
+    console.log('Storage видалено');
+  };
+
   return (
     <div className="relative flex min-h-[100vh] w-[280px] flex-col items-center justify-start bg-black text-white">
       <div className="flex h-[120px] w-full items-center justify-start gap-[24px]  px-[26px] py-[8px]">
@@ -91,10 +97,14 @@ const SideBar = () => {
         ))}
       </ul>
       <div className="my-[64px] w-full px-[24px] py-[8px]">
-        <button className="flex gap-4 rounded-full bg-[#1e1e1e] px-[16px] py-[12px]">
-          <img src="/admin/exit.svg" alt="exit" className="fill-red-500" />
+        <Link
+          to={'/'}
+          onClick={logout}
+          className="flex gap-4 rounded-full border border-transparent bg-[#1e1e1e] px-[16px] py-[12px] hover:border-accent hover:text-accent focus:border-accent focus:text-accent"
+        >
+          <LogoutIcon />
           <span>Вийти</span>
-        </button>
+        </Link>
       </div>
     </div>
   );
