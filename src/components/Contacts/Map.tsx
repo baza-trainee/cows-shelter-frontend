@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = () => {
@@ -25,6 +25,7 @@ const Map = () => {
           data={'marker.svg'}
           className="absolute z-[9999] h-[4rem] w-[4rem] xs:left-[45%] xs:top-[28%] md:left-[46%] md:top-[36%] lg:left-[48%] lg:top-[41%]"
         />
+        <Marker position={[48.3302, 28.1315]} opacity={0}></Marker>
       </MapContainer>
     </div>
   );
