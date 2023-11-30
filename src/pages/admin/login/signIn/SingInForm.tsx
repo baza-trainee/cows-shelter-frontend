@@ -37,10 +37,10 @@ const SingInForm = () => {
     setIsLoader(true);
     try {
       const result: any = await login(data);
-      navigate('/admin');
       localStorage.setItem('user', JSON.stringify(result.data));
+      navigate('/admin');
     } catch (error: any) {
-      if (error.response.status === 404) {
+      if (error.response?.status === 404) {
         setError('email', {
           type: 'manual',
           message: errorHandling(error.response.status)

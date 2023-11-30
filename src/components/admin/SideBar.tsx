@@ -98,7 +98,7 @@ const SideBar = () => {
       </ul>
       <div className="my-[64px] w-full px-[24px] py-[8px]">
         <Link
-          to={'https://cows-shelter-frontend.vercel.app/'}
+          to={'/'}
           onClick={logout}
           className="flex gap-4 rounded-full border border-transparent bg-[#1e1e1e] px-[16px] py-[12px] hover:border-accent hover:text-accent focus:border-accent focus:text-accent"
         >

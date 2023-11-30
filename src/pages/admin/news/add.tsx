@@ -107,7 +107,7 @@ const AddPost = () => {
                   <TextInput
                     {...field}
                     errorText={errors.subTitleUa?.message}
-                    placeholder="Введіть заголовок"
+                    placeholder="Введіть підзаголовок"
                     title="Підзаголовок:"
                   />
                 )}
@@ -120,7 +120,7 @@ const AddPost = () => {
                   <TextInput
                     {...field}
                     errorText={errors.subTitleEn?.message}
-                    placeholder="Введіть заголовок"
+                    placeholder="Введіть підзаголовок"
                     title="Підзаголовок англійською:"
                   />
                 )}

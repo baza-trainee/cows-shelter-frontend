@@ -205,7 +205,7 @@ const EditNews = () => {
             </section>
           </div>
           <span className="mt-4 text-sm text-gray-500">
-            Додати новину на сайт?
+            Додати оновлену новину?
           </span>
           <div className="flex gap-4">
             <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">

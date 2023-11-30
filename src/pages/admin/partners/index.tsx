@@ -44,7 +44,7 @@ const Partners = () => {
           {partners.map((partner) => (
             <div
               key={partner.id}
-              className="flex h-[288px] w-[211px] flex-col border-2 border-gray-300 px-[25.5px] pt-6"
+              className="flex flex h-[288px] w-[211px] flex-col flex-col items-center justify-center border-2 border-gray-300 pt-6"
             >
               <img
                 src={partner.logo}
@@ -56,14 +56,14 @@ const Partners = () => {
               <h2 className=" text-center text-lg font-bold text-darkgray">
                 {partner.name}
               </h2>
-              <div className="buttons mt-auto flex justify-between gap-2">
-                <button className="flex h-10 w-10 items-center justify-center text-xl text-black hover:text-accent">
+              <div className="buttons mt-auto flex w-full justify-between gap-2 border-t border-t-gray-300 bg-gray-100 px-4">
+                <button className="flex h-10 w-10 items-center justify-center text-xl text-darkgray hover:text-accent">
                   <Link to={`/admin/partners/edit/${partner.id}`}>
                     <BsFillPencilFill />
                   </Link>
                 </button>
                 <button
-                  className="hover:text-red-500 flex h-10 w-10 items-center justify-center text-xl text-black"
+                  className="hover:text-red-500 flex h-10 w-10 items-center justify-center text-xl text-darkgray"
                   onClick={() => {
                     setShowConfirm(true), setCurrentId(partner.id);
                   }}
