@@ -6,7 +6,7 @@ const ProtectedRoute = () => {
   const { access_token } = JSON.parse(user as string) ?? {};
 
   if (!access_token) {
-    return <Navigate to="/signin" replace />;
+    return <Navigate to="/login" replace />;
   } else {
     token.set(access_token);
   }

@@ -1,5 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import LogoutIcon from '../icons/LogoutIcon';
+import PopUpConfirmPassword from '@/pages/admin/login/newPassword/PopUpConfirmPassword';
+import LoaderSmoll from './LoaderSmoll';
 
 const links = [
   {
@@ -45,12 +48,19 @@ const links = [
 ];
 
 const SideBar = () => {
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isLoader, setIsLoader] = useState(false);
   const params = useParams();
   const paths = Object.values(params)[0]?.split('/');
+  const navigate = useNavigate();
+  const closeConfirmPassword = () => setShowConfirm(false);
+  const openConfirmPassword = () => setShowConfirm(true);
 
   const logout = () => {
+    setIsLoader(true);
     localStorage.removeItem('user');
-    console.log('Storage видалено');
+    navigate('https://github.com/baza-trainee/cows-shelter-frontend');
+    setIsLoader(false);
   };
 
   return (
@@ -97,14 +107,27 @@ const SideBar = () => {
         ))}
       </ul>
       <div className="my-[64px] w-full px-[24px] py-[8px]">
-        <Link
-          to={'/'}
-          onClick={logout}
-          className="flex gap-4 rounded-full border border-transparent bg-[#1e1e1e] px-[16px] py-[12px] hover:border-accent hover:text-accent focus:border-accent focus:text-accent"
-        >
-          <LogoutIcon />
-          <span>Вийти</span>
-        </Link>
+        {isLoader ? (
+          <LoaderSmoll />
+        ) : (
+          <button
+            type="button"
+            onClick={openConfirmPassword}
+            className="flex gap-4 rounded-full border border-transparent bg-[#1e1e1e] px-[16px] py-[12px] hover:border-accent hover:text-accent focus:border-accent focus:text-accent"
+          >
+            <LogoutIcon />
+            <span>Вийти</span>
+          </button>
+        )}
+
+        {showConfirm && (
+          <PopUpConfirmPassword
+            tittle="Ви впевнені, що хочете вийти?"
+            btn="Вийти"
+            onSubmit={logout}
+            closeConfirmPassword={closeConfirmPassword}
+          />
+        )}
       </div>
     </div>
   );

@@ -8,6 +8,11 @@ import { defaultValues } from './defaultValues';
 import { reviewsValidation } from './reviewsValidation';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { editReview, fetchReviewById } from '@/store/slices/reviewsSlice';
+import {
+  editErrorResponseMessage,
+  editSuccessResponseMessage
+} from '@/utils/responseMessages';
+import { openAlert } from '@/store/slices/responseAlertSlice';
 
 const EditReviews = () => {
   const { id } = useParams();
@@ -44,10 +49,15 @@ const EditReviews = () => {
   const onSubmit: SubmitHandler<ReviewsFormInput> = async (
     values: ReviewsFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(editReview({ id, values }));
-    setIsProcessing(false);
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(editReview({ id, values }));
+      setIsProcessing(false);
+      dispatch(openAlert(editSuccessResponseMessage('відгук')));
+      navigate(-1);
+    } catch (error: any) {
+      dispatch(openAlert(editErrorResponseMessage('відгук')));
+    }
   };
 
   return (

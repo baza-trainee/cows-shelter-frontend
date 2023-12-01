@@ -11,7 +11,7 @@ export const reviewsValidation = {
     },
     pattern: {
       value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’-]+$/,
-      message: 'Введіть коректну назву'
+      message: 'Введіть коректний текст'
     }
   },
 
@@ -27,7 +27,7 @@ export const reviewsValidation = {
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’-]+$/,
-      message: 'Введіть коректну назву'
+      message: 'Введіть коректний текст'
     }
   },
 
@@ -39,7 +39,7 @@ export const reviewsValidation = {
     },
     maxLength: {
       value: 300,
-      message: 'Максимальна довжина поля 750 символів'
+      message: 'Максимальна довжина поля 300 символів'
     },
     pattern: {
       value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
@@ -54,8 +54,8 @@ export const reviewsValidation = {
       message: 'Мінімальна довжина поля 5 символів'
     },
     maxLength: {
-      value: 750,
-      message: 'Максимальна довжина поля 200 символів'
+      value: 300,
+      message: 'Максимальна довжина поля 300 символів'
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’.,:;"()!?-]+$/,

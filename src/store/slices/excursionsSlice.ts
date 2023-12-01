@@ -21,16 +21,26 @@ export type Excursion = {
   image_id: string;
 };
 
+type ResponseWithPagination = {
+  excursions: Excursion[];
+  totalLength: number;
+};
+
 type ExcursionsState = {
   excursions: Excursion[];
   loading: boolean;
   error: string | null;
+  paginatedData: ResponseWithPagination;
 };
 
 const initialState: ExcursionsState = {
   excursions: [],
   loading: false,
-  error: null
+  error: null,
+  paginatedData: {
+    excursions: [],
+    totalLength: 0
+  }
 };
 
 export const fetchExcursion = createAsyncThunk(
@@ -52,6 +62,22 @@ export const fetchExcursionById = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await axios.get<Excursion>(`api/excursions/${id}`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const fetchExcursionsWithPagination = createAsyncThunk(
+  'excursions/fetchExcursionsWithPagination',
+  async (query: { page: number; limit: number }) => {
+    try {
+      const response = await axios.get<ResponseWithPagination>(
+        `api/excursions/pagination?page=${query.page}&limit=${query.limit}`
+      );
       const data = response.data;
       return data;
     } catch (error) {
@@ -164,6 +190,14 @@ const excursionsSlice = createSlice({
         state.excursions.push(action.payload as Excursion);
         state.loading = false;
       })
+      .addCase(fetchExcursionsWithPagination.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchExcursionsWithPagination.fulfilled, (state, action) => {
+        state.paginatedData = action.payload as ResponseWithPagination;
+        state.loading = false;
+      })
       .addCase(removeExcursion.fulfilled, (state, action) => {
         state.excursions = state.excursions.filter(
           (item) => item.id !== (action.meta.arg as string)
@@ -175,8 +209,6 @@ const excursionsSlice = createSlice({
       });
   }
 });
-
-// export const { addPost, removePost } = newsSlice.actions;
 
 export default excursionsSlice.reducer;
 

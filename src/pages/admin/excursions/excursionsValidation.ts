@@ -92,7 +92,7 @@ export const excursionsValidation = {
   },
 
   timeFrom: {
-    required: 'Введіть мінімальну кількість відвідувачів',
+    required: 'Введіть мінімальну кількість хвилин',
     minLength: {
       value: 2,
       message: 'Мінімальна довжина поля 2 символи'
@@ -108,7 +108,7 @@ export const excursionsValidation = {
   },
 
   timeTill: {
-    required: 'Введіть максимальну кількість відвідувачів',
+    required: 'Введіть максимальну кількість хвилин',
     minLength: {
       value: 2,
       message: 'Мінімальна довжина поля 5 символи'

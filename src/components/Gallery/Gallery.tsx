@@ -16,8 +16,6 @@ import LightBox from './LightBox';
 import '@/styles/gallery.css';
 import { fetchImagesWithPagination } from '@/store/slices/gallerySlice';
 
-import Loader from '../admin/Loader';
-
 const Gallery = () => {
   const screenWidth = useWidth();
   const { t } = useTranslation();
@@ -29,7 +27,6 @@ const Gallery = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
   const type = useAppSelector((state) => state.modals.type);
-  const isLoading = useAppSelector((state) => state.partners.loading);
   const { images, totalLength } = useAppSelector(
     (state) => state.gallery.paginatedData
   );
@@ -62,10 +59,14 @@ const Gallery = () => {
   }, [totalLength, itemsPerPage]);
 
   useEffect(() => {
-   
     dispatch(
       fetchImagesWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [currentPage, dispatch, itemsPerPage]);
 
   useEffect(() => {
@@ -75,8 +76,6 @@ const Gallery = () => {
       dispatch(setActiveLink(''));
     }
   }, [inView, dispatch]);
-
-  if (isLoading) return <Loader />;
 
   return (
     <section id="gallery" ref={ref} className="relative">
@@ -92,29 +91,34 @@ const Gallery = () => {
             pagesLength={pagesLength}
           >
             <div className="gridContainer ml-4 w-full overflow-hidden pr-8 lg:ml-0 lg:pr-0 ">
-              {images.map((item: any, index: number) => (
-                <div
-                  key={item.id}
-                  className={`gridItem relative h-[281px]  min-w-[282px] max-w-[486px]  overflow-hidden gridItem--${
-                    index + 1
-                  }`}
-                >
-                  <img
-                    src={item.image_url}
-                    alt="cow"
-                    className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
-                  />
+              {images && Array.isArray(images) ? (
+                images.map((item: any, index: number) => (
                   <div
-                    onClick={() => {
-                      setImage(index),
-                        dispatch(openModal({ data: {}, type: 'lightbox' }));
-                    }}
-                    className="absolute bottom-4 left-4 z-50 cursor-pointer"
+                    key={item.id}
+                    className={`gridItem relative h-[281px]  min-w-[282px] max-w-[486px]  overflow-hidden gridItem--${
+                      index + 1
+                    }`}
                   >
-                    <ZoomArrow />
+                    <img
+                      src={item.image_url}
+                      alt="cow"
+                      className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
+                    />
+
+                    <div
+                      onClick={() => {
+                        setImage(index),
+                          dispatch(openModal({ data: {}, type: 'lightbox' }));
+                      }}
+                      className="absolute bottom-4 left-4 z-50 cursor-pointer"
+                    >
+                      <ZoomArrow />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-black">Сервер не відповідає</p>
+              )}
             </div>
           </Slider>
         )}
@@ -128,7 +132,7 @@ const Gallery = () => {
               className={`relative mx-auto h-[281px] w-full  min-w-[282px] overflow-hidden sm:w-[70%]`}
             >
               <img
-                src={images[0]?.image_url}
+                src={(images && images[0]?.image_url) || ''}
                 alt="cow"
                 className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
               />
@@ -141,7 +145,7 @@ const Gallery = () => {
               </div>
               {showModal && (
                 <ShareModal
-                  activeImage={images[0]?.image_url}
+                  activeImage={(images && images[0]?.image_url) || ''}
                   setShowModal={setShowModal}
                 />
               )}

@@ -14,7 +14,6 @@ import NewsModal from '@/components/modals/NewsModal';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import { setActiveLink } from '@/store/slices/observationSlice';
-import Loader from '../admin/Loader';
 
 import Slider from '../Slider';
 import NewsBlock from './NewsBlock';
@@ -24,11 +23,10 @@ const News = () => {
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const [pagesLength, setPagesLength] = useState(0);
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
-  const isLoading = useAppSelector((state) => state.posts.loading);
   const { posts, totalLength } = useAppSelector(
     (state) => state.posts.paginatedData
   );
@@ -57,8 +55,13 @@ const News = () => {
   useEffect(() => {
     dispatch(
       fetchNewsWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
-  }, [currentPage, dispatch, itemsPerPage]);
+    )
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
+  }, [currentPage, itemsPerPage, dispatch]);
 
   const openNewsModal = () => {
     dispatch(openModal({ data: {}, type: 'news' }));
@@ -79,8 +82,6 @@ const News = () => {
       dispatch(setActiveLink(''));
     }
   }, [inView, dispatch]);
-
-  if (isLoading) return <Loader />;
 
   return (
     <section id="news" ref={ref}>

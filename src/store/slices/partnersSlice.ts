@@ -16,16 +16,26 @@ export type Partner = {
   image_id: 'string';
 };
 
+type ResponseWithPagination = {
+  partners: Partner[];
+  totalLength: number;
+};
+
 type PartnersState = {
   partners: Partner[];
   loading: boolean;
   error: string | null;
+  paginatedData: ResponseWithPagination;
 };
 
 const initialState: PartnersState = {
   partners: [],
   loading: false,
-  error: null
+  error: null,
+  paginatedData: {
+    partners: [],
+    totalLength: 0
+  }
 };
 
 export const fetchPartners = createAsyncThunk(
@@ -33,6 +43,22 @@ export const fetchPartners = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get<Partner[]>('api/partners');
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
+export const fetchPartnersWithPagination = createAsyncThunk(
+  'partners/fetchPartnersWithPagination',
+  async (query: { page: number; limit: number }) => {
+    try {
+      const response = await axios.get<ResponseWithPagination>(
+        `api/partners/pagination?page=${query.page}&limit=${query.limit}`
+      );
       const data = response.data;
       return data;
     } catch (error) {
@@ -119,6 +145,15 @@ const partnersSlice = createSlice({
       })
       .addCase(fetchPartners.fulfilled, (state, action) => {
         state.partners = action.payload as Partner[];
+        state.loading = false;
+      })
+      .addCase(fetchPartnersWithPagination.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchPartnersWithPagination.fulfilled, (state, action) => {
+        state.paginatedData = action.payload as ResponseWithPagination;
+        console.log(state.paginatedData);
         state.loading = false;
       })
       .addCase(removePartner.fulfilled, (state, action) => {
