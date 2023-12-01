@@ -22,7 +22,7 @@ const NewsBlock = ({ posts }: { posts: Post[] }) => {
             className={`group relative cursor-pointer  ${
               index === 0
                 ? 'row-span-2 max-h-[250px] min-w-[302px] max-w-[384px] md:max-h-[586px]'
-                : 'h-[254px] max-w-[384px]'
+                : 'h-[284px] max-w-[384px]'
             }`}
           >
             <img
@@ -45,9 +45,9 @@ const NewsBlock = ({ posts }: { posts: Post[] }) => {
               <div>
                 <button
                   onClick={() => openNewsModal(post)}
-                  className="relative mb-6 ml-6 mt-5 border border-white text-white hover:border-yellow-500  md:border-transparent  "
+                  className="relative mb-6 ml-6 mt-5 border text-white md:border-transparent  md:group-hover:border-yellow-500   "
                 >
-                  <div className="flex gap-3 px-5 py-2.5 ">
+                  <div className="flex gap-3 px-5 py-2.5  ">
                     <p>Показати більше</p>
                     <LittleArrow />
                   </div>

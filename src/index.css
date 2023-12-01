@@ -63,18 +63,14 @@ body {
 }
 
 .swiper-pagination-bullet {
-  width: 20px;
+  width: 44px;
   height: 4px;
   background-color: #666;
   border-radius: 0%;
-
-  @screen xl {
-    width: 44px;
-  }
 }
 
 .swiper-pagination-bullet-active {
-  width: 20px;
+  width: 44px;
   height: 4px;
   background: #000;
   border-radius: 0%;
