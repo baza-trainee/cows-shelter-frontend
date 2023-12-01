@@ -27,7 +27,6 @@ const Gallery = () => {
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
   const type = useAppSelector((state) => state.modals.type);
-  const isLoading = useAppSelector((state) => state.partners.loading);
   const { images, totalLength } = useAppSelector(
     (state) => state.gallery.paginatedData
   );
@@ -96,12 +95,11 @@ const Gallery = () => {
                     }`}
                   >
                     <img
-                      src={
-                        !isLoading ? item.image_url : 'placeholder-image.jpeg'
-                      }
+                      src={item.image_url}
                       alt="cow"
                       className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
                     />
+
                     <div
                       onClick={() => {
                         setImage(index),
@@ -129,7 +127,7 @@ const Gallery = () => {
               className={`relative mx-auto h-[281px] w-full  min-w-[282px] overflow-hidden sm:w-[70%]`}
             >
               <img
-                src={images[0]?.image_url}
+                src={(images && images[0]?.image_url) || ''}
                 alt="cow"
                 className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
               />
@@ -142,7 +140,7 @@ const Gallery = () => {
               </div>
               {showModal && (
                 <ShareModal
-                  activeImage={images[0]?.image_url}
+                  activeImage={(images && images[0]?.image_url) || ''}
                   setShowModal={setShowModal}
                 />
               )}

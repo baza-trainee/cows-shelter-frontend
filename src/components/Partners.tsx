@@ -200,7 +200,7 @@ const Partners = () => {
                   </li>
                 ))
               ) : (
-                <p className="text-black">Сервер не відповідає</p>
+                <p>Сервер не відповідає</p>
               )}
             </ul>
           </Slider>

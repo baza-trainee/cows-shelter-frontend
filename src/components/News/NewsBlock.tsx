@@ -3,7 +3,11 @@ import { openModal } from '@/store/slices/modalSlice';
 import { Post } from '@/store/slices/newsSlice';
 import { useTranslation } from 'react-i18next';
 
-const NewsBlock = ({ posts }: { posts: Post[] }) => {
+type NewsBlockProps = {
+  posts: Post[];
+};
+
+const NewsBlock = ({ posts }: NewsBlockProps) => {
   const { language } = useTranslation().i18n;
   const dispatch = useAppDispatch();
 
@@ -13,7 +17,7 @@ const NewsBlock = ({ posts }: { posts: Post[] }) => {
 
   return (
     <div>
-      <ul className=" grid h-[281px] gap-4 pt-[3rem] md:h-[586px] md:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid h-[281px] gap-4 pt-[3rem] md:h-[586px] md:grid-cols-2 lg:grid-cols-3">
         {posts && Array.isArray(posts) ? (
           posts?.map((post, index) => (
             <li
@@ -29,6 +33,7 @@ const NewsBlock = ({ posts }: { posts: Post[] }) => {
                 alt={`News Image`}
                 className="h-full w-full object-cover"
               />
+
               <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
               <div className="  via-opacity-30 absolute inset-0 z-30 flex cursor-pointer flex-col bg-gradient-to-b from-transparent to-black/40  ">
                 <div className="flex h-full flex-col justify-end text-white">
