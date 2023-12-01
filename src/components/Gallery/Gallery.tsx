@@ -85,29 +85,33 @@ const Gallery = () => {
             pagesLength={pagesLength}
           >
             <div className="gridContainer ml-4 w-full overflow-hidden pr-8 lg:ml-0 lg:pr-0 ">
-              {images.map((item: any, index: number) => (
-                <div
-                  key={item.id}
-                  className={`gridItem relative h-[281px]  min-w-[282px] max-w-[486px]  overflow-hidden gridItem--${
-                    index + 1
-                  }`}
-                >
-                  <img
-                    src={item.image_url}
-                    alt="cow"
-                    className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
-                  />
+              {images && Array.isArray(images) ? (
+                images.map((item: any, index: number) => (
                   <div
-                    onClick={() => {
-                      setImage(index),
-                        dispatch(openModal({ data: {}, type: 'lightbox' }));
-                    }}
-                    className="absolute bottom-4 left-4 z-50 cursor-pointer"
+                    key={item.id}
+                    className={`gridItem relative h-[281px]  min-w-[282px] max-w-[486px]  overflow-hidden gridItem--${
+                      index + 1
+                    }`}
                   >
-                    <ZoomArrow />
+                    <img
+                      src={item.image_url}
+                      alt="cow"
+                      className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
+                    />
+                    <div
+                      onClick={() => {
+                        setImage(index),
+                          dispatch(openModal({ data: {}, type: 'lightbox' }));
+                      }}
+                      className="absolute bottom-4 left-4 z-50 cursor-pointer"
+                    >
+                      <ZoomArrow />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-black">Сервер не відповідає</p>
+              )}
             </div>
           </Slider>
         )}

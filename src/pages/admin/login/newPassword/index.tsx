@@ -175,6 +175,8 @@ const NewPassword = () => {
         <PopUpConfirmPassword
           onSubmit={onSubmit}
           closeConfirmPassword={closeConfirmPassword}
+          tittle="Ви впевнені, що хочете змінити свій пароль?"
+          btn="Змінити"
         />
       )}
       {successChangePassword && (

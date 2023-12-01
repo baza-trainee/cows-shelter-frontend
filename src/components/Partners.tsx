@@ -26,7 +26,12 @@ const Partners = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchPartners());
+    dispatch(fetchPartners())
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [dispatch]);
 
   const openPartnersModal = () => {
@@ -135,30 +140,34 @@ const Partners = () => {
         </p>
         {/* mobile only */}
         <ul className="mb-5 grid grid-cols-2 gap-x-3 gap-y-2.5 overflow-x-auto md:hidden ">
-          {partners.map(({ id, name, link, logo }) => (
-            <li
-              key={id}
-              className="flex flex-col   md:mb-6 md:w-[calc(50%-0.75rem)]"
-            >
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
+          {partners && Array.isArray(partners) ? (
+            partners.map((partner) => (
+              <li
+                key={partner?.id}
+                className="flex flex-col   md:mb-6 md:w-[calc(50%-0.75rem)]"
               >
-                <img
-                  className="m-auto mb-6 scale-100 transform"
-                  src={logo}
-                  alt={name}
-                  width={134}
-                  height={134}
-                />
-                <p className="mb-4 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
-                  {name}
-                </p>
-              </a>
-            </li>
-          ))}
+                <a
+                  href={partner?.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
+                >
+                  <img
+                    className="m-auto mb-6 scale-100 transform"
+                    src={partner?.logo}
+                    alt={partner?.name}
+                    width={134}
+                    height={134}
+                  />
+                  <p className="mb-4 text-center text-[1rem] leading-relaxed md:text-[20px] lg:text-[22px]">
+                    {partner?.name}
+                  </p>
+                </a>
+              </li>
+            ))
+          ) : (
+            <p>Сервер не відповідає</p>
+          )}
         </ul>
         {/* tablet + desktop */}
         <div className="hidden md:block">
@@ -168,27 +177,31 @@ const Partners = () => {
             pagesLength={pagesLength}
           >
             <ul className="mb-5  flex gap-6 lg:mt-20">
-              {data.map((item: Partner) => (
-                <li key={item.id} className="flex justify-around">
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
-                  >
-                    <img
-                      className="m-auto mb-6 scale-100 transform md:h-[208px] md:w-[208px] xl:h-[245px] xl:w-[245px]"
-                      src={item.logo}
-                      alt={item.name}
-                      width={208}
-                      height={208}
-                    />
-                    <p className=":w-[282px] mb-5 w-[208px] text-center text-[1rem] leading-relaxed md:text-[20px] lg:mb-[4.125rem] lg:text-[22px]">
-                      {item.name}
-                    </p>
-                  </a>
-                </li>
-              ))}
+              {data && Array.isArray(data) ? (
+                data.map((item: Partner) => (
+                  <li key={item.id} className="flex justify-around">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
+                    >
+                      <img
+                        className="m-auto mb-6 scale-100 transform md:h-[208px] md:w-[208px] xl:h-[245px] xl:w-[245px]"
+                        src={item.logo}
+                        alt={item.name}
+                        width={208}
+                        height={208}
+                      />
+                      <p className=":w-[282px] mb-5 w-[208px] text-center text-[1rem] leading-relaxed md:text-[20px] lg:mb-[4.125rem] lg:text-[22px]">
+                        {item.name}
+                      </p>
+                    </a>
+                  </li>
+                ))
+              ) : (
+                <p className="text-black">Сервер не відповідає</p>
+              )}
             </ul>
           </Slider>
         </div>{' '}

@@ -14,7 +14,7 @@ const NewsBlock = ({ posts }: { posts: Post[] }) => {
   return (
     <div>
       <ul className=" grid h-[281px] gap-4 pt-[3rem] md:h-[586px] md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post, index) => (
+        {posts?.map((post, index) => (
           <li
             key={post.id}
             className={`group relative cursor-pointer  ${

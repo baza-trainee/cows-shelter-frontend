@@ -26,7 +26,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="signin" element={<SignIn />} />
+      <Route path="login" element={<SignIn />} />
       <Route path="reset/:token" element={<ResetPassword />} />
       <Route path="pdf/:id" element={<PdfDisplay />} />
       <Route element={<ProtectedRoute />}>
