@@ -18,14 +18,14 @@ const HomePage = () => {
       <Header />
       <Hero />
       <About />
-      {/* <Excursions />
+      <Excursions />
       <Gallery />
-      <Partners /> */}
+      <Partners />
       <News />
-      {/* <Support />
+      <Support />
       <FAQ />
       <Contacts />
-      <Footer /> */}
+      <Footer />
       <UnderFooter />
     </Layout>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 import { useWidth } from '@/hooks/useWidth';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -7,8 +7,8 @@ import { openModal } from '@/store/slices/modalSlice';
 import { fetchNewsWithPagination } from '@/store/slices/newsSlice';
 import { useInView } from 'react-intersection-observer';
 
-import { NewsData } from '@/types';
-import { news } from '@/data/news';
+// import { NewsData } from '@/types';
+// import { news } from '@/data/news';
 import NewsModal from '@/components/modals/NewsModal';
 
 import 'swiper/css/pagination';
