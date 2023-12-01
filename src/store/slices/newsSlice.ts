@@ -28,15 +28,9 @@ type ResponseWithPagination = {
 
 type NewsState = {
   posts: Post[];
-  paginatedData: ResponseWithPagination;
   loading: boolean;
   error: string | null;
   paginatedData: ResponseWithPagination;
-};
-
-type ResponseWithPagination = {
-  posts: Post[];
-  totalLength: number;
 };
 
 const initialState: NewsState = {
