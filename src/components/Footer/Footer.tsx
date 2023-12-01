@@ -21,7 +21,12 @@ const Footer = () => {
   ];
 
   useEffect(() => {
-    dispatch(fetchPdfs());
+    dispatch(fetchPdfs())
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [dispatch]);
 
   return (

@@ -5,7 +5,7 @@ const Fallback = () => {
         Something went wrong... Please, try again later.
       </p>
       <img
-        src="/admin/bg.svg"
+        src="admin/bg.svg"
         alt="cow"
         className="absolute bottom-0 left-0 right-0 z-0 w-full"
       />

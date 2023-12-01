@@ -55,38 +55,13 @@ const Excursions = () => {
   useEffect(() => {
     dispatch(
       fetchExcursionsWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [currentPage, dispatch, itemsPerPage]);
-  // const [start, setStart] = useState(0);
-  // const [finish, setFinish] = useState(1);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const pagesLength = excursions.length / itemsPerPage;
-
-  // const [showModal, setShowModal] = useState(false);
-
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     setTimeout(() => {
-  //       setShowModal(true);
-  //     }, 300);
-  //   } else {
-  //     setTimeout(() => {
-  //       setShowModal(false);
-  //     }, 300);
-  //   }
-  // }, [isModalOpen]);
-
-  // const data = usePaginatedData(excursions, start, finish);
-  // useEffect(() => {
-  //   if (currentPage === 1) {
-  //     setStart(0);
-  //     setFinish(2);
-  //   }
-  //   if (currentPage === 2) {
-  //     setStart(2);
-  //     setFinish(4);
-  //   }
-  // }, [currentPage]);
 
   const openExcursionModal = (item: Excursion) => {
     dispatch(openModal({ data: item, type: 'excursions' }));
@@ -136,40 +111,44 @@ const Excursions = () => {
               {language === 'uk' ? 'Екскурсії' : 'Excursions'}
             </h2>
             <ul className="mb-5 flex flex-col items-center gap-4">
-              {excursions.map((excursion: Excursion) => (
-                <li key={excursion.id} className="drop-shadow">
-                  <div className="relative">
-                    <img
-                      src={excursion.image_url}
-                      alt={`Excursion Image`}
-                      width={280}
-                      height={200}
-                    ></img>
-                    <div className="absolute bottom-0 left-0 flex flex-col gap-3 pb-5 pl-5 text-white">
-                      <p className="text-lg font-medium leading-normal">
-                        {language === 'uk'
-                          ? excursion.title_ua
-                          : excursion.title_en}
-                      </p>
-                      <a>
-                        <button
-                          className="flex gap-3 border border-solid border-white py-2.5 pl-5 pr-4"
-                          onClick={() => {
-                            openExcursionModal(excursion);
-                          }}
-                        >
-                          <span className="text-base leading-tight">
-                            {language === 'uk'
-                              ? 'Показати більше'
-                              : 'Show more'}
-                          </span>
-                          <LittleArrow />
-                        </button>
-                      </a>
+              {excursions && Array.isArray(excursions) ? (
+                excursions.map((excursion: Excursion) => (
+                  <li key={excursion.id} className="drop-shadow">
+                    <div className="relative">
+                      <img
+                        src={excursion.image_url}
+                        alt={`Excursion Image`}
+                        width={280}
+                        height={200}
+                      ></img>
+                      <div className="absolute bottom-0 left-0 flex flex-col gap-3 pb-5 pl-5 text-white">
+                        <p className="text-lg font-medium leading-normal">
+                          {language === 'uk'
+                            ? excursion.title_ua
+                            : excursion.title_en}
+                        </p>
+                        <a>
+                          <button
+                            className="flex gap-3 border border-solid border-white py-2.5 pl-5 pr-4"
+                            onClick={() => {
+                              openExcursionModal(excursion);
+                            }}
+                          >
+                            <span className="text-base leading-tight">
+                              {language === 'uk'
+                                ? 'Показати більше'
+                                : 'Show more'}
+                            </span>
+                            <LittleArrow />
+                          </button>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))
+              ) : (
+                <p>Сервер не відповідає</p>
+              )}
             </ul>
           </div>
         )}
@@ -181,46 +160,50 @@ const Excursions = () => {
             isExcursions={true}
           >
             <ul className="mb-0 flex justify-center gap-6 lg:mb-[8.75rem]">
-              {excursions.map((excursion: Excursion) => (
-                <li key={excursion.id} className="drop-shadow">
-                  <div className="group relative">
-                    <img
-                      src={excursion.image_url}
-                      alt={`Excursion Image`}
-                    ></img>
-                    <div className="fixed left-0 top-0 h-full w-full lg:bg-black/[.60] lg:opacity-0 lg:transition-all lg:duration-700 lg:group-hover:opacity-100"></div>
-                    <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
-                      <p className="text-xl font-semibold leading-normal lg:text-[22px]">
-                        {language === 'uk'
-                          ? excursion.title_ua
-                          : excursion.title_en}
-                      </p>
-                      <p className="opacity-0 transition-all duration-700 lg:group-hover:opacity-100">
-                        {excursion.time_from} - {excursion.time_to}{' '}
-                        {language === 'uk' ? 'хвилин' : 'minutes'} /{' '}
-                        {language === 'uk' ? 'до' : 'up to'}{' '}
-                        {excursion.amount_of_persons}{' '}
-                        {language === 'uk' ? 'відвідувачів' : 'visitors'}
-                      </p>
-                      <a>
-                        <button
-                          className="flex gap-3 border border-solid border-white py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 lg:border-transparent lg:focus:border-accent lg:active:border-accent lg:group-hover:border-white lg:group-hover:hover:border-accent"
-                          onClick={() => {
-                            openExcursionModal(excursion);
-                          }}
-                        >
-                          <span className="text-lg font-medium leading-tight">
-                            {language === 'uk'
-                              ? 'Показати більше'
-                              : 'Show more'}
-                          </span>
-                          <LittleArrow />
-                        </button>
-                      </a>
+              {excursions && Array.isArray(excursions) ? (
+                excursions.map((excursion: Excursion) => (
+                  <li key={excursion.id} className="drop-shadow">
+                    <div className="group relative">
+                      <img
+                        src={excursion.image_url}
+                        alt={`Excursion Image`}
+                      ></img>
+                      <div className="fixed left-0 top-0 h-full w-full lg:bg-black/[.60] lg:opacity-0 lg:transition-all lg:duration-700 lg:group-hover:opacity-100"></div>
+                      <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
+                        <p className="text-xl font-semibold leading-normal lg:text-[22px]">
+                          {language === 'uk'
+                            ? excursion.title_ua
+                            : excursion.title_en}
+                        </p>
+                        <p className="opacity-0 transition-all duration-700 lg:group-hover:opacity-100">
+                          {excursion.time_from} - {excursion.time_to}{' '}
+                          {language === 'uk' ? 'хвилин' : 'minutes'} /{' '}
+                          {language === 'uk' ? 'до' : 'up to'}{' '}
+                          {excursion.amount_of_persons}{' '}
+                          {language === 'uk' ? 'відвідувачів' : 'visitors'}
+                        </p>
+                        <a>
+                          <button
+                            className="flex gap-3 border border-solid border-white py-[0.69rem] pl-6 pr-2.5 transition-all duration-700 lg:border-transparent lg:focus:border-accent lg:active:border-accent lg:group-hover:border-white lg:group-hover:hover:border-accent"
+                            onClick={() => {
+                              openExcursionModal(excursion);
+                            }}
+                          >
+                            <span className="text-lg font-medium leading-tight">
+                              {language === 'uk'
+                                ? 'Показати більше'
+                                : 'Show more'}
+                            </span>
+                            <LittleArrow />
+                          </button>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))
+              ) : (
+                <p>Сервер не відповідає</p>
+              )}
             </ul>
           </Slider>
         )}

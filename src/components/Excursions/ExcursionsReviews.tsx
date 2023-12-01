@@ -43,7 +43,12 @@ const ExcursionsReviews = () => {
   useEffect(() => {
     dispatch(
       fetchReviewsWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [currentPage, dispatch, itemsPerPage]);
 
   if (isLoading) return <Loader />;
@@ -57,20 +62,24 @@ const ExcursionsReviews = () => {
         isReviews={true}
       >
         <ul className="flex gap-6">
-          {reviews.map((review: Review) => (
-            <li
-              key={review.id}
-              className="border-r border-disabled pr-5 md:h-40 md:max-w-[50%] md:pr-10 lg:max-w-[33.3%] lg:pr-16"
-            >
-              <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
-                {language === 'uk' ? review.name_ua : review.name_en}
-              </p>
-              <p className="default-text md:text-base">
-                {' '}
-                {language === 'uk' ? review.review_ua : review.review_en}
-              </p>
-            </li>
-          ))}
+          {reviews && Array.isArray(reviews) ? (
+            reviews.map((review: Review) => (
+              <li
+                key={review.id}
+                className="border-r border-disabled pr-5 md:h-40 md:max-w-[50%] md:pr-10 lg:max-w-[33.3%] lg:pr-16"
+              >
+                <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
+                  {language === 'uk' ? review.name_ua : review.name_en}
+                </p>
+                <p className="default-text md:text-base">
+                  {' '}
+                  {language === 'uk' ? review.review_ua : review.review_en}
+                </p>
+              </li>
+            ))
+          ) : (
+            <p>Сервер не відповідає</p>
+          )}
         </ul>
       </Slider>
     </section>

@@ -53,7 +53,12 @@ const News = () => {
   useEffect(() => {
     dispatch(
       fetchNewsWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [currentPage, dispatch, itemsPerPage]);
 
   const openNewsModal = () => {

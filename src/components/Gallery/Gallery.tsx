@@ -15,7 +15,6 @@ import LightBox from './LightBox';
 
 import '@/styles/gallery.css';
 import { fetchImagesWithPagination } from '@/store/slices/gallerySlice';
-import Loader from '../admin/Loader';
 
 const Gallery = () => {
   const screenWidth = useWidth();
@@ -58,7 +57,12 @@ const Gallery = () => {
   useEffect(() => {
     dispatch(
       fetchImagesWithPagination({ page: currentPage, limit: itemsPerPage })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        return [];
+      })
+      .catch((error) => alert(error));
   }, [currentPage, dispatch, itemsPerPage]);
 
   useEffect(() => {
@@ -68,8 +72,6 @@ const Gallery = () => {
       dispatch(setActiveLink(''));
     }
   }, [inView, dispatch]);
-
-  if (isLoading) return <Loader />;
 
   return (
     <section id="gallery" ref={ref} className="relative">
@@ -94,7 +96,9 @@ const Gallery = () => {
                     }`}
                   >
                     <img
-                      src={item.image_url}
+                      src={
+                        !isLoading ? item.image_url : 'placeholder-image.jpeg'
+                      }
                       alt="cow"
                       className="h-full w-full object-cover transition duration-500 ease-in hover:scale-110"
                     />
