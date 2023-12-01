@@ -8,7 +8,6 @@ import {
   fetchReviewsWithPagination
 } from '@/store/slices/reviewsSlice';
 import { useWidth } from '@/hooks/useWidth';
-import Loader from '../admin/Loader';
 
 const ExcursionsReviews = () => {
   const screenWidth = useWidth();
@@ -18,7 +17,6 @@ const ExcursionsReviews = () => {
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [pagesLength, setPagesLength] = useState(0);
 
-  const isLoading = useAppSelector((state) => state.reviews.loading);
   const { reviews, totalLength } = useAppSelector(
     (state) => state.reviews.paginatedData
   );
@@ -50,8 +48,6 @@ const ExcursionsReviews = () => {
       })
       .catch((error) => alert(error));
   }, [currentPage, dispatch, itemsPerPage]);
-
-  if (isLoading) return <Loader />;
 
   return (
     <section className="mb-0 px-5 md:-mb-10 md:px-12 lg:mb-0">

@@ -14,7 +14,6 @@ import {
   Excursion,
   fetchExcursionsWithPagination
 } from '@/store/slices/excursionsSlice';
-import Loader from '../admin/Loader';
 import { useWidth } from '@/hooks/useWidth';
 
 const Excursions = () => {
@@ -27,7 +26,7 @@ const Excursions = () => {
   const [pagesLength, setPagesLength] = useState(0);
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
-  const isLoading = useAppSelector((state) => state.excursions.loading);
+
   const { excursions, totalLength } = useAppSelector(
     (state) => state.excursions.paginatedData
   );
@@ -96,13 +95,11 @@ const Excursions = () => {
     };
   }, []);
 
-  if (isLoading) return <Loader />;
-
   return (
     <section
       id="excursions"
       ref={ref}
-      className="bg-[#F3F3F5]  py-6  md:py-16 lg:py-20"
+      className="relative bg-[#F3F3F5]  py-6  md:py-16 lg:py-20"
     >
       <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
         {windowWidth < 768 && (
@@ -147,7 +144,7 @@ const Excursions = () => {
                   </li>
                 ))
               ) : (
-                <p>Сервер не відповідає</p>
+                <p className="text-black">Сервер не відповідає</p>
               )}
             </ul>
           </div>
@@ -202,7 +199,7 @@ const Excursions = () => {
                   </li>
                 ))
               ) : (
-                <p>Сервер не відповідає</p>
+                <p className="text-black">Сервер не відповідає</p>
               )}
             </ul>
           </Slider>

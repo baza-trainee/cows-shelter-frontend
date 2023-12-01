@@ -172,7 +172,7 @@ const newsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.posts = action.payload as Post[];
+        state.posts = action.payload as unknown as Post[];
         state.loading = false;
       })
       .addCase(fetchPostById.pending, (state) => {
