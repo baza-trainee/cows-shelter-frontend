@@ -6,9 +6,18 @@ import { defaultValues } from './defaultValues';
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextInput from '@/components/admin/inputs/TextInput';
 import { PartnersFormInput } from '@/types';
-import { editPartner, fetchPartners } from '@/store/slices/partnersSlice';
+import {
+  Partner,
+  editPartner,
+  fetchPartners
+} from '@/store/slices/partnersSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { partnersValidation } from './partnersValidation';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  editSuccessResponseMessage,
+  editErrorResponseMessage
+} from '@/utils/responseMessages';
 
 const EditPartner = () => {
   const { id } = useParams();
@@ -17,10 +26,6 @@ const EditPartner = () => {
   const [image, setImage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const partners = useAppSelector((state) => state.partners.partners);
-
-  useEffect(() => {
-    dispatch(fetchPartners());
-  }, [dispatch]);
 
   const {
     handleSubmit,
@@ -34,16 +39,18 @@ const EditPartner = () => {
   });
 
   useEffect(() => {
-    if (!id) return;
-    console.log(partners);
-    const partnerData = partners.filter((partner) => partner.id == id);
-    console.log(partnerData);
+    dispatch(fetchPartners());
+  }, [dispatch]);
 
+  useEffect(() => {
+    if (!id) return;
+    const partnerData = partners.filter((partner: Partner) => partner.id == id);
     if (!partnerData || partnerData.length === 0) return;
 
-    setValue('title', partnerData[0].name);
+    setValue('name', partnerData[0].name);
     setValue('link', partnerData[0].link);
     setValue('image_id', partnerData[0].image_id);
+    setValue('logo', [new File([], partnerData[0].logo, { type: 'for-url' })]);
     setImage(partnerData[0].logo);
   }, [id, partners, setValue]);
 
@@ -53,19 +60,25 @@ const EditPartner = () => {
     const img = URL.createObjectURL(file);
     setImage(img);
   };
+
   useEffect(() => {
-    if (!currentValues.image?.length) return;
-    const file = currentValues.image[0];
+    if (!currentValues.logo[0]?.size) return;
+    const file = currentValues.logo[0];
     setImagePreview(file);
-  }, [currentValues.image]);
+  }, [currentValues.logo]);
 
   const onSubmit: SubmitHandler<PartnersFormInput> = async (
     values: PartnersFormInput
   ) => {
-    setIsProcessing(true);
-    await dispatch(editPartner({ id, values }));
-    setIsProcessing(false);
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(editPartner({ id, values }));
+      setIsProcessing(false);
+      dispatch(openAlert(editSuccessResponseMessage('партнера')));
+      navigate(-1);
+    } catch (error) {
+      dispatch(openAlert(editErrorResponseMessage('партнера')));
+    }
   };
   return (
     <div className="flex flex-col gap-4 px-[108px] pt-[60px] ">
@@ -81,7 +94,7 @@ const EditPartner = () => {
           >
             <div className="flex flex-col gap-6">
               <FileInput
-                name="image"
+                name="logo"
                 control={control}
                 accept="image/*"
                 rules={partnersValidation.logo}
@@ -90,13 +103,13 @@ const EditPartner = () => {
                 className="w-full "
               />
               <Controller
-                name="title"
+                name="name"
                 rules={partnersValidation.name}
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    errorText={errors.title?.message}
+                    errorText={errors.name?.message}
                     placeholder="Введіть назву Партнера"
                     title="Змінити назву Партнера:"
                   />
@@ -120,7 +133,9 @@ const EditPartner = () => {
               </section>
             </div>
             <div>
-              <p className="mb-3 text-disabled">Розмістити нового Партнера?</p>
+              <p className="mb-3 text-disabled">
+                Розмістити Оновленого Партнера?
+              </p>
 
               <div className="flex gap-4">
                 <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
@@ -142,7 +157,7 @@ const EditPartner = () => {
             <div className="text-left">
               <img
                 src={image ? image : '/placeholder-image.jpeg'}
-                alt={currentValues.title}
+                alt={currentValues.name}
                 width={205}
                 height={205}
                 className="mb-5 h-[205px] w-[205px] rounded-full"
@@ -151,7 +166,7 @@ const EditPartner = () => {
                 className={` bottom-4 left-2 mb-6 text-center text-xl font-bold
                 `}
               >
-                {currentValues.title}
+                {currentValues.name}
               </h2>
               <h2 className="bottom-4 left-2 ">{currentValues.link}</h2>
             </div>

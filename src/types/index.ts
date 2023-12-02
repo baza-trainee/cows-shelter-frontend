@@ -63,9 +63,9 @@ export type PartnersData = {
 };
 
 export type PartnersFormInput = {
-  title: string;
+  name: string;
   link: string;
-  image: File[];
+  logo: File[];
   id?: string;
   image_id: string;
 };

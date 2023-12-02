@@ -51,7 +51,7 @@ const EditNews = () => {
     setValue('contentUa', postData.content_ua);
     setValue('contentEn', postData.content_en);
     setValue('image_id', postData.image_id);
-    setValue('image', [new File([], postData.image_url)]);
+    setValue('image', [new File([], postData.image_url, { type: 'for-url' })]);
     setImage(postData.image_url);
   }, [setValue, posts]);
 
@@ -75,7 +75,7 @@ const EditNews = () => {
       setIsProcessing(true);
       await dispatch(editPost({ id, values }));
       setIsProcessing(false);
-      dispatch(openAlert(editSuccessResponseMessage('новину')));
+      dispatch(openAlert(editSuccessResponseMessage('новини')));
       navigate(-1);
     } catch (error: any) {
       dispatch(openAlert(editErrorResponseMessage('новину')));
@@ -122,7 +122,7 @@ const EditNews = () => {
               />
               <Controller
                 name="subTitleUa"
-                rules={newsValidation.titleUa}
+                rules={newsValidation.subTitleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -135,7 +135,7 @@ const EditNews = () => {
               />
               <Controller
                 name="subTitleEn"
-                rules={newsValidation.titleEn}
+                rules={newsValidation.subTitleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -149,7 +149,7 @@ const EditNews = () => {
 
               <Controller
                 name="contentUa"
-                rules={{ required: 'Введіть назву' }}
+                rules={newsValidation.contentUa}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -162,7 +162,7 @@ const EditNews = () => {
               />
               <Controller
                 name="contentEn"
-                rules={{ required: 'Введіть назву' }}
+                rules={newsValidation.contentEn}
                 control={control}
                 render={({ field }) => (
                   <TextArea

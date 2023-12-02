@@ -42,7 +42,7 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
                     <h2 className="text-sm font-normal md:text-2xl">
                       {language === 'uk' ? post.title_ua : post.title_en}
                     </h2>
-                    <div className="text-sm opacity-0 md:text-xl md:group-hover:opacity-100 ">
+                    <div className="text-sm opacity-0 md:group-hover:opacity-100 ">
                       {language === 'uk' ? post.subtitle_ua : post.subtitle_en}
                     </div>
                   </div>

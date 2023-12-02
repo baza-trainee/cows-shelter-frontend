@@ -9,6 +9,11 @@ import { PartnersFormInput } from '@/types';
 import { addNewPartner } from '@/store/slices/partnersSlice';
 import { useAppDispatch } from '@/store/hook';
 import { partnersValidation } from './partnersValidation';
+import { openAlert } from '@/store/slices/responseAlertSlice';
+import {
+  addSuccessResponseMessage,
+  addErrorResponseMessage
+} from '@/utils/responseMessages';
 
 const AddPartner = () => {
   const navigate = useNavigate();
@@ -34,19 +39,23 @@ const AddPartner = () => {
   };
 
   useEffect(() => {
-    if (!currentValues.image?.length) return;
-    const file = currentValues.image[0];
+    if (!currentValues.logo?.length) return;
+    const file = currentValues.logo[0];
     setImagePreview(file);
-  }, [currentValues.image]);
+  }, [currentValues.logo]);
 
   const onSubmit: SubmitHandler<PartnersFormInput> = async (
     values: PartnersFormInput
   ) => {
-    console.log(values);
-    setIsProcessing(true);
-    await dispatch(addNewPartner(values));
-    setIsProcessing(false);
-    navigate(-1);
+    try {
+      setIsProcessing(true);
+      await dispatch(addNewPartner(values));
+      setIsProcessing(false);
+      dispatch(openAlert(addSuccessResponseMessage('партнера')));
+      navigate(-1);
+    } catch (error) {
+      dispatch(openAlert(addErrorResponseMessage('партнера')));
+    }
   };
   return (
     <div className="flex flex-col gap-4 px-[108px] pt-[60px] ">
@@ -62,22 +71,22 @@ const AddPartner = () => {
           >
             <div className="flex flex-col gap-6">
               <FileInput
-                name="image"
+                name="logo"
                 control={control}
                 accept="image/*"
                 rules={partnersValidation.logo}
                 placeholder={'Оберіть файл'}
-                title="Змінити логотип Партнера:"
+                title="Додати логотип Партнера:"
                 className="w-full "
               />
               <Controller
-                name="title"
+                name="name"
                 rules={partnersValidation.name}
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     {...field}
-                    errorText={errors.title?.message}
+                    errorText={errors.name?.message}
                     placeholder="Введіть назву Партнера"
                     title="Введіть назву Партнера:"
                   />
@@ -123,7 +132,7 @@ const AddPartner = () => {
             <div className="text-left">
               <img
                 src={image ? image : '/placeholder-image.jpeg'}
-                alt={currentValues.title}
+                alt={currentValues.name}
                 width={205}
                 height={205}
                 className="mb-5 h-[205px] w-[205px] rounded-full"
@@ -132,7 +141,7 @@ const AddPartner = () => {
                 className={` bottom-4 left-2 mb-6 text-center text-xl font-bold
                 `}
               >
-                {currentValues.title}
+                {currentValues.name}
               </h2>
               <h2 className="bottom-4 left-2 ">{currentValues.link}</h2>
             </div>

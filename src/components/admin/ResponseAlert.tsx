@@ -23,7 +23,9 @@ const ResponseAlert = () => {
           isErrorMessage ? 'border-b-red' : 'border-b-green-500'
         }`}
       >
-        <p className="absolute left-[10%] top-[30%]  z-0">{message}</p>
+        <p className="absolute left-[5%] top-[20%] z-[9999] w-1/2 text-xl font-bold">
+          {message}
+        </p>
         <img
           src="/admin/bg.svg"
           alt="cow"
