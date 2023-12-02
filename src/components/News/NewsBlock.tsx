@@ -1,6 +1,7 @@
 import { useAppDispatch } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { Post } from '@/store/slices/newsSlice';
+
 import { useTranslation } from 'react-i18next';
 
 type NewsBlockProps = {
@@ -17,7 +18,7 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
 
   return (
     <div>
-      <ul className="grid h-[281px] gap-4 pt-[3rem] md:h-[586px] md:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid h-[210px] gap-8 pt-[3rem] md:h-[586px] md:grid-cols-2 md:gap-4 lg:grid-cols-3">
         {posts && Array.isArray(posts) ? (
           posts?.map((post, index) => (
             <li
@@ -34,14 +35,14 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
                 className="h-full w-full object-cover"
               />
 
-              <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out group-hover:opacity-100"></div>
+              <div className="absolute inset-0 z-20 cursor-pointer bg-black/40 opacity-0 transition duration-300 ease-in-out md:group-hover:opacity-100"></div>
               <div className="  via-opacity-30 absolute inset-0 z-30 flex cursor-pointer flex-col bg-gradient-to-b from-transparent to-black/40  ">
                 <div className="flex h-full flex-col justify-end text-white">
-                  <div className=" translate-y-14  space-y-3 p-4 duration-300 ease-in-out group-hover:translate-y-0">
-                    <h2 className="text-2xl font-normal">
+                  <div className=" translate-y-14  space-y-3 p-4 duration-300 ease-in-out md:group-hover:translate-y-0">
+                    <h2 className="text-sm font-normal md:text-2xl">
                       {language === 'uk' ? post.title_ua : post.title_en}
                     </h2>
-                    <div className="text-sm opacity-0 group-hover:opacity-100 ">
+                    <div className="text-sm opacity-0 md:text-xl md:group-hover:opacity-100 ">
                       {language === 'uk' ? post.subtitle_ua : post.subtitle_en}
                     </div>
                   </div>
@@ -73,3 +74,4 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
 };
 
 export default NewsBlock;
+// div className="flex gap-3 border border-transparent px-5 py-2.5 hover:border-yellow-500 md:group-hover:border-white ">

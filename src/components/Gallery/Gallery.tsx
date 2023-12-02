@@ -54,6 +54,11 @@ const Gallery = () => {
   }, [totalLength, itemsPerPage]);
 
   useEffect(() => {
+    const pagesNumber = totalLength / itemsPerPage;
+    setPagesLength(pagesNumber < 5 ? pagesNumber : 5);
+  }, [totalLength, itemsPerPage]);
+
+  useEffect(() => {
     dispatch(
       fetchImagesWithPagination({ page: currentPage, limit: itemsPerPage })
     )

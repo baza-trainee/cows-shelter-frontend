@@ -161,6 +161,22 @@ export const editPost = createAsyncThunk(
   }
 );
 
+export const fetchPostsWithPagination = createAsyncThunk(
+  'gallery/fetchImagesWithPagination',
+  async (query: { page: number; limit: number }) => {
+    try {
+      const response = await axios.get<ResponseWithPagination>(
+        `api/news/pagination?page=${query.page}&limit=${query.limit}`
+      );
+      const data = response.data;
+      return data;
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
 const newsSlice = createSlice({
   name: 'news',
   initialState,
@@ -179,6 +195,10 @@ const newsSlice = createSlice({
         state.loading = true;
         state.error = null;
         state.posts = [];
+      })
+      .addCase(fetchPostsWithPagination.fulfilled, (state, action) => {
+        state.paginatedData = action.payload as ResponseWithPagination;
+        state.loading = false;
       })
       .addCase(fetchPostById.fulfilled, (state, action) => {
         state.posts.push(action.payload as Post);

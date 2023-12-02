@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+// import { useTranslation } from 'react-i18next';
 
 import { useWidth } from '@/hooks/useWidth';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { fetchNewsWithPagination } from '@/store/slices/newsSlice';
+import { useInView } from 'react-intersection-observer';
 
-import Slider from '@/components/Slider';
-import NewsBlock from '@/components/News/NewsBlock';
+// import { NewsData } from '@/types';
+// import { news } from '@/data/news';
 import NewsModal from '@/components/modals/NewsModal';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
 import { setActiveLink } from '@/store/slices/observationSlice';
+
+import Slider from '../Slider';
+import NewsBlock from './NewsBlock';
 
 const News = () => {
   const screenWidth = useWidth();
@@ -81,7 +85,7 @@ const News = () => {
 
   return (
     <section id="news" ref={ref}>
-      <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
+      <div className="mx-auto flex flex-col px-5 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
         <Slider
           title="Новини"
           setCurrentPage={setCurrentPage}
