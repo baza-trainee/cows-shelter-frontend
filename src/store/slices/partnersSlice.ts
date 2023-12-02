@@ -84,12 +84,12 @@ export const addNewPartner = createAsyncThunk(
   'partners/addNewPartner',
   async (values: PartnersFormInput) => {
     try {
-      const file = values.image[0];
+      const file = values.logo[0];
       const formData = new FormData();
       formData.append('file', file);
       const { data } = await axios.post('api/partners/upload', formData);
       const newPartner = {
-        name: values.title,
+        name: values.name,
         link: values.link,
         logo: data.image_url,
         image_id: data.image_id
@@ -106,13 +106,13 @@ export const editPartner = createAsyncThunk(
   'news/editPost',
   async (partnersData: { id?: string; values: PartnersFormInput }) => {
     try {
-      if (partnersData.values.image[0].size > 0) {
-        const file = partnersData.values.image[0];
+      if (partnersData.values.logo[0].size > 0) {
+        const file = partnersData.values.logo[0];
         const formData = new FormData();
         formData.append('file', file);
         const { data } = await axios.post('api/partners/upload', formData);
         const newPartner = {
-          name: partnersData.values.title,
+          name: partnersData.values.name,
           link: partnersData.values.link,
           logo: data.image_url,
           image_id: data.image_id
@@ -120,9 +120,9 @@ export const editPartner = createAsyncThunk(
         await axios.patch(`api/partners/${partnersData.id}`, newPartner);
       } else {
         const newPartner = {
-          name: partnersData.values.title,
+          name: partnersData.values.name,
           link: partnersData.values.link,
-          logo: partnersData.values.image[0].name
+          logo: partnersData.values.logo[0].name
         };
         await axios.patch(`api/partners/${partnersData.id}`, newPartner);
       }

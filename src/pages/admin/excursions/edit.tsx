@@ -53,7 +53,9 @@ const EditExcursions = () => {
     setValue('timeFrom', postExcursions.time_from);
     setValue('timeTill', postExcursions.time_to);
     setValue('visitorsNumber', postExcursions.amount_of_persons);
-    setValue('image', [new File([], postExcursions.image_url)]);
+    setValue('image', [
+      new File([], postExcursions.image_url, { type: 'for-url' })
+    ]);
     setImage(postExcursions.image_url);
   }, [excursions, setValue]);
 
