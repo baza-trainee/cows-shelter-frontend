@@ -34,7 +34,7 @@ const Hero = () => {
             {t('hero:address')}
           </a>
           <a
-            className="absolute -bottom-[210px] right-0 flex h-[100px] w-[100px] items-center rounded-full bg-accent text-center text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-xl"
+            className="absolute -bottom-[210px] right-0 flex h-[100px] w-[100px] scale-100 items-center rounded-full bg-accent text-center text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-125 focus:scale-125 active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-xl"
             href="#excursions"
           >
             {t('hero:order')}
