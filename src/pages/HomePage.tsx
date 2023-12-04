@@ -17,15 +17,15 @@ const HomePage = () => {
     <Layout>
       <Header />
       <Hero />
-      {/* <About />
+      <About />
       <Excursions />
-      <Gallery /> */}
+      <Gallery />
       <Partners />
       <News />
-      {/* <Support />
+      <Support />
       <FAQ />
       <Contacts />
-      <Footer /> */}
+      <Footer />
       <UnderFooter />
     </Layout>
   );
