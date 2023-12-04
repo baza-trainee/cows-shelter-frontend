@@ -50,7 +50,7 @@ const Slider = ({
   return (
     <>
       <div
-        className={`mx-auto mb-8 mt-4 flex w-full items-center ${
+        className={`mx-auto mt-4 flex w-full items-center ${
           isPartners ? 'justify-end' : 'justify-between'
         }`}
       >
@@ -93,7 +93,7 @@ const Slider = ({
       </div>
 
       <div
-        className={`my-8 flex w-full items-start  justify-start ${
+        className={`flex w-full items-start  justify-start ${
           isReviews ? 'h-[50%]' : 'h-full'
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >

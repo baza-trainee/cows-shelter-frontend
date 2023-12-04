@@ -18,14 +18,14 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
 
   return (
     <div>
-      <ul className="grid h-[210px] gap-8 pt-[3rem] md:h-[586px] md:grid-cols-2 md:gap-4 lg:grid-cols-3">
+      <ul className="grid h-[210px] pt-[3rem] md:h-[586px] md:grid-cols-2 md:gap-4 lg:grid-cols-3">
         {posts && Array.isArray(posts) ? (
           posts?.map((post, index) => (
             <li
               key={post.id}
               className={`group relative cursor-pointer  ${
                 index === 0
-                  ? 'row-span-2 max-h-[201px] min-w-[302px] max-w-[384px] md:max-h-[586px]'
+                  ? 'row-span-2 max-h-[201px] min-w-[302px] max-w-[384px] md:max-h-[531px]'
                   : 'h-[254px] max-w-[384px]'
               }`}
             >
@@ -42,7 +42,7 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
                     <h2 className="text-sm font-normal md:text-2xl">
                       {language === 'uk' ? post.title_ua : post.title_en}
                     </h2>
-                    <div className="text-sm opacity-0 md:text-xl md:group-hover:opacity-100 ">
+                    <div className="text-sm opacity-0 md:group-hover:opacity-100 lg:text-xl ">
                       {language === 'uk' ? post.subtitle_ua : post.subtitle_en}
                     </div>
                   </div>
@@ -50,7 +50,7 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
                 <div>
                   <button
                     onClick={() => openNewsModal(post)}
-                    className="relative mb-6 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
+                    className="relative mb-10 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
                   >
                     <div className="flex items-center">
                       <p
