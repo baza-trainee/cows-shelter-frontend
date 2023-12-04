@@ -42,7 +42,7 @@ export const newsValidation = {
       message: 'Мінімальна довжина поля 2 символи'
     },
     maxLength: {
-      value: 100,
+      value: 150,
       message: 'Максимальна довжина поля 100 символів'
     },
     pattern: {
@@ -58,7 +58,7 @@ export const newsValidation = {
       message: 'Мінімальна довжина поля 2 символи'
     },
     maxLength: {
-      value: 100,
+      value: 150,
       message: 'Максимальна довжина поля 100 символів'
     },
     pattern: {
@@ -105,9 +105,14 @@ export const newsValidation = {
       if (typeof value === 'object' && 'length' in value && value.length > 0) {
         const file = value[0];
 
-        const checkType = ['image/jpeg', 'image/png', 'image/webp'].includes(
-          file.type
-        );
+        const checkType = [
+          'image/jpg',
+          'image/jpeg',
+          'image/png',
+          'image/webp',
+          'for-url'
+        ].includes(file.type);
+
         if (!checkType)
           return 'Зображення має бути в форматі .jpg, .png або .webp';
 
