@@ -32,7 +32,7 @@ const Contacts = () => {
         className={`relative h-[240px] w-full bg-[url('/img_cow_contacts.webp')] bg-cover bg-center bg-no-repeat sm:bg-fixed md:h-[240px] lg:h-[460px]`}
       />
       <div
-        className="mx-auto flex py-6 px-5 xs:w-[320px] xs:flex-col-reverse sm:w-[480px] sm:py-6 md:w-[768px] md:flex-row md:gap-6 md:p-12 md:px-12 lg:w-[1280px] lg:px-[120px] lg:py-20 xl:w-[1440px]"
+        className="mx-auto flex px-5 py-6 xs:w-[320px] xs:flex-col-reverse sm:w-[480px] sm:py-6 md:w-[768px] md:flex-row md:gap-6 md:p-12 md:px-12 lg:w-[1280px] lg:px-[120px] lg:py-20 xl:w-[1440px]"
         id="contacts"
         ref={ref}
       >

@@ -73,9 +73,9 @@ const Header = () => {
             onClick={scrollToTop}
           >
             {isScrolled ? (
-              <img src="/Logo-black.svg" alt="" />
+              <img src="Logo-black.svg" alt="" />
             ) : (
-              <img src="/logo.svg" alt="" />
+              <img src="logo.svg" alt="" />
             )}
           </Link>
           {windowWidth >= 1280 && (

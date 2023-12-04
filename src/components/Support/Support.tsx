@@ -6,9 +6,9 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { SupportCard } from '@/types';
 
-import DonateModal from '../modals/DonateModal';
 import Card from './Card';
-import SupportInfoModal from '../modals/SupportInfoModal';
+import DonateModal from '@/components/modals/DonateModal';
+import SupportInfoModal from '@/components/modals/SupportInfoModal';
 
 const Support = () => {
   const { t } = useTranslation();
