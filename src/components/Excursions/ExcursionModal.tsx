@@ -9,6 +9,7 @@ import {
   useEffect,
   useState
 } from 'react';
+import { Image } from '@/store/slices/gallerySlice';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useTranslation } from 'react-i18next';
 import { Excursion } from '@/store/slices/excursionsSlice';
@@ -23,9 +24,24 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
   const { language } = useTranslation().i18n;
   const dispatch = useAppDispatch();
   const excursion = useAppSelector((state) => state.modals.data) as Excursion;
+  const [imagesToDisplay, setImagesToDisplay] = useState<Image[]>([]);
+  const images = useAppSelector((state) => state.gallery.images);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, []);
+
+  useEffect(() => {
+    const randomImages = [
+      images[generateRandom(images.length - 1)],
+      images[generateRandom(images.length - 1) - 1],
+      images[generateRandom(images.length - 1) + 1]
+    ];
+    setImagesToDisplay(randomImages);
+  }, [images]);
 
   const handleChangedSize = () => {
     setWindowWidth(window.innerWidth);
@@ -62,21 +78,11 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
     dispatch(openModal({ data: {}, type: 'donation' }));
   };
 
-  const images = useAppSelector((state) => state.gallery.images);
-
-  useEffect(() => {
-    dispatch(fetchImages());
-  }, [dispatch]);
-
-  const generateRandomInteger = (max: number) => {
-    return Math.floor(Math.random() * max) + 1;
-  };
-
-  const imagesToDisplay = [
-    images[generateRandomInteger(images.length)],
-    images[generateRandomInteger(images.length)],
-    images[generateRandomInteger(images.length)]
-  ];
+  function generateRandom(max: number) {
+    let rand = Math.random() * max;
+    rand = Math.floor(rand);
+    return rand;
+  }
 
   return (
     <div
@@ -115,28 +121,30 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
             </div>
             {windowWidth >= 1280 && (
               <div className="grid grid-cols-2 gap-3.5">
-                {imagesToDisplay.map((item: any, index: number) => (
-                  <div
-                    key={item.id}
-                    className={`group relative cursor-pointer  ${
-                      index === 2
-                        ? 'col-span-2 h-[260px] w-[490px]'
-                        : 'h-[260px] w-[238px]'
-                    }`}
-                  >
-                    <img
-                      src={item.image_url}
-                      alt="cow"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ))}
+                {imagesToDisplay &&
+                  Array.isArray(imagesToDisplay) &&
+                  imagesToDisplay?.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className={`group relative cursor-pointer  ${
+                        index === 2
+                          ? 'col-span-2 h-[260px] w-[490px]'
+                          : 'h-[260px] w-[238px]'
+                      }`}
+                    >
+                      <img
+                        src={item?.image_url}
+                        alt="cow"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  ))}
               </div>
             )}
             {windowWidth >= 768 && windowWidth < 1280 && (
               <div className="flex gap-3">
                 <img
-                  src={imagesToDisplay[0].image_url}
+                  src={imagesToDisplay[0]?.image_url}
                   className="h-full w-full object-cover"
                 ></img>
                 <img
@@ -147,7 +155,7 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
             )}
             {windowWidth < 768 && (
               <img
-                src={imagesToDisplay[0].image_url}
+                src={imagesToDisplay[0]?.image_url}
                 className="h-full w-full object-cover"
               ></img>
             )}
