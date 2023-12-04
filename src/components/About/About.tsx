@@ -1,20 +1,15 @@
-// import { useWidth } from '@/hooks/useWidth';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { setActiveLink } from '@/store/slices/observationSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import LittleArrow from '../icons/LittleArrow';
+import LittleArrow from '@/components/icons/LittleArrow';
 
-import image1 from '../../assets/images/about-img1.jpg';
-import image2 from '../../assets/images/about-img2.jpg';
-import image3 from '../../assets/images/about-img3.jpg';
-import arrorIcon from '../../assets/icons/arrow-right.svg';
 import { useTranslation } from 'react-i18next';
 import { about } from '@/data/about';
 
-import { useEffect, useState } from 'react';
 import { AboutData } from '@/types';
 import { openModal } from '@/store/slices/modalSlice';
-import AboutModal from '../modals/AboutModal';
+import AboutModal from '@/components/modals/AboutModal';
 
 const About = () => {
   const dispatch = useAppDispatch();
@@ -88,7 +83,7 @@ const About = () => {
                 <div className="relative">
                   <div className="after:absolute after:bottom-0 after:left-0 after:h-full after:w-full after:bg-[rgba(0,0,0,0.3)] after:content-['']">
                     <img
-                      src={image1}
+                      src="about/about-img1.jpg"
                       alt="image"
                       className="h-[210px] w-[272px] object-cover "
                     ></img>
@@ -117,7 +112,7 @@ const About = () => {
                 <div className="relative">
                   <div className="after:absolute after:bottom-0 after:left-0 after:h-full after:w-full after:bg-[rgba(0,0,0,0.3)] after:content-['']">
                     <img
-                      src={image2}
+                      src="about/about-img2.jpg"
                       alt="image"
                       className="h-[210px] w-[272px] object-cover"
                     ></img>
@@ -147,7 +142,7 @@ const About = () => {
                 <div className="relative">
                   <div className="after:absolute after:bottom-0 after:left-0 after:h-full after:w-full after:bg-[rgba(0,0,0,0.3)] after:content-['']">
                     <img
-                      src={image3}
+                      src="about/about-img3.jpg"
                       alt="image"
                       className="h-[210px] w-[272px] object-cover"
                     ></img>
@@ -211,7 +206,7 @@ const About = () => {
                           <div className="flex gap-3">
                             <span>
                               <img
-                                src={arrorIcon}
+                                src="about/arrow-right.svg"
                                 alt="arror"
                                 className="scale-x-[-1]"
                               />
@@ -228,7 +223,7 @@ const About = () => {
                               </p>
                             </span>
                             <span>
-                              <img src={arrorIcon} alt="arror" />
+                              <img src="about/arrow-right.svg" alt="arror" />
                             </span>
                           </div>
                         )}
@@ -241,7 +236,7 @@ const About = () => {
                 {windowWidth >= 768 && (
                   <div className="mt-14 h-[243px] min-w-[208px] max-w-[486px] lg:mt-0 lg:h-[320px] lg:min-w-[486px] ">
                     <img
-                      src={image1}
+                      src="about/about-img1.jpg"
                       alt="about"
                       className="h-full w-full object-cover"
                     />
@@ -252,7 +247,7 @@ const About = () => {
               <div className="mt-20 flex gap-6 divide-solid border-b border-[#A9A9A9] pb-6 lg:pb-20">
                 <div className="mt-14 h-[243px] min-w-[208px] max-w-[486px] lg:mt-0 lg:h-[320px] lg:min-w-[486px] ">
                   <img
-                    src={image2}
+                    src="about/about-img2.jpg"
                     alt="about"
                     className="h-full w-full object-cover"
                   />
@@ -287,7 +282,7 @@ const About = () => {
                         <div className="flex gap-3">
                           <span>
                             <img
-                              src={arrorIcon}
+                              src="about/arrow-right.svg"
                               alt="arror"
                               className="scale-x-[-1]"
                             />
@@ -304,7 +299,7 @@ const About = () => {
                             </p>
                           </span>
                           <span>
-                            <img src={arrorIcon} alt="arror" />
+                            <img src="about/arrow-right.svg" alt="arror" />
                           </span>
                         </div>
                       )}
@@ -346,7 +341,7 @@ const About = () => {
                         <div className="flex gap-3">
                           <span>
                             <img
-                              src={arrorIcon}
+                              src="about/arrow-right.svg"
                               alt="arror"
                               className="scale-x-[-1]"
                             />
@@ -363,7 +358,7 @@ const About = () => {
                             </p>
                           </span>
                           <span>
-                            <img src={arrorIcon} alt="arror" />
+                            <img src="about/arrow-right.svg" alt="arror" />
                           </span>
                         </div>
                       )}
@@ -372,7 +367,7 @@ const About = () => {
                 </div>
                 <div className="mt-14 h-[243px] min-w-[208px] max-w-[486px] lg:mt-0 lg:h-[320px] lg:min-w-[486px] ">
                   <img
-                    src={image3}
+                    src="about/about-img3.jpg"
                     alt="about"
                     className="h-full w-full object-cover"
                   />
