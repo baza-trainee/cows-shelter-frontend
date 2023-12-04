@@ -5,7 +5,7 @@ import { offersList } from '@/data/offersList';
 const Hero = () => {
   const { t } = useTranslation();
   return (
-    <section className="hero relative mb-[190px] h-[420px] w-full bg-[url(hero/hero-tab@1x.png)] bg-cover bg-center bg-no-repeat text-white md:mb-0 md:h-[800px] md:bg-[url(hero/hero-desk@1x.png)]">
+    <section className="hero relative mb-[190px] h-[420px] w-full bg-[url(/hero/hero-tab@1x.png)] bg-cover bg-center bg-no-repeat text-white md:mb-0 md:h-[800px] md:bg-[url(/hero/hero-desk@1x.png)]">
       <div className="mx-auto w-[100%] px-5 pt-[82px] sm:w-[480px] md:h-[970px] md:w-[768px] md:px-12 md:pt-[128px] lg:w-[1280px] lg:px-[120px] lg:pt-[130px] xl:w-[1440px]">
         <h1 className=" mb-[236px] text-center font-namu text-4xl md:mb-[30px] md:text-[4.75rem] md:leading-tight lg:mb-[70px] lg:text-left lg:text-[6.6rem] ">
           {t('hero:main_title')}
