@@ -24,7 +24,7 @@ const Contacts = () => {
       <h3 className="mb-8 ml-8 text-[32px] font-semibold">Контакти</h3>
       <div className="mb-4 ml-8 flex max-w-[21.5rem] flex-col items-center justify-between border border-black px-[90px] pb-2 pt-8">
         <h2 className="pb-2 text-center text-base">Ваша електронна адреса:</h2>
-        <p className="pb-8 text-lg font-bold text-darkgray">
+        <p className="pb-8 text-lg font-bold text-black">
           {contacts[0]?.email}
         </p>
         <div className="flex w-full ">
@@ -32,7 +32,7 @@ const Contacts = () => {
             onClick={() => {
               setData(contacts[0]?.email), setIsModalOpen(true);
             }}
-            className="w-full border  border-darkgray  px-[4.65rem] py-2 text-xl text-black hover:text-accent"
+            className="w-full border border-darkgray  px-[4.65rem] py-2 text-xl text-black hover:text-accent"
           >
             <BsFillPencilFill />
           </button>
@@ -40,7 +40,7 @@ const Contacts = () => {
       </div>
       <div className="ml-8 flex max-w-[21.5rem] flex-col items-center justify-between border border-black px-[90px]  pb-2 pt-8">
         <h2 className="pb-2 text-center text-base">Ваш номер телефону:</h2>
-        <p className="pb-8 text-lg font-bold text-darkgray">
+        <p className="pb-8 text-lg font-bold text-black">
           {contacts[0]?.phone}
         </p>
         <div className="flex bg-lightgrey">
