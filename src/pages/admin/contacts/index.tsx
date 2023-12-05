@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import Edit from './edit';
 import { fetchContacts } from '@/store/slices/contactsSlice';
 import Loader from '@/components/admin/Loader';
+import ResponseAlert from '@/components/admin/ResponseAlert';
 
 
 const Contacts = () => {
@@ -13,7 +14,7 @@ const Contacts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const contacts = useAppSelector((state) => state.contacts.contacts);
   const isLoading = useAppSelector((state) => state.posts.loading);
-
+  const isAlertOpen = useAppSelector((state) => state.alert.isAlertOpen);
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch, isModalOpen]);
@@ -59,9 +60,10 @@ const Contacts = () => {
         <Edit
           setIsModalOpen={setIsModalOpen}
           data={data}
-          id={contacts[0]?.id }
+          id={contacts[0]?.id}
         />
       )}
+      {isAlertOpen && <ResponseAlert />}
     </div>
   );
 };
