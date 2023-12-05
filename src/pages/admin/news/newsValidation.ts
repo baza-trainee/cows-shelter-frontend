@@ -36,7 +36,7 @@ export const newsValidation = {
   },
 
   subTitleUa: {
-    required: 'Введіть назву',
+    required: 'Введіть підзаголовок',
     minLength: {
       value: 2,
       message: 'Мінімальна довжина поля 2 символи'
@@ -47,7 +47,7 @@ export const newsValidation = {
     },
     pattern: {
       value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’.,-:;"()!?]+$/,
-      message: 'Введіть коректну назву'
+      message: 'Введіть коректний текст українською мовою'
     }
   },
 
@@ -63,7 +63,7 @@ export const newsValidation = {
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’.,-:;"()!?-]+$/,
-      message: 'Введіть коректну назву'
+      message: 'Введіть коректний текст англійською мовою'
     }
   },
 
@@ -78,8 +78,8 @@ export const newsValidation = {
       message: 'Максимальна довжина поля 2000 символів'
     },
     pattern: {
-      value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
-      message: 'Введіть коректний текст'
+      value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
+      message: 'Введіть коректний текст українською мовою'
     }
   },
 
@@ -95,7 +95,7 @@ export const newsValidation = {
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’.,:;"()!?-]+$/,
-      message: 'Введіть коректний текст'
+      message: 'Введіть коректний текст англійською мовою'
     }
   },
 
