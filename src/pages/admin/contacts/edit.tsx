@@ -54,7 +54,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
     (currentType === 'email') ? await dispatch(editEmail({ id, values })) : await dispatch(editPhone({ id, values }));
     setIsProcessing(false);
     setIsModalOpen(false);
-    dispatch(openAlert(editSuccessResponseMessage(`${currentType === 'email' ? 'eлектронної пошти' : 'номеро телефону'}`)));
+    dispatch(openAlert(editSuccessResponseMessage(`${currentType === 'email' ? 'eлектронної пошти' : 'номера телефону'}`)));
     navigate('/admin/contacts');
     } catch (error: any) {
     dispatch(
