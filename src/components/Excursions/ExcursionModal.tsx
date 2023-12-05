@@ -13,14 +13,18 @@ import { Image } from '@/store/slices/gallerySlice';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { useTranslation } from 'react-i18next';
 import { Excursion } from '@/store/slices/excursionsSlice';
-import { fetchImages } from '@/store/slices/gallerySlice';
 
 type ExcursionsModalProps = {
   isOpen: boolean;
+  gallery: Image[];
   setShowModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
+const ExcursionModal = ({
+  isOpen,
+  gallery,
+  setShowModal
+}: ExcursionsModalProps) => {
   const { language } = useTranslation().i18n;
   const dispatch = useAppDispatch();
   const excursion = useAppSelector((state) => state.modals.data) as Excursion;
@@ -31,14 +35,10 @@ const ExcursionModal = ({ isOpen, setShowModal }: ExcursionsModalProps) => {
   const [windowHeight, setHeight] = useState(window.innerHeight);
 
   useEffect(() => {
-    dispatch(fetchImages());
-  }, []);
-
-  useEffect(() => {
     const randomImages = [
-      images[generateRandom(images.length - 1)],
-      images[generateRandom(images.length - 1) - 1],
-      images[generateRandom(images.length - 1) + 1]
+      gallery[generateRandom(gallery.length - 1)],
+      gallery[generateRandom(gallery.length - 1) + 1],
+      gallery[generateRandom(gallery.length - 1) + 1]
     ];
     setImagesToDisplay(randomImages);
   }, [images]);

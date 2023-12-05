@@ -15,6 +15,7 @@ import {
   fetchExcursionsWithPagination
 } from '@/store/slices/excursionsSlice';
 import { useWidth } from '@/hooks/useWidth';
+import { fetchImages } from '@/store/slices/gallerySlice';
 
 const Excursions = () => {
   const { language } = useTranslation().i18n;
@@ -26,6 +27,13 @@ const Excursions = () => {
   const [pagesLength, setPagesLength] = useState(0);
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
+  const gallery = useAppSelector((state) => state.gallery.images);
+
+  useEffect(() => {
+    dispatch(fetchImages());
+  }, []);
+
+  console.log(gallery);
 
   const { excursions, totalLength } = useAppSelector(
     (state) => state.excursions.paginatedData
@@ -206,7 +214,11 @@ const Excursions = () => {
         )}
         <ExcursionsReviews />
         {isModalOpen && type === 'excursions' && (
-          <ExcursionModal isOpen={showModal} setShowModal={setShowModal} />
+          <ExcursionModal
+            isOpen={showModal}
+            setShowModal={setShowModal}
+            gallery={gallery}
+          />
         )}
         {isModalOpen && type === 'order' && (
           <ExcursionOrderModal isOpen={showModal} setShowModal={setShowModal} />
