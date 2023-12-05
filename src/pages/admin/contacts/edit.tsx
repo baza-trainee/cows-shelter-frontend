@@ -49,7 +49,6 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
     values: ContactsFormInput
   ) => {
     console.log(values);
-    
     try {
     setIsProcessing(true);
     (currentType === 'email') ? await dispatch(editEmail({ id, values })) : await dispatch(editPhone({ id, values }));

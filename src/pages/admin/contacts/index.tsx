@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import Confirm from '@/components/admin/Confirm';
+//import Confirm from '@/components/admin/Confirm';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import Edit from './edit';
@@ -15,6 +15,7 @@ const Contacts = () => {
   const contacts = useAppSelector((state) => state.contacts.contacts);
   const isLoading = useAppSelector((state) => state.posts.loading);
   const isAlertOpen = useAppSelector((state) => state.alert.isAlertOpen);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch, isModalOpen]);
@@ -34,7 +35,7 @@ const Contacts = () => {
             onClick={() => {
               setData(contacts[0]?.email), setIsModalOpen(true);
             }}
-            className="w-full border border-darkgray  px-[4.65rem] py-2 text-xl text-black hover:text-accent"
+            className="w-full border border-darkgray  bg-lightgrey px-[4.65rem] py-2 text-xl text-black hover:text-accent"
           >
             <BsFillPencilFill />
           </button>
@@ -50,7 +51,7 @@ const Contacts = () => {
             onClick={() => {
               setData(contacts[0]?.phone), setIsModalOpen(true);
             }}
-            className="w-full border border-darkgray  px-[4.65rem] py-2 text-xl text-black hover:text-accent "
+            className="w-full border border-darkgray px-[4.65rem] py-2 text-xl text-black hover:text-accent"
           >
             <BsFillPencilFill />
           </button>
