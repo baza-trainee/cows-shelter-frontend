@@ -3,6 +3,7 @@ import { openModal } from '@/store/slices/modalSlice';
 import { Post } from '@/store/slices/newsSlice';
 
 import { useTranslation } from 'react-i18next';
+import LittleArrow from '../icons/LittleArrow';
 
 type NewsBlockProps = {
   posts: Post[];
@@ -50,15 +51,15 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
                 <div>
                   <button
                     onClick={() => openNewsModal(post)}
-                    className="relative mb-10 ml-6 mt-5 border-2 border-transparent py-1 text-white group-hover:border-yellow-500"
+                    className="relative mb-6 ml-6 mt-5 flex gap-3 border border-solid border-white py-2 pl-6 pr-2.5 text-white transition-all duration-300 lg:border-transparent lg:focus:border-accent lg:active:border-accent lg:group-hover:border-white lg:group-hover:hover:border-accent"
                   >
                     <div className="flex items-center">
-                      <p
-                        className=" px-4 
-"
-                      >
-                        Показати більше
-                      </p>
+                      <span className="text-md px-4 font-medium leading-tight">
+                        {language === 'uk' ? 'Показати більше' : 'Show more'}
+                      </span>
+                    </div>
+                    <div className="pr-4">
+                      <LittleArrow />
                     </div>
                   </button>
                 </div>
@@ -74,4 +75,3 @@ const NewsBlock = ({ posts }: NewsBlockProps) => {
 };
 
 export default NewsBlock;
-// div className="flex gap-3 border border-transparent px-5 py-2.5 hover:border-yellow-500 md:group-hover:border-white ">

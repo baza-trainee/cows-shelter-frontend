@@ -43,7 +43,7 @@ export const newsValidation = {
     },
     maxLength: {
       value: 150,
-      message: 'Максимальна довжина поля 100 символів'
+      message: 'Максимальна довжина поля 50 символів'
     },
     pattern: {
       value: /^[а-яА-ЯҐґЄєІіЇї\s\d'’.,-:;"()!?]+$/,
@@ -59,7 +59,7 @@ export const newsValidation = {
     },
     maxLength: {
       value: 150,
-      message: 'Максимальна довжина поля 100 символів'
+      message: 'Максимальна довжина поля 50 символів'
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’.,-:;"()!?-]+$/,
