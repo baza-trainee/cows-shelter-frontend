@@ -5,6 +5,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from '@/store/hook';
 import { editEmail, editPhone } from '@/store/slices/contactsSlice';
 import { contactsValidation } from './contactsValidation';
+import cross from "@/assets/icons/icon_close.svg"
 
 type EditContactsProps = {
   id: string;
@@ -56,6 +57,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
   return (
     <div className="left-1/6 fixed top-0 z-20 h-full w-5/6 bg-[rgba(0,0,0,0.6)]">
       <div className="absolute left-[50%] top-[50%] z-[9999] flex h-[60vh] w-[50vw] -translate-x-[50%] -translate-y-[50%] items-center justify-center gap-4 bg-white px-4 py-8 text-black">
+        <button className="absolute top-4 right-5" onClick={() => setIsModalOpen(false)}><img src={cross}/></button>
         <form
           onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
