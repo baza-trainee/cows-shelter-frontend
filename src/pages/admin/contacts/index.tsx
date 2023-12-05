@@ -6,6 +6,7 @@ import Edit from './edit';
 import { fetchContacts } from '@/store/slices/contactsSlice';
 import Loader from '@/components/admin/Loader';
 
+
 const Contacts = () => {
   const dispatch = useAppDispatch();
   const [data, setData] = useState('');
