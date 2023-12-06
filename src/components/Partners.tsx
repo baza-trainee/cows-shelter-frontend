@@ -22,6 +22,7 @@ const Partners = () => {
   const [pagesLength, setPagesLength] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showModal, setShowModal] = useState(false);
   const isLoading = useAppSelector((state) => state.partners.loading);
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
@@ -61,13 +62,9 @@ const Partners = () => {
       .catch((error) => alert(error));
   }, [dispatch, currentPage, itemsPerPage]);
 
-  console.log(partners);
-
   const openPartnersModal = () => {
     dispatch(openModal({ data: {}, type: 'partners' }));
   };
-
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (isModalOpen) {
