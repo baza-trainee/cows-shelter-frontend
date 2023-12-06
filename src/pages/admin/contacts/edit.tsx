@@ -65,7 +65,6 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
       )
     );
     }
- 
   };
 
   return (

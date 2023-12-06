@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 import { setActiveLink } from '@/store/slices/observationSlice';
 import { useEffect } from 'react';
-import { useAppDispatch } from '@/store/hook';
+import { useAppDispatch, useAppSelector } from '@/store/hook';
 
 import icon_privat from '@/assets/icons/icon_privat.svg';
 import icon_mono from '@/assets/icons/icon_mono.svg';
@@ -10,10 +10,16 @@ import icon_paypal from '@/assets/icons/icon_paypal.svg';
 import icon_western_union from '@/assets/icons/icon_western_union.svg';
 import icon_swift from '@/assets/icons/icon_swift.svg';
 import Map from './Map';
+import { fetchContacts } from '@/store/slices/contactsSlice';
+import Loader from '../admin/Loader';
+
 
 const Contacts = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const contacts = useAppSelector((state) => state.contacts.contacts);
+  const isLoading = useAppSelector((state) => state.contacts.loading);
+  
   const { ref, inView } = useInView({
     threshold: 0.5
   });
@@ -26,6 +32,17 @@ const Contacts = () => {
     }
   }, [inView, dispatch]);
 
+  useEffect(() => {
+     dispatch(fetchContacts())
+      .unwrap()
+        .then(() => {
+          return [];
+        })
+        .catch((error) => console.log(error));
+   }, [dispatch])
+ 
+  console.log(contacts);
+  if (isLoading) return <Loader />;
   return (
     <section>
       <div
@@ -43,15 +60,18 @@ const Contacts = () => {
           <ul className="mb-6 flex flex-col gap-2 text-graphite xs:text-sm md:text-base lg:text-[17px]">
             <li>
               <a
-                href="mailto://zdravejutta@gmail.com"
+                href={`mailto://${
+                  contacts[0] ? contacts[0].email : ''
+                }`}
                 rel="noopener noreferrer"
               >
-                zdravejutta@gmail.com
+                {contacts[0] ? contacts[0].email : ''}
               </a>
             </li>
             <li>
-              <a href="tel:+380987675765" rel="noopener noreferrer">
-                +380 987 675 765
+              <a href={`tel:${contacts[0] ? contacts[0].phone : ''}`} 
+              rel="noopener noreferrer">
+                {contacts[0] ? contacts[0].phone : ''}
               </a>
             </li>
           </ul>
