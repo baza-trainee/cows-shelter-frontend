@@ -59,7 +59,7 @@ const SideBar = () => {
   const logout = () => {
     setIsLoader(true);
     localStorage.removeItem('user');
-    navigate('https://github.com/baza-trainee/cows-shelter-frontend');
+    navigate('/');
     setIsLoader(false);
   };
 
