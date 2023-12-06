@@ -17,6 +17,7 @@
     "address": "Vinnytsia dist., Busha",
     "order": "Order an excursion"
   },
+
   "footer": {
     "shelter_p1": "Shelter for cows, bulls, calves",
     "shelter_p2": "Protection from violence, hunger, cold",
@@ -45,6 +46,11 @@
     "gallery": "Gallery",
     "share": "Share image in social media"
   },
+
+  "news": {
+    "news": "News"
+  },
+
   "partners": {
     "header": "Partners",
     "become_partner": "Become a partner",

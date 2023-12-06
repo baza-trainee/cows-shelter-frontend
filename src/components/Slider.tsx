@@ -50,7 +50,7 @@ const Slider = ({
   return (
     <>
       <div
-        className={`mx-auto mb-8 mt-4 flex w-full items-center ${
+        className={`mx-auto mt-4 flex w-full items-center ${
           isPartners ? 'justify-end' : 'justify-between'
         }`}
       >
@@ -98,9 +98,9 @@ const Slider = ({
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
         <Swiper
-          className={`relative flex w-full items-center ${
+          className={`relative flex w-full items-center pb-9 ${
             isReviews
-              ? 'min-h-[165px] pb-5 pt-11 md:min-h-[320px] md:pb-10 md:pt-0'
+              ? 'min-h-[165px] pt-11 md:min-h-[320px] md:pb-10 md:pt-0'
               : 'h-full'
           } w-full md:w-[768px] lg:w-full ${
             isExcursions ? 'h-[330px]' : 'h-full'

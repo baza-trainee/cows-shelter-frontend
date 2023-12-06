@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { useWidth } from '@/hooks/useWidth';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -20,6 +20,7 @@ import NewsBlock from './NewsBlock';
 
 const News = () => {
   const screenWidth = useWidth();
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,7 +88,7 @@ const News = () => {
     <section id="news" ref={ref}>
       <div className="mx-auto flex flex-col px-5 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
         <Slider
-          title="Новини"
+          title={t('news:news')}
           setCurrentPage={setCurrentPage}
           pagesLength={pagesLength}
         >
