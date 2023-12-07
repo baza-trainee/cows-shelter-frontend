@@ -43,6 +43,8 @@ const ExcursionModal = ({
     setImagesToDisplay(randomImages);
   }, [images]);
 
+  console.log(imagesToDisplay);
+
   const handleChangedSize = () => {
     setWindowWidth(window.innerWidth);
     setHeight(window.innerHeight);
@@ -95,7 +97,7 @@ const ExcursionModal = ({
         className={`absolute left-1/2 top-1/2 ${
           isOpen ? 'translate-x-0' : 'translate-x-[100%]'
         } w-[85%] ${
-          windowHeight < 400 && 'h-[380px]'
+          windowHeight < 400 && 'md:h-[380px]'
         } h-[675px] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white 
         px-5 pb-12 pt-4 transition-all duration-700 md:h-[832px] md:w-[672px] md:px-10 md:pb-10 md:pt-10 
          lg:h-auto lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]`}
@@ -144,7 +146,7 @@ const ExcursionModal = ({
             {windowWidth >= 768 && windowWidth < 1280 && (
               <div className="flex gap-3">
                 <img
-                  src={imagesToDisplay[0]?.image_url}
+                  src={imagesToDisplay[0].image_url}
                   className="h-full w-full object-cover"
                 ></img>
                 <img

@@ -140,17 +140,17 @@ const EditReviews = () => {
           </p>
           <div className="flex gap-4">
             <button
-              className={`w-[13.5rem] rounded-md px-6 py-2 ${
+              className={`w-[11.25rem] px-6 py-2 font-medium text-white ${
                 isDirty && isValid
                   ? 'cursor-pointer bg-accent'
-                  : 'cursor-not-allowed bg-gray-200'
+                  : 'cursor-not-allowed bg-disabled'
               }`}
             >
               {isProcessing ? 'Обробка запиту...' : 'Застосувати'}
             </button>
 
             <Link to="/admin/reviews">
-              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
+              <button className="w-[11.25rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
                 Скасувати
               </button>
             </Link>

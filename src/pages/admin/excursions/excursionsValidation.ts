@@ -115,7 +115,7 @@ export const excursionsValidation = {
     required: 'Введіть максимальну кількість хвилин',
     minLength: {
       value: 2,
-      message: 'Мінімальна довжина поля 5 символи'
+      message: 'Мінімальна довжина поля 2 символи'
     },
     maxLength: {
       value: 3,
@@ -134,8 +134,8 @@ export const excursionsValidation = {
       message: 'Мінімальна довжина поля 1 символ'
     },
     maxLength: {
-      value: 25,
-      message: 'Максимальна довжина поля 25 символів'
+      value: 10,
+      message: 'Максимальна довжина поля 10 символів'
     },
     pattern: {
       value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
