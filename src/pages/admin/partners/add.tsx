@@ -135,7 +135,7 @@ const AddPartner = () => {
                 alt={currentValues.name}
                 width={205}
                 height={205}
-                className="mb-5 h-[205px] w-[205px] rounded-full"
+                className="mb-5 h-[205px] w-[205px] rounded-full object-cover"
               />
               <h2
                 className={` bottom-4 left-2 mb-6 text-center text-xl font-bold

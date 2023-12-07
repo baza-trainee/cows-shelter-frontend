@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-//import Confirm from '@/components/admin/Confirm';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import Edit from './edit';
 import { fetchContacts } from '@/store/slices/contactsSlice';
 import Loader from '@/components/admin/Loader';
 import ResponseAlert from '@/components/admin/ResponseAlert';
-
 
 const Contacts = () => {
   const dispatch = useAppDispatch();
