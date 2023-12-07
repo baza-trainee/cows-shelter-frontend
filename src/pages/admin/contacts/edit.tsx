@@ -7,7 +7,10 @@ import { editEmail, editPhone } from '@/store/slices/contactsSlice';
 import { contactsValidation } from './contactsValidation';
 import { TfiClose } from 'react-icons/tfi';
 import { openAlert } from '@/store/slices/responseAlertSlice';
-import { editErrorResponseMessage, editSuccessResponseMessage } from '@/utils/responseMessages';
+import {
+  editErrorResponseMessage,
+  editSuccessResponseMessage
+} from '@/utils/responseMessages';
 import { useNavigate } from 'react-router-dom';
 
 type EditContactsProps = {
@@ -50,20 +53,30 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
   ) => {
     console.log(values);
     try {
-    setIsProcessing(true);
-    (currentType === 'email') ? await dispatch(editEmail({ id, values })) : await dispatch(editPhone({ id, values }));
-    setIsProcessing(false);
-    setIsModalOpen(false);
-    dispatch(openAlert(editSuccessResponseMessage(`${currentType === 'email' ? 'eлектронної пошти' : 'номера телефону'}`)));
-    navigate('/admin/contacts');
-    } catch (error: any) {
-    dispatch(
-      openAlert(
-        editErrorResponseMessage(
-          `${currentType === 'email' ? 'eлектронну пошту' : 'номер телефону'}`
+      setIsProcessing(true);
+      currentType === 'email'
+        ? await dispatch(editEmail({ id, values }))
+        : await dispatch(editPhone({ id, values }));
+      setIsProcessing(false);
+      setIsModalOpen(false);
+      dispatch(
+        openAlert(
+          editSuccessResponseMessage(
+            `${
+              currentType === 'email' ? 'eлектронної пошти' : 'номера телефону'
+            }`
+          )
         )
-      )
-    );
+      );
+      navigate('/admin/contacts');
+    } catch (error: any) {
+      dispatch(
+        openAlert(
+          editErrorResponseMessage(
+            `${currentType === 'email' ? 'eлектронну пошту' : 'номер телефону'}`
+          )
+        )
+      );
     }
   };
 

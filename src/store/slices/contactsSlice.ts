@@ -26,15 +26,11 @@ const initialState: ContactState = {
   error: null
 };
 
-const BASE_URL = import.meta.env.VITE_APP_API_URL;
-
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async () => {
     try {
-      const response = await axios.get<Contact[]>(
-        `${BASE_URL}api/contacts`
-      );
+      const response = await axios.get<Contact[]>(`api/contacts`);
       const data = response.data;
       return data;
     } catch (error) {
@@ -44,14 +40,30 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
+export const addContacts = createAsyncThunk(
+  'contacts/addContacts',
+  async (values: ContactsFormInput) => {
+    try {
+      const newData = {
+        email: values.email,
+        phone: values.phone
+      };
+      await axios.post(`api/contacts`, newData);
+    } catch (error) {
+      const err = error as AxiosError;
+      return err.message;
+    }
+  }
+);
+
 export const editEmail = createAsyncThunk(
   'contacts/editEmail',
-  async (newsData: { id?: string; values: ContactsFormInput }) => {
+  async (data: { id?: string; values: ContactsFormInput }) => {
     try {
-      const newPost = {
-        email: newsData.values.email
+      const newData = {
+        email: data.values.email
       };
-      await axios.patch(`${BASE_URL}api/contacts/${newsData.id}`, newPost);
+      await axios.patch(`api/contacts/${data.id}`, newData);
     } catch (error) {
       const err = error as AxiosError;
       return err.message;
@@ -61,12 +73,12 @@ export const editEmail = createAsyncThunk(
 
 export const editPhone = createAsyncThunk(
   'contacts/editPhone',
-  async (newsData: { id?: string; values: ContactsFormInput }) => {
+  async (data: { id?: string; values: ContactsFormInput }) => {
     try {
-      const newPost = {
-        phone: newsData.values.phone
+      const newData = {
+        phone: data.values.phone
       };
-      await axios.patch(`${BASE_URL}api/contacts/${newsData.id}`, newPost);
+      await axios.patch(`api/contacts/${data.id}`, newData);
     } catch (error) {
       const err = error as AxiosError;
       return err.message;

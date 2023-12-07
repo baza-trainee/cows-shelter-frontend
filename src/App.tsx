@@ -21,6 +21,7 @@ import NewPassword from './pages/admin/login/newPassword';
 import ResetPassword from './pages/admin/login/resetPassword';
 import Pdf from './pages/admin/pdf';
 import PdfDisplay from './pages/PdfDisplay';
+import AddContacts from './pages/admin/contacts/add';
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="partners/add" element={<AddPartner />} />
           <Route path="partners/edit/:id" element={<EditPartner />} />
           <Route path="contacts" element={<Contacts />} />
+          <Route path="contacts/add" element={<AddContacts />} />
           <Route path="newpaswword" element={<NewPassword />} />
           <Route path="pdf" element={<Pdf />} />
         </Route>

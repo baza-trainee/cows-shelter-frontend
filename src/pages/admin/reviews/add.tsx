@@ -13,7 +13,6 @@ import {
   addErrorResponseMessage,
   addSuccessResponseMessage
 } from '@/utils/responseMessages';
-// import { useForm } from "react-hook-form";
 
 const AddReviews = () => {
   const navigate = useNavigate();
