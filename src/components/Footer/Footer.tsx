@@ -8,8 +8,20 @@ import { fetchPdfs } from '@/store/slices/pdfSlice';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
   const dispatch = useAppDispatch();
+
+  const translateTitle = (title: string) => {
+    let translatedTitle = '';
+    if (title === 'Політика Конфіденційності') {
+      translatedTitle = 'Privacy Policy';
+    }
+    if (title === 'Правила Користування Сайтом') {
+      translatedTitle = 'Terms of Usage';
+    }
+    return translatedTitle;
+  };
   const documents = useAppSelector((state) => state.pdf.documents);
 
   const anchorLinks = [
@@ -82,7 +94,9 @@ const Footer = () => {
                   documents.map((document) => (
                     <li key={document.id}>
                       <Link to={`pdf/${document.id}`} className="default-text">
-                        {document.title}
+                        {language === 'uk'
+                          ? document.title
+                          : translateTitle(document.title)}
                       </Link>
                     </li>
                   ))
@@ -229,7 +243,9 @@ const Footer = () => {
                           to={`pdf/${document.id}`}
                           className="default-text"
                         >
-                          {document.title}
+                          {language === 'uk'
+                            ? document.title
+                            : translateTitle(document.title)}
                         </Link>
                       </li>
                     ))
@@ -305,7 +321,9 @@ const Footer = () => {
                   documents.map((document) => (
                     <li key={document.id}>
                       <Link to={`pdf/${document.id}`} className="default-text">
-                        {document.title}
+                        {language === 'uk'
+                          ? document.title
+                          : translateTitle(document.title)}
                       </Link>
                     </li>
                   ))
