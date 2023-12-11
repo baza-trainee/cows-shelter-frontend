@@ -83,11 +83,11 @@ const AddContacts = () => {
           />
           <p className="text-[17px] text-disabled">{`Додати нові контакти`}</p>
           <div className="flex items-center gap-4">
-            <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2">
+            <button className=" w-[13.5rem] bg-gray-200 px-6 py-2 transition-all hover:bg-accent">
               {isProcessing ? 'Обробка запиту...' : 'Додати'}
             </button>
             <Link to="/admin/contacts">
-              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
+              <button className="w-[13.5rem] border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-lightgrey">
                 Скасувати
               </button>
             </Link>

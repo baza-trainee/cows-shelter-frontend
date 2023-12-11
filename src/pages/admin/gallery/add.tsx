@@ -21,7 +21,12 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
   const [image, setImage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const { handleSubmit, watch, control } = useForm<NewsFormInput>({
+  const {
+    handleSubmit,
+    watch,
+    control,
+    formState: { isDirty, isValid }
+  } = useForm<NewsFormInput>({
     mode: 'onChange',
     defaultValues: { image: [] }
   });
@@ -80,15 +85,21 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
               Розмістити фото в галереї?
             </span>
             <div className="flex gap-4">
-              <button className=" w-full rounded-sm bg-gray-200 p-2 hover:bg-lemon">
+              <button
+                className={`w-[13.5rem] px-6 py-2 font-medium ${
+                  isDirty && isValid
+                    ? 'cursor-pointer bg-accent'
+                    : 'cursor-not-allowed bg-disabled'
+                }`}
+              >
                 {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
               </button>
 
               <button
                 onClick={() => setIsModalOpen(false)}
-                className=" hover:border-red-300 hover:bg-red-300 w-full rounded-sm  border border-gray-500 p-2"
+                className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled"
               >
-                Cancel
+                Скасувати
               </button>
             </div>
           </form>

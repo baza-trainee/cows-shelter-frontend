@@ -43,8 +43,6 @@ const ExcursionModal = ({
     setImagesToDisplay(randomImages);
   }, [images]);
 
-  console.log(imagesToDisplay);
-
   const handleChangedSize = () => {
     setWindowWidth(window.innerWidth);
     setHeight(window.innerHeight);
@@ -146,11 +144,11 @@ const ExcursionModal = ({
             {windowWidth >= 768 && windowWidth < 1280 && (
               <div className="flex gap-3">
                 <img
-                  src={imagesToDisplay[0].image_url}
+                  src={imagesToDisplay[0]?.image_url}
                   className="h-full w-full object-cover"
                 ></img>
                 <img
-                  src={imagesToDisplay[1].image_url}
+                  src={imagesToDisplay[1]?.image_url}
                   className="h-full w-full object-cover"
                 ></img>
               </div>

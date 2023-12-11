@@ -32,7 +32,7 @@ const EditPartner = () => {
     watch,
     control,
     setValue,
-    formState: { errors }
+    formState: { errors, isDirty, isValid }
   } = useForm<PartnersFormInput>({
     mode: 'onChange',
     defaultValues: defaultValues
@@ -138,12 +138,18 @@ const EditPartner = () => {
               </p>
 
               <div className="flex gap-4">
-                <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
+                <button
+                  className={`w-[13.5rem] px-6 py-2 font-medium ${
+                    isDirty && isValid
+                      ? 'cursor-pointer bg-accent'
+                      : 'cursor-not-allowed bg-disabled'
+                  }`}
+                >
                   {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
                 </button>
 
                 <Link to="/admin/partners">
-                  <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
+                  <button className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
                     Скасувати
                   </button>
                 </Link>

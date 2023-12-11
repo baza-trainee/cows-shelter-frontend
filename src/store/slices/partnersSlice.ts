@@ -153,7 +153,6 @@ const partnersSlice = createSlice({
       })
       .addCase(fetchPartnersWithPagination.fulfilled, (state, action) => {
         state.paginatedData = action.payload as ResponseWithPagination;
-        console.log(state.paginatedData);
         state.loading = false;
       })
       .addCase(removePartner.fulfilled, (state, action) => {

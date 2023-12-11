@@ -13,13 +13,12 @@ import Map from './Map';
 import { fetchContacts } from '@/store/slices/contactsSlice';
 import Loader from '../admin/Loader';
 
-
 const Contacts = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const contacts = useAppSelector((state) => state.contacts.contacts);
   const isLoading = useAppSelector((state) => state.contacts.loading);
-  
+
   const { ref, inView } = useInView({
     threshold: 0.5
   });
@@ -33,15 +32,14 @@ const Contacts = () => {
   }, [inView, dispatch]);
 
   useEffect(() => {
-     dispatch(fetchContacts())
+    dispatch(fetchContacts())
       .unwrap()
-        .then(() => {
-          return [];
-        })
-        .catch((error) => console.log(error));
-   }, [dispatch])
- 
-  console.log(contacts);
+      .then(() => {
+        return [];
+      })
+      .catch((error) => console.log(error));
+  }, [dispatch]);
+
   if (isLoading) return <Loader />;
   return (
     <section>
@@ -60,17 +58,17 @@ const Contacts = () => {
           <ul className="mb-6 flex flex-col gap-2 text-graphite xs:text-sm md:text-base lg:text-[17px]">
             <li>
               <a
-                href={`mailto://${
-                  contacts[0] ? contacts[0].email : ''
-                }`}
+                href={`mailto://${contacts[0] ? contacts[0].email : ''}`}
                 rel="noopener noreferrer"
               >
                 {contacts[0] ? contacts[0].email : ''}
               </a>
             </li>
             <li>
-              <a href={`tel:${contacts[0] ? contacts[0].phone : ''}`} 
-              rel="noopener noreferrer">
+              <a
+                href={`tel:${contacts[0] ? contacts[0].phone : ''}`}
+                rel="noopener noreferrer"
+              >
                 {contacts[0] ? contacts[0].phone : ''}
               </a>
             </li>
