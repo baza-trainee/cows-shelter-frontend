@@ -26,13 +26,12 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
   const navigate = useNavigate();
   const {
     handleSubmit,
-    watch,
     control,
     setValue,
-    formState: { errors }
+    formState: { errors, isDirty, isValid }
   } = useForm<ContactsFormInput>({
     mode: 'onChange',
-    defaultValues: { email: '', phone: '' }
+    defaultValues: {}
   });
 
   useEffect(() => {
@@ -45,8 +44,6 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
       setCurrentType('phone');
     }
   }, [data, setValue]);
-
-  const currentValues = watch();
 
   const onSubmit: SubmitHandler<ContactsFormInput> = async (
     values: ContactsFormInput
@@ -84,7 +81,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
     <div className="left-1/6 fixed top-0 z-20 h-full w-5/6 bg-[rgba(0,0,0,0.6)]">
       <div className="absolute left-[50%] top-[50%] z-[9999] flex h-[60vh] w-[50vw] -translate-x-[50%] -translate-y-[50%] items-center justify-center gap-4 bg-white px-4 py-8 text-black">
         <button
-          className="absolute right-5 top-4 text-graphite  hover:text-accent"
+          className="absolute right-5 top-4 text-graphite hover:text-accent"
           onClick={() => setIsModalOpen(false)}
         >
           <TfiClose size={20} />
@@ -92,7 +89,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
-          className="flex flex-1 flex-col gap-4 p-4 text-base"
+          className="max-x-[23.75rem] mx-auto my-[3.75rem] flex flex-col justify-center gap-4 p-4 text-base"
         >
           <h4 className="text-2xl font-bold">
             {`Зміна 
@@ -129,27 +126,31 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
                 }
                 title={
                   currentType === 'email'
-                    ? 'Електронна пошта'
-                    : 'Номер телефону'
-                }
-                value={
-                  currentType === 'email'
-                    ? currentValues.email
-                    : currentValues.phone
+                    ? 'Оновлена електронна пошта:'
+                    : 'Оновлений номер телефону:'
                 }
               />
             )}
           />
-          <p className="text-[17px] text-disabled">{`Змінити ${
+          <p
+            className={`text-[17px] ${
+              isDirty && isValid ? 'text-black' : 'text-disabled'
+            }`}
+          >{`Змінити ${
             currentType === 'email' ? 'електронну пошту' : 'номер телефону'
           }?`}</p>
-          <div className="flex gap-4">
-            <button className="mt-4 w-[8rem] bg-disabled p-2 text-white hover:bg-gray-300">
+          <div className="flex w-full gap-4">
+            <button
+              className={`${
+                isDirty && isValid ? 'bg-accent' : 'bg-disabled'
+              } mt-4 basis-3/6 p-2 text-white`}
+              disabled={!isDirty || !isValid}
+            >
               {isProcessing ? 'Обробка запиту...' : 'Змінити'}
             </button>
             <button
               onClick={() => setIsModalOpen(false)}
-              className="hover:bg-red-300 mt-4 w-[8rem] border bg-white p-2"
+              className="mt-4 basis-3/6 border border-black bg-white p-2  hover:border-accent focus:border-lightgrey"
             >
               Скасувати
             </button>
@@ -157,7 +158,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
         </form>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default Edit;
