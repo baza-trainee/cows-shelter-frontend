@@ -47,7 +47,7 @@ export const newsValidation = {
     },
     pattern: {
       value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,-:;"()!?]+$/,
-      message: 'Введіть коректний текст українською мовою'
+      message: 'Введіть коректний текст'
     }
   },
 
@@ -79,7 +79,7 @@ export const newsValidation = {
     },
     pattern: {
       value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
-      message: 'Введіть коректний текст українською мовою'
+      message: 'Введіть коректний текст'
     }
   },
 

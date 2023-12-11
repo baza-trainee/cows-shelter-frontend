@@ -31,7 +31,7 @@ export const excursionsValidation = {
     },
     pattern: {
       value: /^[a-zA-Z\s\d'’-]+$/,
-      message: 'Введіть коректну назву українською мовою'
+      message: 'Введіть коректну назву'
     }
   },
 
@@ -47,7 +47,7 @@ export const excursionsValidation = {
     },
     pattern: {
       value: /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"“”—()!?-]+$/,
-      message: 'Введіть коректний текст українською мовою'
+      message: 'Введіть коректний текст'
     }
   },
 
