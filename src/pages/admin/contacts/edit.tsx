@@ -158,7 +158,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
         </form>
       </div>
     </div>
-  ); 
+  );
 };
 
 export default Edit;
