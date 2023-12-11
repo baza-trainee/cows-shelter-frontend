@@ -96,8 +96,8 @@ const ExcursionModal = ({
           isOpen ? 'translate-x-0' : 'translate-x-[100%]'
         } w-[85%] ${
           windowHeight < 400 && 'md:h-[380px]'
-        } h-[675px] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white 
-        px-5 pb-12 pt-4 transition-all duration-700 md:h-[832px] md:w-[672px] md:px-10 md:pb-10 md:pt-10 
+        } h-[675px] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white px-5 
+        pb-12 pt-4 transition-all duration-700 md:h-[832px] md:max-h-full md:w-[672px] md:px-10 md:pb-10 md:pt-10 
          lg:h-auto lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]`}
       >
         <div className="flex flex-col md:gap-6 lg:flex-row lg:gap-10">
@@ -145,18 +145,18 @@ const ExcursionModal = ({
               <div className="flex gap-3">
                 <img
                   src={imagesToDisplay[0]?.image_url}
-                  className="h-full w-full object-cover"
+                  className="h-[194px] w-[290px] object-cover"
                 ></img>
                 <img
                   src={imagesToDisplay[1]?.image_url}
-                  className="h-full w-full object-cover"
+                  className="h-[194px] w-[290px] object-cover"
                 ></img>
               </div>
             )}
             {windowWidth < 768 && (
               <img
                 src={imagesToDisplay[0]?.image_url}
-                className="h-full w-full object-cover"
+                className="min-h-[186px] min-w-[280px] object-cover"
               ></img>
             )}
           </div>
