@@ -170,6 +170,7 @@ const Excursions = () => {
                   <li key={excursion.id} className="drop-shadow">
                     <div className="group relative">
                       <img
+                        className="h-[235px] w-[324px] lg:h-[384px] lg:w-[384px]"
                         src={excursion.image_url}
                         alt={`Excursion Image`}
                       ></img>
