@@ -5,7 +5,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import { defaultValues } from './defaultValues';
-import { reviewsValidation } from './reviewsValidation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { reviewsValidation } from './reviewsSchema';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { editReview, fetchReviewById } from '@/store/slices/reviewsSlice';
 import {
@@ -27,6 +28,7 @@ const EditReviews = () => {
     setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<ReviewsFormInput>({
+    resolver: zodResolver(reviewsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -75,7 +77,6 @@ const EditReviews = () => {
               <div className="flex gap-6">
                 <Controller
                   name="nameUa"
-                  rules={reviewsValidation.nameUa}
                   control={control}
                   render={({ field }) => (
                     <TextInput
@@ -88,7 +89,6 @@ const EditReviews = () => {
                 />
                 <Controller
                   name="nameEn"
-                  rules={reviewsValidation.nameEn}
                   control={control}
                   render={({ field }) => (
                     <TextInput
@@ -104,7 +104,6 @@ const EditReviews = () => {
               <div className="flex gap-6">
                 <Controller
                   name="reviewUa"
-                  rules={reviewsValidation.reviewUa}
                   control={control}
                   render={({ field }) => (
                     <TextArea
@@ -117,7 +116,6 @@ const EditReviews = () => {
                 />
                 <Controller
                   name="reviewEn"
-                  rules={reviewsValidation.reviewEn}
                   control={control}
                   render={({ field }) => (
                     <TextArea

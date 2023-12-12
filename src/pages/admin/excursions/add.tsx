@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { ExcursionsFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
-import { excursionsValidation } from './excursionsValidation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { excursionsValidation } from './excursionsSchema';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
@@ -27,6 +28,7 @@ const AddExcursions = () => {
     control,
     formState: { errors, isDirty, isValid }
   } = useForm<ExcursionsFormInput>({
+    resolver: zodResolver(excursionsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -73,7 +75,6 @@ const AddExcursions = () => {
             <section className="flex flex-col items-center justify-center gap-4">
               <Controller
                 name="titleUa"
-                rules={excursionsValidation.titleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -86,7 +87,6 @@ const AddExcursions = () => {
               />
               <Controller
                 name="titleEn"
-                rules={excursionsValidation.titleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -100,7 +100,6 @@ const AddExcursions = () => {
 
               <Controller
                 name="descriptionUa"
-                rules={excursionsValidation.descriptionUa}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -113,7 +112,6 @@ const AddExcursions = () => {
               />
               <Controller
                 name="descriptionEn"
-                rules={excursionsValidation.descriptionEn}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -151,7 +149,6 @@ const AddExcursions = () => {
                 <FileInput
                   name="image"
                   control={control}
-                  rules={excursionsValidation.image}
                   accept="image/*"
                   placeholder={'Оберіть файл'}
                   title="Оберіть файл:"
@@ -165,7 +162,6 @@ const AddExcursions = () => {
                     <p className="text-sm font-normal">Від</p>
                     <Controller
                       name="timeFrom"
-                      rules={excursionsValidation.timeFrom}
                       control={control}
                       render={({ field }) => (
                         <TextInput
@@ -179,7 +175,6 @@ const AddExcursions = () => {
                     <p className="text-sm font-normal">До</p>
                     <Controller
                       name="timeTill"
-                      rules={excursionsValidation.timeTill}
                       control={control}
                       render={({ field }) => (
                         <TextInput
@@ -203,7 +198,6 @@ const AddExcursions = () => {
                   <p className="flex items-center text-sm font-normal">До</p>
                   <Controller
                     name="visitorsNumber"
-                    rules={excursionsValidation.visitorsNumber}
                     control={control}
                     render={({ field }) => (
                       <TextInput

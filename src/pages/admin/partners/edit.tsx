@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { defaultValues } from './defaultValues';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextInput from '@/components/admin/inputs/TextInput';
 import { PartnersFormInput } from '@/types';
@@ -12,7 +12,7 @@ import {
   fetchPartners
 } from '@/store/slices/partnersSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import { partnersValidation } from './partnersValidation';
+import { partnersValidation } from './partnersSchema';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
   editSuccessResponseMessage,
@@ -34,6 +34,7 @@ const EditPartner = () => {
     setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<PartnersFormInput>({
+    resolver: zodResolver(partnersValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -97,14 +98,12 @@ const EditPartner = () => {
                 name="logo"
                 control={control}
                 accept="image/*"
-                rules={partnersValidation.logo}
                 placeholder={'Оберіть файл'}
                 title="Змінити логотип Партнера:"
                 className="w-full "
               />
               <Controller
                 name="name"
-                rules={partnersValidation.name}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -119,7 +118,6 @@ const EditPartner = () => {
               <section className="flex flex-col items-center justify-center gap-4">
                 <Controller
                   name="link"
-                  rules={partnersValidation.link}
                   control={control}
                   render={({ field }) => (
                     <TextInput

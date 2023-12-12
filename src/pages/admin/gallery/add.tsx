@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { NewsFormInput } from '@/types';
 import { useAppDispatch } from '@/store/hook';
 import { addNewImage } from '@/store/slices/gallerySlice';
 import FileInput from '@/components/admin/inputs/FileInput';
-import { imageValidation } from './imageValidation';
+import { imageValidation } from './gallerySchema';
 import CloseIcon from '@/components/icons/CloseIconMenu';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
@@ -27,6 +28,7 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
     control,
     formState: { isDirty, isValid }
   } = useForm<NewsFormInput>({
+    resolver: zodResolver(imageValidation),
     mode: 'onChange',
     defaultValues: { image: [] }
   });
@@ -79,7 +81,6 @@ const AddImage = ({ setIsModalOpen }: AddImageProps) => {
               accept="image/*"
               placeholder={'Оберіть файл:'}
               title="Оберіть файл"
-              rules={imageValidation.image}
             />
             <span className="mt-4 text-sm text-gray-500">
               Розмістити фото в галереї?

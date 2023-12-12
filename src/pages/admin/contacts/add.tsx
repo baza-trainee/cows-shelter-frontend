@@ -3,9 +3,10 @@ import TextInput from '@/components/admin/inputs/TextInput';
 import { ContactsFormInput } from '@/types';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '@/store/hook';
 import { addContacts } from '@/store/slices/contactsSlice';
-import { contactsValidation } from './contactsValidation';
+import { contactsValidation } from './contactsSchema';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
   addErrorResponseMessage,
@@ -22,6 +23,7 @@ const AddContacts = () => {
     control,
     formState: { errors }
   } = useForm<ContactsFormInput>({
+    resolver: zodResolver(contactsValidation),
     mode: 'onChange',
     defaultValues: { email: '', phone: '' }
   });
@@ -55,7 +57,6 @@ const AddContacts = () => {
         >
           <Controller
             name={'email'}
-            rules={contactsValidation.email}
             control={control}
             render={({ field }) => (
               <TextInput
@@ -69,7 +70,6 @@ const AddContacts = () => {
           />
           <Controller
             name={'phone'}
-            rules={contactsValidation.phone}
             control={control}
             render={({ field }) => (
               <TextInput

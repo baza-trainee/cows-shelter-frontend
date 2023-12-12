@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
+import { zodResolver } from '@hookform/resolvers/zod';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import FileInput from '@/components/admin/inputs/FileInput';
@@ -16,7 +17,7 @@ import {
   editErrorResponseMessage,
   editSuccessResponseMessage
 } from '@/utils/responseMessages';
-import { excursionsValidation } from './excursionsValidation';
+import { excursionsValidation } from './excursionsSchema';
 
 const EditExcursions = () => {
   const { id } = useParams();
@@ -33,6 +34,7 @@ const EditExcursions = () => {
     setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<ExcursionsFormInput>({
+    resolver: zodResolver(excursionsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -101,7 +103,6 @@ const EditExcursions = () => {
             <section className="flex flex-col items-center justify-center gap-6">
               <Controller
                 name="titleUa"
-                rules={excursionsValidation.titleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -114,7 +115,6 @@ const EditExcursions = () => {
               />
               <Controller
                 name="titleEn"
-                rules={excursionsValidation.titleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -128,7 +128,6 @@ const EditExcursions = () => {
 
               <Controller
                 name="descriptionUa"
-                rules={excursionsValidation.descriptionUa}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -141,7 +140,6 @@ const EditExcursions = () => {
               />
               <Controller
                 name="descriptionEn"
-                rules={excursionsValidation.descriptionEn}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -175,7 +173,6 @@ const EditExcursions = () => {
                 <FileInput
                   name="image"
                   control={control}
-                  rules={excursionsValidation.image}
                   accept="image/*"
                   placeholder={'Оберіть файл'}
                   title="Оберіть файл:"
@@ -191,7 +188,6 @@ const EditExcursions = () => {
                       <p className="text-sm font-normal">Від</p>
                       <Controller
                         name="timeFrom"
-                        rules={excursionsValidation.timeFrom}
                         control={control}
                         render={({ field }) => (
                           <TextInput
@@ -205,7 +201,6 @@ const EditExcursions = () => {
                       <p className="text-sm font-normal">До</p>
                       <Controller
                         name="timeTill"
-                        rules={excursionsValidation.timeTill}
                         control={control}
                         render={({ field }) => (
                           <TextInput
@@ -228,7 +223,6 @@ const EditExcursions = () => {
                     <p className="flex items-center text-sm font-normal">До</p>
                     <Controller
                       name="visitorsNumber"
-                      rules={excursionsValidation.visitorsNumber}
                       control={control}
                       render={({ field }) => (
                         <TextInput

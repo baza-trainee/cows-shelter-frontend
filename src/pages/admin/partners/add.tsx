@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { defaultValues } from './defaultValues';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextInput from '@/components/admin/inputs/TextInput';
 import { PartnersFormInput } from '@/types';
 import { addNewPartner } from '@/store/slices/partnersSlice';
 import { useAppDispatch } from '@/store/hook';
-import { partnersValidation } from './partnersValidation';
+import { partnersValidation } from './partnersSchema';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
   addSuccessResponseMessage,
@@ -27,6 +27,7 @@ const AddPartner = () => {
     control,
     formState: { errors, isDirty, isValid }
   } = useForm<PartnersFormInput>({
+    resolver: zodResolver(partnersValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -74,14 +75,12 @@ const AddPartner = () => {
                 name="logo"
                 control={control}
                 accept="image/*"
-                rules={partnersValidation.logo}
                 placeholder={'Оберіть файл'}
                 title="Додати логотип Партнера:"
                 className="w-full "
               />
               <Controller
                 name="name"
-                rules={partnersValidation.name}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -96,7 +95,6 @@ const AddPartner = () => {
               <section className="flex flex-col items-center justify-center gap-4">
                 <Controller
                   name="link"
-                  rules={partnersValidation.link}
                   control={control}
                   render={({ field }) => (
                     <TextInput

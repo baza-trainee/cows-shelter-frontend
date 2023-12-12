@@ -33,9 +33,7 @@ const TextInput = forwardRef(function TextInput(
       )}
       <input {...rest} id={id} value={value} className={inputClassName} />
 
-      {errorText && (
-        <span className="ml-2 bg-green-100 text-xs">{errorText}</span>
-      )}
+      {errorText && <span className="text-xs">{errorText}</span>}
     </div>
   );
 });

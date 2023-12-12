@@ -22,7 +22,7 @@ ${
 
   return (
     <div
-      className={`w-full min-w-[450px] ${
+      className={`w-full min-w-[450px] max-w-[442px] ${
         errorText ? 'text-error' : 'text-inherit'
       }`}
     >
