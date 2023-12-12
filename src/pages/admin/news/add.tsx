@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
 import { NewsFormInput } from '@/types';
-import { newsValidation } from './newsValidation';
+import { newsValidation } from './newsSchema';
 import { useAppDispatch } from '@/store/hook';
 import { addNewPost } from '@/store/slices/newsSlice';
 import TextInput from '@/components/admin/inputs/TextInput';
@@ -29,6 +30,7 @@ const AddPost = () => {
     control,
     formState: { errors, isDirty, isValid }
   } = useForm<NewsFormInput>({
+    resolver: zodResolver(newsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -75,7 +77,6 @@ const AddPost = () => {
             <section className="flex flex-col items-center justify-center gap-4">
               <Controller
                 name="titleUa"
-                rules={newsValidation.titleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -88,7 +89,6 @@ const AddPost = () => {
               />
               <Controller
                 name="titleEn"
-                rules={newsValidation.titleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -101,7 +101,6 @@ const AddPost = () => {
               />
               <Controller
                 name="subTitleUa"
-                rules={newsValidation.subTitleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -114,7 +113,6 @@ const AddPost = () => {
               />
               <Controller
                 name="subTitleEn"
-                rules={newsValidation.subTitleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -128,7 +126,6 @@ const AddPost = () => {
 
               <Controller
                 name="contentUa"
-                rules={newsValidation.contentUa}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -141,7 +138,6 @@ const AddPost = () => {
               />
               <Controller
                 name="contentEn"
-                rules={newsValidation.contentEn}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -179,7 +175,6 @@ const AddPost = () => {
                 <FileInput
                   name="image"
                   control={control}
-                  rules={newsValidation.image}
                   accept="image/*"
                   placeholder={'Оберіть файл'}
                   title="Оберіть файл"

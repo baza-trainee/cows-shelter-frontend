@@ -2,9 +2,10 @@ import TextInput from '@/components/admin/inputs/TextInput';
 import { ContactsFormInput } from '@/types';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '@/store/hook';
 import { editEmail, editPhone } from '@/store/slices/contactsSlice';
-import { contactsValidation } from './contactsValidation';
+import { contactsValidation } from './contactsSchema';
 import { TfiClose } from 'react-icons/tfi';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
@@ -30,6 +31,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
     setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<ContactsFormInput>({
+    resolver: zodResolver(contactsValidation),
     mode: 'onChange',
     defaultValues: {}
   });
@@ -105,11 +107,6 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
           </p>
           <Controller
             name={currentType === 'email' ? 'email' : 'phone'}
-            rules={
-              currentType === 'email'
-                ? contactsValidation.email
-                : contactsValidation.phone
-            }
             control={control}
             render={({ field }) => (
               <TextInput

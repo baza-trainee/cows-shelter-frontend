@@ -2,9 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { ReviewsFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
+import { zodResolver } from '@hookform/resolvers/zod';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
-import { reviewsValidation } from './reviewsValidation';
+import { reviewsValidation } from './reviewsSchema';
 import { useAppDispatch } from '@/store/hook';
 import { useState } from 'react';
 import { addNewReview } from '@/store/slices/reviewsSlice';
@@ -24,6 +25,7 @@ const AddReviews = () => {
     control,
     formState: { errors, isDirty, isValid }
   } = useForm<ReviewsFormInput>({
+    resolver: zodResolver(reviewsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -58,7 +60,6 @@ const AddReviews = () => {
               <div className="flex gap-6">
                 <Controller
                   name="nameUa"
-                  rules={reviewsValidation.nameUa}
                   control={control}
                   render={({ field }) => (
                     <TextInput
@@ -71,7 +72,6 @@ const AddReviews = () => {
                 />
                 <Controller
                   name="nameEn"
-                  rules={reviewsValidation.nameEn}
                   control={control}
                   render={({ field }) => (
                     <TextInput
@@ -87,7 +87,6 @@ const AddReviews = () => {
               <div className="flex gap-6">
                 <Controller
                   name="reviewUa"
-                  rules={reviewsValidation.reviewUa}
                   control={control}
                   render={({ field }) => (
                     <TextArea
@@ -100,7 +99,6 @@ const AddReviews = () => {
                 />
                 <Controller
                   name="reviewEn"
-                  rules={reviewsValidation.reviewEn}
                   control={control}
                   render={({ field }) => (
                     <TextArea
