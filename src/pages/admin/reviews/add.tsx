@@ -121,16 +121,16 @@ const AddReviews = () => {
           </p>
           <div className="flex gap-4">
             <button
-              className={`w-[11.25rem] px-6 py-2 font-medium text-white ${
+              className={`w-[13.5rem] px-6 py-2 font-medium ${
                 isDirty && isValid
-                  ? 'cursor-pointer bg-accent'
-                  : 'cursor-not-allowed bg-disabled'
+                  ? 'cursor-pointer bg-accent text-black'
+                  : 'cursor-not-allowed bg-disabled text-white'
               }`}
             >
               {isProcessing ? 'Обробка запиту...' : 'Додати'}
             </button>
             <Link to="/admin/reviews">
-              <button className="w-[11.25rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
+              <button className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
                 Скасувати
               </button>
             </Link>

@@ -28,6 +28,7 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
   const {
     handleSubmit,
     control,
+    watch,
     setValue,
     formState: { errors, isDirty, isValid }
   } = useForm<ContactsFormInput>({
@@ -39,10 +40,8 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
   useEffect(() => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     if (emailRegex.test(data)) {
-      setValue('email', data);
       setCurrentType('email');
     } else {
-      setValue('phone', data);
       setCurrentType('phone');
     }
   }, [data, setValue]);
@@ -50,7 +49,6 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
   const onSubmit: SubmitHandler<ContactsFormInput> = async (
     values: ContactsFormInput
   ) => {
-    console.log(values);
     try {
       setIsProcessing(true);
       currentType === 'email'
@@ -78,6 +76,11 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
       );
     }
   };
+
+  console.log(isValid);
+  console.log(errors);
+  const currentValues = watch();
+  console.log(currentValues);
 
   return (
     <div className="left-1/6 fixed top-0 z-20 h-full w-5/6 bg-[rgba(0,0,0,0.6)]">
@@ -138,16 +141,18 @@ const Edit = ({ setIsModalOpen, data, id }: EditContactsProps) => {
           }?`}</p>
           <div className="flex w-full gap-4">
             <button
-              className={`${
-                isDirty && isValid ? 'bg-accent' : 'bg-disabled'
-              } mt-4 basis-3/6 p-2 text-white`}
-              disabled={!isDirty || !isValid}
+              className={`w-[13.5rem] px-6 py-2 font-medium ${
+                isDirty && !Object.keys(errors).length
+                  ? 'cursor-pointer bg-accent text-black'
+                  : 'cursor-not-allowed bg-disabled text-white'
+              } mt-4 `}
+              disabled={!isDirty || !!Object.keys(errors).length}
             >
               {isProcessing ? 'Обробка запиту...' : 'Змінити'}
             </button>
             <button
               onClick={() => setIsModalOpen(false)}
-              className="mt-4 basis-3/6 border border-black bg-white p-2  hover:border-accent focus:border-lightgrey"
+              className="mt-4 w-[13.5rem] border border-black bg-white p-2  hover:border-accent focus:border-lightgrey"
             >
               Скасувати
             </button>

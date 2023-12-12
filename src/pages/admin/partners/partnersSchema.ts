@@ -6,7 +6,8 @@ const ACCEPTED_IMAGE_TYPES = [
   'image/jpeg',
   'image/jpg',
   'image/png',
-  'image/webp'
+  'image/webp',
+  'for-url'
 ];
 
 export const partnersValidation = z.object({
@@ -23,17 +24,17 @@ export const partnersValidation = z.object({
 
   logo: z
     .any()
-    .refine((value) => value.length > 0, 'Додайте лого партнера')
+    .refine((value) => value?.length > 0, 'Додайте лого партнера')
     .refine((value) => {
-      value && value[0]?.size === 0 && value[0]?.type === 'for-url';
+      value && value?.[0]?.size === 0 && value?.[0]?.type === 'for-url';
       return true;
     })
     .refine(
-      (value) => value[0]?.size <= MAX_FILE_SIZE,
+      (value) => value?.[0]?.size <= MAX_FILE_SIZE,
       `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
     )
     .refine(
-      (value) => ACCEPTED_IMAGE_TYPES.includes(value[0]?.type),
+      (value) => ACCEPTED_IMAGE_TYPES.includes(value?.[0]?.type),
       'Оберіть фото в форматі .jpg, .jpeg, .png або .webp.'
     )
 });

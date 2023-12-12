@@ -25,7 +25,7 @@ const NewPassword = () => {
     setError,
     getValues,
     clearErrors,
-    formState: { errors, isValid }
+    formState: { errors, isValid, isDirty }
   } = useForm<FormValuesPasswordd>({
     resolver: zodResolver(passwordSchema),
     mode: 'onChange'
@@ -36,7 +36,6 @@ const NewPassword = () => {
   const onPasswordChange = () => {
     const passwordValue = watch('password');
     const confirmPasswordValue = watch('confirmpassword');
-
     if (
       passwordValue &&
       confirmPasswordValue &&
@@ -77,6 +76,8 @@ const NewPassword = () => {
       setIsLoader(false);
     }
   };
+
+  console.log(isValid);
 
   return (
     <div className="px-12 py-10">
@@ -156,15 +157,17 @@ const NewPassword = () => {
         ) : (
           <div className="flex gap-5 text-lg font-medium">
             <button
-              type="submit"
-              disabled={!isValid}
-              className="w-[183px] bg-accent px-5 py-3 transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-darkyellow  disabled:bg-disabled  disabled:text-white"
+              className={`w-[13.5rem] px-6 py-2 font-medium ${
+                isDirty && isValid
+                  ? 'cursor-pointer bg-accent text-black'
+                  : 'cursor-not-allowed bg-disabled text-white'
+              }`}
             >
               Змінити
             </button>
             <NavLink
               to="/admin"
-              className="w-[183px] border border-black px-5 py-3 text-center transition-all duration-300 hover:border-transparent hover:bg-lemon  focus:bg-lemon  active:bg-darkyellow "
+              className="w-[13.5rem] border border-black bg-white px-6 py-2 text-center font-medium transition-all hover:border-accent active:border-disabled"
             >
               Скасувати
             </NavLink>
