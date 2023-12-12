@@ -3,6 +3,8 @@ import { formatBytes } from '@/utils/formatBytes';
 
 const MAX_FILE_SIZE = 1024 * 1024;
 
+const ACCEPTED_IMAGE_TYPES = ['application/pdf', 'for-url'];
+
 export const pdfValidation = z.object({
   title: z
     .string({ required_error: 'Поле повинно бути заповнене' })
@@ -17,7 +19,7 @@ export const pdfValidation = z.object({
 
   document: z
     .any()
-    .refine((value) => value.length > 0, 'Додайте документ')
+    .refine((value) => value?.length > 0, 'Додайте документ')
     .refine((value) => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
       return true;
@@ -27,7 +29,7 @@ export const pdfValidation = z.object({
       `Максимальний розмір зображення ${formatBytes(MAX_FILE_SIZE)}`
     )
     .refine(
-      (value) => ['application/pdf'].includes(value?.[0]?.type),
+      (value) => ACCEPTED_IMAGE_TYPES.includes(value?.[0]?.type),
       'Документ має бути в форматі .pdf'
     )
 });

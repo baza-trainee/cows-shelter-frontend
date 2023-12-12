@@ -22,6 +22,7 @@ const Footer = () => {
     }
     return translatedTitle;
   };
+
   const documents = useAppSelector((state) => state.pdf.documents);
 
   const anchorLinks = [
@@ -58,7 +59,7 @@ const Footer = () => {
                 <p className="default-text">{t('footer:working_days')}</p>
               </li>
               <li>
-                <p className="default-text">10:00 - 20:00</p>
+                <p className="default-text">10:00 - 18:00</p>
               </li>
             </ul>
           </li>
@@ -182,7 +183,7 @@ const Footer = () => {
                 <p className="default-text">{t('footer:working_days')}</p>
               </li>
               <li>
-                <p className="default-text">10:00 - 20:00</p>
+                <p className="default-text">10:00 - 18:00</p>
               </li>
             </ul>
             <a href="#support">
@@ -205,10 +206,7 @@ const Footer = () => {
             <p className="default-text mb-0.5">{t('footer:shelter_p1')}</p>
             <p className="default-text mb-8">{t('footer:shelter_p2')} </p>
             <a href="#support">
-              <button
-                onClick={() => console.log('hi')}
-                className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow"
-              >
+              <button className=" duration-800 w-[14.44rem] bg-accent px-[4.16rem] py-2 text-lg font-medium leading-6  hover:bg-lemon focus:bg-lemon active:bg-darkyellow">
                 {t('footer:button_help')}{' '}
               </button>
             </a>
@@ -343,7 +341,7 @@ const Footer = () => {
                   <p className="default-text">{t('footer:working_days')}</p>
                 </li>
                 <li>
-                  <p className="default-text">10:00 - 20:00</p>
+                  <p className="default-text">10:00 - 18:00</p>
                 </li>
               </ul>
             </div>

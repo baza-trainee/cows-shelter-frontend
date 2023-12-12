@@ -205,8 +205,8 @@ const EditNews = () => {
             <button
               className={`w-[13.5rem] px-6 py-2 font-medium ${
                 isDirty && isValid
-                  ? 'cursor-pointer bg-accent'
-                  : 'cursor-not-allowed bg-disabled'
+                  ? 'cursor-pointer bg-accent text-black'
+                  : 'cursor-not-allowed bg-disabled text-white'
               }`}
             >
               {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
