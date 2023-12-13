@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BsFillPencilFill } from 'react-icons/bs';
+import Pen from '@/components/icons/Pen';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import Edit from './edit';
 import { fetchContacts } from '@/store/slices/contactsSlice';
@@ -35,7 +35,7 @@ const Contacts = () => {
             }}
             className="w-full border border-darkgray  bg-lightgrey px-[4.65rem] py-2 text-xl text-black hover:text-accent"
           >
-            <BsFillPencilFill />
+            <Pen />
           </button>
         </div>
       </div>
@@ -51,7 +51,7 @@ const Contacts = () => {
             }}
             className="w-full border border-darkgray px-[4.65rem] py-2 text-xl text-black hover:text-accent"
           >
-            <BsFillPencilFill />
+            <Pen />
           </button>
         </div>
       </div>

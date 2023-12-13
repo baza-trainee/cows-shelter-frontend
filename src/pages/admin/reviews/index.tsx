@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Confirm from '@/components/admin/Confirm';
-import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
+import Bucket from '@/components/icons/Bucket';
+import Pen from '@/components/icons/Pen';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import AddIcon from '@/components/icons/AddIcon';
-// import { reviews } from '@/data/reviews';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchReviews, removeReview } from '@/store/slices/reviewsSlice';
 import Loader from '@/components/admin/Loader';
@@ -68,11 +68,11 @@ const Reviews = () => {
                     setShowConfirm(true), setCurrentId(review.id);
                   }}
                 >
-                  <BsFillTrash3Fill />
+                  <Bucket />
                 </button>
                 <button className="text-xl text-darkgray transition-all hover:text-accent">
                   <Link to={`/admin/reviews/edit/${review.id}`}>
-                    <BsFillPencilFill />
+                    <Pen />
                   </Link>
                 </button>
               </div>
