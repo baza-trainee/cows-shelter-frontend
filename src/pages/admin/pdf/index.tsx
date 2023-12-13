@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Confirm from '@/components/admin/Confirm';
-import { BsFillTrash3Fill } from 'react-icons/bs';
+import Bucket from '@/components/icons/Bucket';
 import AddIcon from '@/components/icons/AddIcon';
 import AddPdf from './add';
 import {
@@ -69,7 +69,7 @@ const Pdf = () => {
                     setShowConfirm(true), setCurrentId(post.id);
                   }}
                 >
-                  <BsFillTrash3Fill />
+                  <Bucket />
                 </button>
               </div>
             </div>
