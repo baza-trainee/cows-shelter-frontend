@@ -53,7 +53,7 @@ const NewPassword = () => {
     try {
       const body = { token, password };
       await resetPassword(body);
-      navigate('/signin');
+      navigate('/login');
     } catch (error: any) {
       console.log(error);
       setError('confirmpassword', {
