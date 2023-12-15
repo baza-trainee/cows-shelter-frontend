@@ -34,6 +34,6 @@ export const changePassword = async (body: FormValuesPassword) => {
 };
 
 export const resetPassword = async (body: FormResetPassword) => {
-  const data = await instance.post('/api/password/reset/:token', body);
+  const data = await instance.post('/api/password/reset', body);
   return data;
 };

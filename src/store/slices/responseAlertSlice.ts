@@ -11,7 +11,7 @@ const initialState: ContactState = {
 };
 
 const responseAlertSlice = createSlice({
-  name: 'contacts',
+  name: 'alert',
   initialState,
   reducers: {
     openAlert(state, action: PayloadAction<string>) {

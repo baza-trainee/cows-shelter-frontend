@@ -8,7 +8,7 @@ import { resetPassword } from '../fetchin/fetchin';
 import { useState } from 'react';
 import LoaderSmoll from '@/components/admin/LoaderSmoll';
 
-type FormValuesPasswordd = {
+type FormValuesPassword = {
   password: string;
   confirmpassword: string;
 };
@@ -21,7 +21,7 @@ const NewPassword = () => {
     setError,
     clearErrors,
     formState: { errors, isValid }
-  } = useForm<FormValuesPasswordd>({
+  } = useForm<FormValuesPassword>({
     resolver: zodResolver(passwordSchema),
     mode: 'onChange'
   });
@@ -29,6 +29,7 @@ const NewPassword = () => {
   const navigate = useNavigate();
   const [isLoader, setIsLoader] = useState(false);
   const isPasswordField = Boolean(watch().password);
+
   const onPasswordChange = () => {
     const passwordValue = watch('password');
     const confirmPasswordValue = watch('confirmpassword');
@@ -47,7 +48,7 @@ const NewPassword = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<FormValuesPasswordd> = async ({ password }) => {
+  const onSubmit: SubmitHandler<FormValuesPassword> = async ({ password }) => {
     setIsLoader(true);
     try {
       const body = { token, password };
