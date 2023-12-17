@@ -93,7 +93,7 @@ const Slider = ({
       </div>
 
       <div
-        className={`my-8 flex w-full items-start  justify-start ${
+        className={`my-8 flex w-full items-start justify-start ${
           isReviews ? 'h-[50%]' : 'h-full'
         } ${isExcursions ? 'h-[50%]' : 'h-full'}`}
       >
@@ -127,7 +127,7 @@ const Slider = ({
                 isPartners
                   ? 'md:bottom-[0px] lg:bottom-[28px]'
                   : 'md:bottom-[40px]'
-              } bottom-8 flex h-full w-full items-center justify-center`}
+              } bottom-8 flex h-full w-full items-center justify-center pt-12`}
             >
               {children}
             </SwiperSlide>
