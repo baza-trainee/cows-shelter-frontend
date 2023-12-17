@@ -19,6 +19,8 @@ const Footer = () => {
     }
     if (title === 'Правила Користування Сайтом') {
       translatedTitle = 'Terms of Usage';
+    } else {
+      translatedTitle = title;
     }
     return translatedTitle;
   };
