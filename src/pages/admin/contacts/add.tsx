@@ -3,9 +3,10 @@ import TextInput from '@/components/admin/inputs/TextInput';
 import { ContactsFormInput } from '@/types';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '@/store/hook';
 import { addContacts } from '@/store/slices/contactsSlice';
-import { contactsValidation } from './contactsValidation';
+import { contactsValidation } from './contactsSchema';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
   addErrorResponseMessage,
@@ -22,6 +23,7 @@ const AddContacts = () => {
     control,
     formState: { errors }
   } = useForm<ContactsFormInput>({
+    resolver: zodResolver(contactsValidation),
     mode: 'onChange',
     defaultValues: { email: '', phone: '' }
   });
@@ -55,7 +57,6 @@ const AddContacts = () => {
         >
           <Controller
             name={'email'}
-            rules={contactsValidation.email}
             control={control}
             render={({ field }) => (
               <TextInput
@@ -69,7 +70,6 @@ const AddContacts = () => {
           />
           <Controller
             name={'phone'}
-            rules={contactsValidation.phone}
             control={control}
             render={({ field }) => (
               <TextInput
@@ -83,11 +83,11 @@ const AddContacts = () => {
           />
           <p className="text-[17px] text-disabled">{`Додати нові контакти`}</p>
           <div className="flex items-center gap-4">
-            <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2">
+            <button className=" w-[13.5rem] bg-gray-200 px-6 py-2 transition-all hover:bg-accent">
               {isProcessing ? 'Обробка запиту...' : 'Додати'}
             </button>
             <Link to="/admin/contacts">
-              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
+              <button className="w-[13.5rem] border-2 border-lightgrey bg-white px-6 py-2 transition-all hover:bg-lightgrey">
                 Скасувати
               </button>
             </Link>

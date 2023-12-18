@@ -2,9 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { ReviewsFormInput } from '@/types';
 import { defaultValues } from './defaultValues';
+import { zodResolver } from '@hookform/resolvers/zod';
 import TextInput from '@/components/admin/inputs/TextInput';
 import TextArea from '@/components/admin/inputs/TextArea';
-import { reviewsValidation } from './reviewsValidation';
+import { reviewsValidation } from './reviewsSchema';
 import { useAppDispatch } from '@/store/hook';
 import { useState } from 'react';
 import { addNewReview } from '@/store/slices/reviewsSlice';
@@ -24,6 +25,7 @@ const AddReviews = () => {
     control,
     formState: { errors, isDirty, isValid }
   } = useForm<ReviewsFormInput>({
+    resolver: zodResolver(reviewsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -58,7 +60,6 @@ const AddReviews = () => {
               <div className="flex gap-6">
                 <Controller
                   name="nameUa"
-                  rules={reviewsValidation.nameUa}
                   control={control}
                   render={({ field }) => (
                     <TextInput
@@ -71,7 +72,6 @@ const AddReviews = () => {
                 />
                 <Controller
                   name="nameEn"
-                  rules={reviewsValidation.nameEn}
                   control={control}
                   render={({ field }) => (
                     <TextInput
@@ -87,7 +87,6 @@ const AddReviews = () => {
               <div className="flex gap-6">
                 <Controller
                   name="reviewUa"
-                  rules={reviewsValidation.reviewUa}
                   control={control}
                   render={({ field }) => (
                     <TextArea
@@ -100,7 +99,6 @@ const AddReviews = () => {
                 />
                 <Controller
                   name="reviewEn"
-                  rules={reviewsValidation.reviewEn}
                   control={control}
                   render={({ field }) => (
                     <TextArea
@@ -123,16 +121,16 @@ const AddReviews = () => {
           </p>
           <div className="flex gap-4">
             <button
-              className={`w-[11.25rem] px-6 py-2 font-medium text-white ${
+              className={`w-[13.5rem] px-6 py-2 font-medium ${
                 isDirty && isValid
-                  ? 'cursor-pointer bg-accent'
-                  : 'cursor-not-allowed bg-disabled'
+                  ? 'cursor-pointer bg-accent text-black'
+                  : 'cursor-not-allowed bg-disabled text-white'
               }`}
             >
               {isProcessing ? 'Обробка запиту...' : 'Додати'}
             </button>
             <Link to="/admin/reviews">
-              <button className="w-[11.25rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
+              <button className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
                 Скасувати
               </button>
             </Link>

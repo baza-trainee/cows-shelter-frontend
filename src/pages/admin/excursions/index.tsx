@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Confirm from '@/components/admin/Confirm';
-import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
+import Bucket from '@/components/icons/Bucket';
+import Pen from '@/components/icons/Pen';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import AddIcon from '@/components/icons/AddIcon';
@@ -71,16 +72,16 @@ const Excursions = () => {
               </h2>
               <div className="absolute left-0 right-0 top-4 flex w-full items-center justify-between gap-2 px-6  py-2">
                 <button
-                  className="rounded-full p-[8px] text-xl text-white backdrop-blur-xl backdrop-contrast-75 transition-all hover:text-error"
+                  className="rounded-full p-[8px] text-xl text-white transition-all hover:text-error"
                   onClick={() => {
                     setShowConfirm(true), setCurrentId(excursion.id);
                   }}
                 >
-                  <BsFillTrash3Fill />
+                  <Bucket />
                 </button>
-                <button className="rounded-full p-2 text-xl text-white backdrop-blur-xl backdrop-contrast-75 transition-all hover:text-accent">
+                <button className="rounded-full p-2 text-xl text-white transition-all hover:text-accent">
                   <Link to={`/admin/excursions/edit/${excursion.id}`}>
-                    <BsFillPencilFill />
+                    <Pen />
                   </Link>
                 </button>
               </div>

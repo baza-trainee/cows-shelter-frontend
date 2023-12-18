@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { PdfFormInput } from '@/types';
 import { useAppDispatch } from '@/store/hook';
 import { addNewPdf } from '@/store/slices/pdfSlice';
 import FileInput from '@/components/admin/inputs/FileInput';
-import { pdfValidation } from './pdfValidation';
+import { pdfValidation } from './pdfSchema';
 import CloseIcon from '@/components/icons/CloseIconMenu';
 import TextInput from '@/components/admin/inputs/TextInput';
 import {
@@ -24,8 +25,9 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors, isValid, isDirty }
   } = useForm<PdfFormInput>({
+    resolver: zodResolver(pdfValidation),
     mode: 'onChange',
     defaultValues: { title: '', document: [] }
   });
@@ -63,7 +65,6 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
             </h1>
             <Controller
               name="title"
-              rules={pdfValidation.title}
               control={control}
               render={({ field }) => (
                 <TextInput
@@ -77,40 +78,35 @@ const AddPdf = ({ setIsModalOpen }: AddPdfProps) => {
             <FileInput
               name="document"
               control={control}
-              accept="image/*"
+              accept="application/*"
               placeholder={'Оберіть файл:'}
               title="Оберіть файл"
-              rules={pdfValidation.pdf}
             />
             <span className="mt-4 text-sm text-gray-500">
               Розмістити документ на сайті?
             </span>
             <div className="flex gap-4">
-              <button className=" w-full rounded-sm bg-gray-200 p-2 hover:bg-lemon">
+              <button
+                className={`w-[13.5rem] px-6 py-2 font-medium ${
+                  isDirty && isValid
+                    ? 'cursor-pointer bg-accent text-black'
+                    : 'cursor-not-allowed bg-disabled text-white'
+                }`}
+              >
                 {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
               </button>
 
               <button
                 onClick={() => setIsModalOpen(false)}
-                className=" hover:border-red-300 hover:bg-red-300 w-full rounded-sm  border border-gray-500 p-2"
+                className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled"
               >
-                Cancel
+                Скасувати
               </button>
             </div>
           </form>
 
           <div className="flex w-1/2 justify-center">
-            <div className="relative text-left">
-              {/* <img
-                src={
-                  image
-                    ? image
-                    : 'https://healvets.org/wp-content/uploads/2021/10/ef3-placeholder-image.jpeg'
-                }
-                alt={'image'}
-                className="h-[280px] w-[384px] rounded-sm object-cover"
-              /> */}
-            </div>
+            <div className="relative text-left"></div>
           </div>
         </div>
       </div>

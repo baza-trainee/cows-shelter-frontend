@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { NewsFormInput } from '@/types';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { newsValidation } from './newsSchema';
 import { useNavigate } from 'react-router-dom';
 import { defaultValues } from './defaultValues';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { editPost, fetchPostById } from '@/store/slices/newsSlice';
-
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextArea from '@/components/admin/inputs/TextArea';
 import TextInput from '@/components/admin/inputs/TextInput';
-import { newsValidation } from './newsValidation';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
   editErrorResponseMessage,
@@ -30,8 +30,9 @@ const EditNews = () => {
     watch,
     control,
     setValue,
-    formState: { errors }
+    formState: { errors, isValid, isDirty }
   } = useForm<NewsFormInput>({
+    resolver: zodResolver(newsValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -96,7 +97,6 @@ const EditNews = () => {
             <section className="flex flex-col items-center justify-center gap-4">
               <Controller
                 name="titleUa"
-                rules={newsValidation.titleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -109,7 +109,6 @@ const EditNews = () => {
               />
               <Controller
                 name="titleEn"
-                rules={newsValidation.titleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -122,7 +121,6 @@ const EditNews = () => {
               />
               <Controller
                 name="subTitleUa"
-                rules={newsValidation.subTitleUa}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -135,7 +133,6 @@ const EditNews = () => {
               />
               <Controller
                 name="subTitleEn"
-                rules={newsValidation.subTitleEn}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -149,7 +146,6 @@ const EditNews = () => {
 
               <Controller
                 name="contentUa"
-                rules={newsValidation.contentUa}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -162,7 +158,6 @@ const EditNews = () => {
               />
               <Controller
                 name="contentEn"
-                rules={newsValidation.contentEn}
                 control={control}
                 render={({ field }) => (
                   <TextArea
@@ -199,7 +194,6 @@ const EditNews = () => {
                   accept="image/*"
                   placeholder={'Оберіть файл'}
                   title="Оберіть файл"
-                  rules={newsValidation.image}
                 />
               </div>
             </section>
@@ -208,12 +202,18 @@ const EditNews = () => {
             Додати оновлену новину?
           </span>
           <div className="flex gap-4">
-            <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
+            <button
+              className={`w-[13.5rem] px-6 py-2 font-medium ${
+                isDirty && isValid
+                  ? 'cursor-pointer bg-accent text-black'
+                  : 'cursor-not-allowed bg-disabled text-white'
+              }`}
+            >
               {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
             </button>
 
             <Link to="/admin">
-              <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
+              <button className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
                 Скасувати
               </button>
             </Link>

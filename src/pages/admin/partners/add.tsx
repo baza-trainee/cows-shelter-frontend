@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { defaultValues } from './defaultValues';
-
+import { zodResolver } from '@hookform/resolvers/zod';
 import FileInput from '@/components/admin/inputs/FileInput';
 import TextInput from '@/components/admin/inputs/TextInput';
 import { PartnersFormInput } from '@/types';
 import { addNewPartner } from '@/store/slices/partnersSlice';
 import { useAppDispatch } from '@/store/hook';
-import { partnersValidation } from './partnersValidation';
+import { partnersValidation } from './partnersSchema';
 import { openAlert } from '@/store/slices/responseAlertSlice';
 import {
   addSuccessResponseMessage,
@@ -25,8 +25,9 @@ const AddPartner = () => {
     handleSubmit,
     watch,
     control,
-    formState: { errors }
+    formState: { errors, isDirty, isValid }
   } = useForm<PartnersFormInput>({
+    resolver: zodResolver(partnersValidation),
     mode: 'onChange',
     defaultValues: defaultValues
   });
@@ -74,14 +75,12 @@ const AddPartner = () => {
                 name="logo"
                 control={control}
                 accept="image/*"
-                rules={partnersValidation.logo}
                 placeholder={'Оберіть файл'}
                 title="Додати логотип Партнера:"
                 className="w-full "
               />
               <Controller
                 name="name"
-                rules={partnersValidation.name}
                 control={control}
                 render={({ field }) => (
                   <TextInput
@@ -96,14 +95,13 @@ const AddPartner = () => {
               <section className="flex flex-col items-center justify-center gap-4">
                 <Controller
                   name="link"
-                  rules={partnersValidation.link}
                   control={control}
                   render={({ field }) => (
                     <TextInput
                       {...field}
                       errorText={errors.link?.message}
                       placeholder="Введіть посилання на сторінку Партнера"
-                      title="Змінити посилання на сторінку Партнера:"
+                      title="Додати посилання на сторінку Партнера:"
                     />
                   )}
                 />
@@ -113,12 +111,18 @@ const AddPartner = () => {
               <p className="mb-3 text-disabled">Розмістити нового Партнера?</p>
 
               <div className="flex gap-4">
-                <button className=" w-[13.5rem] rounded-md bg-gray-200 px-6 py-2 transition-all hover:bg-lemon">
+                <button
+                  className={`w-[13.5rem] px-6 py-2 font-medium ${
+                    isDirty && isValid
+                      ? 'cursor-pointer bg-accent text-black'
+                      : 'cursor-not-allowed bg-disabled text-white'
+                  }`}
+                >
                   {isProcessing ? 'Обробка запиту...' : 'Розмістити'}
                 </button>
 
                 <Link to="/admin/partners">
-                  <button className="hover:bg-red-300 w-[13.5rem] rounded-md border-2 border-lightgrey bg-white px-6 py-2 transition-all">
+                  <button className="w-[13.5rem] border border-black bg-white px-6 py-2 font-medium transition-all hover:border-accent active:border-disabled">
                     Скасувати
                   </button>
                 </Link>
@@ -129,7 +133,7 @@ const AddPartner = () => {
 
         <section className="flex flex-col items-center gap-4  px-5 py-8">
           <div className="flex  flex-col items-center  gap-8 ">
-            <div className="text-left">
+            <div className="text-center">
               <img
                 src={image ? image : '/placeholder-image.jpeg'}
                 alt={currentValues.name}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Confirm from '@/components/admin/Confirm';
-import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
+import Bucket from '@/components/icons/Bucket';
+import Pen from '@/components/icons/Pen';
 import { Link } from 'react-router-dom';
 import AddIcon from '@/components/icons/AddIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
@@ -71,7 +72,7 @@ const Partners = () => {
               <div className="buttons mt-auto flex w-full justify-between gap-2 border-t border-t-gray-300 bg-gray-100 px-4">
                 <button className="flex h-10 w-10 items-center justify-center text-xl text-darkgray hover:text-accent">
                   <Link to={`/admin/partners/edit/${partner.id}`}>
-                    <BsFillPencilFill />
+                    <Pen />
                   </Link>
                 </button>
                 <button
@@ -80,7 +81,7 @@ const Partners = () => {
                     setShowConfirm(true), setCurrentId(partner.id);
                   }}
                 >
-                  <BsFillTrash3Fill />
+                  <Bucket />
                 </button>
               </div>
             </div>

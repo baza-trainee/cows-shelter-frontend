@@ -7,5 +7,9 @@ export const passwordSchema = z.object({
       message:
         'Пароль має складатись з 6-12 символів і містити цифри та латинські літери'
     }),
-  confirmpassword: z.string({ required_error: 'Поле повинно бути заповнене' })
+  confirmpassword: z
+    .string({ required_error: 'Поле повинно бути заповнене' })
+    .refine((value) => value.length > 0, {
+      message: 'Поле повинно бути заповнене'
+    })
 });

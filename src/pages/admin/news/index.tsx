@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Confirm from '@/components/admin/Confirm';
-import { BsFillPencilFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import Bucket from '@/components/icons/Bucket';
+import Pen from '@/components/icons/Pen';
 import AddIcon from '@/components/icons/AddIcon';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { fetchPosts, removePost } from '@/store/slices/newsSlice';
@@ -61,16 +62,16 @@ const News = () => {
             </h2>
             <div className="absolute left-0 right-0 top-4 flex flex w-full items-center justify-between gap-2 px-6  py-2">
               <button
-                className="rounded-full p-[8px] text-xl text-white backdrop-blur-xl backdrop-contrast-75  transition-all hover:text-error"
+                className="rounded-full p-[8px] text-xl text-white transition-all hover:text-error"
                 onClick={() => {
                   setShowConfirm(true), setCurrentId(post.id);
                 }}
               >
-                <BsFillTrash3Fill />
+                <Bucket />
               </button>
-              <button className="rounded-full p-2 text-xl text-white backdrop-blur-xl backdrop-contrast-75 transition-all hover:text-accent">
+              <button className="rounded-full p-2 text-xl text-white transition-all hover:text-accent">
                 <Link to={`/admin/news/edit/${post.id}`}>
-                  <BsFillPencilFill />
+                  <Pen />
                 </Link>
               </button>
             </div>

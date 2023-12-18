@@ -33,8 +33,6 @@ const Excursions = () => {
     dispatch(fetchImages());
   }, []);
 
-  console.log(gallery);
-
   const { excursions, totalLength } = useAppSelector(
     (state) => state.excursions.paginatedData
   );

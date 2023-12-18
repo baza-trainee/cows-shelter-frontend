@@ -43,8 +43,6 @@ const ExcursionModal = ({
     setImagesToDisplay(randomImages);
   }, [images]);
 
-  console.log(imagesToDisplay);
-
   const handleChangedSize = () => {
     setWindowWidth(window.innerWidth);
     setHeight(window.innerHeight);
