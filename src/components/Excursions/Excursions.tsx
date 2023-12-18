@@ -172,7 +172,7 @@ const Excursions = () => {
                         src={excursion.image_url}
                         alt={`Excursion Image`}
                       ></img>
-                      <div className="fixed left-0 top-0 h-full w-full lg:bg-black/[.60] lg:opacity-0 lg:transition-all lg:duration-700 lg:group-hover:opacity-100"></div>
+                      <div className="absolute left-0 top-0 h-full w-full lg:bg-black/[.60] lg:opacity-0 lg:transition-all lg:duration-700 lg:group-hover:opacity-100"></div>
                       <div className="absolute bottom-0 left-0 flex flex-col gap-0 pb-6 pl-6 text-white transition-all duration-700 group-hover:gap-5">
                         <p className="text-xl font-semibold leading-normal lg:text-[22px]">
                           {language === 'uk'
