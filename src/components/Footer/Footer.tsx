@@ -13,16 +13,13 @@ const Footer = () => {
   const dispatch = useAppDispatch();
 
   const translateTitle = (title: string) => {
-    let translatedTitle = '';
-    if (title === 'Політика Конфіденційності') {
-      translatedTitle = 'Privacy Policy';
-    }
     if (title === 'Правила Користування Сайтом') {
-      translatedTitle = 'Terms of Usage';
-    } else {
-      translatedTitle = title;
+      return 'Terms of Use';
     }
-    return translatedTitle;
+    if (title === 'Політика Конфіденційності') {
+      return 'Privacy Policy';
+    }
+    return title;
   };
 
   const documents = useAppSelector((state) => state.pdf.documents);
