@@ -16,6 +16,16 @@ const ExcursionsReviews = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [pagesLength, setPagesLength] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const handleChangedSize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleChangedSize);
+    return () => {
+      window.removeEventListener('resize', handleChangedSize);
+    };
+  }, []);
 
   const { reviews, totalLength } = useAppSelector(
     (state) => state.reviews.paginatedData
@@ -57,7 +67,7 @@ const ExcursionsReviews = () => {
         pagesLength={pagesLength}
         isReviews={true}
       >
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 bg-blue-500 lg:mb-[50px]">
           {reviews && Array.isArray(reviews) ? (
             reviews.map((review: Review) => (
               <li
