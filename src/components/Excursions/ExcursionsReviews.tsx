@@ -16,16 +16,6 @@ const ExcursionsReviews = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(3);
   const [pagesLength, setPagesLength] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const handleChangedSize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-  useEffect(() => {
-    window.addEventListener('resize', handleChangedSize);
-    return () => {
-      window.removeEventListener('resize', handleChangedSize);
-    };
-  }, []);
 
   const { reviews, totalLength } = useAppSelector(
     (state) => state.reviews.paginatedData
