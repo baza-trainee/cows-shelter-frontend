@@ -57,7 +57,7 @@ const ExcursionsReviews = () => {
         pagesLength={pagesLength}
         isReviews={true}
       >
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 bg-blue-500 lg:mb-[50px]">
           {reviews && Array.isArray(reviews) ? (
             reviews.map((review: Review) => (
               <li
