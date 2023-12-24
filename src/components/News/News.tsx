@@ -68,6 +68,8 @@ const News = () => {
     dispatch(openModal({ data: {}, type: 'news' }));
   };
 
+  console.log(posts);
+
   useEffect(() => {
     if (isModalOpen) {
       setShowModal(true);
