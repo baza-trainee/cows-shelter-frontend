@@ -62,7 +62,7 @@ const ExcursionsReviews = () => {
             reviews.map((review: Review) => (
               <li
                 key={review.id}
-                className="flex after:ml-3.5 after:h-40 after:border-r after:border-disabled after:content-[''] md:h-full md:max-w-[50%]"
+                className="flex after:content-[''] after:ml-3.5 after:h-40 after:border-r after:border-disabled md:h-full md:max-w-[50%]"
               >
                 <div>
                   <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
