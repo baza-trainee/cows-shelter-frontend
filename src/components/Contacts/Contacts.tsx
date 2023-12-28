@@ -72,6 +72,14 @@ const Contacts = () => {
                 {contacts[0] ? contacts[0].phone : ''}
               </a>
             </li>
+            <li>
+              <a
+                href="https://www.facebook.com/people/%D0%97%D0%B0%D1%85%D0%B8%D1%81%D1%82-%D0%9A%D0%BE%D1%80%D1%96%D0%B2/pfbid0c6Wv1uqMhwa8s7Anh6dDHp2arjjqo8QfSuPvMyADtPgBcwamCFNnfuVbDFLaL6NSl/"
+                rel="noopener noreferrer"
+              >
+                Facebook
+              </a>
+            </li>
           </ul>
           <h4 className="mb-5 font-bold xs:text-lg md:text-xl lg:text-2xl">
             {t('contacts:titles.working_hours')}

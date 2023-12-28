@@ -17,6 +17,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 .is-current {
   color: orangered;
 }
@@ -63,6 +64,9 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+@layer utlities {
 }
 
 .swiper-pagination-bullet {
