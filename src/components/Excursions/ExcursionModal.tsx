@@ -96,8 +96,8 @@ const ExcursionModal = ({
           isOpen ? 'translate-x-0' : 'translate-x-[100%]'
         } w-[85%] ${
           windowHeight < 400 && 'md:h-[380px]'
-        } h-[675px] translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white px-5 
-        pb-12 pt-4 transition-all duration-700 md:h-[832px] max-h-full md:w-[672px] md:px-10 md:pb-10 md:pt-10 
+        } h-[675px] max-h-full translate-x-[-50%] translate-y-[-50%] overflow-auto bg-white 
+        px-5 pb-12 pt-4 transition-all duration-700 md:h-[832px] md:w-[672px] md:px-10 md:pb-10 md:pt-10 
          lg:h-auto lg:w-[1136px] lg:px-[3.75rem] lg:pb-[3.75rem]`}
       >
         <div className="flex flex-col md:gap-6 lg:flex-row lg:gap-10">
@@ -169,9 +169,9 @@ const ExcursionModal = ({
                 ? excursion.description_ua
                 : excursion.description_en}
             </p>
-            <div className="flex flex-col gap-3 md:flex-row md:justify-center md:gap-6">
+            <div className="flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-6">
               <button
-                className="h-10 max-w-[17.5rem] bg-accent text-lg font-medium leading-[1.375rem] transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-lemon md:h-11 md:w-[14.44rem]"
+                className="h-10 w-[17.5rem] bg-accent text-lg font-medium leading-[1.375rem] transition-all duration-300 hover:bg-lemon focus:bg-lemon active:bg-lemon md:h-11 md:w-[14.44rem]"
                 onClick={openExcursionOrderModal}
               >
                 {language === 'uk'
@@ -179,7 +179,7 @@ const ExcursionModal = ({
                   : 'Order an excursion'}
               </button>
               <button
-                className="h-10 max-w-[17.5rem] border border-solid border-black text-lg font-medium leading-[1.375rem] text-black hover:border-accent focus:border-accent active:border-accent md:h-11 md:w-[14.44rem]"
+                className="h-10 w-[17.5rem] border border-solid border-black text-lg font-medium leading-[1.375rem] text-black hover:border-accent focus:border-accent active:border-accent md:h-11 md:w-[14.44rem]"
                 onClick={openDonationModal}
               >
                 {language === 'uk' ? 'Допомогти' : 'Donate'}

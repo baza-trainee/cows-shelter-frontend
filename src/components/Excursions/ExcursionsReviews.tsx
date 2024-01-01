@@ -57,20 +57,22 @@ const ExcursionsReviews = () => {
         pagesLength={pagesLength}
         isReviews={true}
       >
-        <ul className="flex gap-6 bg-blue-500 lg:mb-[50px]">
+        <ul className="flex gap-6 lg:mb-[30px]">
           {reviews && Array.isArray(reviews) ? (
             reviews.map((review: Review) => (
               <li
                 key={review.id}
-                className="border-r border-disabled pr-5 md:h-40 md:max-w-[50%] md:pr-10 lg:max-w-[33.3%] lg:pr-16"
+                className="flex after:content-[''] after:ml-3.5 after:h-40 after:border-r after:border-disabled md:h-full md:max-w-[50%]"
               >
-                <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
-                  {language === 'uk' ? review.name_ua : review.name_en}
-                </p>
-                <p className="default-text md:text-base">
-                  {' '}
-                  {language === 'uk' ? review.review_ua : review.review_en}
-                </p>
+                <div>
+                  <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
+                    {language === 'uk' ? review.name_ua : review.name_en}
+                  </p>
+                  <p className="default-text md:text-base">
+                    {' '}
+                    {language === 'uk' ? review.review_ua : review.review_en}
+                  </p>
+                </div>
               </li>
             ))
           ) : (
