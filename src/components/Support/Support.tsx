@@ -49,10 +49,11 @@ const Support = () => {
         className="mx-auto flex flex-col items-start justify-center px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]"
       >
         <h2
-          className="my-[20px] text-[24px] font-medium md:text-[54px] lg:text-[64px] "
+          className="my-[20px] flex gap-2 text-[24px] font-medium md:text-[44px] lg:text-[54px] "
           id="support"
         >
           {t('support:title')}
+          <img src="/cow.svg" alt="" className="" />
         </h2>
 
         <p className="mb-10 text-[14px] leading-normal text-darkgray md:text-[20px] lg:w-[1020px] lg:text-[22px]">

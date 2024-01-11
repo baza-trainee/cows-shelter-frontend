@@ -32,6 +32,28 @@ body {
   font-family: 'Montserrat', sans-serif;
   overflow-y: hidden;
 }
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+&::-webkit-scrollbar-track {
+  background-color: #fff5a5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fee41f;
+  border: 1px solid #fee41f;
+  height: 3rem;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #fff5a5;
+  border: 1px solid #fff5a5;
+  cursor: pointer;
+}
+
 .modal-content {
   overflow: hidden;
 }
@@ -64,9 +86,6 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-}
-
-@layer utlities {
 }
 
 .swiper-pagination-bullet {

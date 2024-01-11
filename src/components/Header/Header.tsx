@@ -140,7 +140,7 @@ const Header = () => {
                 href="#donate"
                 className={` ${
                   isScrolled
-                    ? 'border-black text-black'
+                    ? 'bg-accent text-black'
                     : 'border-white bg-inherit'
                 }  flex h-11 w-[180px] items-center justify-center border text-lg transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black focus:bg-lemon focus:text-black active:bg-darkyellow active:text-black lg:w-[180px]`}
                 type="button"

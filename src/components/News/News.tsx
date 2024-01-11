@@ -5,18 +5,14 @@ import { useWidth } from '@/hooks/useWidth';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import { openModal } from '@/store/slices/modalSlice';
 import { fetchNewsWithPagination } from '@/store/slices/newsSlice';
+import { setActiveLink } from '@/store/slices/observationSlice';
 import { useInView } from 'react-intersection-observer';
-
-// import { NewsData } from '@/types';
-// import { news } from '@/data/news';
 import NewsModal from '@/components/modals/NewsModal';
+import Slider from '../Slider';
+import NewsBlock from './NewsBlock';
 
 import 'swiper/css/pagination';
 import 'swiper/css';
-import { setActiveLink } from '@/store/slices/observationSlice';
-
-import Slider from '../Slider';
-import NewsBlock from './NewsBlock';
 
 const News = () => {
   const screenWidth = useWidth();
@@ -94,7 +90,7 @@ const News = () => {
           setCurrentPage={setCurrentPage}
           pagesLength={pagesLength}
         >
-          <NewsBlock posts={posts} />
+          {posts && <NewsBlock posts={posts} />}
         </Slider>
 
         {isModalOpen && type === 'news' && (

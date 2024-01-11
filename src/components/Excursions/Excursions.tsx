@@ -110,8 +110,9 @@ const Excursions = () => {
       <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
         {windowWidth < 768 && (
           <div>
-            <h2 className="mb-10 text-2xl font-medium leading-normal">
+            <h2 className="mb-10 flex gap-2 text-2xl font-medium leading-normal">
               {language === 'uk' ? 'Екскурсії' : 'Excursions'}
+              <img src="/cow.svg" alt="" className="" />
             </h2>
             <ul className="mb-5 flex flex-col items-center gap-4">
               {excursions && Array.isArray(excursions) ? (

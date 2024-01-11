@@ -77,6 +77,8 @@ const Gallery = () => {
     }
   }, [inView, dispatch]);
 
+  console.log(images);
+
   return (
     <section id="gallery" ref={ref} className="relative">
       <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-8 md:py-12 lg:w-[1280px] lg:px-[100px]">
