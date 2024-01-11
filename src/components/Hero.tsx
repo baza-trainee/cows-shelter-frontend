@@ -1,9 +1,17 @@
 import LocationIcon from './icons/LocationIcon';
 import { useTranslation } from 'react-i18next';
 import { offersList } from '@/data/offersList';
+import { openModal } from '@/store/slices/modalSlice';
+import { useAppDispatch } from '@/store/hook';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  const openDonateModal = () => {
+    dispatch(openModal({ data: {}, type: 'donation' }));
+  };
+
   return (
     <section className="hero relative mb-[190px] h-[420px] w-full bg-[url(/hero/hero-tab@1x.png)] bg-cover bg-center bg-no-repeat text-white md:mb-0 md:h-[800px] md:bg-[url(/hero/hero-desk@1x.png)]">
       <div className="mx-auto w-[100%] px-5 pt-[82px] sm:w-[480px] md:h-[970px] md:w-[768px] md:px-12 md:pt-[128px] lg:w-[1280px] lg:px-[120px] lg:pt-[130px] xl:w-[1440px]">
@@ -33,12 +41,12 @@ const Hero = () => {
             <LocationIcon />
             {t('hero:address')}
           </a>
-          <a
-            className="absolute -bottom-[210px] right-0 flex h-[100px] w-[100px] scale-100 items-center rounded-full bg-accent text-center text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-125 focus:scale-125 active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-xl"
-            href="#excursions"
+          <button
+            onClick={openDonateModal}
+            className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 hover:bg-lemon focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
           >
-            {t('hero:order')}
-          </a>
+            {t('hero:help')}
+          </button>
         </div>
       </div>
     </section>

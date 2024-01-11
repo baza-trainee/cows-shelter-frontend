@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 const Map = () => {
   const customIcon = new Icon({
     iconUrl: '/marker-unscreen.gif',
-    iconSize: [55, 48]
+    iconSize: [52, 48]
   });
 
   return (

@@ -55,8 +55,9 @@ const Slider = ({
         }`}
       >
         {title && (
-          <h2 className="text-[24px] font-medium md:text-[54px] lg:text-[64px] ">
+          <h2 className="flex gap-2 text-[24px] font-medium md:text-[44px] lg:text-[54px] ">
             {title}
+            <img src="/cow.svg" alt="" className="" />
           </h2>
         )}
         {subtitle && (

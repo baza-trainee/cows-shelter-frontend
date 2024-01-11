@@ -77,7 +77,7 @@ const DonateModal = ({ isOpen, setShowModal }: DonateModalProps) => {
       <div
         className={`absolute ${
           isOpen ? 'right-0' : '-right-[500px]'
-        } no-scrollbar top-[45%] max-h-[90vh] w-full -translate-y-[50%] overflow-auto bg-white px-[37px] py-[40px] transition-all duration-700 md:top-[50%] md:w-[480px] md:px-20`}
+        } scrollbar scrollbar-thumb-accent scrollbar-thin top-[45%] max-h-[95vh] w-full -translate-y-[50%] overflow-auto bg-white px-[37px] py-[40px] transition-all duration-700 md:top-[50%] md:w-[480px] md:px-20`}
       >
         <button
           onClick={handleClose}
