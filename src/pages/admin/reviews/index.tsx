@@ -41,7 +41,7 @@ const Reviews = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className=" flex min-h-screen flex-col px-12 pt-10">
+    <div className="relative flex min-h-screen flex-col px-12 pt-10">
       <div>
         <h1 className="text-3xl font-bold">Відгуки</h1>
       </div>

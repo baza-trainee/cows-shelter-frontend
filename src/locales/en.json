@@ -71,14 +71,14 @@
   "faq": {
     "title": "Frequently asked questions",
     "questions": {
-      "opening_hours": "What are the opening hours of the shelter?",
+      "opening_hours": "What is the working schedule of the shelter?",
       "winter_excursion": "Is it possible to visit the shelter for an excursion in winter?",
       "max_guests": "What is the maximum number of people per excursion?",
       "prise": "What is the reason the shelter does not have any fixed prices for excursions?",
       "kind_help": "How can I help the shelter besides donating?"
     },
     "answers": {
-      "opening_hours": "The shelter is open from 10:00 a.m. to 6:00 p.m. every day",
+      "opening_hours": "According to an individual schedule. Please contact us at the phone number for a visit.",
       "winter_excursion": "Sorry for the inconvenience, but the shelter offers excursions only from spring to autumn ",
       "max_guests": "Up to 30 people",
       "prise": "The shelter works on a volunteer basis, we do not ask people for a fixed fee - you donate as much as you think is necessary",
@@ -222,6 +222,7 @@
     "titles": {
       "contacts": "Contacts",
       "working_hours": "Working Hours",
+      "schedule": "According to an individual schedule",
       "location": "Location",
       "payment": "Details for shelter support:"
     },

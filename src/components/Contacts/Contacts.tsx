@@ -92,7 +92,7 @@ const Contacts = () => {
               <p>{t('contacts:working_days')}</p>
             </li>
             <li>
-              <p>10:00 - 20:00</p>
+              <p> {t('contacts:titles.schedule')}</p>
             </li>
           </ul>
           <h4 className="mb-5 font-bold xs:text-lg md:text-xl lg:text-2xl">

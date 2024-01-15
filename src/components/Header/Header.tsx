@@ -36,6 +36,10 @@ const Header = () => {
   const openBurgerMenu = () =>
     dispatch(openModal({ data: {}, type: 'burgerMenu' }));
 
+  const openDonateModal = () => {
+    dispatch(openModal({ data: {}, type: 'donation' }));
+  };
+
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
   };
@@ -136,8 +140,8 @@ const Header = () => {
               </div>
             )}
             {windowWidth >= 768 && (
-              <a
-                href="#donate"
+              <button
+                onClick={openDonateModal}
                 className={` ${
                   isScrolled
                     ? 'bg-accent text-black'
@@ -146,7 +150,7 @@ const Header = () => {
                 type="button"
               >
                 {t('header:btn_donate')}
-              </a>
+              </button>
             )}
             {windowWidth < 1280 && (
               <button

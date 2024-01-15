@@ -1,8 +1,6 @@
 import icon_privat from '@/assets/icons/icon_privat.svg';
 import icon_mono from '@/assets/icons/icon_mono.svg';
 import icon_paypal from '@/assets/icons/icon_paypal.svg';
-import icon_western_union from '@/assets/icons/icon_western_union.svg';
-import icon_swift from '@/assets/icons/icon_swift.svg';
 
 type WayOfHelping = {
   value: string;
@@ -29,11 +27,5 @@ export const paySystems: Array<WayOfHelping> = [
     url: icon_privat
   },
   { value: 'Monobank', title: 'donate:pay_systems.two', url: icon_mono },
-  { value: 'PayPal', title: 'donate:pay_systems.three', url: icon_paypal },
-  {
-    value: 'Western',
-    title: 'donate:pay_systems.four',
-    url: icon_western_union
-  },
-  { value: 'Swift', title: 'donate:pay_systems.fife', url: icon_swift }
+  { value: 'PayPal', title: 'donate:pay_systems.three', url: icon_paypal }
 ];

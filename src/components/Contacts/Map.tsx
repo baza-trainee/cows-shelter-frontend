@@ -26,7 +26,7 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           detectRetina={true}
         />
-        <Marker position={[48.33, 28.13]} icon={customIcon}></Marker>
+        <Marker position={[48.3354, 28.1295]} icon={customIcon}></Marker>
       </MapContainer>
     </div>
   );
