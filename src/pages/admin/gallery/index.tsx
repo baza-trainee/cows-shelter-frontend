@@ -77,7 +77,7 @@ const Gallery = () => {
       {showConfirm && (
         <Confirm
           setShowConfirm={setShowConfirm}
-          title="Чи ви впевнені, що хочете видалити новину зі сторінки?"
+          title="Чи ви впевнені, що хочете видалити світлину зі сторінки?"
           onConfirm={deletePost}
         />
       )}

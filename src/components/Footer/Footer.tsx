@@ -58,7 +58,7 @@ const Footer = () => {
                 <p className="default-text">{t('footer:working_days')}</p>
               </li>
               <li>
-                <p className="default-text">10:00 - 18:00</p>
+                <p className="default-text">{t('contacts:titles.schedule')}</p>
               </li>
             </ul>
           </li>
@@ -182,7 +182,7 @@ const Footer = () => {
                 <p className="default-text">{t('footer:working_days')}</p>
               </li>
               <li>
-                <p className="default-text">10:00 - 18:00</p>
+                <p className="default-text">{t('contacts:titles.schedule')}</p>
               </li>
             </ul>
             <a href="#support">
@@ -340,7 +340,9 @@ const Footer = () => {
                   <p className="default-text">{t('footer:working_days')}</p>
                 </li>
                 <li>
-                  <p className="default-text">10:00 - 18:00</p>
+                  <p className="default-text">
+                    {t('contacts:titles.schedule')}
+                  </p>
                 </li>
               </ul>
             </div>

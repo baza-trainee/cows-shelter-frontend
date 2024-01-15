@@ -57,12 +57,12 @@ const ExcursionsReviews = () => {
         pagesLength={pagesLength}
         isReviews={true}
       >
-        <ul className="flex gap-6 lg:mb-[30px]">
+        <ul className="flex  gap-6  lg:mb-[30px]">
           {reviews && Array.isArray(reviews) ? (
             reviews.map((review: Review) => (
               <li
                 key={review.id}
-                className="flex after:content-[''] after:ml-3.5 after:h-40 after:border-r after:border-disabled md:h-full md:max-w-[50%]"
+                className="flex min-w-[30%] after:ml-3.5 after:h-40 after:border-r after:border-disabled after:content-[''] md:h-full md:max-w-[50%]"
               >
                 <div>
                   <p className="mb-2.5 text-lg leading-tight md:text-xl md:leading-6 lg:text-[22px]">
