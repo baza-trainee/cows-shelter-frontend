@@ -19,7 +19,7 @@ const Hero = () => {
           {t('hero:main_title')}
         </h1>
 
-        <ul className="absolute -bottom-[180px] justify-center pl-4 text-[1.069rem] font-medium leading-[1.59rem] text-black md:relative md:bottom-0 md:mb-[340px] md:flex md:text-xl md:text-white lg:mb-[100px] lg:block lg:pl-6 lg:text-[1.375rem] ">
+        <ul className="absolute -bottom-[180px] justify-center pl-4 text-[1.069rem] font-medium leading-[1.59rem] text-black md:relative md:bottom-0 md:mb-[340px] md:flex md:text-xl md:text-white lg:mb-[50px] lg:block lg:pl-6 lg:text-[1.375rem] ">
           {offersList.map((item) => (
             <li
               key={item}
@@ -36,9 +36,9 @@ const Hero = () => {
             </li>
           ))}
         </ul>
-        <div className="relative flex items-end justify-between ">
+        <div className="relative bottom-[4rem] flex items-end justify-between">
           <a
-            className="  flex gap-3 border-b fill-white pb-3 text-base text-white transition-all duration-300 hover:border-accent hover:text-accent focus:border-accent focus:text-accent lg:text-[1.06rem]"
+            className="flex gap-3 border-b  fill-white pb-3 text-base text-white transition-all duration-300 hover:border-accent hover:text-accent focus:border-accent focus:text-accent lg:text-[1.06rem]"
             href="#contacts"
           >
             <LocationIcon />
@@ -46,7 +46,7 @@ const Hero = () => {
           </a>
           <button
             onClick={openDonateModal}
-            className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-accent  p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 hover:bg-lemon focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
+            className="flex h-[100px] w-[100px]  items-center justify-center rounded-full  bg-accent p-2 text-sm font-medium leading-[121%] text-black transition-all duration-300 hover:scale-105 hover:bg-lemon focus:bg-lemon active:bg-darkyellow md:relative md:bottom-0 md:h-[130px] md:w-[130px] md:text-lg"
           >
             {t('hero:help')}
           </button>

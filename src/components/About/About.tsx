@@ -72,7 +72,7 @@ const About = () => {
         <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-12 lg:w-[1280px] lg:px-[120px] xl:w-[1440px]">
           <h2 className="mb-5 flex gap-2 text-[1.5rem] font-medium leading-normal md:mb-6 md:text-[44px] lg:text-[54px]">
             {t('about_us:header')}
-            <img src="/cow.svg" alt="" className="" />
+            <img src="/cow.svg" alt="" className="w-[5rem]" />
           </h2>
           <div className="mb-5 max-w-[1098px] text-[0.875rem] font-normal leading-normal md:mb-10 md:text-[1.25rem] lg:mb-10 lg:text-[1.375rem]">
             <p>{t('about_us:main_text')}</p>
