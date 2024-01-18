@@ -18,7 +18,7 @@ type SliderProps = {
   isPartners?: boolean;
   pagesLength?: number;
   children: React.ReactNode;
-  setCurrentPage?: Dispatch<SetStateAction<number>>;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 };
 
 const Slider = ({
@@ -57,7 +57,7 @@ const Slider = ({
         {title && (
           <h2 className="flex gap-2 text-[24px] font-medium md:text-[44px] lg:text-[54px] ">
             {title}
-            <img src="/cow.svg" alt="" className="" />
+            <img src="/cow.svg" alt="" className="w-[5rem]" />
           </h2>
         )}
         {subtitle && (
@@ -113,9 +113,7 @@ const Slider = ({
           pagination={{ clickable: true }}
           loop={false}
           onActiveIndexChange={(swiper) => {
-            if (setCurrentPage !== undefined) {
-              setCurrentPage(swiper.activeIndex + 1);
-            }
+            setCurrentPage(swiper.activeIndex + 1);
           }}
           onSwiper={(swiper) => {
             (sliderRef.current as any) = swiper;

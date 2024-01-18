@@ -92,11 +92,11 @@ const Partners = () => {
 
   return (
     <section id="partners" ref={ref} className="relative bg-[#F3F3F5] ">
-      <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-12 lg:w-[1280px] lg:px-[120px] lg:py-[80px] xl:w-[1440px]">
+      <div className="mx-auto flex flex-col px-5 py-6 sm:w-[480px] md:w-[768px] md:px-12 md:py-8 lg:w-[1280px] lg:px-[120px] lg:py-[80px] xl:w-[1440px]">
         <div className="sectionHeader mb-5 flex-row md:mb-8 lg:mb-14 lg:flex  lg:items-center lg:justify-between">
           <h2 className="flex gap-2 text-[1.5rem] font-medium md:mb-6 md:text-[44px] lg:text-[54px]">
             {t('partners:header')}
-            <img src="/cow.svg" alt="" className="" />
+            <img src="/cow.svg" alt="" className="w-[5rem]" />
           </h2>
           <button
             onClick={openPartnersModal}
@@ -123,7 +123,7 @@ const Partners = () => {
                   className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
                 >
                   <img
-                    className="m-auto mb-6 scale-100 transform"
+                    className="m-auto mb-6 scale-100 transform rounded-full"
                     src={partner?.logo}
                     alt={partner?.name}
                     width={134}
@@ -157,7 +157,7 @@ const Partners = () => {
                       className="partner-scale block w-full transform border-solid border-darkyellow transition-all duration-300 hover:border-b"
                     >
                       <img
-                        className="m-auto mb-6 scale-100 transform md:h-[208px] md:w-[208px] xl:h-[245px] xl:w-[245px]"
+                        className="m-auto mb-6 scale-100 transform rounded-full md:h-[208px] md:w-[208px] xl:h-[245px] xl:w-[245px]"
                         src={partner.logo}
                         alt={partner.name}
                         width={208}

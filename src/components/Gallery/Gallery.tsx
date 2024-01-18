@@ -97,7 +97,7 @@ const Gallery = () => {
                 images.map((item: any, index: number) => (
                   <div
                     key={item.id}
-                    className={`gridItem relative h-[281px]  min-w-[282px] max-w-[456px]  overflow-hidden gridItem--${
+                    className={`gridItem relative h-[281px] min-w-[282px] max-w-[456px] overflow-hidden gridItem--${
                       index + 1
                     }`}
                   >
