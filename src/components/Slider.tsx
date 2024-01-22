@@ -111,7 +111,6 @@ const Slider = ({
           slidesPerView={1}
           modules={[Pagination, Navigation]}
           pagination={{ clickable: true }}
-          loop={false}
           onActiveIndexChange={(swiper) => {
             setCurrentPage(swiper.activeIndex + 1);
           }}
