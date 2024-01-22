@@ -145,6 +145,7 @@ const partnersSlice = createSlice({
       })
       .addCase(fetchPartners.fulfilled, (state, action) => {
         state.partners = action.payload as Partner[];
+        console.log(state.partners);
         state.loading = false;
       })
       .addCase(fetchPartnersWithPagination.pending, (state) => {

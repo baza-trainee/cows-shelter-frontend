@@ -81,7 +81,7 @@ const Gallery = () => {
 
   return (
     <section id="gallery" ref={ref} className="relative">
-      <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-8 md:py-12 lg:w-[1280px] lg:px-[100px]">
+      <div className="mx-auto px-5 sm:w-[480px] md:w-[768px] md:px-8 md:py-12 lg:w-[1280px] lg:px-[55px]">
         {isModalOpen && type === 'lightbox' && (
           <LightBox images={images} image={image} />
         )}
@@ -92,7 +92,7 @@ const Gallery = () => {
             setCurrentPage={setCurrentPage}
             pagesLength={pagesLength}
           >
-            <div className="gridContainer ml-4 w-full pr-8 lg:ml-0 lg:pr-0 ">
+            <div className="gridContainer ml-4 w-full ">
               {images && Array.isArray(images) ? (
                 images.map((item: any, index: number) => (
                   <div

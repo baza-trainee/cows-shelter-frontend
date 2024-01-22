@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '@/store/hook';
 import Slider from '@/components/Slider';
 import PartnersModal from './modals/PartnersModal';
 import { openModal } from '@/store/slices/modalSlice';
-import Loader from './admin/Loader';
 import {
   Partner,
   fetchPartnersWithPagination
@@ -23,7 +22,6 @@ const Partners = () => {
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const isLoading = useAppSelector((state) => state.partners.loading);
   const type = useAppSelector((state) => state.modals.type);
   const isModalOpen = useAppSelector((state) => state.modals.isModalOpen);
   const { partners, totalLength } = useAppSelector(
@@ -85,10 +83,6 @@ const Partners = () => {
       dispatch(setActiveLink(''));
     }
   }, [inView, dispatch]);
-
-  console.log(partners);
-
-  if (isLoading) return <Loader />;
 
   return (
     <section id="partners" ref={ref} className="relative bg-[#F3F3F5] ">
