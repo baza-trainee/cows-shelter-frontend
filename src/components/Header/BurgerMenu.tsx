@@ -2,15 +2,17 @@ import CloseIcon from '../icons/CloseIconMenu';
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect, MouseEvent } from 'react';
 import { navLinks } from '@/data/navLinks';
-import { useAppDispatch } from '@/store/hook';
 import { closeModal } from '@/store/slices/modalSlice';
 import { useHeight } from '@/hooks/useHeight';
+import { useAppDispatch } from '@/store/hook';
+import { openModal } from '@/store/slices/modalSlice';
 
 const BurgerMenu = () => {
   const [activeSection, setActiveSection] = useState('#about-us');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setHeight] = useState(window.innerHeight);
   const screenHeight = useHeight();
+
   const {
     i18n: { changeLanguage, language }
   } = useTranslation();
@@ -28,6 +30,11 @@ const BurgerMenu = () => {
     if (event.currentTarget === event.target) {
       closeBurgerMenu();
     }
+  };
+
+  const openDonateModal = () => {
+    closeBurgerMenu();
+    dispatch(openModal({ data: {}, type: 'donation' }));
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -119,8 +126,7 @@ const BurgerMenu = () => {
         </div>
         {windowWidth < 768 && (
           <a
-            onClick={closeBurgerMenu}
-            href="#donate"
+            onClick={openDonateModal}
             className=" mx-auto flex h-11 w-[272px] items-center justify-center border border-black border-transparent bg-accent py-3 text-lg text-black transition-all duration-300 hover:border-transparent hover:bg-lemon hover:text-black focus:bg-lemon focus:text-black active:bg-darkyellow active:text-black"
             type="button"
           >
