@@ -7,8 +7,8 @@ import { openModal } from '@/store/slices/modalSlice';
 import { SupportCard } from '@/types';
 
 import Card from './Card';
-import DonateModal from '@/components/modals/DonateModal';
 import SupportInfoModal from '@/components/modals/SupportInfoModal';
+import QRDonateModal from '../modals/QRDonateModal';
 
 const Support = () => {
   const { t } = useTranslation();
@@ -117,7 +117,7 @@ const Support = () => {
         </div>
       </div>
       {isModalOpen && type === 'donation' && (
-        <DonateModal isOpen={showModal} setShowModal={setShowModal} />
+        <QRDonateModal isOpen={showModal} setShowModal={setShowModal} />
       )}
     </section>
   );
